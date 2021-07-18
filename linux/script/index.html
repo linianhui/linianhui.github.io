@@ -1,0 +1,1102 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Linux] Bash Script - blackheart</title><link rel=icon type=image/svg href=/favicon.svg><link href=//cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css rel=stylesheet><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet><link href="/asset/pc.css?time=1626578142" rel=stylesheet><script src="/asset/pc.js?time=1626578142" type=text/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/mobile.css?time=1626578142" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/linux/ target=_blank>[Linux]</a></section><section class="toc-page selected"><span class=toc-page-title>[Linux] Bash Script</span><nav id=TableOfContents><ul><li><a href=#script-highlight-files>1 Script File List</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/linux/bash-01-basic/ target=_blank>[Linux] 01 Basic</a></section><section class=toc-page><a class=toc-page-title href=/linux/bash-02-expansion/ target=_blank>[Linux] 02 Expansion</a></section><section class=toc-page><a class=toc-page-title href=/linux/ssh/ target=_blank>[Linux] SSH</a></section><section class=toc-page><a class=toc-page-title href=/linux/systemd/ target=_blank>[Linux] systemd</a></section><section class=toc-page><a class=toc-page-title href=/linux/ubuntu/ target=_blank>[Linux] Ubuntu</a></section><section class=toc-page><a class=toc-page-title href=/linux/centos/ target=_blank>[Linux] CentOS</a></section><section class=toc-page><a class=toc-page-title href=/linux/top/ target=_blank>[Linux] top</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/><i class="fa fa-home" style=font-size:24px></i>blackheart</a>
+<a href="https://music.163.com/#/song?id=1467670638" target=_blank style=vertical-align:text-bottom><i class="fa fa-music" style=font-size:24px></i></a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a></nav><div class=stats>博客 - 107</div><form class=search method=get target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder="Bing site search" results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></header><main class=content><article class=article><h1 class=article-title>[Linux] Bash Script</h1><div class=article-copyright><span>版权声明 -</span>
+<a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2017-01-01 09:42，约2933字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/linux/ title=[Linux] target=_blank><i class="fa fa-folder"></i>[Linux]</a></section><section class=article-tags><a class=article-tag href=/tag/linux target=_blank><i class="fa fa-tag"></i>Linux</a>
+<a class=article-tag href=/tag/sh target=_blank><i class="fa fa-tag"></i>sh</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/8234459980d9deeae3682abe0f789da9bbbdbb79 target=_blank><i class="fa fa-code-fork"></i>8234459</a>
+<span class=article-git-commit-subject>Adjust h[1-6] element id</span>
+<span class=article-git-commit-time>2020-06-12 14:53</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/linux/script/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=script-highlight-files><i id=locator-script-highlight-files class=header-locator></i>
+<a href=#script-highlight-files class=article-h-a>1 Script File List</a></h1><div class=highlight-files><div class=highlight-files-header>sh文件列表</div><div class=highlight-files-list><div class=highlight-file id=hfs-673b4bcc142c03a1c8bdf16062db655f><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-673b4bcc142c03a1c8bdf16062db655f','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/a.sh download>a.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/a.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># .zshrc(z shell run commands)</span>
+
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/env.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/function.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/function-string.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/function-directory.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/function-git.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/function-proc.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/git-prompt.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/zsh-prompt.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/vscode.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/idea.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/alias.sh
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/zsh-compdef.sh</code></pre></div></div></div><div class=highlight-file id=hfs-ea916535a94ec9aace802401c3435d1a><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-ea916535a94ec9aace802401c3435d1a','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/alias.sh download>alias.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/alias.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># alias</span>
+alias ..=<span style=color:#a31515>&#39;cd ..&#39;</span>
+alias ...=<span style=color:#a31515>&#39;cd ../..&#39;</span>
+alias d=<span style=color:#a31515>&#39;__directory_to&#39;</span>
+alias c=<span style=color:#a31515>&#39;__vscode_open&#39;</span>
+alias i=<span style=color:#a31515>&#39;__idea_open&#39;</span>
+
+alias dr=<span style=color:#a31515>&#39;docker run --rm --tty --interactive&#39;</span>
+alias dre=<span style=color:#a31515>&#39;dr --entrypoint&#39;</span>
+alias drs=<span style=color:#a31515>&#39;dre sh&#39;</span>
+alias drb=<span style=color:#a31515>&#39;dre bash&#39;</span>
+alias dh=<span style=color:#a31515>&#39;docker history --human --no-trunc&#39;</span>
+alias dc=<span style=color:#a31515>&#39;docker-compose&#39;</span>
+alias dm=<span style=color:#a31515>&#39;docker-machine&#39;</span>
+alias mk=<span style=color:#a31515>&#39;minikube&#39;</span>
+
+alias h=<span style=color:#a31515>&#39;history | grep&#39;</span>
+
+alias md=<span style=color:#a31515>&#39;mkdir -p&#39;</span>
+
+alias bak=<span style=color:#a31515>&#39;backup_file&#39;</span>
+
+alias cls=<span style=color:#a31515>&#39;clear&#39;</span>
+
+alias grep=<span style=color:#a31515>&#39;grep --color=auto&#39;</span>
+
+alias untar=<span style=color:#a31515>&#39;tar -z -x -v -f&#39;</span>
+
+alias wget=<span style=color:#a31515>&#39;wget --continue --show-progress&#39;</span>
+
+alias sha=<span style=color:#a31515>&#39;shasum --algorithm 1&#39;</span>
+alias sha256=<span style=color:#a31515>&#39;shasum --algorithm 256&#39;</span>
+
+alias ping=<span style=color:#a31515>&#39;ping -c 5&#39;</span>
+
+alias ipe=<span style=color:#a31515>&#39;curl http://ifconfig.me/ip&#39;</span>
+alias ipl=<span style=color:#a31515>&#39;ipconfig getifaddr en0&#39;</span>
+
+alias hs=<span style=color:#a31515>&#39;miniserve --color-scheme squirrel --qrcode&#39;</span>
+alias hsu=<span style=color:#a31515>&#39;hs --upload-files&#39;</span>
+
+alias pfd=<span style=color:#a31515>&#39;rinetd --conf-file /lnh/_code/blog/src/tool/rinetd/rinetd.conf&#39;</span>
+alias pf=<span style=color:#a31515>&#39;pfd --foreground&#39;</span>
+
+alias env=<span style=color:#a31515>&#39;env | sort&#39;</span>
+
+alias penv=<span style=color:#a31515>&#39;proc_env&#39;</span>
+
+alias penv2=<span style=color:#a31515>&#39;proc_env2&#39;</span>
+
+<span style=color:green># https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html</span>
+alias path=<span style=color:#a31515>&#39;echo &#34;${PATH//:/\n}&#34;&#39;</span>
+
+<span style=color:green># https://github.com/jeremyfa/yaml.js</span>
+<span style=color:green># cnpm install -yamljs -g</span>
+alias yj=<span style=color:#a31515>&#39;yaml2json --pretty --indentation 2&#39;</span>
+
+alias jy=<span style=color:#a31515>&#39;json2yaml --depth 64 --indentation 2&#39;</span>
+
+alias shell=<span style=color:#a31515>&#39;echo $SHELL&#39;</span>
+
+alias shells=<span style=color:#a31515>&#39;cat /etc/shells&#39;</span>
+
+alias i18n=<span style=color:#a31515>&#39;locale&#39;</span>
+
+alias hu=<span style=color:#a31515>&#39;hugo --config hugo.yml --buildDrafts --forceSyncStatic&#39;</span>
+
+alias hus=<span style=color:#a31515>&#39;hu --watch server&#39;</span>
+
+alias mvn-wrapper=<span style=color:#a31515>&#39;mvn --non-recursive --debug io.takari:maven:wrapper -Dmaven=3.8.1&#39;</span>
+
+alias gradle-wrapper=<span style=color:#a31515>&#39;gradle wrapper --distribution-type all --gradle-version 6.7&#39;</span>
+
+alias mvn-help=<span style=color:#a31515>&#39;./mvnw help:describe -Ddetail&#39;</span>
+
+alias java-x=<span style=color:#a31515>&#39;java -X&#39;</span>
+alias java-xx=<span style=color:#a31515>&#39;java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -version&#39;</span>
+
+alias proxy=<span style=color:#a31515>&#39;export ALL_PROXY=socks5://127.0.0.1:1080&#39;</span>
+alias unproxy=<span style=color:#a31515>&#39;unset ALL_PROXY&#39;</span>
+
+alias redis-server=<span style=color:#a31515>&#39;redis-server /lnh/_code/blog/src/redis/install/redis.conf&#39;</span>
+
+alias ja=<span style=color:#a31515>&#39;java -jar $JAVA_HOME/arthas-boot.jar --repo-mirror aliyun --use-http&#39;</span>
+
+alias master=<span style=color:#a31515>&#39;git co master&#39;</span>
+alias main=<span style=color:#a31515>&#39;git co main&#39;</span>
+alias g=<span style=color:#a31515>&#39;git&#39;</span>
+alias gti=<span style=color:#a31515>&#39;git&#39;</span>
+alias gi=<span style=color:#a31515>&#39;git&#39;</span>
+<span style=color:green># java -cp $JAVA_HOME/lib/sa-jdi.jar sun.jvm.hotspot.HSDB</span>
+
+alias k=<span style=color:#a31515>&#39;kubectl&#39;</span>
+alias kp=<span style=color:#a31515>&#39;k get pods&#39;</span>
+alias kpt=<span style=color:#a31515>&#39;kp -o custom-columns-file=/lnh/_code/blog/src/k8s/kubectl/terminated-pod.txt --sort-by=&#34;{.status.containerStatuses[0].lastState.terminated.finishedAt}&#34;&#39;</span></code></pre></div></div></div><div class=highlight-file id=hfs-3401a71ee0e2261a6c55a568459da176><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-3401a71ee0e2261a6c55a568459da176','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/env.sh download>env.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/env.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>MY_HOME=/lnh
+APP_DIR=$MY_HOME/_app
+CACHE_DIR=$MY_HOME/_cache
+CONFIG_DIR=$MY_HOME/_config
+DATA_DIR=$MY_HOME/_data
+
+<span style=color:green># https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html</span>
+export XDG_CACHE_HOME=$CACHE_DIR
+export XDG_CONFIG_HOME=$CONFIG_DIR
+export XDG_DATA_HOME=$DATA_DIR
+
+<span style=color:green># https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry</span>
+<span style=color:green># https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-tool-install</span>
+export DOTNET_CLI_TELEMETRY_OPTOUT=false
+APP_DOTNET_DIR=$APP_DIR/_dotnet
+DOTNET_TOOLS_DIR=$HOME/.dotnet/tools
+export PATH=$PATH:$APP_DOTNET_DIR:$DOTNET_TOOLS_DIR
+
+<span style=color:green># https://adoptopenjdk.net/releases.html?variant=openjdk11&amp;jvmVariant=hotspot</span>
+APP_JAVA_DIR=$APP_DIR/_java
+APP_JAVA_BIN_DIR=$APP_JAVA_DIR/bin
+export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+export JAVA_HOME=$APP_JAVA_DIR
+export PATH=$PATH:$APP_JAVA_BIN_DIR
+
+<span style=color:green># https://gradle.org/releases/</span>
+APP_GRADLE_DIR=$APP_DIR/_gradle
+APP_GRADLE_BIN_DIR=$APP_GRADLE_DIR/bin
+CACHE_GRADLE_DIR=$CACHE_DIR/_gradle
+export GRADLE_HOME=$APP_GRADLE_DIR
+export GRADLE_USER_HOME=$CACHE_GRADLE_DIR
+export PATH=$PATH:$APP_GRADLE_BIN_DIR
+
+<span style=color:green># https://maven.apache.org/</span>
+<span style=color:green># http://maven.apache.org/configure.html</span>
+APP_MAVEN_DIR=$APP_DIR/_maven
+APP_MAVEN_BIN_DIR=$APP_MAVEN_DIR/bin
+CACHE_MAVEN_DIR=$CACHE_DIR/_maven
+export MAVEN_HOME=$APP_MAVEN_DIR
+export M2_HOME=$MAVEN_HOME
+export MAVEN_USER_HOME=$MAVEN_HOME
+export MAVEN_OPTS=<span style=color:#a31515>&#39;-Xms256m -Xmx1024m&#39;</span>
+export PATH=$PATH:$APP_MAVEN_BIN_DIR
+
+<span style=color:green># https://projects.spring.io/spring-boot/</span>
+APP_SPRING_BOOT_CLI_DIR=$APP_DIR/_spring-boot-cli
+APP_SPRING_BOOT_CLI_BIN_DIR=$APP_SPRING_BOOT_CLI_DIR/bin
+export PATH=$PATH:$APP_SPRING_BOOT_CLI_BIN_DIR
+
+<span style=color:green># https://www.mono-project.com/</span>
+<span style=color:green># export MONO_HOME=/Library/Frameworks/Mono.framework/Versions/5.0.1</span>
+<span style=color:green># export MONO_HOME_BIN=$MONO_HOME/bin</span>
+<span style=color:green># export PATH=$PATH:$MONO_HOME_BIN</span>
+
+
+<span style=color:green># https://docs.docker.com/engine/reference/commandline/cli/</span>
+<span style=color:green># https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-socket-option</span>
+APP_DOCKER_DIR=$APP_DIR/_docker
+export PATH=$PATH:$APP_DOCKER_DIR
+export DOCKER_HOST=<span style=color:#a31515>&#39;tcp://127.0.0.1:2375&#39;</span>
+export DOCKER_CONFIG=<span style=color:#a31515>&#39;/lnh/_code/blog/src/docker/install/&#39;</span>
+
+<span style=color:green># https://docs.docker.com/machine/</span>
+<span style=color:green># https://docs.docker.com/machine/drivers/virtualbox/</span>
+<span style=color:green># DATA_DOCKER_DIR=$DATA_DIR/_docker</span>
+<span style=color:green>#export DOCKER_HOME=$APP_DOCKER_DIR</span>
+<span style=color:green>#export MACHINE_STORAGE_PATH=$DATA_DOCKER_DIR</span>
+<span style=color:green>#export VIRTUALBOX_BOOT2DOCKER_URL=$DOCKER_HOME/boot2docker.iso</span>
+<span style=color:green>#export VIRTUALBOX_UI_TYPE=headless</span>
+<span style=color:green>#export VIRTUALBOX_CPU_COUNT=1</span>
+<span style=color:green>#export VIRTUALBOX_MEMORY_SIZE=512</span>
+<span style=color:green>#export VIRTUALBOX_DISK_SIZE=5120</span>
+
+<span style=color:green># https://kubernetes.io/docs/tasks/tools/install-kubectl/</span>
+APP_KUBECTL_DIR=$APP_DIR/_kubectl
+CONFIG_KUBECTL_DIR=$CONFIG_DIR/_kubectl
+CONFIG_KUBECTL_CONFIG_FILE=$CONFIG_KUBECTL_DIR/config.yml
+export KUBECONFIG=$CONFIG_KUBECTL_CONFIG_FILE
+export PATH=$PATH:$APP_KUBECTL_DIR
+
+<span style=color:green># https://kubernetes.io/docs/tasks/tools/install-minikube/</span>
+APP_MINIKUBE_DIR=$APP_DIR/_minikube
+DATA_MINIKUBE_DIR=$DATA_DIR/_minikube
+export MINIKUBE_HOME=$DATA_MINIKUBE_DIR
+export MINIKUBE_WANTUPDATENOTIFICATION=false
+export MINIKUBE_WANTREPORTERRORPROMPT=false
+export CHANGE_MINIKUBE_NONE_USER=true
+export PATH=$PATH:$APP_MINIKUBE_DIR
+
+<span style=color:green># https://helm.sh/docs</span>
+<span style=color:green># https://github.com/helm/helm-www</span>
+<span style=color:green># https://github.com/helm/helm/releases</span>
+APP_HELM_DIR=$APP_DIR/_helm
+export PATH=$PATH:$APP_HELM_DIR
+
+<span style=color:green># https://github.com/mholt/caddy</span>
+<span style=color:green># https://caddyserver.com/docs/cli</span>
+APP_CADDY_DIR=$APP_DIR/_caddy
+export PATH=$PATH:$APP_CADDY_DIR
+
+<span style=color:green># https://github.com/v2ray/v2ray-core</span>
+APP_V2RAY_DIR=$APP_DIR/_v2ray
+export PATH=$PATH:$APP_V2RAY_DIR
+
+
+<span style=color:green># https://www.rust-lang.org/</span>
+<span style=color:green># https://github.com/rust-lang/rustup.rs#environment-variables</span>
+APP_RUSTUP_DIR=$APP_DIR/_rustup
+export RUSTUP_HOME=$APP_RUSTUP_DIR
+export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
+export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
+<span style=color:green># https://github.com/rust-lang/cargo/blob/master/src/doc/src/reference/environment-variables.md</span>
+APP_CARGO_DIR=$APP_DIR/_cargo
+APP_CARGO_BIN_DIR=$APP_CARGO_DIR/bin
+export CARGO_HOME=$APP_CARGO_DIR
+export PATH=$PATH:$APP_CARGO_BIN_DIR
+
+<span style=color:green># https://github.com/gohugoio/hugo</span>
+APP_HUGO_DIR=$APP_DIR/_hugo
+export PATH=$PATH:$APP_HUGO_DIR
+
+<span style=color:green># https://nodejs.org/en/download/</span>
+APP_NODE_DIR=$APP_DIR/_node
+APP_NODE_BIN_DIR=$APP_NODE_DIR/bin
+export PATH=$PATH:$APP_NODE_BIN_DIR
+
+
+<span style=color:green># https://brew.sh</span>
+<span style=color:green># https://github.com/Homebrew/brew</span>
+<span style=color:green># https://developer.aliyun.com/mirror/homebrew</span>
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+
+
+<span style=color:green># https://www.db.com/download-center/community</span>
+APP_MONGO_DIR=$APP_DIR/_mongo
+export PATH=$PATH:$APP_MONGO_DIR
+
+<span style=color:green># https://linianhui.github.io/redis/00-install</span>
+APP_REDIS_DIR=$APP_DIR/_redis
+export PATH=$PATH:$APP_REDIS_DIR
+
+<span style=color:green># https://dev.mysql.com/downloads/mysql/</span>
+<span style=color:green># https://dev.mysql.com/doc/refman/8.0/en/environment-variables.html</span>
+APP_MYSQL_DIR=$APP_DIR/_mysql
+CACHE_MYSQL_CONFIG_DIR=$XDG_CACHE_HOME/_mysql
+export MYSQL_HOME=$APP_MYSQL_DIR
+APP_MYSQL_BIN_DIR=$MYSQL_HOME/bin
+export MYSQL_HISTFILE=$CACHE_MYSQL_CONFIG_DIR/.history
+export PATH=$PATH:$APP_MYSQL_BIN_DIR
+
+<span style=color:green># https://github.com/svenstaro/miniserve</span>
+APP_MINISERVE_DIR=$APP_DIR/_miniserve
+export PATH=$PATH:$APP_MINISERVE_DIR
+
+<span style=color:green># http://www.rinetd.com/</span>
+<span style=color:green># https://github.com/samhocevar/rinetd</span>
+APP_RINETD_DIR=$APP_DIR/_rinetd
+export PATH=$PATH:$APP_RINETD_DIR
+
+<span style=color:green># https://github.com/wagoodman/dive</span>
+APP_DIVE_DIR=$APP_DIR/_dive
+export PATH=$PATH:$APP_DIVE_DIR
+</code></pre></div></div></div><div class=highlight-file id=hfs-5c9c6f50e82ee8b2ba20c0390c8f1403><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-5c9c6f50e82ee8b2ba20c0390c8f1403','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/function-directory.sh download>function-directory.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/function-directory.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>declare -a __QUICK_ACCESS_DIRECTORY=()
+__DELIMITER=<span style=color:#a31515>&#39;.-_ ()&#39;</span>
+
+<span style=color:#00f>function</span> __directory_get_dir_name {
+    path=<span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>:t&#34;</span>
+    echo $path
+}
+
+<span style=color:#00f>function</span> __directory_get_parent_dir_name {
+    dir=<span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span>
+    __directory_get_dir_name <span style=color:#00f>$(</span>dirname <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515>&#34;</span><span style=color:#00f>)</span>
+}
+
+<span style=color:#00f>function</span> __directory_add_quick_access {
+    dir=<span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span>
+    delimiter=<span style=color:#a31515>&#34;.-_ ()&#34;</span>
+    <span style=color:#00f>if</span> [ -f <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515> is a file.&#34;</span>
+        <span style=color:#00f>return</span>
+    <span style=color:#00f>fi</span>
+
+    <span style=color:#00f>if</span> [ -d <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        <span style=color:#00f>for</span> subDir in $dir/*; <span style=color:#00f>do</span>
+            <span style=color:#00f>if</span> [ -d <span style=color:#a31515>&#34;</span>$subDir<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+                subDirLowerCase=<span style=color:#a31515>${</span>subDir:l<span style=color:#a31515>}</span>
+                name=<span style=color:#00f>$(</span>__directory_get_dir_name $subDirLowerCase<span style=color:#00f>)</span>
+                parent=<span style=color:#00f>$(</span>__directory_get_parent_dir_name $subDirLowerCase<span style=color:#00f>)</span>
+                nameAbbr=<span style=color:#00f>$(</span>__string_abbr $name $__DELIMITER<span style=color:#00f>)</span>
+                parentAbbr=<span style=color:#00f>$(</span>__string_abbr $parent $__DELIMITER<span style=color:#00f>)</span>
+                __QUICK_ACCESS_DIRECTORY+=<span style=color:#a31515>&#34;</span>$nameAbbr<span style=color:#a31515> </span>$parentAbbr$nameAbbr<span style=color:#a31515> </span>$subDirLowerCase<span style=color:#a31515> </span>$subDir<span style=color:#a31515>&#34;</span>
+            <span style=color:#00f>fi</span>
+        <span style=color:#00f>done</span>
+    <span style=color:#00f>else</span>
+        echo <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515> is not exist.&#34;</span>
+    <span style=color:#00f>fi</span>
+}
+
+
+<span style=color:#00f>function</span> __directory_list_quick_access {
+    print -l $__QUICK_ACCESS_DIRECTORY
+}
+
+<span style=color:#00f>function</span> __directory_search_quick_access {
+    result=<span style=color:#a31515>&#39;&#39;</span>
+    __directory_search_quick_access_core <span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span> | sort -k1nr | <span style=color:#00f>while</span> read line
+    <span style=color:#00f>do</span>
+        result=<span style=color:#a31515>&#34;</span>$result<span style=color:#a31515>${</span>line:2<span style=color:#a31515>}</span><span style=color:#a31515> &#34;</span>
+    <span style=color:#00f>done</span>
+    echo $result
+}
+
+<span style=color:#00f>function</span> __directory_search_quick_access_core {
+    search=<span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>for</span> line in $__QUICK_ACCESS_DIRECTORY; <span style=color:#00f>do</span>
+        result=<span style=color:#00f>$(</span>__directory_search_quick_access_core_line $line $search<span style=color:#00f>)</span>
+        <span style=color:#00f>if</span> [[ <span style=color:#a31515>&#34;</span>$result<span style=color:#a31515>&#34;</span> != <span style=color:#a31515>&#34;&#34;</span> ]]; <span style=color:#00f>then</span>
+            echo <span style=color:#a31515>&#34;</span>$result<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>fi</span>
+    <span style=color:#00f>done</span>
+}
+
+<span style=color:#00f>function</span> __directory_search_quick_access_core_line {
+    line=<span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span>
+    search=<span style=color:#a31515>&#34;</span>$2<span style=color:#a31515>&#34;</span>
+    cols=(<span style=color:#00f>$(</span>echo $line<span style=color:#00f>)</span>)
+
+    contains=<span style=color:#00f>$(</span>__string_contains $cols[1] $search<span style=color:#00f>)</span>
+    <span style=color:#00f>if</span> (( $contains == 0 )); <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>&#34;9 </span>$cols<span style=color:#a31515>[4]&#34;</span>
+        <span style=color:#00f>return</span>
+    <span style=color:#00f>fi</span>
+
+    contains=<span style=color:#00f>$(</span>__string_contains $cols[2] $search<span style=color:#00f>)</span>
+    <span style=color:#00f>if</span> (( $contains == 0 )); <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>&#34;8 </span>$cols<span style=color:#a31515>[4]&#34;</span>
+        <span style=color:#00f>return</span>
+    <span style=color:#00f>fi</span>
+
+    contains=<span style=color:#00f>$(</span>__string_contains $cols[3] $search<span style=color:#00f>)</span>
+    <span style=color:#00f>if</span> (( $contains == 0 )); <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>&#34;7 </span>$cols<span style=color:#a31515>[4]&#34;</span>
+        <span style=color:#00f>return</span>
+    <span style=color:#00f>fi</span>
+
+    contains=<span style=color:#00f>$(</span>__string_match $cols[3] $search<span style=color:#00f>)</span>
+    <span style=color:#00f>if</span> (( $contains == 0 )); <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>&#34;6 </span>$cols<span style=color:#a31515>[4]&#34;</span>
+        <span style=color:#00f>return</span>
+    <span style=color:#00f>fi</span>
+}
+
+<span style=color:#00f>function</span> __directory_to {
+    dir=<span style=color:#a31515>&#34;</span>$@<span style=color:#a31515>[</span>$#<span style=color:#a31515>]&#34;</span>
+    echo <span style=color:#a31515>&#34;cd </span>$dir<span style=color:#a31515>&#34;</span>
+    cd <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515>&#34;</span>
+}
+
+<span style=color:#00f>function</span> __directory_search_quick_access_complete {
+    cols=(<span style=color:#00f>$(</span>__directory_search_quick_access $words[2]<span style=color:#00f>)</span>)
+    _alternative <span style=color:#a31515>&#34;dir:dir:(</span>$cols<span style=color:#a31515>)&#34;</span>
+}</code></pre></div></div></div><div class=highlight-file id=hfs-56b9e5e7ff3e2f8f4b3853027aa01682><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-56b9e5e7ff3e2f8f4b3853027aa01682','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/function-git.sh download>function-git.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/function-git.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#00f>function</span> __git_warn_gc () {
+    echo -e <span style=color:#a31515>&#34;\033[32mgit reflog expire --expire=now --all \033[0m&#34;</span>
+    git warn-expire-reflog
+    echo -e <span style=color:#a31515>&#34;\033[32mgit gc --prune=now --aggressive \033[0m&#34;</span>
+    git warn-gc-now
+    echo -e <span style=color:#a31515>&#34;\033[32mgit count-objects -v -H \033[0m&#34;</span>
+    git size
+}
+
+<span style=color:#00f>function</span> __git_proxy(){
+    local action=<span style=color:#a31515>${</span>1<span style=color:#00f>:-</span>get<span style=color:#a31515>}</span>
+
+    <span style=color:#00f>if</span> [ $action = <span style=color:#a31515>&#39;set&#39;</span> ] ;<span style=color:#00f>then</span>
+        git config --global http.proxy <span style=color:#a31515>&#39;socks5://127.0.0.1:1080&#39;</span>
+    <span style=color:#00f>fi</span>
+
+    <span style=color:#00f>if</span> [ $action = <span style=color:#a31515>&#39;unset&#39;</span> ] ;<span style=color:#00f>then</span>
+        git config --global --unset http.proxy
+    <span style=color:#00f>fi</span>
+
+    git config --global --get http.proxy
+}
+</code></pre></div></div></div><div class=highlight-file id=hfs-2136b5421b88d2c33d53ceb0af82eead><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-2136b5421b88d2c33d53ceb0af82eead','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/function-proc.sh download>function-proc.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/function-proc.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#00f>function</span> __proc_env(){
+    cat /proc/$1/environ | tr <span style=color:#a31515>&#39;\0&#39;</span> <span style=color:#a31515>&#39;\n&#39;</span> | sort
+}
+
+<span style=color:#00f>function</span> __proc_env2(){
+    ps ewww -o command $1 | tr <span style=color:#a31515>&#39; &#39;</span> <span style=color:#a31515>&#39;\n&#39;</span> | sort
+}
+</code></pre></div></div></div><div class=highlight-file id=hfs-e8f501e7d14952667597cbf3f2f6a6c9><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-e8f501e7d14952667597cbf3f2f6a6c9','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/function-string.sh download>function-string.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/function-string.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#00f>#!/bin/zsh
+</span><span style=color:#00f></span>
+<span style=color:green># example : __string_contains abc bc</span>
+<span style=color:#00f>function</span> __string_contains {
+    <span style=color:#00f>if</span> [[ <span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span> == *$2* ]]; <span style=color:#00f>then</span>
+        echo 0
+        <span style=color:#00f>return</span>
+    <span style=color:#00f>fi</span>
+    echo 1
+}
+
+<span style=color:green># example : __string_match abc ac</span>
+<span style=color:#00f>function</span> __string_match {
+    str=<span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span>
+    subStr=<span style=color:#a31515>&#34;</span>$2<span style=color:#a31515>&#34;</span>
+    subStrLen=<span style=color:#a31515>${#</span>subStr<span style=color:#a31515>}</span>
+    <span style=color:#00f>for</span> i ({1..$subStrLen}) {
+        char=$subStr[$i]
+        strLen=<span style=color:#a31515>${#</span>str<span style=color:#a31515>}</span>
+        strIndex=1
+        strIndex=$str[(i)$char]
+        <span style=color:#00f>if</span> (( $strIndex &gt; $strLen )) <span style=color:#00f>then</span>
+            echo 1
+            <span style=color:#00f>return</span>
+        <span style=color:#00f>else</span>
+            str=<span style=color:#a31515>${</span>str:$strIndex<span style=color:#a31515>}</span>
+        <span style=color:#00f>fi</span>
+    }
+    echo 0
+}
+
+<span style=color:green># example : __string_split &#39;abc-123.456_asd&#39; &#39;-_.&#39;</span>
+<span style=color:#00f>function</span> __string_split {
+    echo <span style=color:#a31515>${</span>1//[$2]/ <span style=color:#a31515>}</span>
+}
+
+<span style=color:green># example : __string_abbr abc-def &#39;-&#39;</span>
+<span style=color:#00f>function</span> __string_abbr {
+    abbr=<span style=color:#a31515>&#34;&#34;</span>
+    <span style=color:#00f>for</span> word in <span style=color:#00f>$(</span>echo <span style=color:#a31515>${</span>1//[$2]/ <span style=color:#a31515>}</span><span style=color:#00f>)</span>; <span style=color:#00f>do</span>
+        abbr=<span style=color:#a31515>&#34;</span>$abbr<span style=color:#a31515>${</span>word:0:1<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>done</span>
+    echo <span style=color:#a31515>&#34;</span>$abbr<span style=color:#a31515>&#34;</span>
+}
+
+<span style=color:#00f>function</span> __string_test {
+    actual=<span style=color:#00f>$(</span>__string_contains abc bc<span style=color:#00f>)</span>
+    expect=0
+    ok=<span style=color:#00f>$(</span>__if_then_else $actual $expect $__TEST_OK_STRING $__TEST_FAIL_STRING<span style=color:#00f>)</span>
+    echo -e <span style=color:#a31515>&#34;test : __string_contains abc bc </span>$ok<span style=color:#a31515>&#34;</span>
+
+    actual=<span style=color:#00f>$(</span>__string_match abc ac<span style=color:#00f>)</span>
+    expect=0
+    ok=<span style=color:#00f>$(</span>__if_then_else $actual $expect $__TEST_OK_STRING $__TEST_FAIL_STRING<span style=color:#00f>)</span>
+    echo -e <span style=color:#a31515>&#34;test : __string_match abc ac </span>$ok<span style=color:#a31515>&#34;</span>
+
+    actual=<span style=color:#00f>$(</span>__string_split abc-123.456_asd -_.<span style=color:#00f>)</span>
+    expect=<span style=color:#a31515>&#39;abc 123 456 asd&#39;</span>
+    ok=<span style=color:#00f>$(</span>__if_then_else $actual $expect $__TEST_OK_STRING $__TEST_FAIL_STRING<span style=color:#00f>)</span>
+    echo -e <span style=color:#a31515>&#34;test : __string_split abc-123.456_asd -_. </span>$ok<span style=color:#a31515>&#34;</span>
+
+    actual=<span style=color:#00f>$(</span>__string_abbr abc-def -<span style=color:#00f>)</span>
+    expect=ad
+    ok=<span style=color:#00f>$(</span>__if_then_else $actual $expect $__TEST_OK_STRING $__TEST_FAIL_STRING<span style=color:#00f>)</span>
+    echo -e <span style=color:#a31515>&#34;test : __string_abbr abc-def - </span>$ok<span style=color:#a31515>&#34;</span>
+}
+
+</code></pre></div></div></div><div class=highlight-file id=hfs-7478f2c0798109441f4091874d2ac254><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-7478f2c0798109441f4091874d2ac254','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/function.sh download>function.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/function.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#00f>#!/bin/zsh
+</span><span style=color:#00f></span>
+__TEST_OK_STRING=<span style=color:#a31515>&#39;\033[32mok\033[0m&#39;</span>
+__TEST_FAIL_STRING=<span style=color:#a31515>&#39;\033[31mfail\033[0m&#39;</span>
+
+<span style=color:#00f>function</span> __if_then_else {
+    <span style=color:#00f>if</span> [[ <span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span> == <span style=color:#a31515>&#34;</span>$2<span style=color:#a31515>&#34;</span> ]]; <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>&#34;</span>$3<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>else</span>
+        echo <span style=color:#a31515>&#34;</span>$4<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>fi</span>
+}
+
+<span style=color:#00f>function</span> __port(){
+    lsof <span style=color:#a31515>&#34;-i:</span>$1<span style=color:#a31515>&#34;</span>
+}</code></pre></div></div></div><div class=highlight-file id=hfs-05c29747c48997d0dd69526a246543b7><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-05c29747c48997d0dd69526a246543b7','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/git-prompt.sh download>git-prompt.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/git-prompt.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># bash/zsh git prompt support</span>
+<span style=color:green>#</span>
+<span style=color:green># Copyright (C) 2018 David Xu</span>
+<span style=color:green>#</span>
+<span style=color:green># Based on the earlier work by Shawn O. Pearce &lt;spearce@spearce.org&gt;</span>
+<span style=color:green># Distributed under the GNU General Public License, version 2.0.</span>
+<span style=color:green>#</span>
+<span style=color:green># This script allows you to see the current branch in your prompt,</span>
+<span style=color:green># posh-git style.</span>
+<span style=color:green>#</span>
+<span style=color:green># You will most likely want to make use of either `__posh_git_ps1` or</span>
+<span style=color:green># `__posh_git_echo`. Refer to the documentation of the functions for additional</span>
+<span style=color:green># information.</span>
+<span style=color:green>#</span>
+<span style=color:green>#</span>
+<span style=color:green># CONFIG OPTIONS</span>
+<span style=color:green># ==============</span>
+<span style=color:green>#</span>
+<span style=color:green># This script should work out of the box. Available options are set through</span>
+<span style=color:green># your git configuration files. This allows you to control the prompt display on a</span>
+<span style=color:green># per-repository basis.</span>
+<span style=color:green># ```</span>
+<span style=color:green># bash.describeStyle</span>
+<span style=color:green># bash.enableFileStatus</span>
+<span style=color:green># bash.enableGitStatus</span>
+<span style=color:green># bash.showStatusWhenZero</span>
+<span style=color:green># bash.showUpstream</span>
+<span style=color:green># ```</span>
+<span style=color:green>#</span>
+<span style=color:green># bash.describeStyle</span>
+<span style=color:green># ------------------</span>
+<span style=color:green>#</span>
+<span style=color:green># This option controls if you would like to see more information about the</span>
+<span style=color:green># identity of commits checked out as a detached `HEAD`. This is also controlled</span>
+<span style=color:green># by the legacy environment variable `GIT_PS1_DESCRIBESTYLE`.</span>
+<span style=color:green>#</span>
+<span style=color:green># Option   | Description</span>
+<span style=color:green># -------- | -----------</span>
+<span style=color:green># contains | relative to newer annotated tag `(v1.6.3.2~35)`</span>
+<span style=color:green># branch   | relative to newer tag or branch `(master~4)`</span>
+<span style=color:green># describe | relative to older annotated tag `(v1.6.3.1-13-gdd42c2f)`</span>
+<span style=color:green># default  | exactly matching tag</span>
+<span style=color:green>#</span>
+<span style=color:green># bash.enableFileStatus</span>
+<span style=color:green># ---------------------</span>
+<span style=color:green>#</span>
+<span style=color:green># Option | Description</span>
+<span style=color:green># ------ | -----------</span>
+<span style=color:green># true   | _Default_. The script will query for all file indicators every time.</span>
+<span style=color:green># false  | No file indicators will be displayed. The script will not query</span>
+<span style=color:green>#          upstream for differences. Branch color-coding information is still</span>
+<span style=color:green>#          displayed.</span>
+<span style=color:green>#</span>
+<span style=color:green># bash.enableGitStatus</span>
+<span style=color:green># --------------------</span>
+<span style=color:green>#</span>
+<span style=color:green># Option | Description</span>
+<span style=color:green># ------ | -----------</span>
+<span style=color:green># true   | _Default_. Color coding and indicators will be shown.</span>
+<span style=color:green># false  | The script will not run.</span>
+<span style=color:green>#</span>
+<span style=color:green># bash.showStashState</span>
+<span style=color:green># -------------------</span>
+<span style=color:green>#</span>
+<span style=color:green># Option | Description</span>
+<span style=color:green># ------ | -----------</span>
+<span style=color:green># true   | _Default_. An indicator will display if the stash is not empty.</span>
+<span style=color:green># false  | An indicator will not display the stash status.</span>
+<span style=color:green>#</span>
+<span style=color:green># bash.showStatusWhenZero</span>
+<span style=color:green># -----------------------</span>
+<span style=color:green>#</span>
+<span style=color:green># Option | Description</span>
+<span style=color:green># ------ | -----------</span>
+<span style=color:green># true   | Indicators will be shown even if there are no updates to the index or</span>
+<span style=color:green>#          working tree.</span>
+<span style=color:green># false  | _Default_. No file change indicators will be shown if there are no</span>
+<span style=color:green>#          changes to the index or working tree.</span>
+<span style=color:green>#</span>
+<span style=color:green># bash.showUpstream</span>
+<span style=color:green># -----------------</span>
+<span style=color:green>#</span>
+<span style=color:green># By default, `__posh_git_ps1` will compare `HEAD` to your `SVN` upstream if it can</span>
+<span style=color:green># find one, or `@{upstream}` otherwise. This is also controlled by the legacy</span>
+<span style=color:green># environment variable `GIT_PS1_SHOWUPSTREAM`.</span>
+<span style=color:green>#</span>
+<span style=color:green># Option | Description</span>
+<span style=color:green># ------ | -----------</span>
+<span style=color:green># legacy | Does not use the `--count` option available in recent versions of</span>
+<span style=color:green>#          `git-rev-list`</span>
+<span style=color:green># git    | _Default_. Always compares `HEAD` to `@{upstream}`</span>
+<span style=color:green># svn    | Always compares `HEAD` to `SVN` upstream</span>
+<span style=color:green>#</span>
+<span style=color:green># bash.enableStatusSymbol</span>
+<span style=color:green># -----------------------</span>
+
+<span style=color:green># Option | Description</span>
+<span style=color:green># ------ | -----------</span>
+<span style=color:green># true   | _Default_. Status symbols (`≡` `↑` `↓` `↕`) will be shown.</span>
+<span style=color:green># false  | No status symbol will be shown, saving some prompt length.</span>
+<span style=color:green>#</span>
+<span style=color:green>###############################################################################</span>
+
+<span style=color:green># Convenience function to set PS1 to show git status. Must supply two</span>
+<span style=color:green># arguments that specify the prefix and suffix of the git status string.</span>
+<span style=color:green>#</span>
+<span style=color:green># This function should be called in PROMPT_COMMAND or similar.</span>
+__posh_git_ps1 ()
+{
+    local ps1pc_prefix=
+    local ps1pc_suffix=
+    <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$#<span style=color:#a31515>&#34;</span> in
+        2)
+            ps1pc_prefix=$1
+            ps1pc_suffix=$2
+            ;;
+        *)
+            echo __posh_git_ps1: bad number of arguments &gt;&amp;2
+            <span style=color:#00f>return</span>
+            ;;
+    <span style=color:#00f>esac</span>
+    local gitstring=<span style=color:#00f>$(</span>__posh_git_echo<span style=color:#00f>)</span>
+    PS1=$ps1pc_prefix$gitstring$ps1pc_suffix
+}
+
+__posh_color () {
+    <span style=color:#00f>if</span> [ -n <span style=color:#a31515>&#34;</span>$ZSH_VERSION<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        echo %{$1%}
+    <span style=color:#00f>elif</span> [ -n <span style=color:#a31515>&#34;</span>$BASH_VERSION<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>\\</span>[$1<span style=color:#a31515>\\</span>]
+    <span style=color:#00f>else</span>
+        <span style=color:green># assume Bash anyway</span>
+        echo <span style=color:#a31515>\\</span>[$1<span style=color:#a31515>\\</span>]
+    <span style=color:#00f>fi</span>
+}
+
+<span style=color:green># Echoes the git status string.</span>
+__posh_git_echo () {
+    <span style=color:#00f>if</span> [ <span style=color:#a31515>&#34;</span><span style=color:#00f>$(</span>git config --bool bash.enableGitStatus<span style=color:#00f>)</span><span style=color:#a31515>&#34;</span> = <span style=color:#a31515>&#39;false&#39;</span> ]; <span style=color:#00f>then</span>
+        <span style=color:#00f>return</span>;
+    <span style=color:#00f>fi</span>
+
+    local DefaultForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Default no color</span>
+    local DefaultBackgroundColor=
+
+    local BeforeText=<span style=color:#a31515>&#39;[&#39;</span>
+    local BeforeForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;33m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Yellow</span>
+    local BeforeBackgroundColor=
+    local DelimText=<span style=color:#a31515>&#39; |&#39;</span>
+    local DelimForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;33m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Yellow</span>
+    local DelimBackgroundColor=
+
+    local AfterText=<span style=color:#a31515>&#39;]&#39;</span>
+    local AfterForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;33m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Yellow</span>
+    local AfterBackgroundColor=
+
+    local BranchForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;36m&#39;</span><span style=color:#00f>)</span>  <span style=color:green># Cyan</span>
+    local BranchBackgroundColor=
+    local BranchAheadForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;32m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Green</span>
+    local BranchAheadBackgroundColor=
+    local BranchBehindForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[0;31m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Red</span>
+    local BranchBehindBackgroundColor=
+    local BranchBehindAndAheadForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;33m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Yellow</span>
+    local BranchBehindAndAheadBackgroundColor=
+
+    local BeforeIndexText=<span style=color:#a31515>&#39;&#39;</span>
+    local BeforeIndexForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;32m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Dark green</span>
+    local BeforeIndexBackgroundColor=
+
+    local IndexForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[1;32m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Dark green</span>
+    local IndexBackgroundColor=
+
+    local WorkingForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[0;31m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Dark red</span>
+    local WorkingBackgroundColor=
+
+    local StashForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[0;34m&#39;</span><span style=color:#00f>)</span> <span style=color:green># Darker blue</span>
+    local StashBackgroundColor=
+    local StashText=<span style=color:#a31515>&#39;$&#39;</span>
+
+    local RebaseForegroundColor=<span style=color:#00f>$(</span>__posh_color <span style=color:#a31515>&#39;\e[0m&#39;</span><span style=color:#00f>)</span> <span style=color:green># reset</span>
+    local RebaseBackgroundColor=
+
+    local EnableFileStatus=<span style=color:#a31515>`</span>git config --bool bash.enableFileStatus<span style=color:#a31515>`</span>
+    <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$EnableFileStatus<span style=color:#a31515>&#34;</span> in
+        true)  EnableFileStatus=true ;;
+        false) EnableFileStatus=false ;;
+        *)     EnableFileStatus=true ;;
+    <span style=color:#00f>esac</span>
+    local ShowStatusWhenZero=<span style=color:#a31515>`</span>git config --bool bash.showStatusWhenZero<span style=color:#a31515>`</span>
+    <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$ShowStatusWhenZero<span style=color:#a31515>&#34;</span> in
+        true)  ShowStatusWhenZero=true ;;
+        false) ShowStatusWhenZero=false ;;
+        *)     ShowStatusWhenZero=false ;;
+    <span style=color:#00f>esac</span>
+    local ShowStashState=<span style=color:#a31515>`</span>git config --bool bash.showStashState<span style=color:#a31515>`</span>
+    <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$ShowStashState<span style=color:#a31515>&#34;</span> in
+        true)  ShowStashState=true ;;
+        false) ShowStashState=false ;;
+        *)     ShowStashState=true ;;
+    <span style=color:#00f>esac</span>
+    local EnableStatusSymbol=<span style=color:#a31515>`</span>git config --bool bash.enableStatusSymbol<span style=color:#a31515>`</span>
+    <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$EnableStatusSymbol<span style=color:#a31515>&#34;</span> in
+        true)  EnableStatusSymbol=true ;;
+        false) EnableStatusSymbol=false ;;
+        *)     EnableStatusSymbol=true ;;
+    <span style=color:#00f>esac</span>
+
+    local BranchIdenticalStatusSymbol=<span style=color:#a31515>&#39;&#39;</span>
+    local BranchAheadStatusSymbol=<span style=color:#a31515>&#39;&#39;</span>
+    local BranchBehindStatusSymbol=<span style=color:#a31515>&#39;&#39;</span>
+    local BranchBehindAndAheadStatusSymbol=<span style=color:#a31515>&#39;&#39;</span>
+    local BranchWarningStatusSymbol=<span style=color:#a31515>&#39;&#39;</span>
+    <span style=color:#00f>if</span> $EnableStatusSymbol; <span style=color:#00f>then</span>
+      BranchIdenticalStatusSymbol=<span style=color:#a31515>$&#39; \xE2\x89\xA1&#39;</span> <span style=color:green># Three horizontal lines</span>
+      BranchAheadStatusSymbol=<span style=color:#a31515>$&#39; \xE2\x86\x91&#39;</span> <span style=color:green># Up Arrow</span>
+      BranchBehindStatusSymbol=<span style=color:#a31515>$&#39; \xE2\x86\x93&#39;</span> <span style=color:green># Down Arrow</span>
+      BranchBehindAndAheadStatusSymbol=<span style=color:#a31515>$&#39; \xE2\x86\x95&#39;</span> <span style=color:green># Up and Down Arrow</span>
+      BranchWarningStatusSymbol=<span style=color:#a31515>&#39; ?&#39;</span>
+    <span style=color:#00f>fi</span>
+
+    <span style=color:green># these globals are updated by __posh_git_ps1_upstream_divergence</span>
+    __POSH_BRANCH_AHEAD_BY=0
+    __POSH_BRANCH_BEHIND_BY=0
+
+    local is_detached=false
+
+    local g=<span style=color:#00f>$(</span>__posh_gitdir<span style=color:#00f>)</span>
+    <span style=color:#00f>if</span> [ -z <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        <span style=color:#00f>return</span> <span style=color:green># not a git directory</span>
+    <span style=color:#00f>fi</span>
+    local rebase=<span style=color:#a31515>&#39;&#39;</span>
+    local b=<span style=color:#a31515>&#39;&#39;</span>
+    local step=<span style=color:#a31515>&#39;&#39;</span>
+    local total=<span style=color:#a31515>&#39;&#39;</span>
+    <span style=color:#00f>if</span> [ -d <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-merge&#34;</span> ]; <span style=color:#00f>then</span>
+        b=<span style=color:#00f>$(</span>cat <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-merge/head-name&#34;</span> 2&gt;/dev/null<span style=color:#00f>)</span>
+        step=<span style=color:#00f>$(</span>cat <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-merge/msgnum&#34;</span> 2&gt;/dev/null<span style=color:#00f>)</span>
+        total=<span style=color:#00f>$(</span>cat <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-merge/end&#34;</span> 2&gt;/dev/null<span style=color:#00f>)</span>
+        <span style=color:#00f>if</span> [ -f <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-merge/interactive&#34;</span> ]; <span style=color:#00f>then</span>
+            rebase=<span style=color:#a31515>&#39;|REBASE-i&#39;</span>
+        <span style=color:#00f>else</span>
+            rebase=<span style=color:#a31515>&#39;|REBASE-m&#39;</span>
+        <span style=color:#00f>fi</span>
+    <span style=color:#00f>else</span>
+        <span style=color:#00f>if</span> [ -d <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-apply&#34;</span> ]; <span style=color:#00f>then</span>
+            step=<span style=color:#00f>$(</span>cat <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-apply/next&#34;</span><span style=color:#00f>)</span>
+            total=<span style=color:#00f>$(</span>cat <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-apply/last&#34;</span><span style=color:#00f>)</span>
+            <span style=color:#00f>if</span> [ -f <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-apply/rebasing&#34;</span> ]; <span style=color:#00f>then</span>
+                rebase=<span style=color:#a31515>&#39;|REBASE&#39;</span>
+            <span style=color:#00f>elif</span> [ -f <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/rebase-apply/applying&#34;</span> ]; <span style=color:#00f>then</span>
+                rebase=<span style=color:#a31515>&#39;|AM&#39;</span>
+            <span style=color:#00f>else</span>
+                rebase=<span style=color:#a31515>&#39;|AM/REBASE&#39;</span>
+            <span style=color:#00f>fi</span>
+        <span style=color:#00f>elif</span> [ -f <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/MERGE_HEAD&#34;</span> ]; <span style=color:#00f>then</span>
+            rebase=<span style=color:#a31515>&#39;|MERGING&#39;</span>
+        <span style=color:#00f>elif</span> [ -f <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/CHERRY_PICK_HEAD&#34;</span> ]; <span style=color:#00f>then</span>
+            rebase=<span style=color:#a31515>&#39;|CHERRY-PICKING&#39;</span>
+        <span style=color:#00f>elif</span> [ -f <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/REVERT_HEAD&#34;</span> ]; <span style=color:#00f>then</span>
+            rebase=<span style=color:#a31515>&#39;|REVERTING&#39;</span>
+        <span style=color:#00f>elif</span> [ -f <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/BISECT_LOG&#34;</span> ]; <span style=color:#00f>then</span>
+            rebase=<span style=color:#a31515>&#39;|BISECTING&#39;</span>
+        <span style=color:#00f>fi</span>
+
+        b=<span style=color:#00f>$(</span>git symbolic-ref HEAD 2&gt;/dev/null<span style=color:#00f>)</span> || {
+            is_detached=true
+            local output=<span style=color:#00f>$(</span>git config -z --get bash.describeStyle<span style=color:#00f>)</span>
+            <span style=color:#00f>if</span> [ -n <span style=color:#a31515>&#34;</span>$output<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+                GIT_PS1_DESCRIBESTYLE=$output
+            <span style=color:#00f>fi</span>
+            b=<span style=color:#00f>$(</span>
+            <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>GIT_PS1_DESCRIBESTYLE-<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> in
+            (contains<span style=color:#00f>)</span>
+                git describe --contains HEAD ;;
+            (branch)
+                git describe --contains --all HEAD ;;
+            (describe)
+                git describe HEAD ;;
+            (* | default)
+                git describe --tags --exact-match HEAD ;;
+            <span style=color:#00f>esac</span> 2&gt;/dev/null) ||
+
+            b=<span style=color:#00f>$(</span>cut -c1-7 <span style=color:#a31515>&#34;</span>$g<span style=color:#a31515>/HEAD&#34;</span> 2&gt;/dev/null<span style=color:#00f>)</span>... ||
+            b=<span style=color:#a31515>&#39;unknown&#39;</span>
+            b=<span style=color:#a31515>&#34;(</span>$b<span style=color:#a31515>)&#34;</span>
+        }
+    <span style=color:#00f>fi</span>
+
+    <span style=color:#00f>if</span> [ -n <span style=color:#a31515>&#34;</span>$step<span style=color:#a31515>&#34;</span> ] &amp;&amp; [ -n <span style=color:#a31515>&#34;</span>$total<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        rebase=<span style=color:#a31515>&#34;</span>$rebase<span style=color:#a31515> </span>$step<span style=color:#a31515>/</span>$total<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>fi</span>
+
+    local hasStash=false
+    local isBare=<span style=color:#a31515>&#39;&#39;</span>
+
+    <span style=color:#00f>if</span> [ <span style=color:#a31515>&#39;true&#39;</span> = <span style=color:#a31515>&#34;</span><span style=color:#00f>$(</span>git rev-parse --is-inside-git-dir 2&gt;/dev/null<span style=color:#00f>)</span><span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        <span style=color:#00f>if</span> [ <span style=color:#a31515>&#39;true&#39;</span> = <span style=color:#a31515>&#34;</span><span style=color:#00f>$(</span>git rev-parse --is-bare-repository 2&gt;/dev/null<span style=color:#00f>)</span><span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+            isBare=<span style=color:#a31515>&#39;BARE:&#39;</span>
+        <span style=color:#00f>else</span>
+            b=<span style=color:#a31515>&#39;GIT_DIR!&#39;</span>
+        <span style=color:#00f>fi</span>
+    <span style=color:#00f>elif</span> [ <span style=color:#a31515>&#39;true&#39;</span> = <span style=color:#a31515>&#34;</span><span style=color:#00f>$(</span>git rev-parse --is-inside-work-tree 2&gt;/dev/null<span style=color:#00f>)</span><span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        <span style=color:#00f>if</span> $ShowStashState; <span style=color:#00f>then</span>
+            git rev-parse --verify refs/stash &gt;/dev/null 2&gt;&amp;1 &amp;&amp; hasStash=true
+        <span style=color:#00f>fi</span>
+        __posh_git_ps1_upstream_divergence
+        local divergence_return_code=$?
+    <span style=color:#00f>fi</span>
+
+    <span style=color:green># show index status and working directory status</span>
+    <span style=color:#00f>if</span> $EnableFileStatus; <span style=color:#00f>then</span>
+        local indexAdded=0
+        local indexModified=0
+        local indexDeleted=0
+        local indexUnmerged=0
+        local filesAdded=0
+        local filesModified=0
+        local filesDeleted=0
+        local filesUnmerged=0
+        <span style=color:#00f>while</span> IFS=<span style=color:#a31515>&#34;\n&#34;</span> read -r tag rest
+        <span style=color:#00f>do</span>
+            <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>tag:0:1<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> in
+                A )
+                    (( indexAdded++ ))
+                    ;;
+                M )
+                    (( indexModified++ ))
+                    ;;
+                R )
+                    (( indexModified++ ))
+                    ;;
+                C )
+                    (( indexModified++ ))
+                    ;;
+                D )
+                    (( indexDeleted++ ))
+                    ;;
+                U )
+                    (( indexUnmerged++ ))
+                    ;;
+            <span style=color:#00f>esac</span>
+            <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>tag:1:1<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> in
+                <span style=color:#a31515>\?</span> )
+                    (( filesAdded++ ))
+                    ;;
+                A )
+                    (( filesAdded++ ))
+                    ;;
+                M )
+                    (( filesModified++ ))
+                    ;;
+                D )
+                    (( filesDeleted++ ))
+                    ;;
+                U )
+                    (( filesUnmerged++ ))
+                    ;;
+            <span style=color:#00f>esac</span>
+        <span style=color:#00f>done</span> &lt;&lt;&lt; <span style=color:#a31515>&#34;`git status --porcelain 2&gt;/dev/null`&#34;</span>
+    <span style=color:#00f>fi</span>
+
+    local gitstring=
+    local branchstring=<span style=color:#a31515>&#34;</span>$isBare<span style=color:#a31515>${</span>b##refs/heads/<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span>
+
+    <span style=color:green># before-branch text</span>
+    gitstring=<span style=color:#a31515>&#34;</span>$BeforeBackgroundColor$BeforeForegroundColor$BeforeText<span style=color:#a31515>&#34;</span>
+
+    <span style=color:green># branch</span>
+    <span style=color:#00f>if</span> (( $__POSH_BRANCH_BEHIND_BY &gt; 0 &amp;&amp; $__POSH_BRANCH_AHEAD_BY &gt; 0 )); <span style=color:#00f>then</span>
+        gitstring+=<span style=color:#a31515>&#34;</span>$BranchBehindAndAheadBackgroundColor$BranchBehindAndAheadForegroundColor$branchstring$BranchBehindAndAheadStatusSymbol<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>elif</span> (( $__POSH_BRANCH_BEHIND_BY &gt; 0 )); <span style=color:#00f>then</span>
+        gitstring+=<span style=color:#a31515>&#34;</span>$BranchBehindBackgroundColor$BranchBehindForegroundColor$branchstring$BranchBehindStatusSymbol<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>elif</span> (( $__POSH_BRANCH_AHEAD_BY &gt; 0 )); <span style=color:#00f>then</span>
+        gitstring+=<span style=color:#a31515>&#34;</span>$BranchAheadBackgroundColor$BranchAheadForegroundColor$branchstring$BranchAheadStatusSymbol<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>elif</span> (( $divergence_return_code )); <span style=color:#00f>then</span>
+        <span style=color:green># ahead and behind are both 0, but there was some problem while executing the command.</span>
+        gitstring+=<span style=color:#a31515>&#34;</span>$BranchBackgroundColor$BranchForegroundColor$branchstring$BranchWarningStatusSymbol<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>else</span>
+        <span style=color:green># ahead and behind are both 0, and the divergence was determined successfully</span>
+        gitstring+=<span style=color:#a31515>&#34;</span>$BranchBackgroundColor$BranchForegroundColor$branchstring$BranchIdenticalStatusSymbol<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>fi</span>
+
+    <span style=color:green># index status</span>
+    <span style=color:#00f>if</span> $EnableFileStatus; <span style=color:#00f>then</span>
+        local indexCount=<span style=color:#a31515>&#34;</span><span style=color:#00f>$((</span> $indexAdded + $indexModified + $indexDeleted + $indexUnmerged <span style=color:#00f>))</span><span style=color:#a31515>&#34;</span>
+        local workingCount=<span style=color:#a31515>&#34;</span><span style=color:#00f>$((</span> $filesAdded + $filesModified + $filesDeleted + $filesUnmerged <span style=color:#00f>))</span><span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>if</span> (( $indexCount != 0 )) || $ShowStatusWhenZero; <span style=color:#00f>then</span>
+            gitstring+=<span style=color:#a31515>&#34;</span>$IndexBackgroundColor$IndexForegroundColor<span style=color:#a31515> +</span>$indexAdded<span style=color:#a31515> ~</span>$indexModified<span style=color:#a31515> -</span>$indexDeleted<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>fi</span>
+        <span style=color:#00f>if</span> (( $indexUnmerged != 0 )); <span style=color:#00f>then</span>
+            gitstring+=<span style=color:#a31515>&#34; </span>$IndexBackgroundColor$IndexForegroundColor<span style=color:#a31515>!</span>$indexUnmerged<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>fi</span>
+        <span style=color:#00f>if</span> (( $indexCount != 0 &amp;&amp; ($workingCount != 0 || $ShowStatusWhenZero) )); <span style=color:#00f>then</span>
+            gitstring+=<span style=color:#a31515>&#34;</span>$DelimBackgroundColor$DelimForegroundColor$DelimText<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>fi</span>
+        <span style=color:#00f>if</span> (( $workingCount != 0 )) || $ShowStatusWhenZero; <span style=color:#00f>then</span>
+            gitstring+=<span style=color:#a31515>&#34;</span>$WorkingBackgroundColor$WorkingForegroundColor<span style=color:#a31515> +</span>$filesAdded<span style=color:#a31515> ~</span>$filesModified<span style=color:#a31515> -</span>$filesDeleted<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>fi</span>
+        <span style=color:#00f>if</span> (( $filesUnmerged != 0 )); <span style=color:#00f>then</span>
+            gitstring+=<span style=color:#a31515>&#34; </span>$WorkingBackgroundColor$WorkingForegroundColor<span style=color:#a31515>!</span>$filesUnmerged<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>fi</span>
+    <span style=color:#00f>fi</span>
+    gitstring+=<span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>rebase:+$RebaseForegroundColor$RebaseBackgroundColor$rebase<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span>
+
+    <span style=color:green># after-branch text</span>
+    gitstring+=<span style=color:#a31515>&#34;</span>$AfterBackgroundColor$AfterForegroundColor$AfterText<span style=color:#a31515>&#34;</span>
+
+    <span style=color:#00f>if</span> $ShowStashState &amp;&amp; $hasStash; <span style=color:#00f>then</span>
+        gitstring+=<span style=color:#a31515>&#34;</span>$StashBackgroundColor$StashForegroundColor<span style=color:#a31515>&#34;</span>$StashText
+    <span style=color:#00f>fi</span>
+    gitstring+=<span style=color:#a31515>&#34;</span>$DefaultBackgroundColor$DefaultForegroundColor<span style=color:#a31515>&#34;</span>
+    echo <span style=color:#a31515>&#34;</span>$gitstring<span style=color:#a31515>&#34;</span>
+}
+
+<span style=color:green># Returns the location of the .git/ directory.</span>
+__posh_gitdir ()
+{
+    <span style=color:green># Note: this function is duplicated in git-completion.bash</span>
+    <span style=color:green># When updating it, make sure you update the other one to match.</span>
+    <span style=color:#00f>if</span> [ -z <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>1-<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        <span style=color:#00f>if</span> [ -n <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>__posh_git_dir-<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+            echo <span style=color:#a31515>&#34;</span>$__posh_git_dir<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>elif</span> [ -n <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>GIT_DIR-<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+            test -d <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>GIT_DIR-<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> || <span style=color:#00f>return</span> 1
+            echo <span style=color:#a31515>&#34;</span>$GIT_DIR<span style=color:#a31515>&#34;</span>
+        <span style=color:#00f>elif</span> [ -d .git ]; <span style=color:#00f>then</span>
+            echo .git
+        <span style=color:#00f>else</span>
+            git rev-parse --git-dir 2&gt;/dev/null
+        <span style=color:#00f>fi</span>
+    <span style=color:#00f>elif</span> [ -d <span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>/.git&#34;</span> ]; <span style=color:#00f>then</span>
+        echo <span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>/.git&#34;</span>
+    <span style=color:#00f>else</span>
+        echo <span style=color:#a31515>&#34;</span>$1<span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>fi</span>
+}
+
+<span style=color:green># Updates the global variables `__POSH_BRANCH_AHEAD_BY` and `__POSH_BRANCH_BEHIND_BY`.</span>
+__posh_git_ps1_upstream_divergence ()
+{
+    local key value
+    local svn_remote svn_url_pattern
+    local upstream=git          <span style=color:green># default</span>
+    local legacy=<span style=color:#a31515>&#39;&#39;</span>
+
+    svn_remote=()
+    <span style=color:green># get some config options from git-config</span>
+    local output=<span style=color:#a31515>&#34;</span><span style=color:#00f>$(</span>git config -z --get-regexp <span style=color:#a31515>&#39;^(svn-remote\..*\.url|bash\.showUpstream)$&#39;</span> 2&gt;/dev/null | tr <span style=color:#a31515>&#39;\0\n&#39;</span> <span style=color:#a31515>&#39;\n &#39;</span><span style=color:#00f>)</span><span style=color:#a31515>&#34;</span>
+    <span style=color:#00f>while</span> read -r key value; <span style=color:#00f>do</span>
+        <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$key<span style=color:#a31515>&#34;</span> in
+        bash.showUpstream)
+            GIT_PS1_SHOWUPSTREAM=<span style=color:#a31515>&#34;</span>$value<span style=color:#a31515>&#34;</span>
+            <span style=color:#00f>if</span> [ -z <span style=color:#a31515>&#34;</span><span style=color:#a31515>${</span>GIT_PS1_SHOWUPSTREAM<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+                <span style=color:#00f>return</span>
+            <span style=color:#00f>fi</span>
+            ;;
+        svn-remote.*.url)
+            svn_remote[ <span style=color:#00f>$((</span><span style=color:#a31515>${#</span>svn_remote[@]<span style=color:#a31515>}</span> + 1<span style=color:#00f>))</span> ]=<span style=color:#a31515>&#34;</span>$value<span style=color:#a31515>&#34;</span>
+            svn_url_pattern+=<span style=color:#a31515>&#34;\\|</span>$value<span style=color:#a31515>&#34;</span>
+            upstream=svn+git <span style=color:green># default upstream is SVN if available, else git</span>
+            ;;
+        <span style=color:#00f>esac</span>
+    <span style=color:#00f>done</span> &lt;&lt;&lt; <span style=color:#a31515>&#34;</span>$output<span style=color:#a31515>&#34;</span>
+
+    <span style=color:green># parse configuration values</span>
+    <span style=color:#00f>for</span> option in <span style=color:#a31515>${</span>GIT_PS1_SHOWUPSTREAM<span style=color:#a31515>}</span>; <span style=color:#00f>do</span>
+        <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$option<span style=color:#a31515>&#34;</span> in
+        git|svn) upstream=<span style=color:#a31515>&#34;</span>$option<span style=color:#a31515>&#34;</span> ;;
+        legacy)  legacy=1  ;;
+        <span style=color:#00f>esac</span>
+    <span style=color:#00f>done</span>
+
+    <span style=color:green># Find our upstream</span>
+    <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$upstream<span style=color:#a31515>&#34;</span> in
+    git)    upstream=<span style=color:#a31515>&#39;@{upstream}&#39;</span> ;;
+    svn*)
+        <span style=color:green># get the upstream from the &#34;git-svn-id: ...&#34; in a commit message</span>
+        <span style=color:green># (git-svn uses essentially the same procedure internally)</span>
+        local svn_upstream=(<span style=color:#00f>$(</span>git log --first-parent -1 <span style=color:#a31515>\
+</span><span style=color:#a31515></span>                    --grep=<span style=color:#a31515>&#34;^git-svn-id: \(</span><span style=color:#a31515>${</span>svn_url_pattern#??<span style=color:#a31515>}</span><span style=color:#a31515>\)&#34;</span> 2&gt;/dev/null<span style=color:#00f>)</span>)
+        <span style=color:#00f>if</span> (( 0 != <span style=color:#a31515>${#</span>svn_upstream[@]<span style=color:#a31515>}</span> )); <span style=color:#00f>then</span>
+            svn_upstream=<span style=color:#a31515>${</span>svn_upstream[ <span style=color:#a31515>${#</span>svn_upstream[@]<span style=color:#a31515>}</span> - 2 ]<span style=color:#a31515>}</span>
+            svn_upstream=<span style=color:#a31515>${</span>svn_upstream%@*<span style=color:#a31515>}</span>
+            local n_stop=<span style=color:#a31515>&#34;</span><span style=color:#a31515>${#</span>svn_remote[@]<span style=color:#a31515>}</span><span style=color:#a31515>&#34;</span>
+            local n
+            <span style=color:#00f>for</span> ((n=1; n &lt;= n_stop; n++)); <span style=color:#00f>do</span>
+                svn_upstream=<span style=color:#a31515>${</span>svn_upstream#<span style=color:#a31515>${</span>svn_remote[$n]<span style=color:#a31515>}}</span>
+            <span style=color:#00f>done</span>
+
+            <span style=color:#00f>if</span> [ -z <span style=color:#a31515>&#34;</span>$svn_upstream<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+                <span style=color:green># default branch name for checkouts with no layout:</span>
+                upstream=<span style=color:#a31515>${</span>GIT_SVN_ID<span style=color:#00f>:-</span>git-svn<span style=color:#a31515>}</span>
+            <span style=color:#00f>else</span>
+                upstream=<span style=color:#a31515>${</span>svn_upstream#/<span style=color:#a31515>}</span>
+            <span style=color:#00f>fi</span>
+        <span style=color:#00f>elif</span> [ <span style=color:#a31515>&#39;svn+git&#39;</span> = <span style=color:#a31515>&#34;</span>$upstream<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+            upstream=<span style=color:#a31515>&#39;@{upstream}&#39;</span>
+        <span style=color:#00f>fi</span>
+        ;;
+    <span style=color:#00f>esac</span>
+
+    local return_code=
+    __POSH_BRANCH_AHEAD_BY=0
+    __POSH_BRANCH_BEHIND_BY=0
+    <span style=color:green># Find how many commits we are ahead/behind our upstream</span>
+    <span style=color:#00f>if</span> [ -z <span style=color:#a31515>&#34;</span>$legacy<span style=color:#a31515>&#34;</span> ]; <span style=color:#00f>then</span>
+        local output=
+        output=<span style=color:#00f>$(</span>git rev-list --count --left-right $upstream...HEAD 2&gt;/dev/null<span style=color:#00f>)</span>
+        return_code=$?
+        IFS=<span style=color:#a31515>$&#39; \t\n&#39;</span> read -r __POSH_BRANCH_BEHIND_BY __POSH_BRANCH_AHEAD_BY &lt;&lt;&lt; $output
+    <span style=color:#00f>else</span>
+        local output
+        output=<span style=color:#00f>$(</span>git rev-list --left-right $upstream...HEAD 2&gt;/dev/null<span style=color:#00f>)</span>
+        return_code=$?
+        <span style=color:green># produce equivalent output to --count for older versions of git</span>
+        <span style=color:#00f>while</span> IFS=<span style=color:#a31515>$&#39; \t\n&#39;</span> read -r commit; <span style=color:#00f>do</span>
+            <span style=color:#00f>case</span> <span style=color:#a31515>&#34;</span>$commit<span style=color:#a31515>&#34;</span> in
+            <span style=color:#a31515>&#34;&lt;*&#34;</span>) (( __POSH_BRANCH_BEHIND_BY++ )) ;;
+            <span style=color:#a31515>&#34;&gt;*&#34;</span>) (( __POSH_BRANCH_AHEAD_BY++ ))  ;;
+            <span style=color:#00f>esac</span>
+        <span style=color:#00f>done</span> &lt;&lt;&lt; $output
+    <span style=color:#00f>fi</span>
+    : <span style=color:#a31515>${</span>__POSH_BRANCH_AHEAD_BY:=0<span style=color:#a31515>}</span>
+    : <span style=color:#a31515>${</span>__POSH_BRANCH_BEHIND_BY:=0<span style=color:#a31515>}</span>
+    <span style=color:#00f>return</span> $return_code
+}
+</code></pre></div></div></div><div class=highlight-file id=hfs-5031ca221e07b7b75505d712cf89d822><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-5031ca221e07b7b75505d712cf89d822','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/idea.sh download>idea.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/idea.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#00f>function</span> __idea_open {
+    dir=<span style=color:#a31515>&#34;</span>$@<span style=color:#a31515>[</span>$#<span style=color:#a31515>]&#34;</span>
+    echo <span style=color:#a31515>&#34;idea </span>$dir<span style=color:#a31515>&#34;</span>
+    idea <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515>&#34;</span>
+}</code></pre></div></div></div><div class=highlight-file id=hfs-80caa0ff2627a8a7a2c19a5f9997618e><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-80caa0ff2627a8a7a2c19a5f9997618e','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/mac.sh download>mac.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/mac.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>autoload -Uz compinit &amp;&amp; compinit
+
+source <span style=color:#00f>$(</span>dirname $0<span style=color:#00f>)</span>/a.sh
+
+launchctl setenv JAVA_HOME $JAVA_HOME
+
+launchctl setenv M2_HOME $M2_HOME
+launchctl setenv MAVEN_HOME $MAVEN_HOME
+launchctl setenv MAVEN_OPTS $MAVEN_OPTS
+
+launchctl setenv GRADLE_HOME $GRADLE_HOME
+launchctl setenv GRADLE_USER_HOME $GRADLE_USER_HOME
+
+<span style=color:green># https://github.com/ggreer/lscolors</span>
+export CLICOLOR=1
+
+__directory_add_quick_access /lnh
+__directory_add_quick_access /lnh/_code
+__directory_add_quick_access /lnh/_github
+<span style=color:green>#__directory_add_to_quick_access /lnh/_app</span>
+
+<span style=color:#00f>if</span> [ -f <span style=color:#a31515>&#34;/lnh/_shell/a.sh&#34;</span> ]; <span style=color:#00f>then</span>
+  source /lnh/_shell/a.sh
+<span style=color:#00f>fi</span></code></pre></div></div></div><div class=highlight-file id=hfs-df252f72ea205d948fe69db4255debbc><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-df252f72ea205d948fe69db4255debbc','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/vscode.sh download>vscode.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/vscode.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#00f>function</span> __vscode_open {
+    dir=<span style=color:#a31515>&#34;</span>$@<span style=color:#a31515>[</span>$#<span style=color:#a31515>]&#34;</span>
+    echo <span style=color:#a31515>&#34;code </span>$dir<span style=color:#a31515>&#34;</span>
+    code <span style=color:#a31515>&#34;</span>$dir<span style=color:#a31515>&#34;</span>
+}</code></pre></div></div></div><div class=highlight-file id=hfs-42aadfb32b7778ab48cc4965773f3cd8><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-42aadfb32b7778ab48cc4965773f3cd8','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/zsh-compdef.sh download>zsh-compdef.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/zsh-compdef.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>setopt completealiases
+compdef __directory_search_quick_access_complete c
+compdef __directory_search_quick_access_complete d
+compdef __directory_search_quick_access_complete i</code></pre></div></div></div><div class=highlight-file id=hfs-aa86623e82b21d088605e5c16e506a1b><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-aa86623e82b21d088605e5c16e506a1b','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/script/zsh-prompt.sh download>zsh-prompt.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/script/zsh-prompt.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># zsh              http://www.zsh.org/</span>
+<span style=color:green># precmd           http://zsh.sourceforge.net/Doc/Release/Functions.html#Hook-Functions</span>
+<span style=color:green># Prompt-Expansion http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion</span>
+<span style=color:green># __posh_git_echo  https://github.com/lyze/posh-git-sh</span>
+
+unsetopt PROMPT_SP
+setopt prompt_subst
+<span style=color:green># RPROMPT=&#34;[%(?.%F{green}%?%f.%F{red}%?%f)]&#34;</span>
+
+precmd(){
+  USER_TYPE=<span style=color:#a31515>&#39;%(!.#.$)&#39;</span>
+  NEW_LINE=<span style=color:#a31515>$&#39;\n&#39;</span>
+  LAST_EXIT_CODE=<span style=color:#a31515>&#34;%(?..%F{red}%?%f)&#34;</span>
+  COMMON_PROMPT=<span style=color:#a31515>&#39;$NEW_LINE%F{green}$USER_TYPE%f %n@%m %d %D %* $LAST_EXIT_CODE&#39;</span>
+  INPUT_PROMPT=<span style=color:#a31515>&#39;$NEW_LINE%F{green}$USER_TYPE %f&#39;</span>
+  <span style=color:#00f>if</span> git rev-parse --git-dir &gt; /dev/null 2&gt;&amp;1; <span style=color:#00f>then</span>
+    GIT_USER=<span style=color:#a31515>&#34;</span><span style=color:#00f>$(</span>git config user.name<span style=color:#00f>)</span><span style=color:#a31515>@&lt;</span><span style=color:#00f>$(</span>git config user.email<span style=color:#00f>)</span><span style=color:#a31515>&gt;&#34;</span>
+    GIT_PROMPT=<span style=color:#a31515>&#39;$NEW_LINE%F{green}$USER_TYPE $GIT_USER%f %F{red}%1d%f $(__posh_git_echo)&#39;</span>
+    PROMPT=<span style=color:#a31515>&#34;</span>$COMMON_PROMPT<span style=color:#a31515> </span>$GIT_PROMPT<span style=color:#a31515> </span>$INPUT_PROMPT<span style=color:#a31515>&#34;</span>
+  <span style=color:#00f>else</span>
+    PROMPT=<span style=color:#a31515>&#34;</span>$COMMON_PROMPT<span style=color:#a31515> </span>$INPUT_PROMPT<span style=color:#a31515>&#34;</span>
+  <span style=color:#00f>fi</span>
+}</code></pre></div></div></div></div></div></section><section class=article-meta><section class=article-date>2017-01-01 09:42，约2933字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/linux/ title=[Linux] target=_blank><i class="fa fa-folder"></i>[Linux]</a></section><section class=article-tags><a class=article-tag href=/tag/linux target=_blank><i class="fa fa-tag"></i>Linux</a>
+<a class=article-tag href=/tag/sh target=_blank><i class="fa fa-tag"></i>sh</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/8234459980d9deeae3682abe0f789da9bbbdbb79 target=_blank><i class="fa fa-code-fork"></i>8234459</a>
+<span class=article-git-commit-subject>Adjust h[1-6] element id</span>
+<span class=article-git-commit-time>2020-06-12 14:53</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/linux/script/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-next><span>下一篇 :</span>
+<a href=/linux/bash-01-basic/ target=_blank>[Linux] 01 Basic</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=博客评论 theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2021 <a href=https://github.com/linianhui/blog target=_blank>blackheart</a></section><section><a class="fa fa-code-fork article-git-commit" href=https://github.com/linianhui/blog/commit/8be81c1df2ba1a3e5a3771f5cee49d1aba32559e target=_blank>8be81c1</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script><script src=https://hm.baidu.com/hm.js?b2cc3cea316e1f7a8def1bab8dc98fad async></script></body></html>

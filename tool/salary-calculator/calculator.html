@@ -1,0 +1,372 @@
+<link href="//cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/theme-chalk/index.min.css" rel="stylesheet">
+<style>
+  th {
+    text-align: center;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  .cell {
+    padding: 0 !important;
+  }
+
+  .form-name,
+  .form-input,
+  .form-detail {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .form-name {
+    width: 5em;
+    text-align: right;
+    padding-top: 10px;
+  }
+
+  .form-input{
+    margin-left: 1em;
+  }
+
+  .form-detail {
+    color: #909399;
+  }
+
+  .el-collapse {
+    border: unset;
+  }
+
+  .el-collapse-item__wrap,
+  .el-collapse-item__header {
+    border: unset;
+  }
+
+  .el-input-group__prepend {
+    padding: 0;
+  }
+
+  fieldset {
+    border: unset;
+    box-shadow: 0 0 2px #ccc;
+    max-width: 100%;
+    min-width: 100%;
+    margin-top: 1em;
+    box-sizing: border-box;
+  }
+
+  legend {
+    background-color: #FFF;
+    color: #909399;
+  }
+
+  .salary-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .salary-pre {
+    font-family: unset;
+    font-size: 0;
+    margin: 0;
+  }
+
+  .salary-table {
+    width: 100%;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .row-data {
+    color: #666;
+  }
+
+  .row-data:hover {
+    background-color: #eee;
+    cursor: pointer;
+  }
+
+  .insurance-input_amount_min {
+    min-width: 3em;
+    max-width: 3em;
+    text-align: right;
+  }
+
+  .insurance-input_amount_max {
+    min-width: 3em;
+    max-width: 4em;
+    text-align: right;
+  }
+
+  .insurance-input_rate {
+    min-width: 2em;
+    max-width: 2em;
+    text-align: right;
+  }
+</style>
+<div id="app">
+  <fieldset>
+    <legend>参数区域</legend>
+    <section style="min-height: 47px;">
+      <div class="form-name">
+        <label for="salary">
+          税前月工资
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-input-number id="salary" v-model="amount" step="1000" placeholder="请输入税前月工资">
+        </el-input-number>
+      </div>
+    </section>
+    <section style="min-height: 47px;">
+      <div class="form-name">
+        <label for="month">
+          月数
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-input-number id="month" v-model="month" :min="1" :max="100" placeholder="请输入月数"></el-input-number>
+      </div>
+    </section>
+    <section>
+      <div class="form-name">
+        <label for="insurance">
+          社保基数
+        </label>
+      </div>
+      <div class="form-input">
+        <el-select id="insurance" v-model="insurance.key" :popper-append-to-body="false" @change="onInsuranceChange">
+          <el-option v-for="item in insurance.keys" :key="item" :label="item" :value="item">
+          </el-option>
+        </el-select>
+      </div>
+      <div class="form-detail">
+        <el-collapse>
+          <el-collapse-item>
+            <template slot="title">
+              &nbsp;&nbsp;<i class="header-icon el-icon-info">&nbsp;基数：{{insurance.value.养老保险.min | CNY}} ~
+                {{insurance.value.养老保险.max | CNY}}</i>
+            </template>
+            <table class="insurance-table">
+              <tr class="row-header">
+                <th>类型</th>
+                <th>最低基数</th>
+                <th>最高基数</th>
+                <th>个人</th>
+                <th>公司</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>￥<input v-model="insurance.max" class="insurance-input_amount_max" @input="onInsuranceMaxChange"></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr v-for="key in Object.keys(insurance.value)" class="row-data">
+                <td>{{key}}</td>
+                <td>￥<input v-model="insurance.value[key].min" class="insurance-input_amount_min"></td>
+                <td>￥<input v-model="insurance.value[key].max" class="insurance-input_amount_max"></td>
+                <td><input v-model="insurance.value[key].personalPercentage" class="insurance-input_rate">%</td>
+                <td><input v-model="insurance.value[key].corporationPercentage" class="insurance-input_rate">%</td>
+              </tr>
+            </table>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
+    </section>
+    <section>
+      <div class="form-name">
+        <label for="rate">税率表</label>
+      </div>
+      <div class="form-input">
+        <el-select id="rate" v-model="rate.key" :popper-append-to-body="false">
+          <el-option v-for="item in rate.keys" :key="item" :label="item" :value="item">
+          </el-option>
+        </el-select>
+      </div>
+      <div class="form-detail">
+        <el-collapse>
+          <el-collapse-item>
+            <template slot="title">
+              &nbsp;&nbsp;<i class="header-icon el-icon-info">&nbsp;免征额：{{rate.value.exempted | CNY}}</i>
+            </template>
+            <table>
+              <tr class="row-header">
+                <th>范围</th>
+                <th>税率</th>
+                <th>速算扣除数</th>
+              </tr>
+              <tr v-for="item in rate.value.items" class="row-data">
+                <td>
+                  <span>
+                    {{item.min | CNY}} ~
+                    <span v-if="item.max">{{item.max | CNY}}</span>
+                    <span v-else>￥∞</span>
+                  </span>
+                </td>
+                <td>
+                  {{item.rate}}%
+                </td>
+                <td>
+                  {{item.quickDeduction | CNY}}
+                </td>
+              </tr>
+            </table>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
+    </section>
+    <section style="min-height: 47px;">
+      <div class="form-name">
+        <label for="precision">
+          小数位
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-input-number id="precision" v-model="precision" :min="0" :max="2" placeholder="小数位"
+          @change="onPrecisionChange"></el-input-number>
+      </div>
+    </section>
+  </fieldset>
+
+  <fieldset>
+    <legend>结果区域-年收入合计</legend>
+    税前 {{salarys.summary.baseYTD | CNY}} = {{amount | CNY}} * {{month}} <br />
+    税后 {{salarys.summary.totalActualYTD | CNY}} = 工资 {{salarys.summary.actualYTD | CNY}} + 公积金 {{salarys.summary.公积金YTD
+    | CNY}} + 医疗保险 {{salarys.summary.医疗保险YTD | CNY}}<br />
+    差额 {{salarys.summary.diffYTD | CNY}} = 税前 {{salarys.summary.baseYTD | CNY}} - 税后 {{salarys.summary.totalActualYTD |
+    CNY}}
+  </fieldset>
+
+  <fieldset>
+    <legend>结果区域-按月列表</legend>
+    <div class="salary-wrapper">
+      <pre class="salary-pre">
+        <table class="salary-table">
+          <tr class="row-header">
+            <th style="width: 5em;">月份</th>
+            <th>税前</th>
+            <th>税前YTD</th>
+            <th style="width: 6em;">免征额YTD</th>
+            <th style="width: 7em;">社保个人YTD</th>
+            <th>税基YTD</th>
+            <th style="width: 3em;">税率</th>
+            <th>个税</th>
+            <th>个税YTD</th>
+            <th>税后</th>
+            <th>税后YTD</th>
+          </tr>
+          <tr v-for="item in salarys.items.reverse()" class="row-data">
+            <td v-if="item.month > 12">{{item.months}}个月奖金</td>
+            <td v-else>{{item.month}}月</td>
+            <td>{{item.base | CNY}}</td>
+            <td>{{item.baseYTD | CNY}}</td>
+            <td>{{item.exemptedYTD | CNY}}</td>
+            <td>{{item.insurancesPersonalYTD | CNY}}</td>
+            <td>{{item.taxableYTD | CNY}}</td>
+            <td>{{item.rate.rate}}%</td>
+            <td>{{item.tax | CNY}}</td>
+            <td>{{item.taxYTD | CNY}}</td>
+            <td>{{item.actual | CNY}}</td>
+            <td>{{item.actualYTD | CNY}}</td>
+          </tr>
+        </table>
+      </pre>
+    </div>
+  </fieldset>
+</div>
+<script src="//cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+<script src="//cdn.bootcdn.net/ajax/libs/element-ui/2.15.1/index.js"></script>
+<script src="//unpkg.com/currency.js@2.0.4/dist/currency.min.js"></script>
+<script src="rates.js"></script>
+<script src="insurances.js"></script>
+<script src="calculator.js"></script>
+<script type="text/javascript">
+  const ratesKeys = Object.keys(rates);
+  const ratesKey = ratesKeys[0];
+  const insurancesKeys = Object.keys(insurances);
+  const insurancesKey = insurancesKeys[0];
+  let precision = 0;
+
+  function log(type, value) {
+    console.log(type, JSON.parse(JSON.stringify(value)));
+  }
+
+  new Vue({
+    el: "#app",
+    data: function () {
+      return {
+        amount: 5000,
+        month: 12,
+        precision: precision,
+        rate: {
+          keys: ratesKeys,
+          key: ratesKey,
+          value: rates[ratesKey]
+        },
+        insurance: {
+          keys: insurancesKeys,
+          key: insurancesKey,
+          value: insurances[insurancesKey],
+          max: insurances[insurancesKey].养老保险.max
+        }
+      }
+    },
+    filters: {
+      CNY: function (value) {
+        return currency(
+          value || 0,
+          {
+            symbol: "",
+            separator: ",",
+            precision: precision
+          })
+          .format();
+      }
+    },
+    computed: {
+      salarys() {
+        var items = buildSalaryList(
+          parseInt(this.amount, 10),
+          this.month,
+          this.insurance.value,
+          this.rate.value
+        );
+        calculateOneYear(items);
+        items.shift();
+        log("calculate salarys", items);
+
+        var summary = buildSummary(items);
+        log("calculate salarys year summary", summary);
+
+        log("precision", this.precision);
+        return {
+          items: items,
+          summary: summary
+        };
+      }
+    },
+    methods: {
+      onRateChange(key) {
+        this.rate.value = rates[key];
+        log("selected rate " + key, this.rate.value);
+      },
+      onInsuranceChange(key) {
+        this.insurance.value = insurances[key];
+        this.insurance.max = insurances[key].养老保险.max;
+        log("selected insurance " + key, this.insurance.value);
+      },
+      onInsuranceMaxChange(e) {
+        const max = e.target.value;
+        for (let key in this.insurance.value) {
+          this.insurance.value[key].max = max;
+        }
+        log("change insurance max = " + max, this.insurance.value);
+      },
+      onPrecisionChange(value) {
+        precision = value;
+      }
+    }
+  })
+</script>

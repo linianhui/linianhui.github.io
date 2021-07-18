@@ -1,0 +1,104 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Linux] Ubuntu - blackheart</title><link rel=icon type=image/svg href=/favicon.svg><link href=//cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css rel=stylesheet><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet><link href="/asset/pc.css?time=1626578142" rel=stylesheet><script src="/asset/pc.js?time=1626578142" type=text/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/mobile.css?time=1626578142" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/linux/ target=_blank>[Linux]</a></section><section class=toc-page><a class=toc-page-title href=/linux/script/ target=_blank>[Linux] Bash Script</a></section><section class=toc-page><a class=toc-page-title href=/linux/bash-01-basic/ target=_blank>[Linux] 01 Basic</a></section><section class=toc-page><a class=toc-page-title href=/linux/bash-02-expansion/ target=_blank>[Linux] 02 Expansion</a></section><section class=toc-page><a class=toc-page-title href=/linux/ssh/ target=_blank>[Linux] SSH</a></section><section class=toc-page><a class=toc-page-title href=/linux/systemd/ target=_blank>[Linux] systemd</a></section><section class="toc-page selected"><span class=toc-page-title>[Linux] Ubuntu</span><nav id=TableOfContents><ul><li><a href=#install>1 Install</a></li><li><a href=#reference>2 Reference</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/linux/centos/ target=_blank>[Linux] CentOS</a></section><section class=toc-page><a class=toc-page-title href=/linux/top/ target=_blank>[Linux] top</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/><i class="fa fa-home" style=font-size:24px></i>blackheart</a>
+<a href="https://music.163.com/#/song?id=1467670638" target=_blank style=vertical-align:text-bottom><i class="fa fa-music" style=font-size:24px></i></a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a></nav><div class=stats>博客 - 107</div><form class=search method=get target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder="Bing site search" results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></header><main class=content><article class=article><h1 class=article-title>[Linux] Ubuntu</h1><div class=article-copyright><span>版权声明 -</span>
+<a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2018-12-12 23:21，约168字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/linux/ title=[Linux] target=_blank><i class="fa fa-folder"></i>[Linux]</a></section><section class=article-tags><a class=article-tag href=/tag/linux target=_blank><i class="fa fa-tag"></i>Linux</a>
+<a class=article-tag href=/tag/ubuntu target=_blank><i class="fa fa-tag"></i>Ubuntu</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/dbd0c878ba1f30a1497ca18906e605ff2898e35b target=_blank><i class="fa fa-code-fork"></i>dbd0c87</a>
+<span class=article-git-commit-subject>Update index.md</span>
+<span class=article-git-commit-time>2020-07-04 20:42</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=install><i id=locator-install class=header-locator></i>
+<a href=#install class=article-h-a>1 Install</a></h1><table><thead><tr><th>iso</th><th>url</th></tr></thead><tbody><tr><td>official</td><td><a href=http://releases.ubuntu.com>http://releases.ubuntu.com</a></td></tr><tr><td>163</td><td><a href=http://mirrors.163.com/ubuntu-releases>http://mirrors.163.com/ubuntu-releases</a></td></tr><tr><td>aliyun</td><td><a href=https://mirrors.aliyun.com/ubuntu-releases>https://mirrors.aliyun.com/ubuntu-releases</a></td></tr><tr><td>old</td><td><a href=http://old-releases.ubuntu.com>http://old-releases.ubuntu.com</a></td></tr><tr><td>vm</td><td><a href=http://cloud-images.ubuntu.com/bionic/current>http://cloud-images.ubuntu.com/bionic/current</a></td></tr></tbody></table><table><thead><tr><th>source</th><th>url</th></tr></thead><tbody><tr><td>163</td><td><a href=http://mirrors.163.com/.help/ubuntu.html>http://mirrors.163.com/.help/ubuntu.html</a></td></tr><tr><td>aliyun</td><td><a href=http://mirrors.aliyun.com/ubuntu/>http://mirrors.aliyun.com/ubuntu/</a></td></tr><tr><td>dde</td><td><a href=https://www.deepin.org/original/deepin-boot-maker>https://www.deepin.org/original/deepin-boot-maker</a></td></tr></tbody></table><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>2 Reference</a></h1><div class=highlight-files><div class=highlight-files-header>sh文件列表</div><div class=highlight-files-list><div class=highlight-file id=hfs-c2e232c1b1f48e955c08d36be804cf55><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-c2e232c1b1f48e955c08d36be804cf55','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/ubuntu/apt.163.sh download>apt.163.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/apt.163.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># wget https://linianhui.github.io/linux/ubuntu/apt.163.sh</span>
+<span style=color:green># sudo bash ubuntu.apt.163.sh</span>
+<span style=color:green># sh -c &#34;$(curl -fsSL https://linianhui.github.io/linux/ubuntu/apt.163.sh)&#34;</span>
+
+set -eux
+
+cat /etc/apt/sources.list
+
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+sed -i <span style=color:#a31515>&#39;s/archive.ubuntu.com/mirrors.163.com/g&#39;</span> /etc/apt/sources.list
+
+cat /etc/apt/sources.list
+</code></pre></div></div></div><div class=highlight-file id=hfs-14541d294270ee5159fe9d81c7be6cb2><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-14541d294270ee5159fe9d81c7be6cb2','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/ubuntu/apt.aliyun.sh download>apt.aliyun.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/apt.aliyun.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># wget https://linianhui.github.io/linux/ubuntu/apt.aliyun.sh</span>
+<span style=color:green># sudo bash ubuntu.apt.aliyun.sh</span>
+<span style=color:green># sh -c &#34;$(curl -fsSL https://linianhui.github.io/linux/ubuntu/apt.aliyun.sh)&#34;</span>
+
+set -eux
+
+cat /etc/apt/sources.list
+
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+sed -i <span style=color:#a31515>&#39;s/archive.ubuntu.com/mirrors.aliyun.com/g&#39;</span> /etc/apt/sources.list
+
+cat /etc/apt/sources.list
+</code></pre></div></div></div><div class=highlight-file id=hfs-c4e227a6bcb1b4c05125f8223247e3e2><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-c4e227a6bcb1b4c05125f8223247e3e2','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/ubuntu/dde.install.sh download>dde.install.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/dde.install.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># wget https://linianhui.github.io/linux/ubuntu/dde.install.sh</span>
+<span style=color:green># sudo bash ubuntu.dde.install.sh</span>
+
+set -eux
+
+<span style=color:green># 1. 添加 PPA Repository https://launchpad.net/~leaeasy/+archive/ubuntu/dde</span>
+add-apt-repository ppa:leaeasy/dde
+
+<span style=color:green># 2. 安装</span>
+apt install -y dde dde-file-manager deepin-icon-theme
+
+<span style=color:green># 3. 启动</span>
+lightdm start
+</code></pre></div></div></div><div class=highlight-file id=hfs-17d642b807a9868713b7fb5c9428e7e0><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-17d642b807a9868713b7fb5c9428e7e0','highlight-file_opened')"></a><a class="fa fa-download" target=_blank href=/linux/ubuntu/network.static-ip.sh download>network.static-ip.sh</a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/network.static-ip.sh title=源码></a></div><div class=highlight-file-content><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:green># wget https://linianhui.github.io/linux/ubuntu/network.static-ip.sh</span>
+<span style=color:green># sudo bash ubuntu.network.static-ip.sh 201</span>
+
+set -eux
+
+IP=$1
+
+ip a
+
+cat /etc/netplan/50-cloud-init.yaml
+
+cat <span style=color:#a31515>&lt;&lt;-EOF &gt; /etc/netplan/50-cloud-init.yaml
+</span><span style=color:#a31515># https://netplan.io/examples
+</span><span style=color:#a31515>network:
+</span><span style=color:#a31515>  version: 2
+</span><span style=color:#a31515>  renderer: networkd
+</span><span style=color:#a31515>  ethernets:
+</span><span style=color:#a31515>    eth0:
+</span><span style=color:#a31515>      addresses:
+</span><span style=color:#a31515>        - 192.168.2.$IP/24
+</span><span style=color:#a31515>      dhcp4: no
+</span><span style=color:#a31515>      dhcp6: no
+</span><span style=color:#a31515>      gateway4: 192.168.2.1
+</span><span style=color:#a31515>      nameservers:
+</span><span style=color:#a31515>        addresses:
+</span><span style=color:#a31515>          - 192.168.2.1
+</span><span style=color:#a31515>EOF</span>
+
+cat /etc/netplan/50-cloud-init.yaml
+
+netplan apply
+
+ip a
+</code></pre></div></div></div></div></div></section><section class=article-meta><section class=article-date>2018-12-12 23:21，约168字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/linux/ title=[Linux] target=_blank><i class="fa fa-folder"></i>[Linux]</a></section><section class=article-tags><a class=article-tag href=/tag/linux target=_blank><i class="fa fa-tag"></i>Linux</a>
+<a class=article-tag href=/tag/ubuntu target=_blank><i class="fa fa-tag"></i>Ubuntu</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/dbd0c878ba1f30a1497ca18906e605ff2898e35b target=_blank><i class="fa fa-code-fork"></i>dbd0c87</a>
+<span class=article-git-commit-subject>Update index.md</span>
+<span class=article-git-commit-time>2020-07-04 20:42</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 :</span>
+<a href=/linux/systemd/ target=_blank>[Linux] systemd</a></div><div class=article-page-next><span>下一篇 :</span>
+<a href=/linux/centos/ target=_blank>[Linux] CentOS</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=博客评论 theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2021 <a href=https://github.com/linianhui/blog target=_blank>blackheart</a></section><section><a class="fa fa-code-fork article-git-commit" href=https://github.com/linianhui/blog/commit/8be81c1df2ba1a3e5a3771f5cee49d1aba32559e target=_blank>8be81c1</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script><script src=https://hm.baidu.com/hm.js?b2cc3cea316e1f7a8def1bab8dc98fad async></script></body></html>
