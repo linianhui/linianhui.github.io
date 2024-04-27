@@ -1,0 +1,262 @@
+<style>
+  th {
+    text-align: right;
+  }
+
+  td {
+    text-align: right;
+    vertical-align: baseline;
+    padding: 6px 4px;
+  }
+
+  .cell {
+    padding: 0 !important;
+  }
+
+  .input-fieldset section {
+    margin: 6px 0;
+  }
+
+  .form-name,
+  .form-input {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .form-name {
+    width: 4.5em;
+    text-align: right;
+  }
+
+  .form-input {
+    margin-left: 6px;
+  }
+
+  .el-collapse {
+    border: unset;
+  }
+
+  .el-collapse-item__wrap,
+  .el-collapse-item__header {
+    border: unset;
+  }
+
+  .el-input-group__prepend {
+    padding: 0;
+  }
+
+  fieldset {
+    border: unset;
+    box-shadow: 0 0 2px #ccc;
+    max-width: 100%;
+    min-width: 100%;
+    margin-top: 1em;
+    box-sizing: border-box;
+    padding: 6px;
+  }
+
+  legend {
+    background-color: #FFF;
+    color: #909399;
+  }
+
+  .result-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .result-pre {
+    font-family: unset;
+    font-size: 0;
+    margin: 0;
+  }
+
+  .result-table {
+    width: 100%;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .result-summary sub {
+    font-size: 10px;
+    padding-left: 2px;
+    color: #bbb;
+  }
+
+  .row-data {
+    color: #666;
+    font-family: monospace, Courier, 'Courier New'
+  }
+
+  .row-data:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
+
+  .row-data-year-first-month{
+    background-color: #eee;
+  }
+
+  .insurance-table input {
+    min-width: 2em;
+    max-width: 4em;
+    text-align: right;
+  }
+
+  .month-detail {
+    display: none;
+  }
+
+  .month-detail_opened {
+    display: table-row;
+  }
+
+  .ahead {
+    display: inline-block;
+    color: #093;
+    margin-left: 2px;
+    font-family: monospace, Courier, 'Courier New'
+  }
+
+  .e-input-ahead input {
+    color: #093;
+  }
+</style>
+<div id="app">
+  <fieldset class="input-fieldset">
+    <legend>参数区域</legend>
+    <section>
+      <div class="form-name">
+        <label for="ePrincipal">
+          贷款总额
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-input-number id="ePrincipal" v-model="principal" step="10000" :min="0">
+        </el-input-number>
+      </div>
+    </section>
+    <section>
+      <div class="form-name">
+        <label for="eMonth">
+          月数
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-input-number id="eMonth" v-model="month" step="12"> </el-input-number>
+        &nbsp;
+        <el-checkbox v-model="asc">正序</el-checkbox>
+      </div>
+    </section>
+    <section>
+      <div class="form-name">
+        <label for="eRateYear">
+          利率
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-input-number id="eRateYear" v-model="rateYear" :min="0" step="0.01"></el-input-number>
+      </div>
+    </section>
+    <section>
+      <div class="form-name">
+        <label for="eRate">
+          首次还款
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-date-picker v-model="date" type="date" placeholder="选择日期" >
+        </el-date-picker>
+      </div>
+    </section>
+    <section>
+      <div class="form-name">
+        <label for="eAheadRate">
+          提前还款
+        </label>
+      </div>
+      <div colspan="2" class="form-input">
+        <el-input-number id="eAheadRate" v-model="aheadAmount" step="10000" :min="0" class="e-input-ahead">
+        </el-input-number>
+        &nbsp;
+        <el-checkbox v-model="reduceDate">缩短年限</el-checkbox>
+      </div>
+    </section>
+  </fieldset>
+
+  <fieldset>
+    <legend>结果区域-总和</legend>
+    <div class="result-wrapper">
+      <pre class="result-pre">
+        <table class="result-table">
+          <tr class="row-header">
+            <th>还款方式</th>
+            <th>年限</th>
+            <th>总金额</th>
+            <th>本金</th>
+            <th>总利息</th>
+          </tr>
+          <tr class="row-data" >
+            <td>等额本金</td>
+            <td>{{result.sum.year}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.year}}</sub></td>
+            <td>{{result.sum.avgPrincipal.total | CNY}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.avgPrincipal.total | CNY}}</sub></td>
+            <td>{{result.sum.avgPrincipal.principal | CNY}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.avgPrincipal.principal | CNY}}</sub></td>
+            <td>{{result.sum.avgPrincipal.interest | CNY}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.avgPrincipal.interest | CNY}}</sub></td>
+          </tr>
+          <tr class="row-data" >
+            <td>等额本息</td>
+            <td>{{result.sum.year}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.year}}</sub></td>
+            <td>{{result.sum.avgInterest.total | CNY}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.avgInterest.total | CNY}}</sub></td>
+            <td>{{result.sum.avgPrincipal.principal | CNY}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.avgInterest.principal | CNY}}</sub></td>
+            <td>{{result.sum.avgInterest.interest | CNY}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.avgInterest.interest | CNY}}</sub></td>
+          </tr>
+          <tr class="row-data" >
+            <td>差额</td>
+            <td colspan="4">{{result.sum.interestDiff | CNY}}<sub v-if="result.sum.ahead" class="ahead">{{result.sum.ahead.interestDiff | CNY}}</sub></td>
+          </tr>
+        </table>
+      </pre>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>结果区域-月列表</legend>
+    <div class="result-wrapper">
+      <pre class="result-pre">
+        <table class="result-table">
+          <tr class="row-header">
+            <th rowspan="2">月份</th>
+            <th colspan="4">等额本金</th>
+            <th colspan="4">等额本息</th>
+          </tr>
+          <tr class="row-header">
+            <th>总额</th>
+            <th>本金</th>
+            <th>利息</th>
+            <th>剩余本金</th>
+            <th>总额</th>
+            <th>本金</th>
+            <th>利息</th>
+            <th>剩余本金</th>
+          </tr>
+          <template v-for="month in result.months">
+            <tr class="row-data" :class="{'row-data-year-first-month': month.month.includes('-01-')}">
+              <td>{{month.month}}</td>
+              <td>{{month.avgPrincipal.amount | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgPrincipal.amount}}</sub></td>
+              <td>{{month.avgPrincipal.principal | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgPrincipal.principal}}</sub></td>
+              <td>{{month.avgPrincipal.interest | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgPrincipal.interest}}</sub></td>
+              <td>{{month.avgPrincipal.principalBalance | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgPrincipal.principalBalance}}</sub></td>
+              <td>{{month.avgInterest.amount | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgInterest.amount}}</sub></td>
+              <td>{{month.avgInterest.principal | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgInterest.principal}}</sub></td>
+              <td>{{month.avgInterest.interest | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgInterest.interest}}</sub></td>
+              <td>{{month.avgInterest.principalBalance | CNY}}<sub v-if="month.ahead" class="ahead">{{month.ahead.avgInterest.principalBalance}}</sub></td>
+            </tr>
+          </template>
+        </table>
+      </pre>
+    </div>
+  </fieldset>
+</div>
+<script src="calculator.js"></script>
+<script src="app.js"></script>
