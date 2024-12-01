@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Reverse-Proxy on Timetombs</title><link>https://linianhui.github.io/tag/reverse-proxy/</link><description>Recent content in Reverse-Proxy on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/reverse-proxy/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] traefik</title><link>https://linianhui.github.io/tool/traefik/</link><pubDate>Fri, 20 Apr 2018 11:21:00 +0800</pubDate><guid>https://linianhui.github.io/tool/traefik/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://docs.traefik.io/"
+
+ target="_blank" rel="noopener norefferrer">Traefik&lt;/a>是一个基于Go语言编写的开源的云原生的边界路由器。&lt;/p>
+&lt;p>下载: &lt;a href="https://github.com/containous/traefik/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/containous/traefik/releases&lt;/a>&lt;/p>
+&lt;p>配置:&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-e7de9b8c326edfb3ece61b71b1a46240">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e7de9b8c326edfb3ece61b71b1a46240','highlight-file_opened')">traefik.yml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/traefik/traefik.yml" title="下载 traefik.yml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/traefik/traefik.yml" title="源码 traefik.yml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/reference/static-configuration/file/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>global:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> checkNewVersion: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sendAnonymousUsage: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> level: DEBUG
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/operations/api&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>api:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dashboard: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> insecure: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> debug: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/routing/entrypoints&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>entryPoints:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address: :80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address: :3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>providers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> providersThrottleDuration: 2s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000"># https://docs.traefik.io/v2.2/providers/file/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> file:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> watch: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> filename: dynamic.yml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-58855b4b5686f79e33e84b30f0b842d7">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-58855b4b5686f79e33e84b30f0b842d7','highlight-file_opened')">dynamic.yml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/traefik/dynamic.yml" title="下载 dynamic.yml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/traefik/dynamic.yml" title="源码 dynamic.yml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> routers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> example.test.router:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rule: Host(`example.test`)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service: example.test.service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> example.test.service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> loadBalancer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> servers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - url: http://192.168.2.201:5000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> healthCheck:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> scheme: http
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> path: /
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> interval: 10s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timeout: 3s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcp:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> routers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql.router:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> entryPoints:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - mysql
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rule: HostSNI(`mysql`)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service: mysql.service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql.service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> loadBalancer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> servers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - address: 192.168.2.201:3306
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div></description></item></channel></rss>
