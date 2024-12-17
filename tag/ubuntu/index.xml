@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ubuntu on Timetombs</title><link>https://linianhui.github.io/tag/ubuntu/</link><description>Recent content in Ubuntu on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 09 Aug 2023 21:43:04 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/ubuntu/index.xml" rel="self" type="application/rss+xml"/><item><title>[Linux] Ubuntu</title><link>https://linianhui.github.io/linux/ubuntu/</link><pubDate>Wed, 12 Dec 2018 23:21:01 +0800</pubDate><guid>https://linianhui.github.io/linux/ubuntu/</guid><description>&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">1 Install&lt;/a>
+&lt;/h1>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>iso&lt;/th>
+ &lt;th>url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>official&lt;/td>
+ &lt;td>&lt;a href="http://releases.ubuntu.com"
+
+ target="_blank" rel="noopener norefferrer">http://releases.ubuntu.com&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>163&lt;/td>
+ &lt;td>&lt;a href="http://mirrors.163.com/ubuntu-releases"
+
+ target="_blank" rel="noopener norefferrer">http://mirrors.163.com/ubuntu-releases&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>aliyun&lt;/td>
+ &lt;td>&lt;a href="https://mirrors.aliyun.com/ubuntu-releases"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.aliyun.com/ubuntu-releases&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>legacy&lt;/td>
+ &lt;td>&lt;a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cdimage/ubuntu-legacy-server/"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cdimage/ubuntu-legacy-server/&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>vm&lt;/td>
+ &lt;td>&lt;a href="http://cloud-images.ubuntu.com/bionic/current"
+
+ target="_blank" rel="noopener norefferrer">http://cloud-images.ubuntu.com/bionic/current&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>source&lt;/th>
+ &lt;th>url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>163&lt;/td>
+ &lt;td>&lt;a href="http://mirrors.163.com/.help/ubuntu.html"
+
+ target="_blank" rel="noopener norefferrer">http://mirrors.163.com/.help/ubuntu.html&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>aliyun&lt;/td>
+ &lt;td>&lt;a href="http://mirrors.aliyun.com/ubuntu/"
+
+ target="_blank" rel="noopener norefferrer">http://mirrors.aliyun.com/ubuntu/&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dde&lt;/td>
+ &lt;td>&lt;a href="https://www.deepin.org/original/deepin-boot-maker"
+
+ target="_blank" rel="noopener norefferrer">https://www.deepin.org/original/deepin-boot-maker&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="config">
+&lt;i id="locator-config" class="header-locator">&lt;/i>
+&lt;a href="#config" class="article-h-a">2 Config&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>sudo passwd root
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/ssh/sshd_cofig &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># PermitRootLogin yes&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt -y autoremove clean
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>Optimize-VHD -Path E:&lt;span style="color:#a31515">\_&lt;/span>vhd&lt;span style="color:#a31515">\u&lt;/span>bt1.vhdx -Mode Full
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 更改主机名&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/hostname&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看硬盘&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fdisk -l
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 创建新分区 n w&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gdisk /dev/sdb
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 格式化新分区&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkfs.xfs /dev/sdb1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 挂载 /etc/fstab&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看uuid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blkid
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># UUID=f1abf791-fe61-4dab-858f-632acb7d1d8f /data ext4 defaults 0 0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">3 Reference&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-dd2489abb2630729f43c5f6245c9a96a">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-dd2489abb2630729f43c5f6245c9a96a','highlight-file_opened')">network.yaml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/linux/ubuntu/network.yaml" title="下载 network.yaml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/network.yaml" title="源码 network.yaml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://netplan.io/examples&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/netplan/xxx.yaml&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>network:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> version: 2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> renderer: networkd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ethernets:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> eth0:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> addresses:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - 192.168.2.202/24
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dhcp4: &lt;span style="color:#00f">no&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dhcp6: &lt;span style="color:#00f">no&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> gateway4: 192.168.2.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nameservers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> addresses:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - 192.168.2.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;div class="highlight-file highlight-file_opened" id="hf-a166057f23e0c1655e237474dbdda72d">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-a166057f23e0c1655e237474dbdda72d','highlight-file_opened')">sources-focal.list&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/linux/ubuntu/sources-focal.list" title="下载 sources-focal.list" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/sources-focal.list" title="源码 sources-focal.list">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;pre tabindex="0">&lt;code class="language-list" data-lang="list">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+
+&lt;div class="highlight-file highlight-file_opened" id="hf-2c876884801b644fc812bbf55f004f4f">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-2c876884801b644fc812bbf55f004f4f','highlight-file_opened')">init.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/linux/ubuntu/init.sh" title="下载 init.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/linux/ubuntu/init.sh" title="源码 init.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash &amp;lt;(wget -q -O - https://linianhui.github.io/linux/ubuntu/init.sh)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -x
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update &lt;span style="color:#a31515">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">&lt;/span> &amp;amp;&amp;amp; apt -y install curl wget unzip tcpdump net-tools iproute2 vim jq coreutils tini gdisk&lt;span style="color:#a31515">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">&lt;/span> &amp;amp;&amp;amp; apt -y autoremove &lt;span style="color:#a31515">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">&lt;/span> &amp;amp;&amp;amp; apt -y clean
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 禁用防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ufw disable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># centos&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl stop firewalld
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl disable firewalld
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 禁用swap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo swapoff -a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 永久禁用swap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab | grep -v swap &amp;gt; /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 永久禁用SELINUX&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tee &lt;span style="color:#a31515">&amp;lt;&amp;lt;-EOF /etc/selinux/config
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">SELINUX=disabled
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 禁用snap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># umount /snap/core* -lf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># snap remove core&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># snap remove core18&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># snap remove core20&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># snap remove snapd&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># snap remove snapd&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># apt remove snapd --purge -y&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># mount disk&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># fdisk -l&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># mount -l&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># fdisk /dev/sdb&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># mkfs.ext4 -G 4096 /dev/sdb1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 挂载 /etc/fstab&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看uuid blkid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># UUID=f1abf791-fe61-4dab-858f-632acb7d1d8f /data ext4 defaults 0 0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div></description></item></channel></rss>

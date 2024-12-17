@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bcdsect on Timetombs</title><link>https://linianhui.github.io/tag/bcdsect/</link><description>Recent content in Bcdsect on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 12 Jun 2020 14:53:50 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/bcdsect/index.xml" rel="self" type="application/rss+xml"/><item><title>[Windows] bcd</title><link>https://linianhui.github.io/windows/bcd/</link><pubDate>Sat, 29 Jul 2017 09:42:01 +0800</pubDate><guid>https://linianhui.github.io/windows/bcd/</guid><description>&lt;h1 id="bcd">
+&lt;i id="locator-bcd" class="header-locator">&lt;/i>
+&lt;a href="#bcd" class="article-h-a">1 BCD&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>BCD&lt;/code>=&lt;code>Boot Configuration Data&lt;/code>。&lt;strong>BCD&lt;/strong>文件是&lt;a href="https://zh.wikipedia.org/wiki/Windows_Vista"
+
+ target="_blank" rel="noopener norefferrer">Vista&lt;/a>引入的负责保存启动配置数据的文件，在NT60版本之前是使用boot.ini来保存启动配置数据。&lt;/p>
+&lt;h2 id="bcd-edit-tool">
+&lt;i id="locator-bcd-edit-tool" class="header-locator">&lt;/i>
+&lt;a href="#bcd-edit-tool" class="article-h-a">1.2 编辑工具&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>&lt;a href="#bcdboot-exe"
+
+>bcdboot.exe&lt;/a> : 简易。&lt;/li>
+&lt;li>&lt;a href="#bcdedit-exe"
+
+>bcdedit.exe&lt;/a> : 功能全面。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>bcdboot.exe&lt;/strong> 和 &lt;strong>bcdedit.exe&lt;/strong>很相似，但是也有如下差异 :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>bcdboot.exe&lt;/strong> : 侧重于为现有的Windows分区设置引导加载程序（准备安装的，已安装的或者基于VHD的）；通过将指定目录中存在的一些文件复制到指定的位置并更新主引导记录来完成。可以方便的创建双启动的菜单。&lt;/li>
+&lt;li>&lt;strong>bcdedit.exe&lt;/strong> : 侧重于编辑 &lt;strong>BCD&lt;/strong> 文件中的某一个条目;也用于 &lt;strong>bcdboot.exe&lt;/strong> 无法使用的场景下。比如 &lt;strong>Windows 7&lt;/strong> 和&lt;strong>Windows XP&lt;/strong> 双启动的场景下XP系统没有 &lt;strong>BCD&lt;/strong> 文件，也就无法使用 &lt;strong>bcdboot.exe&lt;/strong> ，但是 &lt;strong>bcdedit.exe&lt;/strong> 则是可以为XP添加一个启动项条目的。&lt;/li>
+&lt;/ul>
+&lt;h1 id="bcdboot-exe">
+&lt;i id="locator-bcdboot-exe" class="header-locator">&lt;/i>
+&lt;a href="#bcdboot-exe" class="article-h-a">2 bcdboot.exe&lt;/a>
+&lt;/h1>
+&lt;p>位于 : &lt;code>%systemroot%\system32\bcdboot.exe&lt;/code>。&lt;/p></description></item></channel></rss>

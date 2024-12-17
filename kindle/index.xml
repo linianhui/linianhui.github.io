@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[Kindle] on Timetombs</title><link>https://linianhui.github.io/kindle/</link><description>Recent content in [Kindle] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/kindle/index.xml" rel="self" type="application/rss+xml"/><item><title>[Kindle] kindlegen</title><link>https://linianhui.github.io/kindle/kindlegen/</link><pubDate>Sun, 06 Aug 2017 16:34:01 +0800</pubDate><guid>https://linianhui.github.io/kindle/kindlegen/</guid><description>&lt;h1 id="download">
+&lt;i id="locator-download" class="header-locator">&lt;/i>
+&lt;a href="#download" class="article-h-a">1 Download&lt;/a>
+&lt;/h1>
+&lt;p>主页 : &lt;a href="https://www.amazon.com/gp/feature.html?docId=1000765211"
+
+ target="_blank" rel="noopener norefferrer">https://www.amazon.com/gp/feature.html?docId=1000765211&lt;/a>。&lt;strong>美国IP打开才能看到下载地址。打开后的地址如下表格&lt;/strong> :&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">os&lt;/th>
+ &lt;th style="text-align: left">download url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">windows&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="http://kindlegen.s3.amazonaws.com/kindlegen_win32_v2_9.zip"
+
+ target="_blank" rel="noopener norefferrer">http://kindlegen.s3.amazonaws.com/kindlegen_win32_v2_9.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">macos&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="http://kindlegen.s3.amazonaws.com/KindleGen_Mac_i386_v2_9.zip"
+
+ target="_blank" rel="noopener norefferrer">http://kindlegen.s3.amazonaws.com/KindleGen_Mac_i386_v2_9.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">linux&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="http://kindlegen.s3.amazonaws.com/kindlegen_linux_2.6_i386_v2_9.tar.gz"
+
+ target="_blank" rel="noopener norefferrer">http://kindlegen.s3.amazonaws.com/kindlegen_linux_2.6_i386_v2_9.tar.gz&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="epub-to-mobi">
+&lt;i id="locator-epub-to-mobi" class="header-locator">&lt;/i>
+&lt;a href="#epub-to-mobi" class="article-h-a">2 EPUB to MOBI&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 转换epub为mobi&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kindlegen.exe xxx.epub
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-5b7713fa33d9651318bbcafd00d891d6">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-5b7713fa33d9651318bbcafd00d891d6','highlight-file_opened')">epub-to-mobi.bat&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/kindle/kindlegen/epub-to-mobi.bat" title="下载 epub-to-mobi.bat" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/kindle/kindlegen/epub-to-mobi.bat" title="源码 epub-to-mobi.bat">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cmd" data-lang="cmd">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">REM 批量转换 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@&lt;span style="color:#00f">echo&lt;/span> off
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">for&lt;/span> &lt;span style="color:#a31515">%%&lt;/span>i &lt;span style="color:#00f">in&lt;/span> (*.epub) &lt;span style="color:#00f">do&lt;/span> kindlegen &lt;span style="color:#a31515">&amp;#34;&lt;/span>&lt;span style="color:#a31515">%%&lt;/span>&lt;span style="color:#a31515">i&amp;#34;&lt;/span> -verbose
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pause&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="help">
+&lt;i id="locator-help" class="header-locator">&lt;/i>
+&lt;a href="#help" class="article-h-a">3 help&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>kindlegen.exe
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>*************************************************************
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Amazon kindlegen(Windows) V2.9 build 1029-0897292
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 命令行电子书制作软件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Copyright Amazon.com and its Affiliates 2014
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>*************************************************************
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>使用规则 &lt;span style="">:&lt;/span> kindlegen [文件名.opf/.htm/.html/.epub/.zip 或目录] [-c0 或 -c1 或 c2] [-verbose] [-western] [-o &amp;lt;文件名&amp;gt;]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>注释&lt;span style="">：&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> zip formats are supported &lt;span style="color:#00f">for&lt;/span> XMDF and FB2 sources
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> directory formats are supported &lt;span style="color:#00f">for&lt;/span> XMDF sources
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options&lt;span style="">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -c0&lt;span style="">：&lt;/span>不压缩
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -c1&lt;span style="">：&lt;/span>标准 DOC 压缩
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -c2&lt;span style="">：&lt;/span>Kindle huffdic 压缩
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -o &amp;lt;file name&amp;gt;&lt;span style="">：&lt;/span>指定输出文件名&lt;span style="">。&lt;/span>输出文件将被创建在与输入文件一样的目录中&lt;span style="">。&lt;/span>&amp;lt;file name&amp;gt; 不应该包含目录路径&lt;span style="">。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -verbose&lt;span style="">：&lt;/span> 在电子书转换过程中提供更多信息
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -western&lt;span style="">：&lt;/span>强制创建 Windows-1252 电子书
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -releasenotes&lt;span style="">：&lt;/span>显示发行说明
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -gif&lt;span style="">：&lt;/span>转换为 GIF 格式的图像&lt;span style="">（&lt;/span>书中没有 JPEG&lt;span style="">）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -locale &amp;lt;locale option&amp;gt; &lt;span style="">：&lt;/span> 以选定语言显示消息 ( To display messages &lt;span style="color:#00f">in&lt;/span> selected language )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> en&lt;span style="">:&lt;/span> 英语
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> de&lt;span style="">:&lt;/span> 德语
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fr&lt;span style="">:&lt;/span> 法语
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> it&lt;span style="">:&lt;/span> 意大利语
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> es&lt;span style="">:&lt;/span> 西班牙语人
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> zh&lt;span style="">:&lt;/span> 中文
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ja&lt;span style="">:&lt;/span> 日本
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pt&lt;span style="">:&lt;/span> 葡萄牙
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ru&lt;span style="">:&lt;/span> Russian
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nl&lt;span style="">:&lt;/span> Dutch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
