@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>会话密钥 on Timetombs</title><link>https://linianhui.github.io/tag/%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5/</link><description>Recent content in 会话密钥 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5/index.xml" rel="self" type="application/rss+xml"/><item><title>[信息安全] 03 HTTPS工作流程</title><link>https://linianhui.github.io/information-security/03-https/</link><pubDate>Tue, 04 Jul 2017 22:25:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/03-https/</guid><description>&lt;h1 id="review">
+&lt;i id="locator-review" class="header-locator">&lt;/i>
+&lt;a href="#review" class="article-h-a">1 简单回顾&lt;/a>
+&lt;/h1>
+&lt;p>在前面两篇博客中介绍了密码相关的一些基本工具，包括(&lt;a href="../01-cryptography-toolbox-1/#symmetric-cryptography"
+
+ target="_blank" rel="noopener norefferrer">对称密码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#asymmetric-cryptography"
+
+ target="_blank" rel="noopener norefferrer">公钥密码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#cryptographic-hash-function"
+
+ target="_blank" rel="noopener norefferrer">密码散列函数&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#hybrid-cryptosystem"
+
+ target="_blank" rel="noopener norefferrer">混合密码系统&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#message-authentication-code"
+
+ target="_blank" rel="noopener norefferrer">消息认证码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#digital-signature"
+
+ target="_blank" rel="noopener norefferrer">数字签名&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#pseudo-random-number"
+
+ target="_blank" rel="noopener norefferrer">伪随机数&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#certificate"
+
+ target="_blank" rel="noopener norefferrer">数字证书&lt;/a>)这几个。其中它们之间也是互相依赖的，我们来简单的梳理一下它们的依赖关系。&lt;/p></description></item></channel></rss>
