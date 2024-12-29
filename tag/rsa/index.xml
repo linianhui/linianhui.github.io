@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RSA on Timetombs</title><link>https://linianhui.github.io/tag/rsa/</link><description>Recent content in RSA on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 08 Dec 2023 07:31:05 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/rsa/index.xml" rel="self" type="application/rss+xml"/><item><title>[信息安全] 01 密码工具箱 第1部分</title><link>https://linianhui.github.io/information-security/01-cryptography-toolbox-1/</link><pubDate>Mon, 26 Jun 2017 22:55:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/01-cryptography-toolbox-1/</guid><description>&lt;h1 id="0.what-is-information-security">
+&lt;i id="locator-0.what-is-information-security" class="header-locator">&lt;/i>
+&lt;a href="#0.what-is-information-security" class="article-h-a">0 何谓信息安全？&lt;/a>
+&lt;/h1>
+&lt;p>对于信息安全性的重要性，我想大家都不会否认。那么具体来说应该具有哪些特性才能称之为安全呢？举个简单的例子 : 我给你发送一条消息&amp;quot;借给我100元&amp;quot;，当你收到这条消息并且处理后你的账户里面会少出来100块，我的账户会多出来100块。在这个过程中，你是消息接收方，我是消息发送方。&lt;/p>
+&lt;ol>
+&lt;li>作为通信双方的你我都不希望让其他人能读懂这条消息。这是信息的&lt;strong>机密性&lt;/strong> : &lt;strong>即消息在传递过程中不被其他人解读。&lt;/strong>&lt;/li>
+&lt;li>作为通信双方的你我都不希望消息内容变成&amp;quot;借老子1000块！&amp;quot;(操，借钱还这么牛逼，100块都不给你，还要1000块！死去...)。这是信息的&lt;strong>完整性&lt;/strong> : &lt;strong>即可以校验出信息在传送过程中是否被篡改。&lt;/strong>&lt;/li>
+&lt;li>作为消息接收方的你需要确认是不是真正的我给你发的借钱的消息吧，会不会是个诈骗犯要骗我100块！这是对信息的&lt;strong>认证&lt;/strong> : &lt;strong>即接收者要可以验证消息的发送者确实是自己希望的发送者。&lt;/strong>&lt;/li>
+&lt;li>作为消息接收方的你肯定不希望在借给了我100块之后，我耍无赖失口否认说没借过你钱，这是信息的&lt;strong>不可否认性&lt;/strong> : &lt;strong>即消息发送者不可以否认说这个信息不是我发送的。&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;p>总结来说，在通信过程中，满足这4个特征 : &lt;strong>机密性&lt;/strong>，&lt;strong>完整性，认证，不可否认性&lt;/strong>，就可以认为信息是安全的。那么接下来的几个小节来介绍一下有那些工具可以使得我们在传递消息的时候具有以上4个特征。&lt;/p></description></item></channel></rss>
