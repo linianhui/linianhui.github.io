@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[macOS] on Timetombs</title><link>https://linianhui.github.io/macos/</link><description>Recent content in [macOS] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>[macOS] Tip</title><link>https://linianhui.github.io/macos/tip/</link><pubDate>Wed, 10 Mar 2021 09:44:23 +0800</pubDate><guid>https://linianhui.github.io/macos/tip/</guid><description>&lt;h1 id="zsh">
+&lt;i id="locator-zsh" class="header-locator">&lt;/i>
+&lt;a href="#zsh" class="article-h-a">zsh&lt;/a>
+&lt;/h1>
+&lt;h2 id="zshrc">
+&lt;i id="locator-zshrc" class="header-locator">&lt;/i>
+&lt;a href="#zshrc" class="article-h-a">.zshrc&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-a70e43c369b50fbbc7302ee0717b4a68">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-a70e43c369b50fbbc7302ee0717b4a68','highlight-file_opened')">zshrc.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/macos/tip/zshrc.sh" title="下载 zshrc.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/macos/tip/zshrc.sh" title="源码 zshrc.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>source /lnh/_code/blog/src/linux/script/mac.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="mount">
+&lt;i id="locator-mount" class="header-locator">&lt;/i>
+&lt;a href="#mount" class="article-h-a">mount&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-cd1ae02f9593575c4023e58302e92d97">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-cd1ae02f9593575c4023e58302e92d97','highlight-file_opened')">/etc/synthetic.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/macos/tip/synthetic.conf" title="下载 /etc/synthetic.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/macos/tip/synthetic.conf" title="源码 /etc/synthetic.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>lnh /Users/lnh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="disable-app-verify">
+&lt;i id="locator-disable-app-verify" class="header-locator">&lt;/i>
+&lt;a href="#disable-app-verify" class="article-h-a">禁用应用验证&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo spctl --master-disable
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="disable-sip">
+&lt;i id="locator-disable-sip" class="header-locator">&lt;/i>
+&lt;a href="#disable-sip" class="article-h-a">禁用SIP&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># command+r&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrutil disable
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">install&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://support.apple.com/zh-cn/102655"
+
+ target="_blank" rel="noopener norefferrer">https://support.apple.com/zh-cn/102655&lt;/a>&lt;br />
+&lt;a href="https://support.apple.com/mac/startup"
+
+ target="_blank" rel="noopener norefferrer">https://support.apple.com/mac/startup&lt;/a>&lt;br />
+&lt;a href="https://support.apple.com/zh-cn/102675"
+
+ target="_blank" rel="noopener norefferrer">https://support.apple.com/zh-cn/102675&lt;/a>&lt;/p>
+&lt;p>在任何其他 Mac 上&lt;/p>
+&lt;ol>
+&lt;li>按下并松开电源按钮以将 Mac 开机。&lt;/li>
+&lt;li>松开电源按钮后，立即按住下面的某一个组合键。如果这些组合键都不起作用，请查阅启动组合键的使用准则。
+&lt;ol>
+&lt;li>Command-R：如果你在启动时按住这两个键，“恢复”会提供最近一次安装的 macOS 的最新版本。&lt;/li>
+&lt;li>Option-Command-R：如果你在启动时按住这三个键，“恢复”可能会提供与 Mac 兼容的最新版 macOS。&lt;/li>
+&lt;li>Shift-Option-Command-R：如果你在启动时按住这四个键，“恢复”可能会提供 Mac 随附的 macOS，或仍然可用的最接近版本。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>继续按住相应按键，直到看到 Apple 标志或旋转的地球。&lt;/li>
+&lt;/ol></description></item></channel></rss>
