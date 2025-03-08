@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Debian on Timetombs</title><link>https://linianhui.github.io/tag/debian/</link><description>Recent content in Debian on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 09 Aug 2023 21:43:04 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>[Linux] Debian</title><link>https://linianhui.github.io/linux/debian/</link><pubDate>Sun, 06 Aug 2023 01:18:18 +0800</pubDate><guid>https://linianhui.github.io/linux/debian/</guid><description>&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">1 Install&lt;/a>
+&lt;/h1>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>iso&lt;/th>
+ &lt;th>url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>official&lt;/td>
+ &lt;td>&lt;a href="https://www.debian.org/distrib/"
+
+ target="_blank" rel="noopener norefferrer">https://www.debian.org/distrib/&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>163&lt;/td>
+ &lt;td>&lt;a href="http://mirrors.163.com/debian-cd/"
+
+ target="_blank" rel="noopener norefferrer">http://mirrors.163.com/debian-cd/&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>aliyun&lt;/td>
+ &lt;td>&lt;a href="https://mirrors.aliyun.com/debian-cd/"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.aliyun.com/debian-cd/&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>old&lt;/td>
+ &lt;td>&lt;a href="https://cdimage.debian.org/mirror/cdimage/archive/"
+
+ target="_blank" rel="noopener norefferrer">https://cdimage.debian.org/mirror/cdimage/archive/&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Installation Guide&lt;/td>
+ &lt;td>&lt;a href="https://www.debian.org/releases/stable/amd64/install.zh-cn.pdf"
+
+ target="_blank" rel="noopener norefferrer">https://www.debian.org/releases/stable/amd64/install.zh-cn.pdf&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>source&lt;/th>
+ &lt;th>url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>163&lt;/td>
+ &lt;td>&lt;a href="http://mirrors.163.com/.help/debian.html"
+
+ target="_blank" rel="noopener norefferrer">http://mirrors.163.com/.help/debian.html&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>aliyun&lt;/td>
+ &lt;td>&lt;a href="https://developer.aliyun.com/mirror/debian"
+
+ target="_blank" rel="noopener norefferrer">https://developer.aliyun.com/mirror/debian&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>ustc&lt;/td>
+ &lt;td>&lt;a href="https://mirrors.ustc.edu.cn/help/debian.html"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.ustc.edu.cn/help/debian.html&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="config">
+&lt;i id="locator-config" class="header-locator">&lt;/i>
+&lt;a href="#config" class="article-h-a">2 Config&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>sudo passwd root
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/ssh/sshd_cofig &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># PermitRootLogin yes&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt -y autoremove clean
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>Optimize-VHD -Path E:&lt;span style="color:#a31515">\_&lt;/span>vhd&lt;span style="color:#a31515">\d&lt;/span>eb1.vhdx -Mode Full
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 更改主机名&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/hostname&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看硬盘&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fdisk -l
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 创建新分区 n w&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gdisk /dev/sdb
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 格式化新分区&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkfs.xfs /dev/sdb1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 挂载 /etc/fstab&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看uuid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blkid
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># UUID=6ee00141-8904-4734-8096-d95bf7ac645f /data ext4 defaults 0 0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">3 Reference&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-3f8d0a4d28d08add9c25668fd119935e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-3f8d0a4d28d08add9c25668fd119935e','highlight-file_opened')">sysctl.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/linux/debian/sysctl.conf" title="下载 sysctl.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/linux/debian/sysctl.conf" title="源码 sysctl.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/sysctl.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv6.conf.all.disable_ipv6=&lt;span style="color:#a31515">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv6.conf.default.disable_ipv6=&lt;span style="color:#a31515">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv6.conf.lo.disable_ipv6=&lt;span style="color:#a31515">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv6.conf.ens3.disable_ipv6=&lt;span style="color:#a31515">1&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;div class="highlight-file highlight-file_opened" id="hf-da382d60909ed864f1cf966ff2677a97">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-da382d60909ed864f1cf966ff2677a97','highlight-file_opened')">interfaces&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/linux/debian/interfaces" title="下载 interfaces" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/linux/debian/interfaces" title="源码 interfaces">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/network/interfaces&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto eth0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface lo inet loopback
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>allow-hotplug eth0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface eth0 inet static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>address 192.168.2.201
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gateway 192.168.2.1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;div class="highlight-file highlight-file_opened" id="hf-2b7f4142629543e959d509cae7f5f59e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-2b7f4142629543e959d509cae7f5f59e','highlight-file_opened')">sources-bullseye.list&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/linux/debian/sources-bullseye.list" title="下载 sources-bullseye.list" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/linux/debian/sources-bullseye.list" title="源码 sources-bullseye.list">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;pre tabindex="0">&lt;code class="language-list" data-lang="list">deb http://mirrors.ustc.edu.cn/debian/ bullseye main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/debian/ bullseye main non-free contrib
+deb http://mirrors.ustc.edu.cn/debian-security/ bullseye-security main
+deb-src http://mirrors.ustc.edu.cn/debian-security/ bullseye-security main
+deb http://mirrors.ustc.edu.cn/debian/ bullseye-updates main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/debian/ bullseye-updates main non-free contrib
+deb http://mirrors.ustc.edu.cn/debian/ bullseye-backports main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/debian/ bullseye-backports main non-free contrib
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+
+&lt;div class="highlight-file highlight-file_opened" id="hf-40251ebd057f3d2d3442524e65235b6c">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-40251ebd057f3d2d3442524e65235b6c','highlight-file_opened')">init.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/linux/debian/init.sh" title="下载 init.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/linux/debian/init.sh" title="源码 init.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash &amp;lt;(wget -q -O - https://linianhui.github.io/linux/debian/init.sh)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -x
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update &lt;span style="color:#a31515">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">&lt;/span> &amp;amp;&amp;amp; apt -y install sudo vim curl wget unzip tcpdump net-tools iproute2 vim jq coreutils tini gdisk apt-transport-https ca-certificates software-properties-common gnupg1 gnupg2&lt;span style="color:#a31515">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">&lt;/span> &amp;amp;&amp;amp; apt -y autoremove &lt;span style="color:#a31515">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">&lt;/span> &amp;amp;&amp;amp; apt -y clean
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 禁用防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># debian&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ufw disable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># centos&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl stop firewalld
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl disable firewalld
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 禁用swap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>swapoff -a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 永久禁用swap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab | grep -v swap &amp;gt; /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://unix.stackexchange.com/questions/671940/disabling-swap-on-debian-permanently&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://wiki.archlinux.org/title/swap#Disabling_swap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl --type swap
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl mask dev-sdb3.swap
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 永久禁用SELINUX&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tee &lt;span style="color:#a31515">&amp;lt;&amp;lt;-EOF /etc/selinux/config
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">SELINUX=disabled
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># mount disk&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># fdisk -l&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># mount -l&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># fdisk /dev/sdb&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># mkfs.ext4 -G 4096 /dev/sdb1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 挂载 /etc/fstab&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看uuid blkid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># UUID=6ee00141-8904-4734-8096-d95bf7ac645f /data ext4 defaults 0 0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div></description></item></channel></rss>
