@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[计算机网络编程] on Timetombs</title><link>https://linianhui.github.io/computer-networking-programming/</link><description>Recent content in [计算机网络编程] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/computer-networking-programming/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络编程] 运行时架构</title><link>https://linianhui.github.io/computer-networking-programming/runtime-architecture/</link><pubDate>Fri, 23 Apr 2021 13:46:23 +0800</pubDate><guid>https://linianhui.github.io/computer-networking-programming/runtime-architecture/</guid><description>&lt;p>基于&lt;code>IO模型&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>、&lt;code>Socket API&lt;/code>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>以及&lt;code>IO Multiplexing API&lt;/code>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>，基本上已经涵盖了目前基于网络编程的所使用的主流技术点。那么我们就可以评估一下各种组合方式所带来的 &lt;strong>架构属性&lt;/strong>&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>。&lt;/p>
+&lt;p>通常来讲基于网络的应用都会匹配最基础的&lt;code>C/S风格&lt;/code>&lt;sup id="fnref:5">&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref">5&lt;/a>&lt;/sup>。这样的应用至少有两个核心组件：client和server，我们这里就关注一下这两个组件内部在运行时抽象的架构。其次网络通信的传输协议主要有UDP和TCP两个，而UDP因为其无需建立连接，所以其对于client和server而言均是无状态的，这时并不需要进行复杂的抽象处理，也就没有必要对其进行评估。这里只关注TCP的情况，其实从这里也可以看出来我们所做的运行时抽象，主要就是在如何管理TCP的连接上。&lt;/p>
+&lt;h1 id="client">
+&lt;i id="locator-client" class="header-locator">&lt;/i>
+&lt;a href="#client" class="article-h-a">1 客户端&lt;/a>
+&lt;/h1>
+&lt;h2 id="nonpersistent-connection-and-sync-io">
+&lt;i id="locator-nonpersistent-connection-and-sync-io" class="header-locator">&lt;/i>
+&lt;a href="#nonpersistent-connection-and-sync-io" class="article-h-a">1.1 短连接+同步IO&lt;/a>
+&lt;/h2>
+&lt;p>最为基本的组合，每次通信就建立一个新的连接，然后采用同步IO&lt;code>send&lt;/code>和&lt;code>recv&lt;/code>的方式和服务器进行交互。&lt;/p>
+&lt;ol>
+&lt;li>简单性(+)：上层当作无状态的通信方式来使用了，故而实现起来非常简单。&lt;/li>
+&lt;li>网络性能(-)：由于底层需要在通信前建立连接，这个阶段会浪费额外的网络性能。&lt;/li>
+&lt;li>网络效率(-)：同上，浪费一些带宽在建立连接上，使得网络效率下降。&lt;/li>
+&lt;/ol>
+&lt;p>比如HTTP/1.0默认是采用短连接的。&lt;/p></description></item><item><title>[计算机网络编程] IO Multiplexing API</title><link>https://linianhui.github.io/computer-networking-programming/io-multiplexing/</link><pubDate>Tue, 13 Apr 2021 17:08:23 +0800</pubDate><guid>https://linianhui.github.io/computer-networking-programming/io-multiplexing/</guid><description>&lt;p>在上一节&lt;a href="../socket/"
+
+ target="_blank" rel="noopener norefferrer">Socket&lt;/a>中介绍了socket相关的一些基础函数，以及一个基础版本的echo客户端和服务器程序，同时也遗留了一些问题&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>。&lt;/p>
+&lt;p>其中核心问题在于只能一次处理一个IO，而且IO的&lt;code>accept&lt;/code>、&lt;code>recv&lt;/code>、&lt;code>send&lt;/code>和&lt;code>fgets&lt;/code>等操作还都是阻塞的。导致应用大部分时间都是处在等待中，利用效率低下；而fork&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>的多线程版本又性价比不高，支撑不了太多的连接。&lt;/p>
+&lt;p>那么解决方案主要有两类&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>，这两类都可以解决著名的&lt;strong>C10k问题&lt;/strong>&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>：&lt;/p></description></item><item><title>[计算机网络编程] Socket API</title><link>https://linianhui.github.io/computer-networking-programming/socket/</link><pubDate>Tue, 13 Apr 2021 17:01:23 +0800</pubDate><guid>https://linianhui.github.io/computer-networking-programming/socket/</guid><description>&lt;p>&lt;strong>Socket&lt;/strong>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>是一套抽象的用于网络通信的API，它使得应用层可以不必关心底层繁琐的传输通信细节。&lt;/p>
+&lt;blockquote>
+&lt;p>开始之前最好具备一些&lt;strong>计算机网络&lt;/strong>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>的基础，&lt;strong>TCP&lt;/strong>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>以及&lt;strong>网络字节序&lt;/strong>&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>的相关知识储备。&lt;/p>&lt;/blockquote>
+&lt;h1 id="basic">
+&lt;i id="locator-basic" class="header-locator">&lt;/i>
+&lt;a href="#basic" class="article-h-a">1 基础简介&lt;/a>
+&lt;/h1>
+&lt;p>方便起见，这里假设底层是IPv4和TCP。&lt;/p>
+&lt;h2 id="sockaddr_in">
+&lt;i id="locator-sockaddr_in" class="header-locator">&lt;/i>
+&lt;a href="#sockaddr_in" class="article-h-a">1.1 地址结构&lt;/a>
+&lt;/h2>
+&lt;p>既然是建立通信，那么就需要知道对方的地址。socket使用&lt;code>struct sockaddr_in&lt;/code>来存储连接一方的&lt;code>ip&lt;/code>和&lt;code>port&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">typedef&lt;/span> __uint32_t &lt;span style="color:#2b91af">in_addr_t&lt;/span>; &lt;span style="color:#008000">/* base type for internet address */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">typedef&lt;/span> __uint8_t &lt;span style="color:#2b91af">sa_family_t&lt;/span>; 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">struct&lt;/span> in_addr {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#2b91af">in_addr_t&lt;/span> s_addr; &lt;span style="color:#008000">/* 32 bit Internet address */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">/* IPv4专属的 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">struct&lt;/span> sockaddr_in {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> __uint8_t sin_len; &lt;span style="color:#008000">/* struct length */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#2b91af">sa_family_t&lt;/span> sin_family; &lt;span style="color:#008000">/* address family */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#2b91af">in_port_t&lt;/span> sin_port; &lt;span style="color:#008000">/* 16bit port number */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">struct&lt;/span> in_addr sin_addr; &lt;span style="color:#008000">/* 32bit IPv4 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#2b91af">char&lt;/span> sin_zero[8]; &lt;span style="color:#008000">/* unused */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">/* 通用的 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">struct&lt;/span> sockaddr {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> __uint8_t sa_len; &lt;span style="color:#008000">/* struct length */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#2b91af">sa_family_t&lt;/span> sa_family; &lt;span style="color:#008000">/* address family */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#2b91af">char&lt;/span> sa_data[14]; &lt;span style="color:#008000">/* sin_port sin_addr sin_zero[8] */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="function">
+&lt;i id="locator-function" class="header-locator">&lt;/i>
+&lt;a href="#function" class="article-h-a">2 函数&lt;/a>
+&lt;/h1>
+&lt;h2 id="socket">
+&lt;i id="locator-socket" class="header-locator">&lt;/i>
+&lt;a href="#socket" class="article-h-a">2.1 socket函数&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>socket&lt;/code>&lt;sup id="fnref:5">&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref">5&lt;/a>&lt;/sup>用于创建一个用于通信的endpoint。使用方 &lt;strong>client&lt;/strong> 和 &lt;strong>server&lt;/strong>。&lt;/p></description></item></channel></rss>

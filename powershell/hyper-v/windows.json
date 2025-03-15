@@ -1,0 +1,34 @@
+{
+  "name": "testwindowsvm",
+  "generation": 2,
+  "path": "e:\\_hyper-v",
+  "automatic": {
+    "start": "Nothing",
+    "stop": "ShutDown",
+    "checkpoint": false
+  },
+  "boot": {
+    "secure": "Off"
+  },
+  "checkpoint": {
+    "type": "Disabled"
+  },
+  "cpu": {
+    "count": 2
+  },
+  "mem": {
+    "min": "1GB",
+    "max": "4GB"
+  },
+  "net": {
+    "switch": "HVS"
+  },
+  "vhd": {
+    "path": "z:\\_vhd",
+    "size": "127GB",
+    "blockSize": "32MB"
+  },
+  "dvd": {
+    "iso": "z:\\windows.iso"
+  }
+}

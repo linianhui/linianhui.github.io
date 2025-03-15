@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>状态 on Timetombs</title><link>https://linianhui.github.io/tag/%E7%8A%B6%E6%80%81/</link><description>Recent content in 状态 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/%E7%8A%B6%E6%80%81/index.xml" rel="self" type="application/rss+xml"/><item><title>[漫谈] 状态</title><link>https://linianhui.github.io/talk/state/</link><pubDate>Thu, 03 Sep 2020 12:08:01 +0800</pubDate><guid>https://linianhui.github.io/talk/state/</guid><description>&lt;p>记录一下笔者关于&lt;strong>状态&lt;/strong>的一些相关认知。&lt;/p>
+&lt;h1 id="state">
+&lt;i id="locator-state" class="header-locator">&lt;/i>
+&lt;a href="#state" class="article-h-a">1 状态&lt;/a>
+&lt;/h1>
+&lt;p>在计算机领域，状态&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>指的是一个系统被设计用来记住之前的事件或用户交互，那么就称之为&lt;strong>有状态&lt;/strong>的系统，系统记录的信息则就是&lt;strong>状态&lt;/strong>。注意这里的重点不是说记录信息，而是&lt;strong>记住之前的&lt;/strong>。&lt;/p>
+&lt;p>举个例子：你去楼下的便利店买东西，95元，你给了店家100块，但是店家暂时没零钱，这时候你说了，算了，你先记着吧，下次买东西少收我5块就是了，店家说好嘞。然后第二天你又去买东西了，要求店家减免你5块钱，店家说凭什么啊。。。然后你说昨天你没零钱找我5块钱，忘了？噢噢噢，对对，不好意思啊，忘了。店家满脸歉意的说到。&lt;/p></description></item></channel></rss>
