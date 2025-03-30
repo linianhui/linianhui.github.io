@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Best Practice on Timetombs</title><link>https://linianhui.github.io/tag/best-practice/</link><description>Recent content in Best Practice on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/best-practice/index.xml" rel="self" type="application/rss+xml"/><item><title>[HBase] Best Practice</title><link>https://linianhui.github.io/hbase/best-practice/</link><pubDate>Sat, 03 Sep 2022 10:01:00 +0800</pubDate><guid>https://linianhui.github.io/hbase/best-practice/</guid><description>&lt;h1 id="rowkey">
+&lt;i id="locator-rowkey" class="header-locator">&lt;/i>
+&lt;a href="#rowkey" class="article-h-a">1 RowKey&lt;/a>
+&lt;/h1>
+&lt;p>在HBase中，RowKey的设计是否合理很大程度上会严重影响DB的读写性能是否均衡。原因在于HBase的数据分片完全是依赖RowKey的字典序来分割Region的；如果新增部分的数据无法均匀的散列在所有的Region中，就会造成只有部分Region的读写量非常之大，而其余的部分则在旁边打酱油。&lt;/p>
+&lt;p>推荐采用稳定性Hash算法（比如MD5）作为前缀，比如&lt;/p></description></item><item><title>[MongoDB] Best Practice</title><link>https://linianhui.github.io/mongodb/best-practice/</link><pubDate>Sun, 10 May 2020 09:27:01 +0800</pubDate><guid>https://linianhui.github.io/mongodb/best-practice/</guid><description>&lt;h1 id="connection-string">
+&lt;i id="locator-connection-string" class="header-locator">&lt;/i>
+&lt;a href="#connection-string" class="article-h-a">1 Connection String&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">mongodb://mongodb-server-1:27017,mongodb-server-2:27017/admin
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">?replicaSet=test-replica-set
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;ssl=false
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;w=3
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;j=true
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;wtimeoutMS=5000
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;readPreference=secondaryPreferred
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;readConcernLevel=local
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="read-write-config">
+&lt;i id="locator-read-write-config" class="header-locator">&lt;/i>
+&lt;a href="#read-write-config" class="article-h-a">2 Read Write Config &lt;/a>
+&lt;/h1>
+&lt;h2 id="write-concern">
+&lt;i id="locator-write-concern" class="header-locator">&lt;/i>
+&lt;a href="#write-concern" class="article-h-a">2.1 Write Concern&lt;/a>
+&lt;/h2>
+&lt;p>&lt;strong>写操作配置，作用于&lt;code>MongoDB Server&lt;/code>, 用于指示&lt;code>MongoDB Server&lt;/code>写入多少个成员后才会返回给&lt;code>MongoDB Client&lt;/code>&lt;/strong>。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>{ w: &amp;lt;value&amp;gt;, j: &amp;lt;&lt;span style="color:#00f">boolean&lt;/span>&amp;gt;, wtimeout: &amp;lt;number&amp;gt; }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;img src="write-concern-w-majority.svg" loading="lazy" decoding="auto" alt="Write Concern : w=majority" title="Write Concern : w=majority"/>&lt;h3 id="write-concern-w">
+&lt;i id="locator-write-concern-w" class="header-locator">&lt;/i>
+&lt;a href="#write-concern-w" class="article-h-a">2.1.1 w&lt;/a>
+&lt;/h3>
+&lt;p>&lt;code>w&lt;/code>可用的选项如下:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">选项&lt;/th>
+ &lt;th style="text-align: left">描述说明&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;a href="https://docs.mongodb.com/manual/reference/write-concern/#writeconcern.%3Cnumber%3E"
+
+ target="_blank" rel="noopener norefferrer">number&lt;/a>&lt;/td>
+ &lt;td style="text-align: left">指定固定的成员数（注意必须是数字，不让会被当做tag）。当成员数不够时，&lt;code>MongoDB Server&lt;/code>会返回&lt;code>CannotSatisfyWriteConcern&lt;/code>错误&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;a href="https://docs.mongodb.com/manual/reference/write-concern/#writeconcern._dq_majority_dq_"
+
+ target="_blank" rel="noopener norefferrer">majority&lt;/a>&lt;/td>
+ &lt;td style="text-align: left">写入大多数成员，&lt;code>MongoDB Server&lt;/code>自动决定写入的成员数数量&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;a href="https://docs.mongodb.com/manual/reference/write-concern/#writeconcern.%3Ccustom-write-concern-name%3E"
+
+ target="_blank" rel="noopener norefferrer">custom-write-concern-name&lt;/a>&lt;/td>
+ &lt;td style="text-align: left">写入到具有指定tag的成员中&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>成员数不够指定的&lt;code>w&lt;/code>的数量时的错误信息:&lt;/p></description></item><item><title>[Docker] Best Practice</title><link>https://linianhui.github.io/docker/best-practice/</link><pubDate>Sun, 12 Apr 2020 17:13:01 +0800</pubDate><guid>https://linianhui.github.io/docker/best-practice/</guid><description>&lt;h1 id="entrypoint">
+&lt;i id="locator-entrypoint" class="header-locator">&lt;/i>
+&lt;a href="#entrypoint" class="article-h-a">1 ENTRYPOINT&lt;/a>
+&lt;/h1>
+&lt;p>推荐使用ENTRYPOINT(不要和CMD同时使用) : 当ENTRYPOINT存在时，CMD会作为它的参数存在，增加复杂性。ENTRYPOINT指令&lt;a href="#entrypoint-exec"
+
+>ENTRYPOINT EXEC&lt;/a>和&lt;a href="#entrypoint-shell"
+
+>ENTRYPOINT SHELL&lt;/a>两种语法形式。但是不管是那种形式，都只是dockerfile中的语法形式，实际build后的结果都是统一的JSON数组格式。&lt;/p>
+&lt;h2 id="entrypoint-exec">
+&lt;i id="locator-entrypoint-exec" class="header-locator">&lt;/i>
+&lt;a href="#entrypoint-exec" class="article-h-a">1.1 EXEC&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">ENTRYPOINT&lt;/span> [&lt;span style="color:#a31515">&amp;#34;executable&amp;#34;&lt;/span>, &lt;span style="color:#a31515">&amp;#34;param1&amp;#34;&lt;/span>, &lt;span style="color:#a31515">&amp;#34;param2&amp;#34;&lt;/span>]&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ENTRYPOINT指令后面是JSON数组, 由于是JSON数组，那么则只能使用双引号&lt;code>&amp;quot;&lt;/code>而不是单引号&lt;code>'&lt;/code>。&lt;strong>官方推荐使用EXEC方式，推荐理由是默认&lt;a href="#pid"
+
+>PID&lt;/a>=1，但是默认的写法无法解析ENV&lt;/strong>。&lt;strong>这里也推荐使用EXEC的方式，理由是保持和build后的结果是完全一致的清晰性&lt;/strong>。比如一下示例：&lt;/p></description></item></channel></rss>

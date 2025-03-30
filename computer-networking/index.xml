@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[计算机网络] on Timetombs</title><link>https://linianhui.github.io/computer-networking/</link><description>Recent content in [计算机网络] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/computer-networking/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] DoH(DNS over HTTPS)</title><link>https://linianhui.github.io/computer-networking/doh/</link><pubDate>Sat, 01 Jan 2022 13:55:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/doh/</guid><description>&lt;p>&lt;strong>RFC8484 DNS Queries over HTTPS (DoH)&lt;/strong>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;/p>
+&lt;h1 id="mime">
+&lt;i id="locator-mime" class="header-locator">&lt;/i>
+&lt;a href="#mime" class="article-h-a">MIME&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>application/dns-message&lt;/code>。&lt;/p>
+&lt;ol>
+&lt;li>Type : &lt;code>application&lt;/code>。&lt;/li>
+&lt;li>SubType : &lt;code>dns-message&lt;/code>。&lt;/li>
+&lt;li>编码格式 : 二进制格式，定义在RFC1035&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>。&lt;/li>
+&lt;/ol>
+&lt;h1 id="example">
+&lt;i id="locator-example" class="header-locator">&lt;/i>
+&lt;a href="#example" class="article-h-a">Example&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">:method = GET
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:scheme = https
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:authority = dnsserver.example.net
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:path = /dns-query?dns=AAABAAABAAAAAAAAA3d3dwdleGFtcGxlA2NvbQAAAQAB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">accept = application/dns-message
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">:status = 200
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">content-type = application/dns-message
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">content-length = 61
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">cache-control = max-age=3709
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">00 00 81 80 00 01 00 01 00 00 00 00 03 77 77 77
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 1c 00
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">01 c0 0c 00 1c 00 01 00 00 0e 7d 00 10 20 01 0d
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">b8 ab cd 00 12 00 01 00 02 00 03 00 04
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>待补充...&lt;/p>
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">Reference&lt;/a>
+&lt;/h1>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr />
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>RFC8484 DNS over HTTPS (DoH) : &lt;a href="https://datatracker.ietf.org/doc/html/rfc8484"
+
+ target="_blank" rel="noopener norefferrer">https://datatracker.ietf.org/doc/html/rfc8484&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p></description></item><item><title>[计算机网络] DNS(Domain Name System)</title><link>https://linianhui.github.io/computer-networking/dns/</link><pubDate>Sat, 01 Jan 2022 13:54:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/dns/</guid><description>&lt;h1 id="dnsmasq">
+&lt;i id="locator-dnsmasq" class="header-locator">&lt;/i>
+&lt;a href="#dnsmasq" class="article-h-a">dnsmasq&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html"
+
+ target="_blank" rel="noopener norefferrer">https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/a>&lt;/p>
+&lt;p>&lt;div class="highlight-file highlight-file_opened" id="hf-4ac609d99afb8c6615d4989bf5342a0e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-4ac609d99afb8c6615d4989bf5342a0e','highlight-file_opened')">/etc/dnsmasq.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.conf" title="下载 /etc/dnsmasq.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.conf" title="源码 /etc/dnsmasq.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/dnsmasq.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 文件变化自动加载，无需重启&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-queries=&lt;span style="color:#a31515">extra&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-dhcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-facility=&lt;span style="color:#a31515">/log/dnsmasq.log&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DNS - 上游DNS服务器配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>strict-order
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>resolv-file=&lt;span style="color:#a31515">/etc/dnsmasq.dns.upstream.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DNS - 本地DNS配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>addn-hosts=&lt;span style="color:#a31515">/etc/dnsmasq.dns.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 防止将没有域部分的本地名称转发到上游DNS服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>domain-needed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 防止将DNS反向查找查询转发到上游DNS服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bogus-priv
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP -&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-option=&lt;span style="color:#a31515">option:router,192.168.2.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-option=&lt;span style="color:#a31515">option:netmask,255.255.255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP - DHCP静态分配&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>read-ethers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-hostsfile=&lt;span style="color:#a31515">/etc/dnsmasq.dhcp.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP - DHCP动态分配&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [tag:&amp;lt;tag&amp;gt;[,tag:&amp;lt;tag&amp;gt;],][set:&amp;lt;tag&amp;gt;,]&amp;lt;start-addr&amp;gt;[,&amp;lt;end-addr&amp;gt;|&amp;lt;mode&amp;gt;[,&amp;lt;netmask&amp;gt;[,&amp;lt;broadcast&amp;gt;]]][,&amp;lt;lease time&amp;gt;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-range=&lt;span style="color:#a31515">192.168.2.240,192.168.2.254,255.255.255.0,12h&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-d5aaab98731a55f06c80fc35a8391a77">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-d5aaab98731a55f06c80fc35a8391a77','highlight-file_opened')">/etc/dnsmasq.dhcp.hosts&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.dhcp.hosts" title="下载 /etc/dnsmasq.dhcp.hosts" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.dhcp.hosts" title="源码 /etc/dnsmasq.dhcp.hosts">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># dhcp-hostsfile=/etc/dnsmasq.dhcp.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [&amp;lt;hwaddr&amp;gt;][,id:&amp;lt;client_id&amp;gt;|*][,set:&amp;lt;tag&amp;gt;][,tag:&amp;lt;tag&amp;gt;][,&amp;lt;ipaddr&amp;gt;][,&amp;lt;hostname&amp;gt;][,&amp;lt;lease_time&amp;gt;][,ignore]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># MAC地址需小写&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>00:15:5d:02:02:0b,192.168.2.22,deb1.vm.lan&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-dd61df059a8e824503d22f5d18fd0352">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-dd61df059a8e824503d22f5d18fd0352','highlight-file_opened')">/etc/dnsmasq.dns.hosts&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.dns.hosts" title="下载 /etc/dnsmasq.dns.hosts" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.dns.hosts" title="源码 /etc/dnsmasq.dns.hosts">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># addn-hosts=/etc/dnsmasq.dns.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># www.baidu.lan 解析到 192.168.1.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>192.168.2.201 www.baidu.lan&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p></description></item><item><title>[计算机网络] Tool</title><link>https://linianhui.github.io/computer-networking/tool/</link><pubDate>Thu, 20 Feb 2020 21:52:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/tool/</guid><description>&lt;h1 id="dns">
+&lt;i id="locator-dns" class="header-locator">&lt;/i>
+&lt;a href="#dns" class="article-h-a">1 dns&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>dig bing.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>nslookup bing.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="netsh">
+&lt;i id="locator-netsh" class="header-locator">&lt;/i>
+&lt;a href="#netsh" class="article-h-a">2 netsh&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># port forward 127.0.0.1:12345 to http://www.nghttp2.org&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy add v4tov4 listenport=12345 connectaddress=139.162.123.134 connectport=80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># show all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy show all
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># delete all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy reset
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># delete one&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy delete v4tov4 listenport=12345
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># help&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="net-tools">
+&lt;i id="locator-net-tools" class="header-locator">&lt;/i>
+&lt;a href="#net-tools" class="article-h-a">3 net-tools&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y net-tools
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="netstat">
+&lt;i id="locator-netstat" class="header-locator">&lt;/i>
+&lt;a href="#netstat" class="article-h-a">3.1 netstat&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>short option&lt;/th>
+ &lt;th>full option&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h&lt;/td>
+ &lt;td>--help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-V&lt;/td>
+ &lt;td>--version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-n&lt;/td>
+ &lt;td>--numeric &lt;br/> --numeric-hosts &lt;br/> --numeric-ports &lt;br/> --numeric-users&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-t&lt;/td>
+ &lt;td>--tcp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-u&lt;/td>
+ &lt;td>--udp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-x&lt;/td>
+ &lt;td>--unix&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>状态统计&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#a31515">&amp;#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>TIME_WAIT状态统计&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#a31515">&amp;#39;/TIME_WAIT/ {++S[$4]} END {for(a in S) print a, S[a]}&amp;#39;&lt;/span> | sort -r -n -k2 -t&lt;span style="color:#a31515">&amp;#39; &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="iproute2">
+&lt;i id="locator-iproute2" class="header-locator">&lt;/i>
+&lt;a href="#iproute2" class="article-h-a">4 iproute2&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y iproute2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="41-ss">
+&lt;i id="locator-41-ss" class="header-locator">&lt;/i>
+&lt;a href="#41-ss" class="article-h-a">4.1 ss&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>short option&lt;/th>
+ &lt;th>full option&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h&lt;/td>
+ &lt;td>--help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-V&lt;/td>
+ &lt;td>--version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-a&lt;/td>
+ &lt;td>--all&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-n&lt;/td>
+ &lt;td>--numeric&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-t&lt;/td>
+ &lt;td>--tcp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-u&lt;/td>
+ &lt;td>--udp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-x&lt;/td>
+ &lt;td>--unix&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-4&lt;/td>
+ &lt;td>--ipv4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-6&lt;/td>
+ &lt;td>--ipv6&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-H&lt;/td>
+ &lt;td>--no-header&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>ss -tan | awk &lt;span style="color:#a31515">&amp;#39;NR&amp;gt;1 {++S[$1]} END {for (a in S) print a,S[a]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="tcpdump">
+&lt;i id="locator-tcpdump" class="header-locator">&lt;/i>
+&lt;a href="#tcpdump" class="article-h-a">5 tcpdump&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y tcpdump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>option&lt;/th>
+ &lt;th>description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h, --help&lt;/td>
+ &lt;td>show help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>--version&lt;/td>
+ &lt;td>show version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-A&lt;/td>
+ &lt;td>Print each packet (minus its link level header) in ASCII. Handy for capturing web pages.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-c&lt;/td>
+ &lt;td>Exit after receiving count packets.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-s,--snapshot-length&lt;/td>
+ &lt;td>Snarf snaplen bytes of data from each packet&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-S,--absolute-tcp-sequence-numbers&lt;/td>
+ &lt;td>Print absolute, rather than relative, TCP sequence numbers.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 抓包到文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcpdump port 80 -w http-80.pcap
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 解析80端口的100个包&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcpdump port 80 -A -c 100
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>参考 : &lt;a href="https://www.tcpdump.org/manpages/tcpdump.1.html"
+
+ target="_blank" rel="noopener norefferrer">https://www.tcpdump.org/manpages/tcpdump.1.html&lt;/a>&lt;/p></description></item><item><title>[计算机网络] IO 模型</title><link>https://linianhui.github.io/computer-networking/io-model/</link><pubDate>Thu, 20 Feb 2020 21:40:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/io-model/</guid><description>&lt;h1 id="concept">
+&lt;i id="locator-concept" class="header-locator">&lt;/i>
+&lt;a href="#concept" class="article-h-a">1 基本概念&lt;/a>
+&lt;/h1>
+&lt;p>在开始前先解释两组概念。&lt;/p>
+&lt;h2 id="blocking">
+&lt;i id="locator-blocking" class="header-locator">&lt;/i>
+&lt;a href="#blocking" class="article-h-a">1.1 Blocking / Non-Blocking&lt;/a>
+&lt;/h2>
+&lt;p>Blocking和Non-Blocking通常指的这次操作会不会阻碍后续操作。比如在等红绿灯，或者遇上了堵车，我们通常都会说是被堵了，导致你只能在此等着，虽然你闲下来了，但是干不了后续其他事情。&lt;/p>
+&lt;h2 id="synchronous">
+&lt;i id="locator-synchronous" class="header-locator">&lt;/i>
+&lt;a href="#synchronous" class="article-h-a">1.2 Synchronous / Asynchronous&lt;/a>
+&lt;/h2>
+&lt;p>Synchronous和Asynchronous通常指的是这次操作能不能立即得到想要的结果。如果可以，那就是Synchronous，否则就是Asynchronous。比如你去打印店打印文件，你去了之后把东西给到店主，说：“打印好告诉我，我先去忙其他的了”，这就是异步。&lt;/p></description></item><item><title>[计算机网络] NAT</title><link>https://linianhui.github.io/computer-networking/nat/</link><pubDate>Thu, 20 Feb 2020 21:20:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/nat/</guid><description>&lt;h1 id="nat">
+&lt;i id="locator-nat" class="header-locator">&lt;/i>
+&lt;a href="#nat" class="article-h-a">1 NAT&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>NAT&lt;/code>(Network Address Translation)&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> : 网络地址转换。是一种重写 &lt;code>IP Packet&lt;/code> 的 &lt;code>Source IP&lt;/code> 或 &lt;code>Destination IP&lt;/code> 的技术，用来解决私有地址无法和外部通信的问题，也大大的缓解了IPv4的枯竭问题，同时促进了互联网的蓬勃发展。&lt;/p>
+&lt;p>假设原始的 &lt;code>IP Packet&lt;/code> 如下 :&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Source IP&lt;/th>
+ &lt;th style="text-align: left">Destination IP&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">192.168.2.2&lt;/td>
+ &lt;td style="text-align: left">9.9.9.9&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="snat">
+&lt;i id="locator-snat" class="header-locator">&lt;/i>
+&lt;a href="#snat" class="article-h-a">1.1 SNAT&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>SNAT&lt;/code>(Source Network Address Translation) : 源地址转换，重写的是 &lt;code>Source IP&lt;/code>。&lt;/p>
+&lt;p>重写后如下 :&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Source IP&lt;/th>
+ &lt;th style="text-align: left">Destination IP&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;font color='#DC143C'>1.1.1.1&lt;/font>&lt;/td>
+ &lt;td style="text-align: left">9.9.9.9&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="dnat">
+&lt;i id="locator-dnat" class="header-locator">&lt;/i>
+&lt;a href="#dnat" class="article-h-a">1.2 DNAT&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>DNAT&lt;/code>(Destination Network Address Translation) : 目标地址转换，重写的是 &lt;code>Destination IP&lt;/code>。&lt;/p>
+&lt;p>重写后如下 :&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Source IP&lt;/th>
+ &lt;th style="text-align: left">Destination IP&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">192.168.2.2&lt;/td>
+ &lt;td style="text-align: left">&lt;font color='#009a61'>2.2.2.2&lt;/font>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="pat">
+&lt;i id="locator-pat" class="header-locator">&lt;/i>
+&lt;a href="#pat" class="article-h-a">2 PAT&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>PAT&lt;/code>(Port Address Translation) : 端口地址转换(或者称为&lt;code>Port Forwarding&lt;/code>)，是一种重写传输层的 &lt;code>Source Port&lt;/code> 或者 &lt;code>Destination Port&lt;/code> 的技术（隶属于 &lt;code>NAT&lt;/code> 体系）。&lt;/p></description></item><item><title>[计算机网络] TCP</title><link>https://linianhui.github.io/computer-networking/tcp/</link><pubDate>Thu, 20 Feb 2020 20:55:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/tcp/</guid><description>&lt;p>TCP(Transmission Control Protocol)是一种&lt;strong>全双工的&lt;/strong>、&lt;strong>面向连接的&lt;/strong>、&lt;strong>基于字节流的&lt;/strong>、&lt;strong>可靠的（尽最大努力交付）&lt;/strong>、&lt;strong>有状态的&lt;/strong> 传输层通信协议。先看一TCP的数据包&lt;code>Segment&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>长什么样子，后续的各种功能都会体现在其中：&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-53b13545c7cc9b624b918f7873fa7667">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-53b13545c7cc9b624b918f7873fa7667','highlight-file_opened')">tcp.segment&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/tcp/tcp.segment" title="下载 tcp.segment" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/tcp/tcp.segment" title="源码 tcp.segment">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span> TCP Segment
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Source Port (2 octets) | Destination Port (2 octets) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Sequence number (4 octets) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Acknowledgment number (if ACK set) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| data | |N|C|E|U|A|P|R|S|F| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|offset | |S|W|C|R|C|S|S|Y|I| Window Size (2 octets) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|(4 bit)| | |R|E|G|K|H|T|N|N| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Checksum | Urgent pointer (if URG set) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Options (if data offset &amp;gt; 5) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Padded at the end with &amp;#34;0&amp;#34; bytes if necessary.) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| data |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># https://en.wikipedia.org/wiki/Transmission_Control_Protocol&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p></description></item><item><title>[计算机网络] 03 [Layer] Internet</title><link>https://linianhui.github.io/computer-networking/03-layer-internet/</link><pubDate>Sun, 22 Sep 2019 08:13:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/03-layer-internet/</guid><description>&lt;h1 id="internet-purpose">
+&lt;i id="locator-internet-purpose" class="header-locator">&lt;/i>
+&lt;a href="#internet-purpose" class="article-h-a">1 网络层的用途&lt;/a>
+&lt;/h1>
+&lt;p>上一篇中遗留了一部分问题 : &lt;code>Frame&lt;/code>的丢失、乱序和重复等等，在网络层这里其实也无能为力😂😂😂。因为网络层解决的问题重点是&lt;strong>分组&amp;amp;交换&lt;/strong>中的&lt;strong>交换&lt;/strong>问题。虽然在数据链路层有交换机这样的设备负责&lt;code>Frame&lt;/code>的转发和交换，但是它其实并无法满足我们的需要，那么为什么呢？我们来看一下基于&lt;code>Frame&lt;/code>的转发交换存在哪些问题先：&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>Frame&lt;/code>的&lt;code>MAC&lt;/code>不是真正含以上的地址 : 虽然&lt;code>MAC&lt;/code>也叫做&lt;strong>物理地址&lt;/strong>，不过它其实并不是真正的地址。我们通常意义上的地址是什么呢？比如你要给故宫博物院的院长写一封信，那么信封上的信息大致是这样的:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span>邮编 : 100009 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>收件人地址 : 北京市 东城区 景山前街4号 故宫博物院
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>收件人 : 院长
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>寄件人地址 : xxx yyy zzz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>寄件人 : abc 
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>其中&lt;code>北京市 东城区 景山前街4号 故宫博物院&lt;/code>这部分是真正意义上的地址，这部分信息是包含层级信息的，其目的是便于快速的定位。留意下邮编&lt;code>100009&lt;/code>，这个其实也是地址，它也是层级的。&lt;/li>
+&lt;li>&lt;code>MAC&lt;/code>是固化到硬件中的，不便于控制和管理。&lt;/li>
+&lt;/ol>
+&lt;p>基于以上两个核心的问题，二层的交换机如果想要完成我们想要的转发和交换，那么它的&lt;code>MAC Address Table&lt;/code>将会多么的巨大（&lt;code>MAC&lt;/code>地址有2&lt;sup>48&lt;/sup>个，因为&lt;code>MAC&lt;/code>没有层级，所以就无法分层处理转发和交换）。当然还有其他的原因，这里只是笔者的理解的一部分。&lt;/p></description></item><item><title>[计算机网络] 02 [Layer] Data Link</title><link>https://linianhui.github.io/computer-networking/02-layer-data-link/</link><pubDate>Sun, 22 Sep 2019 08:12:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/02-layer-data-link/</guid><description>&lt;h1 id="data-link-purpose">
+&lt;i id="locator-data-link-purpose" class="header-locator">&lt;/i>
+&lt;a href="#data-link-purpose" class="article-h-a">1 数据链路层的用途&lt;/a>
+&lt;/h1>
+&lt;p>上一篇的遗留问题说到物理层仅仅提供&lt;code>01&lt;/code>bit流是远远不够的，需要进行更高层的抽象。结合开篇中提到的计算机网络的核心设计理念&lt;strong>分组&amp;amp;交换&lt;/strong>，这一层的用途就是分组 : 提供基于&lt;code>01&lt;/code>bit流分组后的数据帧(&lt;code>PDU=Frame&lt;/code>)。&lt;/p>
+&lt;img src="bit-frame.png" loading="lazy" decoding="auto" alt="" title=""/>&lt;h1 id="three-basic-question">
+&lt;i id="locator-three-basic-question" class="header-locator">&lt;/i>
+&lt;a href="#three-basic-question" class="article-h-a">2 三个基本问题&lt;/a>
+&lt;/h1>
+&lt;p>想要从下层的&lt;code>01&lt;/code>比特中抽象出这样的结果，则需要解决一下的三个基本问题：&lt;/p>
+&lt;ol>
+&lt;li>封装成帧。&lt;/li>
+&lt;li>透明传输。&lt;/li>
+&lt;li>差错检测。&lt;/li>
+&lt;/ol>
+&lt;h2 id="encapsulation-into-frame">
+&lt;i id="locator-encapsulation-into-frame" class="header-locator">&lt;/i>
+&lt;a href="#encapsulation-into-frame" class="article-h-a">2.1 封装成帧&lt;/a>
+&lt;/h2>
+&lt;p>下层物理层提供的是&lt;code>01&lt;/code>bit流，想要变成分组后的帧，就需要定义起始和结束的标记。&lt;/p></description></item><item><title>[计算机网络] 01 [Layer] Physical</title><link>https://linianhui.github.io/computer-networking/01-layer-physical/</link><pubDate>Sun, 22 Sep 2019 08:11:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/01-layer-physical/</guid><description>&lt;h1 id="physical-purpose">
+&lt;i id="locator-physical-purpose" class="header-locator">&lt;/i>
+&lt;a href="#physical-purpose" class="article-h-a">1 物理层的用途&lt;/a>
+&lt;/h1>
+&lt;p>上一篇中说到&lt;strong>计算机网络&lt;/strong> 由 &lt;strong>节点(node : 计算机、集线器、交换机或路由器)&lt;/strong> 和连接它们的 &lt;strong>链路(link)&lt;/strong> 组成。本质上讲，网络通信就是双方互相传递信息，在计算机世界中，最本质的信息就是&lt;code>01&lt;/code>这种bit，所有的通信都是基于此，那么物理层的用途就是传递这些bit信息。&lt;/p>
+&lt;p>传输媒体多种多样，比如同轴电缆、双绞线、光纤、无线电波等等。当物理层要向上层提供一致的&lt;code>01&lt;/code>bit流时，它就要屏蔽这种底层的通道差异，这是物理层的任务。&lt;/p></description></item><item><title>[计算机网络] 00 概述</title><link>https://linianhui.github.io/computer-networking/00-overview/</link><pubDate>Sun, 22 Sep 2019 08:10:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/00-overview/</guid><description>&lt;p>1969年11月美国国防部建立了一个名为&lt;strong>ARPANET&lt;/strong>(Internet的雏形)的&lt;strong>分组&amp;amp;交换&lt;/strong>网络，当前时间是2019年，50年过去了，如今的网络已经融入了社会的方方面面，其重要性不言而喻。本系列博客专注于&lt;strong>计算机网络&lt;/strong>的核心概念和体系结构，并不涉及网络编程的概念。&lt;/p>
+&lt;h1 id="standardization">
+&lt;i id="locator-standardization" class="header-locator">&lt;/i>
+&lt;a href="#standardization" class="article-h-a">1 标准化&lt;/a>
+&lt;/h1>
+&lt;p>&lt;strong>计算机网络&lt;/strong> 由 &lt;strong>节点(node : 计算机、集线器、交换机或路由器)&lt;/strong> 和连接它们的 &lt;strong>链路(link)&lt;/strong> 组成。这些众多的设备之间如何通信？其中离不开各种各样的标准，标准的意义在于统一的规则，遵循相同标准的设备之间可以互联互通，从而避免一些不兼容的问题。&lt;strong>IETF(Internet Engineering Task Force)&lt;/strong>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>是负责标准化的一个重要机构，IP、TCP、UDP、DNS、HTTP等等众多协议都是由IETF标准化的。&lt;/p></description></item></channel></rss>
