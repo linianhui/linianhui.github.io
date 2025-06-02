@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GC on Timetombs</title><link>https://linianhui.github.io/tag/gc/</link><description>Recent content in GC on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/gc/index.xml" rel="self" type="application/rss+xml"/><item><title>[Java] GC(Garbage Collection)</title><link>https://linianhui.github.io/java/gc/</link><pubDate>Fri, 06 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/gc/</guid><description>&lt;p>GC要解决的三个问题：&lt;/p>
+&lt;ol>
+&lt;li>哪些对象需要回收？&lt;/li>
+&lt;li>何时回收？&lt;/li>
+&lt;li>如何回收？&lt;/li>
+&lt;/ol>
+&lt;h1 id="1-哪些对象需要回收">
+&lt;i id="locator-1-哪些对象需要回收" class="header-locator">&lt;/i>
+&lt;a href="#1-%e5%93%aa%e4%ba%9b%e5%af%b9%e8%b1%a1%e9%9c%80%e8%a6%81%e5%9b%9e%e6%94%b6" class="article-h-a">1 哪些对象需要回收？&lt;/a>
+&lt;/h1>
+&lt;p>Java的内存区域中，Java线程栈、本地方法栈和程序计数器因为是线程私有的，随着线程的执行自动的释放，所以这部分是是无需回收的。目前需要回收的主要是两个区域：&lt;strong>堆&lt;/strong>和&lt;strong>元数据区&lt;/strong>。又因为元数据区域存放的是class的信息和常量以及一些静态变量等数据，这部分的数据的生命周期通常是和Java进程保持一致的，所以回收的意义不大。故而只剩下一个区域&lt;strong>堆&lt;/strong>。&lt;/p></description></item></channel></rss>
