@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lua on Timetombs</title><link>https://linianhui.github.io/tag/lua/</link><description>Recent content in Lua on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/lua/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] lua script</title><link>https://linianhui.github.io/redis/lua/</link><pubDate>Fri, 19 Mar 2021 20:11:22 +0800</pubDate><guid>https://linianhui.github.io/redis/lua/</guid><description>&lt;p>redis2.6+在server端内嵌了&lt;code>lua&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>的支持，可以执行client发送的自定义的&lt;code>lua script&lt;/code>，使得一些操作逻辑可以放到server上来执行，有利于减少一些不必要的网络交互，从而提升性能。在架构风格上这隶属于&lt;code>COD(Code On Demand)按需代码&lt;/code>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>，类似于&lt;code>REST&lt;/code>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>的六大架构约束之一的&lt;code>COD&lt;/code>约束&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>，但是不同的是，这里的COD是运行在server端的。&lt;/p>
+&lt;h1 id="command">
+&lt;i id="locator-command" class="header-locator">&lt;/i>
+&lt;a href="#command" class="article-h-a">1 命令&lt;/a>
+&lt;/h1>
+&lt;p>执行lua script的主要是&lt;code>EVAL&lt;/code>&lt;sup id="fnref:5">&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref">5&lt;/a>&lt;/sup>和&lt;code>EVALSHA&lt;/code>&lt;sup id="fnref:6">&lt;a href="#fn:6" class="footnote-ref" role="doc-noteref">6&lt;/a>&lt;/sup>。&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>EVAL script numkeys key [key ...] arg [arg ...]&lt;/code>。&lt;/li>
+&lt;li>&lt;code>EVALSHA sha1 numkeys key [key ...] arg [arg ...]&lt;/code>。&lt;/li>
+&lt;/ol>
+&lt;p>两者的唯一不同是第一个参数的差异，EVAL的第一个参数是script本身，而EVALSHA的第一个参数则是script的sha1的值。因为redis-server会在第一次执行script时进行缓存，缓存的唯一标识是script的sha1，如果script一直没有任何变化，那么后续的所有命令，都可以用这个sha1来代替体积更大的script本身，这样可以有效的减少不必要的网络传输。&lt;/p></description></item></channel></rss>
