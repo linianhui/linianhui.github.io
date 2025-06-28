@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Access Token on Timetombs</title><link>https://linianhui.github.io/tag/access-token/</link><description>Recent content in Access Token on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/access-token/index.xml" rel="self" type="application/rss+xml"/><item><title>[认证&amp;授权] 06 Permission Based Access Control</title><link>https://linianhui.github.io/authentication-and-authorization/06-permission-based-access-control/</link><pubDate>Sat, 13 Jan 2018 15:23:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/06-permission-based-access-control/</guid><description>&lt;p>在前面5篇博客中介绍了OAuth2和OIDC(OpenId Connect)，其作用是授权和认证。那么当我们得到OAuth2的&lt;code>Access Token&lt;/code>或者OIDC的&lt;code>Id Token&lt;/code>之后，我们的&lt;strong>资源服务&lt;/strong>如何来验证这些token是否有权限来执行对资源的某一项操作呢？比如我有一个API &lt;code>/book&lt;/code>，它具有如下5个操作 :&lt;/p>
+&lt;ol>
+&lt;li>POST /book : 添加一本书&lt;/li>
+&lt;li>GET /book/{id} : 获取一本书&lt;/li>
+&lt;li>PUT /book/{id} : 更新一本书&lt;/li>
+&lt;li>DELETE /book/{id} : 删除一本书&lt;/li>
+&lt;li>GET /book : 获取书的列表&lt;/li>
+&lt;/ol>
+&lt;p>其伪代码如下 :&lt;/p></description></item><item><title>[认证&amp;授权] 01 OAuth2授权</title><link>https://linianhui.github.io/authentication-and-authorization/01-oauth2-authorization/</link><pubDate>Mon, 09 Jan 2017 09:40:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/01-oauth2-authorization/</guid><description>&lt;h1 id="what-is-oauth2-use-for">
+&lt;i id="locator-what-is-oauth2-use-for" class="header-locator">&lt;/i>
+&lt;a href="#what-is-oauth2-use-for" class="article-h-a">1 OAuth2解决什么问题的？&lt;/a>
+&lt;/h1>
+&lt;p>举个栗子先。&lt;strong>小明&lt;/strong>在&lt;strong>QQ空间&lt;/strong>积攒了多年的照片，想挑选一些照片来打印出来。然后小明在找到一家提供在线打印并且包邮的网站(我们叫它&lt;strong>PP&lt;/strong>吧(Print Photo缩写 😂))。&lt;/p>
+&lt;p>那么现在问题来了，小明有两个方案来得到打印的服务。&lt;/p>
+&lt;ol>
+&lt;li>在自己的QQ空间把想要打印的照片下载下来，然后提供给PP(直接发邮件给PP或者网盘共享给PP等等)。&lt;/li>
+&lt;li>把自己的QQ账号密码给PP，然后告诉PP我要打印哪些照片。&lt;/li>
+&lt;/ol>
+&lt;p>针对方案(1) : 小明要去下载这些照片，然后给PP，小明累觉不爱，，，&lt;/p></description></item></channel></rss>
