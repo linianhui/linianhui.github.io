@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Top on Timetombs</title><link>https://linianhui.github.io/tag/top/</link><description>Recent content in Top on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Apr 2020 20:35:19 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/top/index.xml" rel="self" type="application/rss+xml"/><item><title>[Linux] top</title><link>https://linianhui.github.io/linux/top/</link><pubDate>Thu, 23 Apr 2020 20:34:01 +0800</pubDate><guid>https://linianhui.github.io/linux/top/</guid><description>&lt;h1 id="top">
+&lt;i id="locator-top" class="header-locator">&lt;/i>
+&lt;a href="#top" class="article-h-a">1 top&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>top -H -p 1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
