@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[漫谈] on Timetombs</title><link>https://linianhui.github.io/talk/</link><description>Recent content in [漫谈] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/talk/index.xml" rel="self" type="application/rss+xml"/><item><title>[漫谈] 软件设计的目标和途径</title><link>https://linianhui.github.io/talk/objective-and-approach-of-software-design/</link><pubDate>Thu, 30 Jul 2020 18:08:01 +0800</pubDate><guid>https://linianhui.github.io/talk/objective-and-approach-of-software-design/</guid><description>&lt;p>记录一下笔者关于软件设计的一些相关认知。在开始之前，先引入两个概念&lt;code>目标&lt;/code>和&lt;code>途径&lt;/code>(这里可能会有些咬文嚼字，不过主要是为了区分主观和客观的一些细微差异)。&lt;/p>
+&lt;h1 id="concept-objective-and-approach">
+&lt;i id="locator-concept-objective-and-approach" class="header-locator">&lt;/i>
+&lt;a href="#concept-objective-and-approach" class="article-h-a">1 目标和途径&lt;/a>
+&lt;/h1>
+&lt;p>我们在做某一件事情的时候，总是会带有一定的目的性的：比如说一日三餐，是为了给身体补充所需的能量。那么这三餐具体如何落实呢，则会有多种多样的方式。比如你可以选择吃碳水食物、蔬菜、肉类、牛奶或者蛋类等等；也可以选择通过静脉注射一些所需的葡萄糖或者蛋白质。总之，能够为身体补充能量就可以了。&lt;/p></description></item><item><title>[漫谈] 状态</title><link>https://linianhui.github.io/talk/state/</link><pubDate>Thu, 03 Sep 2020 12:08:01 +0800</pubDate><guid>https://linianhui.github.io/talk/state/</guid><description>&lt;p>记录一下笔者关于&lt;strong>状态&lt;/strong>的一些相关认知。&lt;/p>
+&lt;h1 id="state">
+&lt;i id="locator-state" class="header-locator">&lt;/i>
+&lt;a href="#state" class="article-h-a">1 状态&lt;/a>
+&lt;/h1>
+&lt;p>在计算机领域，状态&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>指的是一个系统被设计用来记住之前的事件或用户交互，那么就称之为&lt;strong>有状态&lt;/strong>的系统，系统记录的信息则就是&lt;strong>状态&lt;/strong>。注意这里的重点不是说记录信息，而是&lt;strong>记住之前的&lt;/strong>。&lt;/p>
+&lt;p>举个例子：你去楼下的便利店买东西，95元，你给了店家100块，但是店家暂时没零钱，这时候你说了，算了，你先记着吧，下次买东西少收我5块就是了，店家说好嘞。然后第二天你又去买东西了，要求店家减免你5块钱，店家说凭什么啊。。。然后你说昨天你没零钱找我5块钱，忘了？噢噢噢，对对，不好意思啊，忘了。店家满脸歉意的说到。&lt;/p></description></item></channel></rss>

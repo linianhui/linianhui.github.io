@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ExecutionPolicy on Timetombs</title><link>https://linianhui.github.io/tag/executionpolicy/</link><description>Recent content in ExecutionPolicy on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 28 Jun 2025 23:53:21 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/executionpolicy/index.xml" rel="self" type="application/rss+xml"/><item><title>[PowerShell] Hyper-V</title><link>https://linianhui.github.io/powershell/hyper-v/</link><pubDate>Sat, 29 Jul 2017 09:42:01 +0800</pubDate><guid>https://linianhui.github.io/powershell/hyper-v/</guid><description>&lt;h1 id="enable-hyper-v">
+&lt;i id="locator-enable-hyper-v" class="header-locator">&lt;/i>
+&lt;a href="#enable-hyper-v" class="article-h-a">1 Enable Hyper-V&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>Enable-WindowsOptionalFeature -Online -FeatureName:Microsoft-Hyper-V -All
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-88a196e2df56f7b2fb6eba38f3e4c04d">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-88a196e2df56f7b2fb6eba38f3e4c04d','highlight-file_opened')">enable-hyper-v.cmd&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/enable-hyper-v.cmd" title="下载 enable-hyper-v.cmd" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/enable-hyper-v.cmd" title="源码 enable-hyper-v.cmd">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cmd" data-lang="cmd">&lt;span style="display:flex;">&lt;span>CHCP 65001
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@&lt;span style="color:#00f">ECHO&lt;/span> ON
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">REM 家庭版启用Hyper-V&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">SET&lt;/span> PACKAGE_PATH=%SystemRoot%\servicing\Packages\
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">FOR&lt;/span> &lt;span style="color:#00f">/F&lt;/span> &lt;span style="color:#a31515">%%&lt;/span>i &lt;span style="color:#00f">IN&lt;/span> (&lt;span style="color:#a31515">&amp;#39;DIR /B &lt;/span>%PACKAGE_PATH%&lt;span style="color:#a31515">*Hyper-V*.mum&amp;#39;&lt;/span>) &lt;span style="color:#00f">DO&lt;/span> DISM /Online /NoRestart /Add-Package:&lt;span style="color:#a31515">&amp;#34;&lt;/span>%PACKAGE_PATH%&lt;span style="color:#a31515">%%&lt;/span>&lt;span style="color:#a31515">i&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DISM /Online /Enable-Feature /FeatureName:Microsoft-Hyper-V -All /LimitAccess /ALL
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PAUSE&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;p>&lt;a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell"
+
+ target="_blank" rel="noopener norefferrer">https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell&lt;/a>&lt;/p>
+&lt;h1 id="create-virtual-switch">
+&lt;i id="locator-create-virtual-switch" class="header-locator">&lt;/i>
+&lt;a href="#create-virtual-switch" class="article-h-a">2 Create virtual switch&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>$NetNetAdapter = (Get-NetAdapter)[0]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>New-VMSwitch -Name &lt;span style="color:#a31515">&amp;#39;External Virtual Network Switch&amp;#39;&lt;/span> -NetAdapterName $NetNetAdapter.Name -AllowManagementOS $TRUE
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/connect-to-network"
+
+ target="_blank" rel="noopener norefferrer">https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/connect-to-network&lt;/a>&lt;br />
+&lt;a href="https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vmswitch?view=win10-ps"
+
+ target="_blank" rel="noopener norefferrer">https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vmswitch?view=win10-ps&lt;/a>&lt;/p>
+&lt;h1 id="create-virtual-hard-disk">
+&lt;i id="locator-create-virtual-hard-disk" class="header-locator">&lt;/i>
+&lt;a href="#create-virtual-hard-disk" class="article-h-a">3 Create virtual hard disk&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>$VHDFilePath = &lt;span style="color:#a31515">&amp;#39;d:\test.vhdx&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>New-VHD -Path $VHDFilePath -Dynamic -SizeBytes 32GB
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 回收文件系统中未使用的块资源&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fstrim /
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vhd?view=win10-ps"
+
+ target="_blank" rel="noopener norefferrer">https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vhd?view=win10-ps&lt;/a>&lt;/p>
+&lt;h1 id="create-virtual-machine">
+&lt;i id="locator-create-virtual-machine" class="header-locator">&lt;/i>
+&lt;a href="#create-virtual-machine" class="article-h-a">4 Create virtual machine&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>$VMName = &lt;span style="color:#a31515">&amp;#39;test_vm&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$VMPath = &lt;span style="color:#a31515">&amp;#34;d:\&lt;/span>$VMName&lt;span style="color:#a31515">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$VMSwitch = &lt;span style="color:#a31515">&amp;#39;External Virtual Network Switch&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$InstallMedia = &lt;span style="color:#a31515">&amp;#39;d:\en_windows_server_2016_x64_dvd_9718492.iso&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$VHDFilePath = &lt;span style="color:#a31515">&amp;#39;d:\test.vhdx&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Create New Virtual Machine&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>New-VM -Name $VMName -Generation 2 -VHDPath $VHDFilePath -SwitchName $VMSwitch -MemoryStartupBytes 2147483648 -Path $VMPath
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Add DVD Drive to Virtual Machine&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Add-VMScsiController -VMName $VMName
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Add-VMDvdDrive -VMName $VMName -ControllerNumber 1 -ControllerLocation 0 -Path $InstallMedia
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Mount Installation Media&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$DVDDrive = Get-VMDvdDrive -VMName $VMName
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Configure Virtual Machine to Boot from DVD&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Set-VMFirmware -VMName $VMName -FirstBootDevice $DVDDrive
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="config">
+&lt;i id="locator-config" class="header-locator">&lt;/i>
+&lt;a href="#config" class="article-h-a">5 config&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-pwsh" data-lang="pwsh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># linux&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Vm-From-Json -JsonFilePath D:\_code\blog\src\powershell\hyper-v\linux.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># windows&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Vm-From-Json -JsonFilePath D:\_code\blog\src\powershell\hyper-v\windows.json
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-files">
+ &lt;div class="highlight-files-header">Hyper-V Json&lt;/div>
+ &lt;div class="highlight-files-list">&lt;div class="highlight-file" id="hfs-ea7b8fdb99d2eb4d7cd4b03d2c70fdc0">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-ea7b8fdb99d2eb4d7cd4b03d2c70fdc0','highlight-file_opened')">deb1.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/deb1.json" title="下载 deb1.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/deb1.json" title="源码 deb1.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;deb1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 2,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Off&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;4GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mac&amp;#34;: &lt;span style="color:#a31515">&amp;#34;00:15:5D:02:02:01&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;127GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\_iso\\debian-12.1.0-amd64-dvd-1.9168ff53d789537db4f5233e7dfa5e860519c44b68132b70805218f842b00041.iso&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-f4ed17f0dda55f20a63eb8ac15029143">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-f4ed17f0dda55f20a63eb8ac15029143','highlight-file_opened')">linux.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/linux.json" title="下载 linux.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/linux.json" title="源码 linux.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;testlinuxvm&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 2,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Off&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;4GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mac&amp;#34;: &lt;span style="color:#a31515">&amp;#34;00:15:5D:02:02:01&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;127GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\linux.iso&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-7c2bfec577625470b82eaad75f32f14e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-7c2bfec577625470b82eaad75f32f14e','highlight-file_opened')">ltsc2019.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/ltsc2019.json" title="下载 ltsc2019.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/ltsc2019.json" title="源码 ltsc2019.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ltsc2019&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 2,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;On&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;8GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;16GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mac&amp;#34;: &lt;span style="color:#a31515">&amp;#34;00:15:5D:02:02:09&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;127GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;32MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#00f">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-078b248cbdce03d669f9263a73d70534">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-078b248cbdce03d669f9263a73d70534','highlight-file_opened')">ltsc2021.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/ltsc2021.json" title="下载 ltsc2021.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/ltsc2021.json" title="源码 ltsc2021.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ltsc2021&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 2,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Off&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;8GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;16GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mac&amp;#34;: &lt;span style="color:#a31515">&amp;#34;00:15:5D:02:02:09&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;127GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;32MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\_iso\\sw_dvd9_win_10_ltsc_2021_64bit_chnsimp_mlf_x22-84402.60ee40b9c76c228832d07c6157155c1cfccba959.iso&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-3c31666b8e77f49fbf864376089a1311">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-3c31666b8e77f49fbf864376089a1311','highlight-file_opened')">openwrt.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/openwrt.json" title="下载 openwrt.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/openwrt.json" title="源码 openwrt.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;openwrt&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Off&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;512MB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mac&amp;#34;: &lt;span style="color:#a31515">&amp;#34;00:15:5D:02:02:A1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;16GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#00f">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-59d5e294e8c7340b6c20f86f302626f6">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-59d5e294e8c7340b6c20f86f302626f6','highlight-file_opened')">tnas.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/tnas.json" title="下载 tnas.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/tnas.json" title="源码 tnas.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;tnas&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 2,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Off&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;8GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mac&amp;#34;: &lt;span style="color:#a31515">&amp;#34;00:15:5D:02:02:A2&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;127GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\_iso\\truenas-scale-22.12.3.3.6c5742b936cb5f0daea41333e23147eaae884834a1307952a55b1623b8f2c6e2.iso&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-b5b6aecae4392f0dd2a2f80af8bb6319">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-b5b6aecae4392f0dd2a2f80af8bb6319','highlight-file_opened')">win7.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/win7.json" title="下载 win7.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/win7.json" title="源码 win7.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;win7&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Off&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;4GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mac&amp;#34;: &lt;span style="color:#a31515">&amp;#34;00:15:5D:02:02:07&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;127GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;32MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\_iso\\cn_windows_7_professional_with_sp1_vl_build_x64_dvd_u_677816.647b26479a3a46c078f5b1364a89003a31f4aada.iso&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-8ab9c8abf954f9559f7c319f1fba416e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-8ab9c8abf954f9559f7c319f1fba416e','highlight-file_opened')">windows.json&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/powershell/hyper-v/windows.json" title="下载 windows.json" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/windows.json" title="源码 windows.json">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &lt;span style="color:#a31515">&amp;#34;testwindowsvm&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;generation&amp;#34;: 2,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;e:\\_hyper-v&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;automatic&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;start&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Nothing&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stop&amp;#34;: &lt;span style="color:#a31515">&amp;#34;ShutDown&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;boot&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;secure&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Off&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;checkpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: &lt;span style="color:#a31515">&amp;#34;Disabled&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;count&amp;#34;: 2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mem&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;min&amp;#34;: &lt;span style="color:#a31515">&amp;#34;1GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;max&amp;#34;: &lt;span style="color:#a31515">&amp;#34;4GB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;net&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;switch&amp;#34;: &lt;span style="color:#a31515">&amp;#34;HVS&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;vhd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;path&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\_vhd&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;size&amp;#34;: &lt;span style="color:#a31515">&amp;#34;127GB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;blockSize&amp;#34;: &lt;span style="color:#a31515">&amp;#34;32MB&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dvd&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iso&amp;#34;: &lt;span style="color:#a31515">&amp;#34;z:\\windows.iso&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;/div>
+&lt;/div>
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">6 参考引用&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://docs.microsoft.com/en-us/virtualization/index#pivot=main&amp;amp;panel=server"
+
+ target="_blank" rel="noopener norefferrer">https://docs.microsoft.com/en-us/virtualization/index#pivot=main&amp;panel=server&lt;/a>&lt;/p></description></item><item><title>[PowerShell] Help</title><link>https://linianhui.github.io/powershell/help/</link><pubDate>Sat, 29 Jul 2017 09:41:01 +0800</pubDate><guid>https://linianhui.github.io/powershell/help/</guid><description>&lt;h1 id="execution-policy">
+&lt;i id="locator-execution-policy" class="header-locator">&lt;/i>
+&lt;a href="#execution-policy" class="article-h-a">1 PowerShell 执行策略&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

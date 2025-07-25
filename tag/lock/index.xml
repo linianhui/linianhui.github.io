@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lock on Timetombs</title><link>https://linianhui.github.io/tag/lock/</link><description>Recent content in Lock on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/lock/index.xml" rel="self" type="application/rss+xml"/><item><title>[Java] synchronized</title><link>https://linianhui.github.io/java/synchronized/</link><pubDate>Sun, 08 Nov 2020 19:33:01 +0800</pubDate><guid>https://linianhui.github.io/java/synchronized/</guid><description>&lt;p>在Java中，有一个与锁有关的关键字&lt;code>synchronized&lt;/code>，它是由JVM层面提供的&lt;code>Monitor&lt;/code>来实现。&lt;/p>
+&lt;h1 id="syntax">
+&lt;i id="locator-syntax" class="header-locator">&lt;/i>
+&lt;a href="#syntax" class="article-h-a">1. 语法&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>synchronized&lt;/code>关键字在语法层面&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>有两种形式。请看如下的示例代码：&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-ff0b35a82ec431c35007f2c8689d9ed1">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-ff0b35a82ec431c35007f2c8689d9ed1','highlight-file_opened')">SynchronizedExample.java&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/java/synchronized/SynchronizedExample.java" title="下载 SynchronizedExample.java" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/java/synchronized/SynchronizedExample.java" title="源码 SynchronizedExample.java">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">import&lt;/span> java.io.File;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">class&lt;/span> &lt;span style="color:#2b91af">SynchronizedExample&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> instanceSynchronizedStatementMethod(Object syncObject) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">synchronized&lt;/span> (syncObject) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> instanceMethod();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">synchronized&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> synchronizedInstanceMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> instanceMethod();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> instanceMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">static&lt;/span> &lt;span style="color:#00f">synchronized&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> synchronizedStaticMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> staticMethod();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">static&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> staticMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="statement">
+&lt;i id="locator-statement" class="header-locator">&lt;/i>
+&lt;a href="#statement" class="article-h-a">1.1 修饰代码快&lt;/a>
+&lt;/h2>
+&lt;p>示例中的&lt;code>instanceSynchronizedStatementMethod&lt;/code>方法，这种形式的语法要求&lt;code>synchronized&lt;/code>关键字关联一个对象作为同步资源，然后紧跟着是一个代码块。可以保证在一个JVM进程内，多个使用&lt;code>syncObject&lt;/code>作为同步资源对象的线程同时访问这个代码块的时候，只能串行的进行访问，也就是同一时刻，只会有一个线程成功的进入这个代码块执行代码。当然这个同步资源对象&lt;code>syncObject&lt;/code>也可以是一个字段，实例的或者静态的都可以，包裹这个同步代码块的方法同样的也是实例的或者静态的都可以。&lt;/p></description></item></channel></rss>

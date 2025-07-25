@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>抽象 on Timetombs</title><link>https://linianhui.github.io/tag/%E6%8A%BD%E8%B1%A1/</link><description>Recent content in 抽象 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/%E6%8A%BD%E8%B1%A1/index.xml" rel="self" type="application/rss+xml"/><item><title>[程序设计语言] 02 [核心概念] 名字、作用域和约束(Bindings)</title><link>https://linianhui.github.io/programming-language/02-names-scopes-and-bindings/</link><pubDate>Sun, 03 Aug 2014 09:09:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/02-names-scopes-and-bindings/</guid><description>&lt;h1 id="names-and-binding-time">
+&lt;i id="locator-names-and-binding-time" class="header-locator">&lt;/i>
+&lt;a href="#names-and-binding-time" class="article-h-a">1 名字、约束时间(Binding Time)&lt;/a>
+&lt;/h1>
+&lt;p>在本篇博文开始前先介绍两个约定：第一个是&lt;strong>对象&lt;/strong>，除非在介绍面向对象语言时，本系列中出现的对象均是指任何可以有名字的东西，比如变量、常量、类型、子程序、模块等等。第二个是&lt;strong>抽象的&lt;/strong>，因为我们讨论的是语言的核心概念，所以&lt;strong>抽象的&lt;/strong>具体指代的是语言特征与任何计算机体系结构分离的程度。&lt;/p>
+&lt;p>如果可以给名字下个定义，那么它是代表某东西的一些助记字符序列。就好比张三、李四，对应到大部分语言中一般可以等价为&lt;strong>标识符&lt;/strong>。名字可以让我们用一个符号来表示变量、子程序、类型等等，其实名字就是一种抽象，比如一个变量名就帮助我们隐藏了背后的一些存储相关的复杂细节、子程序是控制抽象(帮助我们隐藏一个复杂的代码逻辑处理过程)、面向对象中的类属于数据抽象(把对数据的复杂操作逻辑隐藏到一系列方法背后)等等。&lt;/p></description></item><item><title>[程序设计语言] 01 基础</title><link>https://linianhui.github.io/programming-language/01-foundations/</link><pubDate>Sun, 20 Jul 2014 19:58:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/01-foundations/</guid><description>&lt;h1 id="machine-assembly-high-level-language">
+&lt;i id="locator-machine-assembly-high-level-language" class="header-locator">&lt;/i>
+&lt;a href="#machine-assembly-high-level-language" class="article-h-a">1 机器语言 &amp;gt; 汇编语言 &amp;gt; 高级语言&lt;/a>
+&lt;/h1>
+&lt;p>语言是人与人的一种交流工具，就比如我现在用汉语来写这篇博文来交流探讨技术问题；程序设计语言也是如此，只是交流对象不是人而是机器。我可以用汉语来写博文，也可以用英语来写（假如我英语熟练）；我可以用PHP来写一个网站，也可以用ASP.NET来写。这就说明&lt;strong>语言的本质就是一种交流工具&lt;/strong>，而我选择哪种语言来交流并不会影响我要的结果。然而在实际中到底要选用那个语言确要根据具体情况而定，这是个成本问题，比如我如果今天脑子抽筋要用日语，那我写着也累（关键是也不会）、读者或许也会骂娘了。&lt;/p></description></item><item><title>[程序设计语言] 00 前言</title><link>https://linianhui.github.io/programming-language/00-foreword/</link><pubDate>Sun, 13 Jul 2014 09:04:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/00-foreword/</guid><description>&lt;h2 id="why-read-this-book">
+&lt;i id="locator-why-read-this-book" class="header-locator">&lt;/i>
+&lt;a href="#why-read-this-book" class="article-h-a">1 为何要读这本书？&lt;/a>
+&lt;/h2>
+&lt;p>首先这是一本介绍语言的入门书籍（笔者阅读是裘宗燕老先生翻译的第二版），如果你想从中学到一些独门绝技，那么抱歉，木有；其次它介绍的是&lt;strong>程序设计语言的一些重要基础概念、各种概念之间的关系；并解释了语言中诸多结构的形成和发展过程，以及他们演化到今天这种形式的根源&lt;/strong>。&lt;/p>
+&lt;p>那么或许你该问了，了解这些有甚好处，不知道我照样写出漂亮的代码、架构等。的确，你可以的，现在的程序员在工作中都不止要用到一两种语言，然而我们通常对这门语言最直接的感触就是它的语法层面；我猜测你或多或少都有被语法的糖衣炮弹（语法糖）给打晕、蒙蔽过的经历吧。那么如果可以让你从语言设计者的角度来看待语言，则非常有助于你了解一门语言的特性，理解其中的优势以及弱势、以及它们为何发展进化为今天的形式，从而能更好的使用它们；从而能有效的避免身陷众多语言的糖衣炮弹中。&lt;/p></description></item></channel></rss>
