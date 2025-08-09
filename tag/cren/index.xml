@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CREN on Timetombs</title><link>https://linianhui.github.io/tag/cren/</link><description>Recent content in CREN on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/cren/index.xml" rel="self" type="application/rss+xml"/><item><title>[理解REST] 01 REST的起源</title><link>https://linianhui.github.io/understand-rest/01-origin/</link><pubDate>Wed, 06 Sep 2017 10:06:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/01-origin/</guid><description>&lt;h1 id="the-first-web-site-in-the-world">
+&lt;i id="locator-the-first-web-site-in-the-world" class="header-locator">&lt;/i>
+&lt;a href="#the-first-web-site-in-the-world" class="article-h-a">1 世界上第一个网站&lt;/a>
+&lt;/h1>
+&lt;p>1990年12月20日，这一天对于现在的互联网来说意义非凡。欧洲核子研究组织(CREN)的科学家Tim Berners-Lee在一台NeXT电脑上启动了世界上的第一个网站(当然当时仅能Tim Berners-Lee自己访问)，这台电脑至今仍保留在CREN，但当年那个网站已经不复存在了。鉴于这个网站的意义重大，CREN在2013年 &lt;strong>“复刻”&lt;/strong> 了这个网站，并指向了原来的网址 : &lt;a href="http://info.cern.ch"
+
+ target="_blank" rel="noopener norefferrer">http://info.cern.ch&lt;/a> 。由于现在的浏览器早已不是当初的样子，所以CREN还提供了一个模拟器来模拟当时浏览这个网站是什么情形。 &lt;a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html"
+
+ target="_blank" rel="noopener norefferrer">http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html&lt;/a> 打开后如下 :&lt;br />
+&lt;img src="info.cern.ch.png" loading="lazy" decoding="auto" alt="http://info.cern.ch" title="http://info.cern.ch"/>&lt;/p></description></item></channel></rss>
