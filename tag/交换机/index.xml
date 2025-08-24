@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>交换机 on Timetombs</title><link>https://linianhui.github.io/tag/%E4%BA%A4%E6%8D%A2%E6%9C%BA/</link><description>Recent content in 交换机 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/%E4%BA%A4%E6%8D%A2%E6%9C%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] 02 [Layer] Data Link</title><link>https://linianhui.github.io/computer-networking/02-layer-data-link/</link><pubDate>Sun, 22 Sep 2019 08:12:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/02-layer-data-link/</guid><description>&lt;h1 id="data-link-purpose">
+&lt;i id="locator-data-link-purpose" class="header-locator">&lt;/i>
+&lt;a href="#data-link-purpose" class="article-h-a">1 数据链路层的用途&lt;/a>
+&lt;/h1>
+&lt;p>上一篇的遗留问题说到物理层仅仅提供&lt;code>01&lt;/code>bit流是远远不够的，需要进行更高层的抽象。结合开篇中提到的计算机网络的核心设计理念&lt;strong>分组&amp;amp;交换&lt;/strong>，这一层的用途就是分组 : 提供基于&lt;code>01&lt;/code>bit流分组后的数据帧(&lt;code>PDU=Frame&lt;/code>)。&lt;/p>
+&lt;img src="bit-frame.png" loading="lazy" decoding="auto" alt="" title=""/>&lt;h1 id="three-basic-question">
+&lt;i id="locator-three-basic-question" class="header-locator">&lt;/i>
+&lt;a href="#three-basic-question" class="article-h-a">2 三个基本问题&lt;/a>
+&lt;/h1>
+&lt;p>想要从下层的&lt;code>01&lt;/code>比特中抽象出这样的结果，则需要解决一下的三个基本问题：&lt;/p>
+&lt;ol>
+&lt;li>封装成帧。&lt;/li>
+&lt;li>透明传输。&lt;/li>
+&lt;li>差错检测。&lt;/li>
+&lt;/ol>
+&lt;h2 id="encapsulation-into-frame">
+&lt;i id="locator-encapsulation-into-frame" class="header-locator">&lt;/i>
+&lt;a href="#encapsulation-into-frame" class="article-h-a">2.1 封装成帧&lt;/a>
+&lt;/h2>
+&lt;p>下层物理层提供的是&lt;code>01&lt;/code>bit流，想要变成分组后的帧，就需要定义起始和结束的标记。&lt;/p></description></item></channel></rss>
