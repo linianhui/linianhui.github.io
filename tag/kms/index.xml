@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kms on Timetombs</title><link>https://linianhui.github.io/tag/kms/</link><description>Recent content in Kms on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 10 Nov 2024 12:35:09 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/kms/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] vlmcsd</title><link>https://linianhui.github.io/tool/vlmcsd/</link><pubDate>Sun, 10 Nov 2024 12:00:08 +0800</pubDate><guid>https://linianhui.github.io/tool/vlmcsd/</guid><description>&lt;h1 id="windows">
+&lt;i id="locator-windows" class="header-locator">&lt;/i>
+&lt;a href="#windows" class="article-h-a">Windows&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/Wind4/vlmcsd"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/Wind4/vlmcsd&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 服务端 -s 注册为windows服务 -l 日志&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>vlmcsd-Windows-x64.exe -s -l c:&lt;span style="color:#a31515">\_&lt;/span>vlmcsd&lt;span style="color:#a31515">\s&lt;/span>erver.log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 客户端-查看支持的版本&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>vlmcs-Windows-x64.exe -x
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 开放端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh advfirewall firewall add rule name=vlmcsd1688 dir=in action=allow protocol=TCP localport=1688
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="docker">
+&lt;i id="locator-docker" class="header-locator">&lt;/i>
+&lt;a href="#docker" class="article-h-a">Docker&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>docker run -d -p 1688:1688 --restart=always --name vlmcsd ghcr.io/linianhui/vlmcsd:1113-2020-03-28
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="openwrt">
+&lt;i id="locator-openwrt" class="header-locator">&lt;/i>
+&lt;a href="#openwrt" class="article-h-a">Openwrt&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>vlmcsd-mips32el-openwrt-uclibc-static
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-37377386ba5db4911872ccae8fa3ea31">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-37377386ba5db4911872ccae8fa3ea31','highlight-file_opened')">vlmcsd.init&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/vlmcsd/vlmcsd.init" title="下载 vlmcsd.init" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/vlmcsd/vlmcsd.init" title="源码 vlmcsd.init">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">#!/bin/sh /etc/rc.common
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># openwrt&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/init.d/vlmcsd&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># chmod +x /etc/init.d/vlmcsd&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/init.d/vlmcsd enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/init.d/vlmcsd start&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/init.d/vlmcsd stop&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/init.d/vlmcsd reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>START=98
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SERVICE_WRITE_PID=1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SERVICE_DAEMONIZE=1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>start() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service_start /usr/bin/vlmcsd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stop() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service_stop /usr/bin/vlmcsd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>reload() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service_reload /usr/bin/vlmcsd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div></description></item><item><title>[Windows] kms</title><link>https://linianhui.github.io/windows/kms/</link><pubDate>Sun, 13 Aug 2023 17:20:08 +0800</pubDate><guid>https://linianhui.github.io/windows/kms/</guid><description>&lt;h1 id="windows">
+&lt;i id="locator-windows" class="header-locator">&lt;/i>
+&lt;a href="#windows" class="article-h-a">Windows&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 卸载密钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>slmgr.vbs -upk
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 导入密钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>slmgr.vbs -ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 设置kms服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>slmgr.vbs -skms vlmcsd.lan
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 激活&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>slmgr.vbs -ato
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看激活信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>slmgr.vbs -dlv
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="office">
+&lt;i id="locator-office" class="header-locator">&lt;/i>
+&lt;a href="#office" class="article-h-a">Office&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cd C:&lt;span style="color:#a31515">\P&lt;/span>rogram Files&lt;span style="color:#a31515">\M&lt;/span>icrosoft Office&lt;span style="color:#a31515">\O&lt;/span>ffice15
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cscript ospp.vbs /inpkey:YC7DK-G2NP3-2QQC3-J6H88-GVGXT
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cscript ospp.vbs /sethst:vlmcsd.lan
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cscript ospp.vbs /act
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cscript ospp.vbs /dstatusall
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="keys">
+&lt;i id="locator-keys" class="header-locator">&lt;/i>
+&lt;a href="#keys" class="article-h-a">Keys&lt;/a>
+&lt;/h1>
+&lt;p>Key Management Services (KMS) client activation and product keys&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>.&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>name&lt;/th>
+ &lt;th>key&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Windows Server 2022 Datacenter&lt;/td>
+ &lt;td>WX4NM-KYWYW-QJJR4-XV3QB-6VM33&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2022 Datacenter Azure Edition&lt;/td>
+ &lt;td>NTBV8-9K7Q8-V27C6-M2BTV-KHMXV&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2022 Standard&lt;/td>
+ &lt;td>VDYBN-27WPP-V4HQT-9VMD4-VMK7H&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2019 Datacenter&lt;/td>
+ &lt;td>WMDGN-G9PQG-XVVXX-R3X43-63DFG&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2019 Standard&lt;/td>
+ &lt;td>N69G4-B89J2-4G8F4-WWYCC-J464C&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2019 Essentials&lt;/td>
+ &lt;td>WVDHN-86M7X-466P6-VHXV7-YY726&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2016 Datacenter&lt;/td>
+ &lt;td>CB7KF-BWN84-R7R2Y-793K2-8XDDG&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2016 Standard&lt;/td>
+ &lt;td>WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2016 Essentials&lt;/td>
+ &lt;td>JCKRF-N37P4-C2D82-9YXRT-4M63B&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server Datacenter&lt;/td>
+ &lt;td>6NMRW-2C8FM-D24W7-TQWMY-CWH2D&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server Standard&lt;/td>
+ &lt;td>N2KJX-J94YW-TQVFB-DG9YT-724CC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro&lt;/td>
+ &lt;td>W269N-WFGWX-YVC9B-4J6C9-T83GX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro&lt;/td>
+ &lt;td>W269N-WFGWX-YVC9B-4J6C9-T83GX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro N&lt;/td>
+ &lt;td>MH37W-N47XK-V7XM9-C7227-GCQG9&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro N&lt;/td>
+ &lt;td>MH37W-N47XK-V7XM9-C7227-GCQG9&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro for Workstations&lt;/td>
+ &lt;td>NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro for Workstations&lt;/td>
+ &lt;td>NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro for Workstations N&lt;/td>
+ &lt;td>9FNHH-K3HBT-3W4TD-6383H-6XYWF&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro for Workstations N&lt;/td>
+ &lt;td>9FNHH-K3HBT-3W4TD-6383H-6XYWF&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro Education&lt;/td>
+ &lt;td>6TP4R-GNPTD-KYYHQ-7B7DP-J447Y&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro Education&lt;/td>
+ &lt;td>6TP4R-GNPTD-KYYHQ-7B7DP-J447Y&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro Education N&lt;/td>
+ &lt;td>YVWGF-BXNMC-HTQYQ-CPQ99-66QFC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro Education N&lt;/td>
+ &lt;td>YVWGF-BXNMC-HTQYQ-CPQ99-66QFC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Education&lt;/td>
+ &lt;td>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Education&lt;/td>
+ &lt;td>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Education N&lt;/td>
+ &lt;td>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Education N&lt;/td>
+ &lt;td>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise&lt;/td>
+ &lt;td>NPPR9-FWDCX-D2C8J-H872K-2YT43&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise&lt;/td>
+ &lt;td>NPPR9-FWDCX-D2C8J-H872K-2YT43&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise N&lt;/td>
+ &lt;td>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise N&lt;/td>
+ &lt;td>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise G&lt;/td>
+ &lt;td>YYVX9-NTFWV-6MDM3-9PT4T-4M68B&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise G&lt;/td>
+ &lt;td>YYVX9-NTFWV-6MDM3-9PT4T-4M68B&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise G N&lt;/td>
+ &lt;td>44RPN-FTY23-9VTTB-MP9BX-T84FV&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise G N&lt;/td>
+ &lt;td>44RPN-FTY23-9VTTB-MP9BX-T84FV&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro&lt;/td>
+ &lt;td>W269N-WFGWX-YVC9B-4J6C9-T83GX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro&lt;/td>
+ &lt;td>W269N-WFGWX-YVC9B-4J6C9-T83GX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro N&lt;/td>
+ &lt;td>MH37W-N47XK-V7XM9-C7227-GCQG9&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro N&lt;/td>
+ &lt;td>MH37W-N47XK-V7XM9-C7227-GCQG9&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro for Workstations&lt;/td>
+ &lt;td>NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro for Workstations&lt;/td>
+ &lt;td>NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro for Workstations N&lt;/td>
+ &lt;td>9FNHH-K3HBT-3W4TD-6383H-6XYWF&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro for Workstations N&lt;/td>
+ &lt;td>9FNHH-K3HBT-3W4TD-6383H-6XYWF&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro Education&lt;/td>
+ &lt;td>6TP4R-GNPTD-KYYHQ-7B7DP-J447Y&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro Education&lt;/td>
+ &lt;td>6TP4R-GNPTD-KYYHQ-7B7DP-J447Y&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Pro Education N&lt;/td>
+ &lt;td>YVWGF-BXNMC-HTQYQ-CPQ99-66QFC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Pro Education N&lt;/td>
+ &lt;td>YVWGF-BXNMC-HTQYQ-CPQ99-66QFC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Education&lt;/td>
+ &lt;td>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Education&lt;/td>
+ &lt;td>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Education N&lt;/td>
+ &lt;td>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Education N&lt;/td>
+ &lt;td>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise&lt;/td>
+ &lt;td>NPPR9-FWDCX-D2C8J-H872K-2YT43&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise&lt;/td>
+ &lt;td>NPPR9-FWDCX-D2C8J-H872K-2YT43&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise N&lt;/td>
+ &lt;td>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise N&lt;/td>
+ &lt;td>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise G&lt;/td>
+ &lt;td>YYVX9-NTFWV-6MDM3-9PT4T-4M68B&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise G&lt;/td>
+ &lt;td>YYVX9-NTFWV-6MDM3-9PT4T-4M68B&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 11 Enterprise G N&lt;/td>
+ &lt;td>44RPN-FTY23-9VTTB-MP9BX-T84FV&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise G N&lt;/td>
+ &lt;td>44RPN-FTY23-9VTTB-MP9BX-T84FV&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise LTSC 2021&lt;/td>
+ &lt;td>M7XTQ-FN8P6-TTKYV-9D4CC-J462D&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise LTSC 2019&lt;/td>
+ &lt;td>M7XTQ-FN8P6-TTKYV-9D4CC-J462D&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise N LTSC 2021&lt;/td>
+ &lt;td>92NFX-8DJQP-P6BBQ-THF9C-7CG2H&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise N LTSC 2019&lt;/td>
+ &lt;td>92NFX-8DJQP-P6BBQ-THF9C-7CG2H&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise LTSB 2016&lt;/td>
+ &lt;td>DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise N LTSB 2016&lt;/td>
+ &lt;td>QFFDN-GRT3P-VKWWX-X7T3R-8B639&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise 2015 LTSB&lt;/td>
+ &lt;td>WNMTR-4C88C-JK8YV-HQ7T2-76DF9&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 10 Enterprise 2015 LTSB N&lt;/td>
+ &lt;td>2F77B-TNFGY-69QQF-B8YKP-D69TJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 R2 Standard&lt;/td>
+ &lt;td>D2N9P-3P6X9-2R39C-7RTCD-MDVJX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 R2 Datacenter&lt;/td>
+ &lt;td>W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 R2 Essentials&lt;/td>
+ &lt;td>KNC87-3J2TX-XB4WP-VCPJV-M4FWM&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012&lt;/td>
+ &lt;td>BN3D2-R7TKB-3YPBD-8DRP2-27GG4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 N&lt;/td>
+ &lt;td>8N2M2-HWPGY-7PGT9-HGDD8-GVGGY&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 Single Language&lt;/td>
+ &lt;td>2WN2H-YGCQR-KFX6K-CD6TF-84YXQ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 Country Specific&lt;/td>
+ &lt;td>4K36P-JN4VD-GDC6V-KDT89-DYFKP&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 Standard&lt;/td>
+ &lt;td>XC9B7-NBPP2-83J2H-RHMBY-92BT4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 MultiPoint Standard&lt;/td>
+ &lt;td>HM7DN-YVMH3-46JC3-XYTG7-CYQJJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 MultiPoint Premium&lt;/td>
+ &lt;td>XNH6W-2V9GX-RGJ4K-Y8X6F-QGJ2G&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2012 Datacenter&lt;/td>
+ &lt;td>48HP8-DN98B-MYWDG-T2DCC-8W83P&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 R2 Web&lt;/td>
+ &lt;td>6TPJF-RBVHG-WBW2R-86QPH-6RTM4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 R2 HPC edition&lt;/td>
+ &lt;td>TT8MH-CG224-D3D7Q-498W2-9QCTX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 R2 Standard&lt;/td>
+ &lt;td>YC6KT-GKW9T-YTKYR-T4X34-R7VHC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 R2 Enterprise&lt;/td>
+ &lt;td>489J6-VHDMP-X63PK-3K798-CPX3Y&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 R2 Datacenter&lt;/td>
+ &lt;td>74YFP-3QFB3-KQT8W-PMXWJ-7M648&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Web Server 2008&lt;/td>
+ &lt;td>WYR28-R7TFJ-3X2YQ-YCY4H-M249D&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 Standard&lt;/td>
+ &lt;td>TM24T-X9RMF-VWXK6-X8JC9-BFGM2&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 Standard without Hyper-V&lt;/td>
+ &lt;td>W7VD6-7JFBR-RX26B-YKQ3Y-6FFFJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 Enterprise&lt;/td>
+ &lt;td>YQGMW-MPWTJ-34KDK-48M3W-X4Q6V&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 Enterprise without Hyper-V&lt;/td>
+ &lt;td>39BXF-X8Q23-P2WWT-38T2F-G3FPG&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 HPC&lt;/td>
+ &lt;td>RCTX3-KWVHP-BR6TB-RB6DM-6X7HP&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 Datacenter&lt;/td>
+ &lt;td>7M67G-PC374-GR742-YH8V4-TCBY3&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 Datacenter without Hyper-V&lt;/td>
+ &lt;td>22XQ2-VRXRG-P8D42-K34TD-G3QQC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Server 2008 for Itanium-Based Systems&lt;/td>
+ &lt;td>4DWFP-JF3DJ-B7DTH-78FJB-PDRHK&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 7 Professional&lt;/td>
+ &lt;td>FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 7 Professional N&lt;/td>
+ &lt;td>MRPKT-YTG23-K7D7T-X2JMM-QY7MG&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 7 Professional E&lt;/td>
+ &lt;td>W82YF-2Q76Y-63HXB-FGJG9-GF7QX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 7 Enterprise&lt;/td>
+ &lt;td>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 7 Enterprise N&lt;/td>
+ &lt;td>YDRBP-3D83W-TY26F-D46B2-XCKRJ&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows 7 Enterprise E&lt;/td>
+ &lt;td>C29WB-22CC8-VJ326-GHFJW-H9DH4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Vista Business&lt;/td>
+ &lt;td>YFKBB-PQJJV-G996G-VWGXY-2V3X8&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Vista Business N&lt;/td>
+ &lt;td>HMBQG-8H2RH-C77VX-27R82-VMQBT&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Vista Enterprise&lt;/td>
+ &lt;td>VKK3X-68KWM-X2YGT-QR4M6-4BWMV&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Windows Vista Enterprise N&lt;/td>
+ &lt;td>VTC42-BM838-43QHV-84HX6-XJXKV&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">Reference&lt;/a>
+&lt;/h1>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr />
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>Keys &lt;a href="https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys"
+
+ target="_blank" rel="noopener norefferrer">https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p></description></item></channel></rss>

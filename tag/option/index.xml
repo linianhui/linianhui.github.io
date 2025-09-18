@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Option on Timetombs</title><link>https://linianhui.github.io/tag/option/</link><description>Recent content in Option on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 10 Dec 2022 16:15:12 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/option/index.xml" rel="self" type="application/rss+xml"/><item><title>[Bash] Syntax</title><link>https://linianhui.github.io/bash/syntax/</link><pubDate>Fri, 06 Jan 2017 16:34:01 +0800</pubDate><guid>https://linianhui.github.io/bash/syntax/</guid><description>&lt;h1 id="command-option-parameter">
+&lt;i id="locator-command-option-parameter" class="header-locator">&lt;/i>
+&lt;a href="#command-option-parameter" class="article-h-a">1 Command Option Parameter&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看版本&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bash --version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># show the current shell.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo $SHELL
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># displays all installed shell.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat -n /etc/shells
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>command : &lt;code>cat&lt;/code>&lt;/li>
+&lt;li>option : &lt;code>-n&lt;/code>&lt;/li>
+&lt;li>parameter : &lt;code>/etc/shells&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h2 id="command">
+&lt;i id="locator-command" class="header-locator">&lt;/i>
+&lt;a href="#command" class="article-h-a">1.1 Command&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>Pipeline&lt;/li>
+&lt;li>Looping&lt;/li>
+&lt;li>Conditional&lt;/li>
+&lt;li>Grouping&lt;/li>
+&lt;/ol>
+&lt;h2 id="parameter">
+&lt;i id="locator-parameter" class="header-locator">&lt;/i>
+&lt;a href="#parameter" class="article-h-a">1.2 Parameter&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Character&lt;/th>
+ &lt;th>Meaning&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>$0&lt;/code>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$1&lt;/code>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$@&lt;/code>&lt;/td>
+ &lt;td>subshell&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$#&lt;/code>&lt;/td>
+ &lt;td>subshell&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$?&lt;/code>&lt;/td>
+ &lt;td>exit status of the most recently executed foreground pipeline&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$-&lt;/code>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$$&lt;/code>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$!&lt;/code>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="special-character">
+&lt;i id="locator-special-character" class="header-locator">&lt;/i>
+&lt;a href="#special-character" class="article-h-a">2 Special Characters&lt;/a>
+&lt;/h1>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Character&lt;/th>
+ &lt;th>Meaning&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>#&lt;/code>&lt;/td>
+ &lt;td>Comment&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>`&lt;/code>&lt;/td>
+ &lt;td>Command substitution (archaic)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>$&lt;/code>&lt;/td>
+ &lt;td>Variable expression&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>(&lt;/code>&lt;/td>
+ &lt;td>Start subshell&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>)&lt;/code>&lt;/td>
+ &lt;td>End subshell&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>\&lt;/code>&lt;/td>
+ &lt;td>Quote next character&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>&amp;amp;&lt;/code>&lt;/td>
+ &lt;td>Background job&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>{&lt;/code>&lt;/td>
+ &lt;td>Start command block&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>}&lt;/code>&lt;/td>
+ &lt;td>End command block&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>;&lt;/code>&lt;/td>
+ &lt;td>Shell command separator&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>'&lt;/code>&lt;/td>
+ &lt;td>Strong quote&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>&amp;quot;&lt;/code>&lt;/td>
+ &lt;td>Weak quote&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>!&lt;/code>&lt;/td>
+ &lt;td>Pipeline logical NOT&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="wildcard-characters">
+&lt;i id="locator-wildcard-characters" class="header-locator">&lt;/i>
+&lt;a href="#wildcard-characters" class="article-h-a">2.1 Wildcard Character&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Character&lt;/th>
+ &lt;th>Meaning&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>*&lt;/code>&lt;/td>
+ &lt;td>String wildcard&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>?&lt;/code>&lt;/td>
+ &lt;td>Single-character wildcard&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>[&lt;/code>&lt;/td>
+ &lt;td>Start character-set wildcard&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>]&lt;/code>&lt;/td>
+ &lt;td>End character-set wildcard&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="path-characters">
+&lt;i id="locator-path-characters" class="header-locator">&lt;/i>
+&lt;a href="#path-characters" class="article-h-a">2.2 Path Character&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Character&lt;/th>
+ &lt;th>Meaning&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>/&lt;/code>&lt;/td>
+ &lt;td>Root directory&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>/&lt;/code>&lt;/td>
+ &lt;td>Pathname directory separator&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>~&lt;/code>&lt;/td>
+ &lt;td>Home directory&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="io-characters">
+&lt;i id="locator-io-characters" class="header-locator">&lt;/i>
+&lt;a href="#io-characters" class="article-h-a">2.3 I/O Character&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Character&lt;/th>
+ &lt;th>Meaning&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>|&lt;/code>&lt;/td>
+ &lt;td>Pipe&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>&amp;lt;&lt;/code>&lt;/td>
+ &lt;td>Input redirect&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>&amp;gt;&lt;/code>&lt;/td>
+ &lt;td>Output redirect&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>&amp;gt;&amp;gt;&lt;/code>&lt;/td>
+ &lt;td>Append redirect (if file exists)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>2&amp;gt;&lt;/code>&lt;/td>
+ &lt;td>Error output redirect&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>2&amp;gt;&amp;amp;1&lt;/code>&lt;/td>
+ &lt;td>Send error to output redirect&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table></description></item></channel></rss>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gradle on Timetombs</title><link>https://linianhui.github.io/tag/gradle/</link><description>Recent content in Gradle on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 05 Aug 2023 07:53:41 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/gradle/index.xml" rel="self" type="application/rss+xml"/><item><title>[Java] Install</title><link>https://linianhui.github.io/java/install/</link><pubDate>Sun, 06 Aug 2017 16:34:01 +0800</pubDate><guid>https://linianhui.github.io/java/install/</guid><description>&lt;h1 id="openjdk">
+&lt;i id="locator-openjdk" class="header-locator">&lt;/i>
+&lt;a href="#openjdk" class="article-h-a">1 OpenJdk&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 :&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://adoptium.net/"
+
+ target="_blank" rel="noopener norefferrer">https://adoptium.net/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.microsoft.com/openjdk"
+
+ target="_blank" rel="noopener norefferrer">https://www.microsoft.com/openjdk&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developers.redhat.com/products/openjdk/download"
+
+ target="_blank" rel="noopener norefferrer">https://developers.redhat.com/products/openjdk/download&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 设置环境变量 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetJavaEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看版本信息 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>java -version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="maven">
+&lt;i id="locator-maven" class="header-locator">&lt;/i>
+&lt;a href="#maven" class="article-h-a">2 Maven&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 : &lt;a href="https://maven.apache.org/download.cgi"
+
+ target="_blank" rel="noopener norefferrer">https://maven.apache.org/download.cgi&lt;/a>&lt;/p>
+&lt;p>下载二进制包 : &lt;code>apache-maven-3.8.1-bin.zip&lt;/code>解压至&lt;code>d:\_app\_maven\&lt;/code>目录下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 设置环境变量&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetMavenEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看版本信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn -v
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wrapper&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/takari/maven-wrapper&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn --non-recursive --debug io.takari&lt;span style="">:&lt;/span>maven&lt;span style="">:&lt;/span>wrapper -Dmaven=&lt;span style="color:#a31515">&amp;#39;3.8.1&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="settings-xml">
+&lt;i id="locator-settings-xml" class="header-locator">&lt;/i>
+&lt;a href="#settings-xml" class="article-h-a">2.1 settings.xml&lt;/a>
+&lt;/h2>
+&lt;p>复制&lt;code>settings.xml&lt;/code>配置文件到&lt;code>HOME/.m2/&lt;/code>目录。&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-add90aa826c2c258970f3e077b40a1b5">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-add90aa826c2c258970f3e077b40a1b5','highlight-file_opened')">~/.m2/setting.xml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/java/install/settings.xml" title="下载 ~/.m2/setting.xml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/java/install/settings.xml" title="源码 ~/.m2/setting.xml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">&amp;lt;!-- https://maven.apache.org/settings.html --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">&amp;lt;!--
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 加载顺序
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 1. 全局设置 M2_HOME/conf/settiing.xml
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 2. 用户设置 HOME/.m2/settiing.xml
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;settings xmlns=&lt;span style="color:#a31515">&amp;#34;http://maven.apache.org/SETTINGS/1.0.0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> xmlns:xsi=&lt;span style="color:#a31515">&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> xsi:schemaLocation=&lt;span style="color:#a31515">&amp;#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;profiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;profile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- https://maven.aliyun.com/mvn/guide --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;aliyun&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;repositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/repository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!--&amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;apache snapshots&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/apache-snapshots&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/repositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;pluginRepositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;apache snapshots&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/apache-snapshots&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/pluginRepositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/profile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/profiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;activeProfiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;activeProfile&amp;gt;aliyun&amp;lt;/activeProfile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/activeProfiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/settings&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="3.gradle">
+&lt;i id="locator-3.gradle" class="header-locator">&lt;/i>
+&lt;a href="#3.gradle" class="article-h-a">3 Gradle&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 : &lt;a href="https://gradle.org/releases/"
+
+ target="_blank" rel="noopener norefferrer">https://gradle.org/releases/&lt;/a>&lt;/p></description></item></channel></rss>

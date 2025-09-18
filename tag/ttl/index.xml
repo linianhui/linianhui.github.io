@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ttl on Timetombs</title><link>https://linianhui.github.io/tag/ttl/</link><description>Recent content in Ttl on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/ttl/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] expire</title><link>https://linianhui.github.io/redis/expire/</link><pubDate>Fri, 19 Mar 2021 19:52:12 +0800</pubDate><guid>https://linianhui.github.io/redis/expire/</guid><description>&lt;p>因为redis通常主要用来作为一个缓存服务。缓存何时失效的问题号称是计算机科学领域两大难题之一（另一个是命名），这一篇文章就介绍下笔者对于缓存如何以及何时失效的问题理解。&lt;/p>
+&lt;h1 id="delete-way">
+&lt;i id="locator-delete-way" class="header-locator">&lt;/i>
+&lt;a href="#delete-way" class="article-h-a">1 过期删除方式&lt;/a>
+&lt;/h1>
+&lt;p>redis支持通过两种方式清理过期的key&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>：&lt;/p>
+&lt;ol>
+&lt;li>被动删除。&lt;/li>
+&lt;li>主动删除。&lt;/li>
+&lt;/ol>
+&lt;h2 id="passive-delete">
+&lt;i id="locator-passive-delete" class="header-locator">&lt;/i>
+&lt;a href="#passive-delete" class="article-h-a">1.1 被动删除&lt;/a>
+&lt;/h2>
+&lt;p>在client访问(任意读写操作)一个key时，如果key设置了过期时间，则在访问时删除它们。如果没有主动设置过期时间，那么key则是会一直不会过期的。&lt;/p></description></item></channel></rss>
