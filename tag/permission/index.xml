@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Permission on Timetombs</title><link>https://linianhui.github.io/tag/permission/</link><description>Recent content in Permission on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/permission/index.xml" rel="self" type="application/rss+xml"/><item><title>[认证&amp;授权] 06 Permission Based Access Control</title><link>https://linianhui.github.io/authentication-and-authorization/06-permission-based-access-control/</link><pubDate>Sat, 13 Jan 2018 15:23:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/06-permission-based-access-control/</guid><description>&lt;p>在前面5篇博客中介绍了OAuth2和OIDC(OpenId Connect)，其作用是授权和认证。那么当我们得到OAuth2的&lt;code>Access Token&lt;/code>或者OIDC的&lt;code>Id Token&lt;/code>之后，我们的&lt;strong>资源服务&lt;/strong>如何来验证这些token是否有权限来执行对资源的某一项操作呢？比如我有一个API &lt;code>/book&lt;/code>，它具有如下5个操作 :&lt;/p>
+&lt;ol>
+&lt;li>POST /book : 添加一本书&lt;/li>
+&lt;li>GET /book/{id} : 获取一本书&lt;/li>
+&lt;li>PUT /book/{id} : 更新一本书&lt;/li>
+&lt;li>DELETE /book/{id} : 删除一本书&lt;/li>
+&lt;li>GET /book : 获取书的列表&lt;/li>
+&lt;/ol>
+&lt;p>其伪代码如下 :&lt;/p></description></item></channel></rss>

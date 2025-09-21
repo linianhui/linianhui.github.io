@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rust on Timetombs</title><link>https://linianhui.github.io/tag/rust/</link><description>Recent content in Rust on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] miniserve</title><link>https://linianhui.github.io/tool/miniserve/</link><pubDate>Fri, 12 Mar 2021 17:07:03 +0800</pubDate><guid>https://linianhui.github.io/tool/miniserve/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>rust语言开发的开源的轻量级静态文件Http Server。支持的功能：&lt;/p>
+&lt;ol>
+&lt;li>静态文件目录服务。&lt;/li>
+&lt;li>上传文件。&lt;/li>
+&lt;li>http基本认证。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>miniserve --color-scheme squirrel --qrcode --auth lnh:123 --upload-files
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>官方仓库： &lt;a href="https://github.com/svenstaro/miniserve"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve&lt;/a>&lt;/p>
+&lt;p>下载连接：&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-pc-windows-msvc.exe"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-pc-windows-msvc.exe&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-apple-darwin"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-apple-darwin&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>[Rust] Install</title><link>https://linianhui.github.io/rust/install/</link><pubDate>Sun, 05 Jan 2020 15:35:01 +0800</pubDate><guid>https://linianhui.github.io/rust/install/</guid><description>&lt;h1 id="rustup-init">
+&lt;i id="locator-rustup-init" class="header-locator">&lt;/i>
+&lt;a href="#rustup-init" class="article-h-a">1 rustup-init&lt;/a>
+&lt;/h1>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">platform&lt;/th>
+ &lt;th style="text-align: left">download url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">windows-gnu&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe"
+
+ target="_blank" rel="noopener norefferrer">https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">windows-msvc&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
+
+ target="_blank" rel="noopener norefferrer">https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">apple-darwin&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init"
+
+ target="_blank" rel="noopener norefferrer">https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># windows only&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetRustEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># install&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rustup-init.exe -y --verbose --default-toolchain stable --profile complete --no-modify-path
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 Reference&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.rust-lang.org/tools/install"
+
+ target="_blank" rel="noopener norefferrer">https://www.rust-lang.org/tools/install&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://forge.rust-lang.org/infra/other-installation-methods.html"
+
+ target="_blank" rel="noopener norefferrer">https://forge.rust-lang.org/infra/other-installation-methods.html&lt;/a>&lt;/p></description></item></channel></rss>

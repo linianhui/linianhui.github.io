@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Runtime-Architecture on Timetombs</title><link>https://linianhui.github.io/tag/runtime-architecture/</link><description>Recent content in Runtime-Architecture on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/runtime-architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络编程] 运行时架构</title><link>https://linianhui.github.io/computer-networking-programming/runtime-architecture/</link><pubDate>Fri, 23 Apr 2021 13:46:23 +0800</pubDate><guid>https://linianhui.github.io/computer-networking-programming/runtime-architecture/</guid><description>&lt;p>基于&lt;code>IO模型&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>、&lt;code>Socket API&lt;/code>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>以及&lt;code>IO Multiplexing API&lt;/code>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>，基本上已经涵盖了目前基于网络编程的所使用的主流技术点。那么我们就可以评估一下各种组合方式所带来的 &lt;strong>架构属性&lt;/strong>&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>。&lt;/p>
+&lt;p>通常来讲基于网络的应用都会匹配最基础的&lt;code>C/S风格&lt;/code>&lt;sup id="fnref:5">&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref">5&lt;/a>&lt;/sup>。这样的应用至少有两个核心组件：client和server，我们这里就关注一下这两个组件内部在运行时抽象的架构。其次网络通信的传输协议主要有UDP和TCP两个，而UDP因为其无需建立连接，所以其对于client和server而言均是无状态的，这时并不需要进行复杂的抽象处理，也就没有必要对其进行评估。这里只关注TCP的情况，其实从这里也可以看出来我们所做的运行时抽象，主要就是在如何管理TCP的连接上。&lt;/p>
+&lt;h1 id="client">
+&lt;i id="locator-client" class="header-locator">&lt;/i>
+&lt;a href="#client" class="article-h-a">1 客户端&lt;/a>
+&lt;/h1>
+&lt;h2 id="nonpersistent-connection-and-sync-io">
+&lt;i id="locator-nonpersistent-connection-and-sync-io" class="header-locator">&lt;/i>
+&lt;a href="#nonpersistent-connection-and-sync-io" class="article-h-a">1.1 短连接+同步IO&lt;/a>
+&lt;/h2>
+&lt;p>最为基本的组合，每次通信就建立一个新的连接，然后采用同步IO&lt;code>send&lt;/code>和&lt;code>recv&lt;/code>的方式和服务器进行交互。&lt;/p>
+&lt;ol>
+&lt;li>简单性(+)：上层当作无状态的通信方式来使用了，故而实现起来非常简单。&lt;/li>
+&lt;li>网络性能(-)：由于底层需要在通信前建立连接，这个阶段会浪费额外的网络性能。&lt;/li>
+&lt;li>网络效率(-)：同上，浪费一些带宽在建立连接上，使得网络效率下降。&lt;/li>
+&lt;/ol>
+&lt;p>比如HTTP/1.0默认是采用短连接的。&lt;/p></description></item><item><title>[Redis] 运行时架构</title><link>https://linianhui.github.io/redis/runtime-architecture/</link><pubDate>Fri, 19 Mar 2021 20:12:24 +0800</pubDate><guid>https://linianhui.github.io/redis/runtime-architecture/</guid><description>&lt;p>redis自从诞生之处就被称之为单线程的方式实现的，这里的单线程指的是&lt;code>socket read&lt;/code>、&lt;code>解析&lt;/code>、&lt;code>执行&lt;/code>和&lt;code>socket write&lt;/code>这四个阶段都是由主线程独自完成的。当然一个redis-server实例并不是只有这一个线程，比如还有执行RDB、AOF、LRU、AOFREWRITE等等后台线程，只是它们的运行不会参与到server的主线程处理client的request这个流程中。&lt;/p></description></item></channel></rss>
