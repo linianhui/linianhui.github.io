@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[代码规范] on Timetombs</title><link>https://linianhui.github.io/code-guide/</link><description>Recent content in [代码规范] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/code-guide/index.xml" rel="self" type="application/rss+xml"/><item><title>[代码规范] HTTP APIs 设计/规范指南</title><link>https://linianhui.github.io/code-guide/http-api/</link><pubDate>Sat, 31 Mar 2018 09:02:21 +0800</pubDate><guid>https://linianhui.github.io/code-guide/http-api/</guid><description>&lt;p>根据REST APIs的成熟度模型 ，此规范关注的是&lt;code>Level 2&lt;/code>的APIs。&lt;br />
+&lt;img src="richardson-maturity-model.png" loading="lazy" decoding="auto" alt="REST APIs 成熟度模型" title="REST APIs 成熟度模型"/>&lt;/p>
+&lt;h1 id="design-guide">
+&lt;i id="locator-design-guide" class="header-locator">&lt;/i>
+&lt;a href="#design-guide" class="article-h-a">1 设计指南&lt;/a>
+&lt;/h1>
+&lt;p>HTTP APIs主要由四部分组成 : &lt;a href="#http"
+
+>#HTTP&lt;/a>, &lt;a href="#url"
+
+>#URL&lt;/a>, &lt;code>资源&lt;/code>，&lt;code>资源的表述&lt;/code>。&lt;/p>
+&lt;blockquote>
+&lt;p>资源的表述通常都采用&lt;a href="#json"
+
+>#JSON&lt;/a>格式，故而下文使用&lt;a href="#json"
+
+>#JSON&lt;/a>代指&lt;code>资源的表述&lt;/code>。&lt;/p>&lt;/blockquote>
+&lt;p>根据这些组成部分，按照以下&lt;strong>3&lt;/strong>个步骤设计APIs。&lt;/p>
+&lt;h2 id="resource-based-design-api">
+&lt;i id="locator-resource-based-design-api" class="header-locator">&lt;/i>
+&lt;a href="#resource-based-design-api" class="article-h-a">1.1 基于&lt;code>资源&lt;/code>设计API&lt;/a>
+&lt;/h2>
+&lt;p>设计HTTP APIs的首要任务是识别出业务领域中的资源。资源是对服务端提供的服务进行分解、组合后的一个被命名的抽象概念。&lt;/p></description></item><item><title>[代码规范] C#规范指南</title><link>https://linianhui.github.io/code-guide/csharp/</link><pubDate>Sat, 31 Mar 2018 09:02:21 +0800</pubDate><guid>https://linianhui.github.io/code-guide/csharp/</guid><description>&lt;h1 id="1-代码规范">
+&lt;i id="locator-1-代码规范" class="header-locator">&lt;/i>
+&lt;a href="#1-%e4%bb%a3%e7%a0%81%e8%a7%84%e8%8c%83" class="article-h-a">1 代码规范&lt;/a>
+&lt;/h1>
+&lt;p>代码风格配置文件 :&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-98e84f305bb5d8b77445da28df9b7d9d">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-98e84f305bb5d8b77445da28df9b7d9d','highlight-file_opened')">cs.editorconfig&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/code-guide/csharp/cs.editorconfig" title="下载 cs.editorconfig" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/code-guide/csharp/cs.editorconfig" title="源码 cs.editorconfig">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># http://editorconfig.org&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># VS 2017 : 15.6+ 内置支持；Tools &amp;gt; Options &amp;gt; Text Editor &amp;gt; &amp;#34;Follow project coding conventions&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># VS Code : (Ctrl+E) ext install editorconfig&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>root = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>charset = &lt;span style="color:#a31515">utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">lf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_style = &lt;span style="color:#a31515">space&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>insert_final_newline = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>trim_trailing_whitespace = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.md]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>trim_trailing_whitespace = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.cs]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.cake]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.cshtml]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.xaml]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.bat]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.cmd]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.ps1]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>indent_size = &lt;span style="color:#a31515">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.csproj]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.sln]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end_of_line = &lt;span style="color:#a31515">crlf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># C# 命名规则&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-naming-conventions&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.cs]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## 接口示例：IPascalCase&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.interface_rule.symbols = &lt;span style="color:#a31515">interface_symbol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.interface_rule.style = &lt;span style="color:#a31515">interface_style&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.interface_rule.severity = &lt;span style="color:#a31515">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.interface_symbol.applicable_kinds = &lt;span style="color:#a31515">interface&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.interface_style.required_prefix = &lt;span style="color:#a31515">I&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.interface_style.capitalization = &lt;span style="color:#a31515">pascal_case&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## 类，结构，枚举，委托，方法，属性，事件示例: PascalCase&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.pascal_case_rule.symbols = &lt;span style="color:#a31515">pascal_case_symbol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.pascal_case_rule.style = &lt;span style="color:#a31515">pascal_case_style&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.pascal_case_rule.severity = &lt;span style="color:#a31515">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.pascal_case_symbol.applicable_kinds = &lt;span style="color:#a31515">class,struct,enum,delegate,method,property,event&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.pascal_case_style.capitalization = &lt;span style="color:#a31515">pascal_case&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## 私有字段示例: _camelCase&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.private_field_rule.symbols = &lt;span style="color:#a31515">private_field_symbol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.private_field_rule.style = &lt;span style="color:#a31515">private_field_style&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.private_field_rule.severity = &lt;span style="color:#a31515">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.private_field_symbol.applicable_kinds = &lt;span style="color:#a31515">field&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.private_field_symbol.applicable_accessibilities = &lt;span style="color:#a31515">private&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.private_field_style.required_prefix = &lt;span style="color:#a31515">_&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.private_field_style.capitalization = &lt;span style="color:#a31515">camel_case&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## 非私有字段示例: PascalCase&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.non_private_field_rule.symbols = &lt;span style="color:#a31515">non_private_field_symbol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.non_private_field_rule.style = &lt;span style="color:#a31515">non_private_field_style&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.non_private_field_rule.severity = &lt;span style="color:#a31515">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.non_private_field_symbol.applicable_kinds = &lt;span style="color:#a31515">field&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.non_private_field_symbol.applicable_accessibilities = &lt;span style="color:#a31515">public,internal,protected,protected_internal&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.non_private_field_style.capitalization = &lt;span style="color:#a31515">pascal_case&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## 参数示例: camelCase&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.parameter_rule.symbols = &lt;span style="color:#a31515">parameter_symbol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.parameter_rule.style = &lt;span style="color:#a31515">parameter_style&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.parameter_rule.severity = &lt;span style="color:#a31515">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.parameter_symbol.applicable_kinds = &lt;span style="color:#a31515">parameter&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.parameter_style.capitalization = &lt;span style="color:#a31515">camel_case&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## 常量示例: ALL_UPPER&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.const_rule.symbols = &lt;span style="color:#a31515">const_symbol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.const_rule.style = &lt;span style="color:#a31515">const_style&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.const_rule.severity = &lt;span style="color:#a31515">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.const_symbol.required_modifiers = &lt;span style="color:#a31515">const&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.const_symbol.applicable_kinds = &lt;span style="color:#a31515">field&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.const_style.capitalization = &lt;span style="color:#a31515">all_upper&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.const_style.word_separator = &lt;span style="color:#a31515">_&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## 异步方法示例: xxxAsync&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.async_method_rule.symbols = &lt;span style="color:#a31515">async_method_symbol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.async_method_rule.style = &lt;span style="color:#a31515">async_method_style&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_rule.async_method_rule.severity = &lt;span style="color:#a31515">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.async_method_symbol.required_modifiers = &lt;span style="color:#a31515">async&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_symbols.async_method_symbol.applicable_kinds = &lt;span style="color:#a31515">method&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_naming_style.async_method_style.required_suffix = &lt;span style="color:#a31515">Async&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># C# 代码风格规则&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference#language-conventions&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.cs]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># this.限定符&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0003&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_qualification_for_field = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0003&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_qualification_for_property = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0003&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_qualification_for_method = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0003&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_qualification_for_event = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 基元类型&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0012&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_predefined_type_for_locals_parameters_members = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0013&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_predefined_type_for_member_access = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 修饰符&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0040&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_require_accessibility_modifiers = &lt;span style="color:#a31515">always : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0036&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_preferred_modifier_order = &lt;span style="color:#a31515">public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 表达式&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0017&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_object_initializer = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0028&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_collection_initializer = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0033&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_explicit_tuple_names = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0029&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_coalesce_expression = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0031&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_null_propagation = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0037&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_prefer_inferred_tuple_names = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0037&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_style_prefer_inferred_anonymous_type_member_names = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 隐式和显式类型(var)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0007&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_var_for_built_in_types = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0007&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_var_when_type_is_apparent = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0007&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_var_elsewhere = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 表达式体成员&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0022&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_expression_bodied_methods = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0021&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_expression_bodied_constructors = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0023,IDE0024&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_expression_bodied_operators = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0025&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_expression_bodied_properties = &lt;span style="color:#a31515">when_on_single_line : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0026&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_expression_bodied_indexers = &lt;span style="color:#a31515">when_on_single_line : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0027&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_expression_bodied_accessors = &lt;span style="color:#a31515">when_on_single_line : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 模式匹配&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0020&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_pattern_matching_over_is_with_cast_check = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0019&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_pattern_matching_over_as_with_null_check = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 内联变量声明&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0018&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_inlined_variable_declaration = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 表达式&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0034&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_prefer_simple_default_expression = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0042&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_deconstructed_variable_declaration = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0039&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_pattern_local_over_anonymous_function = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Null检查&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0016&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_throw_expression = &lt;span style="color:#a31515">false : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0041&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_style_conditional_delegate_call = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 代码块&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">## IDE0011&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_prefer_braces = &lt;span style="color:#a31515">true : error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># C# 代码格式化规则&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference#formatting-conventions&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/dotnet/roslyn/pull/15020&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[*.cs]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># using排序&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dotnet_sort_system_directives_first = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 新行&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_new_line_before_open_brace = &lt;span style="color:#a31515">all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_new_line_before_else = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_new_line_before_catch = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_new_line_before_finally = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_new_line_before_members_in_object_initializers = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_new_line_before_members_in_anonymous_types = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_new_line_between_query_expression_clauses = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 缩进&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_indent_block_contents = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_indent_braces = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_indent_case_contents = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_indent_case_labels = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_indent_switch_labels = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_indent_labels = &lt;span style="color:#a31515">one_less_than_current&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_label_indentation = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 间距&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_after_cast = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_after_colon_in_inheritance_clause = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_after_comma = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_after_dot = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_after_keywords_in_control_flow_statements = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_after_semicolon_in_for_statement = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_around_binary_operators = &lt;span style="color:#a31515">before_and_after&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_around_declaration_statements = &lt;span style="color:#a31515">do_not_ignore&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_before_colon_in_inheritance_clause = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_before_comma = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_before_dot = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_before_open_square_brackets = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_before_semicolon_in_for_statement = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_empty_square_brackets = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_method_call_empty_parameter_list_parentheses = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_method_call_name_and_opening_parenthesis = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_method_call_parameter_list_parentheses = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_method_declaration_empty_parameter_list_parentheses = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_method_declaration_name_and_open_parenthesis = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_method_declaration_parameter_list_parentheses = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_parentheses = &lt;span style="color:#a31515">none&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_space_between_square_brackets = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 换行&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_preserve_single_line_statements = &lt;span style="color:#a31515">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csharp_preserve_single_line_blocks = &lt;span style="color:#a31515">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="2-项目结构">
+&lt;i id="locator-2-项目结构" class="header-locator">&lt;/i>
+&lt;a href="#2-%e9%a1%b9%e7%9b%ae%e7%bb%93%e6%9e%84" class="article-h-a">2 项目结构&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/linianhui/cake.example"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/linianhui/cake.example&lt;/a>&lt;/p></description></item></channel></rss>

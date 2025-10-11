@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Regedit on Timetombs</title><link>https://linianhui.github.io/tag/regedit/</link><description>Recent content in Regedit on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 12 Jun 2020 14:53:50 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/regedit/index.xml" rel="self" type="application/rss+xml"/><item><title>[Windows] regedit</title><link>https://linianhui.github.io/windows/regedit/</link><pubDate>Sat, 29 Jul 2017 09:42:01 +0800</pubDate><guid>https://linianhui.github.io/windows/regedit/</guid><description>&lt;h1 id="regedit-exe">
+&lt;i id="locator-regedit-exe" class="header-locator">&lt;/i>
+&lt;a href="#regedit-exe" class="article-h-a">1 regedit.exe&lt;/a>
+&lt;/h1>
+&lt;p>注册表是Windows中的一个非常重要的数据库，用于存储系统和应用程序的设置信息。&lt;code>regedit.exe&lt;/code>(Registry Editor)是Windows的注册表编辑器。&lt;/p>
+&lt;p>位于 : &lt;code>%systemroot%\regedit.exe&lt;/code>&lt;/p>
+&lt;h1 id="reg-file-spec">
+&lt;i id="locator-reg-file-spec" class="header-locator">&lt;/i>
+&lt;a href="#reg-file-spec" class="article-h-a">2 &lt;code>*.reg&lt;/code>文件格式&lt;/a>
+&lt;/h1>
+&lt;ol>
+&lt;li>文件扩展名 : &lt;code>.reg&lt;/code>。&lt;/li>
+&lt;li>编码方式 : &lt;code>UTF-16 LE&lt;/code>。&lt;/li>
+&lt;li>换行 : &lt;code>CRLF&lt;/code>。&lt;/li>
+&lt;li>注释 : &lt;code>;&lt;/code>。&lt;/li>
+&lt;li>删除 : &lt;code>-&lt;/code>。&lt;/li>
+&lt;/ol>
+&lt;h1 id="reg-highlight-files">
+&lt;i id="locator-reg-highlight-files" class="header-locator">&lt;/i>
+&lt;a href="#reg-highlight-files" class="article-h-a">3 列表&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-files">
+ &lt;div class="highlight-files-header">reg文件列表&lt;/div>
+ &lt;div class="highlight-files-list">&lt;div class="highlight-file" id="hfs-3523a70a127406c6137b2057fbb49b7f">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-3523a70a127406c6137b2057fbb49b7f','highlight-file_opened')">HDTunePro6.00.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/HDTunePro6.00.reg" title="下载 HDTunePro6.00.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/HDTunePro6.00.reg" title="源码 HDTunePro6.00.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CURRENT_USER\Software\EFD&lt;/span> &lt;span style="">Software]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CURRENT_USER\Software\EFD&lt;/span> &lt;span style="">Software\HDTunePro]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Name&amp;#34;=&lt;span style="color:#a31515">&amp;#34;Administrator&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Company&amp;#34;=&lt;span style="color:#a31515">&amp;#34;EFD Software&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Test Parameters 3&amp;#34;=&lt;span style="color:#a31515">&amp;#34;29 23 6C 64 95 B6 F2 89 F1 50 E8 D6 00 00 00 00&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Show Status&amp;#34;=&lt;span style="color:#a31515">dword:00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Allow Power Change&amp;#34;=&lt;span style="color:#a31515">dword:00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Scan A B Drives&amp;#34;=&lt;span style="color:#a31515">dword:00000000&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Show Drive Serial&amp;#34;=&lt;span style="color:#a31515">dword:00000000&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Show Drive Letters&amp;#34;=&lt;span style="color:#a31515">dword:00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Temperature Units&amp;#34;=&lt;span style="color:#a31515">dword:00000000&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Critical Temperature&amp;#34;=&lt;span style="color:#a31515">dword:00000037&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Device Critical Temperature&amp;#34;=&lt;span style="color:#a31515">dword:00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;HE Log Path&amp;#34;=&lt;span style="color:#a31515">&amp;#34;D:\\_app\\_hdtune\\_log&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;HE Log Path&amp;#34;=&lt;span style="color:#a31515">&amp;#34;C:\\Users\\lnh\\AppData\\Roaming\\HD Tune Pro&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Open File Dialog&amp;#34;=&lt;span style="color:#a31515">dword:00000000&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Replace Spaces&amp;#34;=&lt;span style="color:#a31515">dword:00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Auto Save&amp;#34;=&lt;span style="color:#a31515">dword:00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Save Path&amp;#34;=&lt;span style="color:#a31515">&amp;#34;D:\\_app\\_hdtune\\_test&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Save Filter&amp;#34;=&lt;span style="color:#a31515">&amp;#34;%N-%S-%F-%I-%D-%T&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Date Format&amp;#34;=&lt;span style="color:#a31515">&amp;#34;yyyyMMdd&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Time Format&amp;#34;=&lt;span style="color:#a31515">&amp;#34;HHmmss&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-4af0d9146e827a4db5361c58d73adf8d">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-4af0d9146e827a4db5361c58d73adf8d','highlight-file_opened')">class-context-menu.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/class-context-menu.hide.reg" title="下载 class-context-menu.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/class-context-menu.hide.reg" title="源码 class-context-menu.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Class Conext Menu&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-b2958ec3db1fa5a03fb28600ff6c5cc8">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-b2958ec3db1fa5a03fb28600ff6c5cc8','highlight-file_opened')">class-context-menu.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/class-context-menu.show.reg" title="下载 class-context-menu.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/class-context-menu.show.reg" title="源码 class-context-menu.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Class Conext Menu&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@=&lt;span style="color:#a31515">&amp;#34;&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-a411cfc82ce2aa7eae3c9a16c570f291">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-a411cfc82ce2aa7eae3c9a16c570f291','highlight-file_opened')">context-menu.empty-recycle-bin.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/context-menu.empty-recycle-bin.reg" title="下载 context-menu.empty-recycle-bin.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/context-menu.empty-recycle-bin.reg" title="源码 context-menu.empty-recycle-bin.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\Directory\Background\shell\EmptyRecycleBin]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;CommandStateHandler&amp;#34;=&lt;span style="color:#a31515">&amp;#34;{c9298eef-69dd-4cdd-b153-bdbc38486781}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Description&amp;#34;=&lt;span style="color:#a31515">&amp;#34;@shell32.dll,-31332&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Icon&amp;#34;=&lt;span style="color:#a31515">&amp;#34;shell32.dll,-254&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;MUIVerb&amp;#34;=&lt;span style="color:#a31515">&amp;#34;@shell32.dll,-10564&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\Directory\Background\shell\EmptyRecycleBin\command]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;DelegateExecute&amp;#34;=&lt;span style="color:#a31515">&amp;#34;{48527bb3-e8de-450b-8910-8c4099cb8624}&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-e109c931bbb394214cb6741dadf47b04">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-e109c931bbb394214cb6741dadf47b04','highlight-file_opened')">context-menu.txt.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/context-menu.txt.reg" title="下载 context-menu.txt.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/context-menu.txt.reg" title="源码 context-menu.txt.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\.txt]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@=&lt;span style="color:#a31515">&amp;#34;txtfile&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;PerceivedType&amp;#34;=&lt;span style="color:#a31515">&amp;#34;text&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Content Type&amp;#34;=&lt;span style="color:#a31515">&amp;#34;text/plain&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\.txt\OpenWithProgids]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;VSCode.txt&amp;#34;=&lt;span style="color:#a31515">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\.txt\PersistentHandler]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@=&lt;span style="color:#a31515">&amp;#34;{5e941d80-bf96-11cd-b579-08002b30bfeb}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\.txt\ShellNew]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;ItemName&amp;#34;=&lt;span style="color:#a31515">hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span> &lt;span style="">&lt;/span> &lt;span style="">6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span> &lt;span style="">&lt;/span> &lt;span style="">00,6e,00,6f,00,74,00,65,00,70,00,61,00,64,00,2e,00,65,00,78,00,65,00,2c,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span> &lt;span style="">&lt;/span> &lt;span style="">2d,00,34,00,37,00,30,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;NullFile&amp;#34;=&lt;span style="color:#a31515">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-f0d7690730f9d75fd5540f6bafd2e8ef">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-f0d7690730f9d75fd5540f6bafd2e8ef','highlight-file_opened')">desktop.shortcut.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/desktop.shortcut.hide.reg" title="下载 desktop.shortcut.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/desktop.shortcut.hide.reg" title="源码 desktop.shortcut.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\lnkfile]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;IsShortcut&amp;#34;=&lt;span style="color:#a31515">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\piffile]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;IsShortcut&amp;#34;=&lt;span style="color:#a31515">-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-678b3c5522a6701e379d3c21034562ef">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-678b3c5522a6701e379d3c21034562ef','highlight-file_opened')">desktop.shortcut.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/desktop.shortcut.show.reg" title="下载 desktop.shortcut.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/desktop.shortcut.show.reg" title="源码 desktop.shortcut.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\lnkfile]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;IsShortcut&amp;#34;=&lt;span style="color:#a31515">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\piffile]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;IsShortcut&amp;#34;=&lt;span style="color:#a31515">&amp;#34;&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-6e90a2f6dc33986dfe3e1a9637039c70">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-6e90a2f6dc33986dfe3e1a9637039c70','highlight-file_opened')">explorer.favorite.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.favorite.hide.reg" title="下载 explorer.favorite.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.favorite.hide.reg" title="源码 explorer.favorite.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>Windows Registry Editor Version 5.00
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[&lt;/span>HKEY_CLASSES_ROOT&lt;span style="color:#00f">\CLSID\{323CA680-C24D-4099-B94D-446DD2D7249E}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=dword:a9400100&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-1af88acc2eb4bad0fcbf5d5a98b5305a">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-1af88acc2eb4bad0fcbf5d5a98b5305a','highlight-file_opened')">explorer.favorite.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.favorite.show.reg" title="下载 explorer.favorite.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.favorite.show.reg" title="源码 explorer.favorite.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>Windows Registry Editor Version 5.00
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">[&lt;/span>HKEY_CLASSES_ROOT&lt;span style="color:#00f">\CLSID\{323CA680-C24D-4099-B94D-446DD2D7249E}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=dword:a0900100&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-7b6b1beaaeff910e738b774f43a49c35">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-7b6b1beaaeff910e738b774f43a49c35','highlight-file_opened')">explorer.folder.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.folder.hide.reg" title="下载 explorer.folder.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.folder.hide.reg" title="源码 explorer.folder.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Video&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Document&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Desktop&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Music&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Download&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Picturre&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;3D Object&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-4e9e0a4e772223333af66515d5fc4a6c">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-4e9e0a4e772223333af66515d5fc4a6c','highlight-file_opened')">explorer.folder.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.folder.show.reg" title="下载 explorer.folder.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.folder.show.reg" title="源码 explorer.folder.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Video&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Document&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Desktop&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Music&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Download&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;Picture&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000">;3D Object&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-89f918396b86290cd5f09784021618eb">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-89f918396b86290cd5f09784021618eb','highlight-file_opened')">explorer.home-group.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.home-group.hide.reg" title="下载 explorer.home-group.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.home-group.hide.reg" title="源码 explorer.home-group.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\CLSID\{B4FB3F98-C1EA-428d-A78A-D1F5659CBA93}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=&lt;span style="color:#a31515">dword:b094010c&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-c9217d4419f9f610a6c1c5c9d94a1774">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-c9217d4419f9f610a6c1c5c9d94a1774','highlight-file_opened')">explorer.home-group.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.home-group.show.reg" title="下载 explorer.home-group.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.home-group.show.reg" title="源码 explorer.home-group.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\CLSID\{B4FB3F98-C1EA-428d-A78A-D1F5659CBA93}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=&lt;span style="color:#a31515">dword:b084010c&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-045d6d4f736f429978b7616d7c5191a9">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-045d6d4f736f429978b7616d7c5191a9','highlight-file_opened')">explorer.library.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.library.hide.reg" title="下载 explorer.library.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.library.hide.reg" title="源码 explorer.library.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=&lt;span style="color:#a31515">dword:b090010d&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-7192324e241fa6d04d0e0277dff2b21a">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-7192324e241fa6d04d0e0277dff2b21a','highlight-file_opened')">explorer.library.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.library.show.reg" title="下载 explorer.library.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.library.show.reg" title="源码 explorer.library.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=&lt;span style="color:#a31515">dword:b080010d&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-3a179ab4e4da243fe915580ecd43c5e4">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-3a179ab4e4da243fe915580ecd43c5e4','highlight-file_opened')">explorer.network.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.network.hide.reg" title="下载 explorer.network.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.network.hide.reg" title="源码 explorer.network.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=&lt;span style="color:#a31515">dword:b0940064&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-c4f2badce6ef3860c98167cc4345b341">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-c4f2badce6ef3860c98167cc4345b341','highlight-file_opened')">explorer.network.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.network.show.reg" title="下载 explorer.network.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.network.show.reg" title="源码 explorer.network.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CLASSES_ROOT\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\ShellFolder]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Attributes&amp;#34;=&lt;span style="color:#a31515">dword:b0040064&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-9e8d56bc9eba7093bf08fc7686698338">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-9e8d56bc9eba7093bf08fc7686698338','highlight-file_opened')">explorer.onedrive.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.onedrive.hide.reg" title="下载 explorer.onedrive.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.onedrive.hide.reg" title="源码 explorer.onedrive.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{018D5C66-4533-4307-9B53-224DE2ED1FE6}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-ea901646309ce2efb02dd5c843034517">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-ea901646309ce2efb02dd5c843034517','highlight-file_opened')">explorer.onedrive.show.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.onedrive.show.reg" title="下载 explorer.onedrive.show.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.onedrive.show.reg" title="源码 explorer.onedrive.show.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{018D5C66-4533-4307-9B53-224DE2ED1FE6}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-0687f3463017fbfbed758a187d74090f">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-0687f3463017fbfbed758a187d74090f','highlight-file_opened')">explorer.weiyun.hide.reg&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/windows/regedit/explorer.weiyun.hide.reg" title="下载 explorer.weiyun.hide.reg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/windows/regedit/explorer.weiyun.hide.reg" title="源码 explorer.weiyun.hide.reg">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-reg" data-lang="reg">&lt;span style="display:flex;">&lt;span>&lt;span style="">��Windows&lt;/span> &lt;span style="">Registry&lt;/span> &lt;span style="">Editor&lt;/span> &lt;span style="">Version&lt;/span> &lt;span style="">5.00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{51A48CE2-10EC-4F31-B16D-09338C1D2FDF}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+ &lt;/div>&lt;/div>
+&lt;/div></description></item></channel></rss>
