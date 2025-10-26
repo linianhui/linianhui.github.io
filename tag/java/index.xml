@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Timetombs</title><link>https://linianhui.github.io/tag/java/</link><description>Recent content in Java on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 05 Aug 2023 07:53:41 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/java/index.xml" rel="self" type="application/rss+xml"/><item><title>[Java] synchronized</title><link>https://linianhui.github.io/java/synchronized/</link><pubDate>Sun, 08 Nov 2020 19:33:01 +0800</pubDate><guid>https://linianhui.github.io/java/synchronized/</guid><description>&lt;p>在Java中，有一个与锁有关的关键字&lt;code>synchronized&lt;/code>，它是由JVM层面提供的&lt;code>Monitor&lt;/code>来实现。&lt;/p>
+&lt;h1 id="syntax">
+&lt;i id="locator-syntax" class="header-locator">&lt;/i>
+&lt;a href="#syntax" class="article-h-a">1. 语法&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>synchronized&lt;/code>关键字在语法层面&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>有两种形式。请看如下的示例代码：&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-ff0b35a82ec431c35007f2c8689d9ed1">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-ff0b35a82ec431c35007f2c8689d9ed1','highlight-file_opened')">SynchronizedExample.java&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/java/synchronized/SynchronizedExample.java" title="下载 SynchronizedExample.java" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/java/synchronized/SynchronizedExample.java" title="源码 SynchronizedExample.java">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">import&lt;/span> java.io.File;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">class&lt;/span> &lt;span style="color:#2b91af">SynchronizedExample&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> instanceSynchronizedStatementMethod(Object syncObject) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">synchronized&lt;/span> (syncObject) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> instanceMethod();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">synchronized&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> synchronizedInstanceMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> instanceMethod();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> instanceMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">static&lt;/span> &lt;span style="color:#00f">synchronized&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> synchronizedStaticMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> staticMethod();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#00f">public&lt;/span> &lt;span style="color:#00f">static&lt;/span> &lt;span style="color:#2b91af">void&lt;/span> staticMethod() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="statement">
+&lt;i id="locator-statement" class="header-locator">&lt;/i>
+&lt;a href="#statement" class="article-h-a">1.1 修饰代码快&lt;/a>
+&lt;/h2>
+&lt;p>示例中的&lt;code>instanceSynchronizedStatementMethod&lt;/code>方法，这种形式的语法要求&lt;code>synchronized&lt;/code>关键字关联一个对象作为同步资源，然后紧跟着是一个代码块。可以保证在一个JVM进程内，多个使用&lt;code>syncObject&lt;/code>作为同步资源对象的线程同时访问这个代码块的时候，只能串行的进行访问，也就是同一时刻，只会有一个线程成功的进入这个代码块执行代码。当然这个同步资源对象&lt;code>syncObject&lt;/code>也可以是一个字段，实例的或者静态的都可以，包裹这个同步代码块的方法同样的也是实例的或者静态的都可以。&lt;/p></description></item><item><title>[Java] CAS(Compare And Swap)</title><link>https://linianhui.github.io/java/cas/</link><pubDate>Sun, 08 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/cas/</guid><description>&lt;h1 id="1-cascompare-and-swap-概念和原理">
+&lt;i id="locator-1-cascompare-and-swap-概念和原理" class="header-locator">&lt;/i>
+&lt;a href="#1-cascompare-and-swap-%e6%a6%82%e5%bf%b5%e5%92%8c%e5%8e%9f%e7%90%86" class="article-h-a">1 CAS(Compare And Swap) 概念和原理&lt;/a>
+&lt;/h1>
+&lt;p>CAS是Compare And Swap的缩写，中文含义是比较和交换。CAS定义了三个值：&lt;/p>
+&lt;ul>
+&lt;li>V : 待更新的变量Var&lt;/li>
+&lt;li>E : 预期的旧值Expected Value&lt;/li>
+&lt;li>N : 新值New&lt;/li>
+&lt;/ul>
+&lt;p>执行过程的伪代码如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">if&lt;/span>(V==E){
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> V=N;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>也就是说只有在变量V的值等于期望的旧值时，才更新V为新值N。不然什么都不做。以此证明其他线程没有更改V的值。&lt;strong>根据上面的伪代码来看，是不是会出现if通过了，但是在V=N的时候其他线程改了V呢？其实不会的，CAS的底层实现是依赖CPU的原子指令(cmpxchgl和lock)来实现的，也就是说比较和赋值操作是一个CPU级别的原子操作！ 那么在多线程操作同一个变量时，只会有一个线程操作成功，其他的都会失败 ，但是并不会阻塞其他线程，其他线程可以利用循环进行重试或者放弃修改。这是实现乐观锁的基础。&lt;/strong>&lt;/p></description></item><item><title>[Java] Thread</title><link>https://linianhui.github.io/java/thread/</link><pubDate>Sat, 07 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/thread/</guid><description>&lt;h1 id="1-os内核态进程">
+&lt;i id="locator-1-os内核态进程" class="header-locator">&lt;/i>
+&lt;a href="#1-os%e5%86%85%e6%a0%b8%e6%80%81%e8%bf%9b%e7%a8%8b" class="article-h-a">1 OS内核态进程&lt;/a>
+&lt;/h1>
+&lt;p>&lt;strong>进程&lt;/strong>是OS进行资源分配和调度的最小单元，进程之间互相隔离，这样使得OS可以&lt;strong>并行&lt;/strong>运行多个应用程序。&lt;code>OS:进程=1:N&lt;/code>&lt;/p>
+&lt;p>遗留问题：这时OS可以并行多个应用程序了，但是应用程序内部则只能串行的运行。&lt;/p>
+&lt;h1 id="2-os内核态线程">
+&lt;i id="locator-2-os内核态线程" class="header-locator">&lt;/i>
+&lt;a href="#2-os%e5%86%85%e6%a0%b8%e6%80%81%e7%ba%bf%e7%a8%8b" class="article-h-a">2 OS内核态线程&lt;/a>
+&lt;/h1>
+&lt;p>为了解决进程遗留的问题，OS就创造了&lt;strong>线程&lt;/strong>，使得一个应用程序内部也可以&lt;strong>并行&lt;/strong>，&lt;code>进程:线程=1:N&lt;/code>。Linux在默认情况下，创建一个线程需要分配8MB的栈内存空间。&lt;/p></description></item><item><title>[Java] GC(Garbage Collection)</title><link>https://linianhui.github.io/java/gc/</link><pubDate>Fri, 06 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/gc/</guid><description>&lt;p>GC要解决的三个问题：&lt;/p>
+&lt;ol>
+&lt;li>哪些对象需要回收？&lt;/li>
+&lt;li>何时回收？&lt;/li>
+&lt;li>如何回收？&lt;/li>
+&lt;/ol>
+&lt;h1 id="1-哪些对象需要回收">
+&lt;i id="locator-1-哪些对象需要回收" class="header-locator">&lt;/i>
+&lt;a href="#1-%e5%93%aa%e4%ba%9b%e5%af%b9%e8%b1%a1%e9%9c%80%e8%a6%81%e5%9b%9e%e6%94%b6" class="article-h-a">1 哪些对象需要回收？&lt;/a>
+&lt;/h1>
+&lt;p>Java的内存区域中，Java线程栈、本地方法栈和程序计数器因为是线程私有的，随着线程的执行自动的释放，所以这部分是是无需回收的。目前需要回收的主要是两个区域：&lt;strong>堆&lt;/strong>和&lt;strong>元数据区&lt;/strong>。又因为元数据区域存放的是class的信息和常量以及一些静态变量等数据，这部分的数据的生命周期通常是和Java进程保持一致的，所以回收的意义不大。故而只剩下一个区域&lt;strong>堆&lt;/strong>。&lt;/p></description></item><item><title>[Java] JMM(Java Memory Model)</title><link>https://linianhui.github.io/java/jmm/</link><pubDate>Thu, 05 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/jmm/</guid><description>&lt;p>Java内存模型JMM(Java Memory Model)在Java中由两份规范文档定义:&lt;/p>
+&lt;ol>
+&lt;li>JLS(Java Language Specification)的Chapter 17. Threads and Locks]&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>。&lt;/li>
+&lt;li>JSR-133: Java Memory Model and Thread Specification Revision&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>。JSR-133(JDK 5实现了)是对JLS中的补充和完善。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>A memory model describes, given a program and an execution trace of that program, whether the execution trace is a legal execution of the program. The Java programming language memory model works by examining each read in an execution trace and checking that the write observed by that read is valid according to certain rules.&lt;/p>&lt;/blockquote>
+&lt;p>以上部分是JLS中关于JMM的总结性解释。简单来说就是&lt;strong>规定了Java中的各种变量的读写访问规则&lt;/strong>。&lt;/p></description></item><item><title>[Java] Unsafe类</title><link>https://linianhui.github.io/java/unsafe/</link><pubDate>Wed, 04 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/unsafe/</guid><description>&lt;p>Unsafe类是Java提供一个底层的类型，位于&lt;code>sun.misc&lt;/code>包中，主要用来提供一些不安全的底层内存操作。&lt;/p>
+&lt;blockquote>
+&lt;p>其内部实现在Jdk中略有差异，比如。Jdk 8&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>和Jdk 15&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>的源码。&lt;/p>&lt;/blockquote>
+&lt;h1 id="get-unsafe-object">
+&lt;i id="locator-get-unsafe-object" class="header-locator">&lt;/i>
+&lt;a href="#get-unsafe-object" class="article-h-a">1 获取Unsafe对象&lt;/a>
+&lt;/h1>
+&lt;p>由于Unsafe在实现上添加了限制（只能由&lt;code>BootstrapClassLoader&lt;/code>加载的类型来调用，而我们的代码通常都是&lt;code>AppClassLoader&lt;/code>加载的），所以我们无法直接通过&lt;code>Unsafe.getUnsafe()&lt;/code>这个静态方法来获取。&lt;/p></description></item><item><title>[Java] JVM(Java Virtual Machine)</title><link>https://linianhui.github.io/java/jvm/</link><pubDate>Wed, 04 Mar 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/jvm/</guid><description>&lt;p>Java是一个跨平台的语言，当初的口号&lt;strong>编译一次，到处运行&lt;/strong>。那么它是如何实现跨平台运行的呢？计算机领域有个有个著名的定理&lt;strong>中间层定律&lt;/strong>：计算机科学领域的任何问题都可以通过增加一个中间层来解决。那么Java的跨平台也不例外，它就是通过添加了一个中间层来解决跨平台运行的问题的。&lt;/p>
+&lt;p>我们知道计算机是无法直接运行我们编写的程序设计语言&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>的代码的，需要编译为计算机可理解的特定底层汇编或者机器码指令才可以。所以Java从诞生之初就没有编译成平台相关的代码，而是编译为了平台无关的&lt;code>bytecode&lt;/code>字节码（文件扩展名&lt;code>.class&lt;/code>）。然后交由Java虚拟机JVM(Java Virtual Machine)来执行字节码文件，而JVM则需要在每个支持的平台上独立的编写，由它充当我们的&lt;strong>中间层&lt;/strong>，以此达到我们编写的代码跨平台运行的目的。&lt;/p></description></item><item><title>[Java] Tool</title><link>https://linianhui.github.io/java/tool/</link><pubDate>Wed, 04 Mar 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/tool/</guid><description>&lt;h1 id="jps">
+&lt;i id="locator-jps" class="header-locator">&lt;/i>
+&lt;a href="#jps" class="article-h-a">1 jps&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># print java pid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jps -v
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="jinfo">
+&lt;i id="locator-jinfo" class="header-locator">&lt;/i>
+&lt;a href="#jinfo" class="article-h-a">2 jinfo&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># print pid=1 JVM flags&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jinfo -flags 1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># print pid=1 Java system properties&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jinfo -sysprops 1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="jstat">
+&lt;i id="locator-jstat" class="header-locator">&lt;/i>
+&lt;a href="#jstat" class="article-h-a">3 jstat&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>jstat -options
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># print pid=1 gc&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jstat -gc 1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="jmap">
+&lt;i id="locator-jmap" class="header-locator">&lt;/i>
+&lt;a href="#jmap" class="article-h-a">4 jmap&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># print pid=1 java heap summary&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jmap -heap 1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="jstack">
+&lt;i id="locator-jstack" class="header-locator">&lt;/i>
+&lt;a href="#jstack" class="article-h-a">5 jstack&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># print pid=123 java therad &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jstack 123
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>[Java] Install</title><link>https://linianhui.github.io/java/install/</link><pubDate>Sun, 06 Aug 2017 16:34:01 +0800</pubDate><guid>https://linianhui.github.io/java/install/</guid><description>&lt;h1 id="openjdk">
+&lt;i id="locator-openjdk" class="header-locator">&lt;/i>
+&lt;a href="#openjdk" class="article-h-a">1 OpenJdk&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 :&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://adoptium.net/"
+
+ target="_blank" rel="noopener norefferrer">https://adoptium.net/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.microsoft.com/openjdk"
+
+ target="_blank" rel="noopener norefferrer">https://www.microsoft.com/openjdk&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developers.redhat.com/products/openjdk/download"
+
+ target="_blank" rel="noopener norefferrer">https://developers.redhat.com/products/openjdk/download&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 设置环境变量 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetJavaEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看版本信息 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>java -version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="maven">
+&lt;i id="locator-maven" class="header-locator">&lt;/i>
+&lt;a href="#maven" class="article-h-a">2 Maven&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 : &lt;a href="https://maven.apache.org/download.cgi"
+
+ target="_blank" rel="noopener norefferrer">https://maven.apache.org/download.cgi&lt;/a>&lt;/p>
+&lt;p>下载二进制包 : &lt;code>apache-maven-3.8.1-bin.zip&lt;/code>解压至&lt;code>d:\_app\_maven\&lt;/code>目录下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 设置环境变量&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetMavenEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看版本信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn -v
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wrapper&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/takari/maven-wrapper&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn --non-recursive --debug io.takari&lt;span style="">:&lt;/span>maven&lt;span style="">:&lt;/span>wrapper -Dmaven=&lt;span style="color:#a31515">&amp;#39;3.8.1&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="settings-xml">
+&lt;i id="locator-settings-xml" class="header-locator">&lt;/i>
+&lt;a href="#settings-xml" class="article-h-a">2.1 settings.xml&lt;/a>
+&lt;/h2>
+&lt;p>复制&lt;code>settings.xml&lt;/code>配置文件到&lt;code>HOME/.m2/&lt;/code>目录。&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-add90aa826c2c258970f3e077b40a1b5">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-add90aa826c2c258970f3e077b40a1b5','highlight-file_opened')">~/.m2/setting.xml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/java/install/settings.xml" title="下载 ~/.m2/setting.xml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/java/install/settings.xml" title="源码 ~/.m2/setting.xml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">&amp;lt;!-- https://maven.apache.org/settings.html --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">&amp;lt;!--
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 加载顺序
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 1. 全局设置 M2_HOME/conf/settiing.xml
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 2. 用户设置 HOME/.m2/settiing.xml
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;settings xmlns=&lt;span style="color:#a31515">&amp;#34;http://maven.apache.org/SETTINGS/1.0.0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> xmlns:xsi=&lt;span style="color:#a31515">&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> xsi:schemaLocation=&lt;span style="color:#a31515">&amp;#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;profiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;profile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- https://maven.aliyun.com/mvn/guide --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;aliyun&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;repositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/repository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!--&amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;apache snapshots&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/apache-snapshots&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/repositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;pluginRepositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;apache snapshots&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/apache-snapshots&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/pluginRepositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/profile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/profiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;activeProfiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;activeProfile&amp;gt;aliyun&amp;lt;/activeProfile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/activeProfiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/settings&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="3.gradle">
+&lt;i id="locator-3.gradle" class="header-locator">&lt;/i>
+&lt;a href="#3.gradle" class="article-h-a">3 Gradle&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 : &lt;a href="https://gradle.org/releases/"
+
+ target="_blank" rel="noopener norefferrer">https://gradle.org/releases/&lt;/a>&lt;/p></description></item></channel></rss>
