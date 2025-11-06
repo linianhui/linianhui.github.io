@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>全双工 on Timetombs</title><link>https://linianhui.github.io/tag/%E5%85%A8%E5%8F%8C%E5%B7%A5/</link><description>Recent content in 全双工 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/%E5%85%A8%E5%8F%8C%E5%B7%A5/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] 01 [Layer] Physical</title><link>https://linianhui.github.io/computer-networking/01-layer-physical/</link><pubDate>Sun, 22 Sep 2019 08:11:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/01-layer-physical/</guid><description>&lt;h1 id="physical-purpose">
+&lt;i id="locator-physical-purpose" class="header-locator">&lt;/i>
+&lt;a href="#physical-purpose" class="article-h-a">1 物理层的用途&lt;/a>
+&lt;/h1>
+&lt;p>上一篇中说到&lt;strong>计算机网络&lt;/strong> 由 &lt;strong>节点(node : 计算机、集线器、交换机或路由器)&lt;/strong> 和连接它们的 &lt;strong>链路(link)&lt;/strong> 组成。本质上讲，网络通信就是双方互相传递信息，在计算机世界中，最本质的信息就是&lt;code>01&lt;/code>这种bit，所有的通信都是基于此，那么物理层的用途就是传递这些bit信息。&lt;/p>
+&lt;p>传输媒体多种多样，比如同轴电缆、双绞线、光纤、无线电波等等。当物理层要向上层提供一致的&lt;code>01&lt;/code>bit流时，它就要屏蔽这种底层的通道差异，这是物理层的任务。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Install on Timetombs</title><link>https://linianhui.github.io/tag/install/</link><description>Recent content in Install on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Aug 2023 02:31:51 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/install/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] install</title><link>https://linianhui.github.io/redis/install/</link><pubDate>Fri, 19 Mar 2021 03:24:23 +0800</pubDate><guid>https://linianhui.github.io/redis/install/</guid><description>&lt;h1 id="source">
+&lt;i id="locator-source" class="header-locator">&lt;/i>
+&lt;a href="#source" class="article-h-a">1 源码安装&lt;/a>
+&lt;/h1>
+&lt;p>适用于Linux和macOS&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>。&lt;/p>
+&lt;p>下载地址：&lt;a href="https://download.redis.io/releases/redis-6.2.1.tar.gz"
+
+ target="_blank" rel="noopener norefferrer">https://download.redis.io/releases/redis-6.2.1.tar.gz&lt;/a>。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>wget https://download.redis.io/releases/redis-6.2.1.tar.gz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tar xzf redis-6.2.1.tar.gz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd redis-6.2.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编译完成后的二进制文件(&lt;code>redis-server&lt;/code>,&lt;code>redis-cli&lt;/code>等等)位于&lt;code>src&lt;/code>目录中。&lt;/p>
+&lt;h1 id="docker">
+&lt;i id="locator-docker" class="header-locator">&lt;/i>
+&lt;a href="#docker" class="article-h-a">2 docker安装&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://hub.docker.com/_/redis"
+
+ target="_blank" rel="noopener norefferrer">https://hub.docker.com/_/redis&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>docker run --name redis -d redis:6.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-32fd287cfe1e0c45ffc41a0bebc4104d">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-32fd287cfe1e0c45ffc41a0bebc4104d','highlight-file_opened')">Dockerfile&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/redis/install/Dockerfile" title="下载 Dockerfile" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/redis/install/Dockerfile" title="源码 Dockerfile">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-Dockerfile" data-lang="Dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://hub.docker.com/_/redis/&lt;/span>&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#008000"># https://github.com/docker-library/redis/blob/master/6.2/Dockerfile&lt;/span>&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#00f">FROM&lt;/span>&lt;span style="color:#a31515"> redis:6.2&lt;/span>&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&lt;/span>&lt;span style="color:#00f">EXPOSE&lt;/span>&lt;span style="color:#a31515"> 6379&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="run">
+&lt;i id="locator-run" class="header-locator">&lt;/i>
+&lt;a href="#run" class="article-h-a">3 本地运行&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-9ab373a6a2363d0c402d40e4d5c9c6bf">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-9ab373a6a2363d0c402d40e4d5c9c6bf','highlight-file_opened')">redis.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/redis/install/redis.conf" title="下载 redis.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/redis/install/redis.conf" title="源码 redis.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>bind 127.0.0.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>port 6379
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># RDB&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>save 300 10
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stop-writes-on-bgsave-error yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dir /lnh/_data/_redis/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dbfilename dump.rdb
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rdbcompression yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rdbchecksum no
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rdb-del-sync-files no
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># AOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>appendonly yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>appendfsync everysec
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>appendfilename appendonly.aof
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto-aof-rewrite-min-size 64mb
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto-aof-rewrite-percentage 100
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>no-appendfsync-on-rewrite yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>aof-load-truncated yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>aof-use-rdb-preamble yes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="run-server">
+&lt;i id="locator-run-server" class="header-locator">&lt;/i>
+&lt;a href="#run-server" class="article-h-a">3.1 运行服务端&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>$ redis-server
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5177:C 19 Mar 2021 04:08:38.090 &lt;span style="color:#008000"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5177:C 19 Mar 2021 04:08:38.090 &lt;span style="color:#008000"># Redis version=6.2.1, bits=64, commit=00000000, modified=0, pid=5177, just started&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5177:C 19 Mar 2021 04:08:38.090 &lt;span style="color:#008000"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5177:M 19 Mar 2021 04:08:38.091 * monotonic clock: POSIX clock_gettime
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> _._ 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> _.-&lt;span style="color:#a31515">``&lt;/span>__ &lt;span style="color:#a31515">&amp;#39;&amp;#39;&lt;/span>-._ 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> _.-&lt;span style="color:#a31515">``&lt;/span> &lt;span style="color:#a31515">`&lt;/span>. &lt;span style="color:#a31515">`&lt;/span>_. &lt;span style="color:#a31515">&amp;#39;&amp;#39;&lt;/span>-._ Redis 6.2.1 (00000000/0) 64 bit
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .-&lt;span style="color:#a31515">``&lt;/span> .-&lt;span style="color:#a31515">```&lt;/span>. &lt;span style="color:#a31515">```&lt;/span>&lt;span style="color:#a31515">\/&lt;/span> _.,_ &lt;span style="color:#a31515">&amp;#39;&amp;#39;&lt;/span>-._ 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ( &lt;span style="color:#a31515">&amp;#39; , .-` | `, ) Running in standalone mode
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> |`-._`-...-` __...-.``-._|&amp;#39;&lt;/span>&lt;span style="color:#a31515">`&lt;/span> _.-&lt;span style="color:#a31515">&amp;#39;| Port: 6379
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> | `-._ `._ / _.-&amp;#39;&lt;/span> | PID: 5177
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a31515">`&lt;/span>-._ &lt;span style="color:#a31515">`&lt;/span>-._ &lt;span style="color:#a31515">`&lt;/span>-./ _.-&lt;span style="color:#a31515">&amp;#39; _.-&amp;#39;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> |&lt;span style="color:#a31515">`&lt;/span>-._&lt;span style="color:#a31515">`&lt;/span>-._ &lt;span style="color:#a31515">`&lt;/span>-.__.-&lt;span style="color:#a31515">&amp;#39; _.-&amp;#39;&lt;/span>_.-&lt;span style="color:#a31515">&amp;#39;| 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> | `-._`-._ _.-&amp;#39;&lt;/span>_.-&lt;span style="color:#a31515">&amp;#39; | http://redis.io 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> `-._ `-._`-.__.-&amp;#39;&lt;/span>_.-&lt;span style="color:#a31515">&amp;#39; _.-&amp;#39;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> |&lt;span style="color:#a31515">`&lt;/span>-._&lt;span style="color:#a31515">`&lt;/span>-._ &lt;span style="color:#a31515">`&lt;/span>-.__.-&lt;span style="color:#a31515">&amp;#39; _.-&amp;#39;&lt;/span>_.-&lt;span style="color:#a31515">&amp;#39;| 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> | `-._`-._ _.-&amp;#39;&lt;/span>_.-&lt;span style="color:#a31515">&amp;#39; | 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> `-._ `-._`-.__.-&amp;#39;&lt;/span>_.-&lt;span style="color:#a31515">&amp;#39; _.-&amp;#39;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a31515">`&lt;/span>-._ &lt;span style="color:#a31515">`&lt;/span>-.__.-&lt;span style="color:#a31515">&amp;#39; _.-&amp;#39;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a31515">`&lt;/span>-._ _.-&lt;span style="color:#a31515">&amp;#39; 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> `-.__.-&amp;#39;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5177:M 19 Mar 2021 04:08:38.095 &lt;span style="color:#008000"># Server initialized&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5177:M 19 Mar 2021 04:08:38.096 * Ready to accept connections
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="run-client">
+&lt;i id="locator-run-client" class="header-locator">&lt;/i>
+&lt;a href="#run-client" class="article-h-a">3.2 运行客户端&lt;/a>
+&lt;/h2>
+&lt;p>使用&lt;code>redis-cli&lt;/code>简单测试一下设置和获取一个名为&lt;code>test&lt;/code>的string类型的缓存。&lt;/p></description></item><item><title>[Rust] Install</title><link>https://linianhui.github.io/rust/install/</link><pubDate>Sun, 05 Jan 2020 15:35:01 +0800</pubDate><guid>https://linianhui.github.io/rust/install/</guid><description>&lt;h1 id="rustup-init">
+&lt;i id="locator-rustup-init" class="header-locator">&lt;/i>
+&lt;a href="#rustup-init" class="article-h-a">1 rustup-init&lt;/a>
+&lt;/h1>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">platform&lt;/th>
+ &lt;th style="text-align: left">download url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">windows-gnu&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe"
+
+ target="_blank" rel="noopener norefferrer">https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">windows-msvc&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
+
+ target="_blank" rel="noopener norefferrer">https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">apple-darwin&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init"
+
+ target="_blank" rel="noopener norefferrer">https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># windows only&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetRustEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># install&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rustup-init.exe -y --verbose --default-toolchain stable --profile complete --no-modify-path
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 Reference&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.rust-lang.org/tools/install"
+
+ target="_blank" rel="noopener norefferrer">https://www.rust-lang.org/tools/install&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://forge.rust-lang.org/infra/other-installation-methods.html"
+
+ target="_blank" rel="noopener norefferrer">https://forge.rust-lang.org/infra/other-installation-methods.html&lt;/a>&lt;/p></description></item><item><title>[Docker] Install</title><link>https://linianhui.github.io/docker/install/</link><pubDate>Sun, 28 Jan 2018 16:53:01 +0800</pubDate><guid>https://linianhui.github.io/docker/install/</guid><description>&lt;h1 id="dockerd">
+&lt;i id="locator-dockerd" class="header-locator">&lt;/i>
+&lt;a href="#dockerd" class="article-h-a">1 dokcerd&lt;/a>
+&lt;/h1>
+&lt;p>reference: &lt;a href="https://docs.docker.com/engine/reference/commandline/dockerd/"
+
+ target="_blank" rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/&lt;/a>&lt;/p>
+&lt;h2 id="docker-on-ubuntu">
+&lt;i id="locator-docker-on-ubuntu" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-ubuntu" class="article-h-a">1.1 Ubuntu&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-20977f47b347e0f3203ebf25c1378db8">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-20977f47b347e0f3203ebf25c1378db8','highlight-file_opened')">docker-on-ubuntu.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-ubuntu.sh" title="下载 docker-on-ubuntu.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-ubuntu.sh" title="源码 docker-on-ubuntu.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-ubuntu.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-ubuntu.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt remove -y docker docker-engine docker.io
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y apt-transport-https ca-certificates curl software-properties-common
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | apt-key add -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt-key fingerprint 0EBFCD88
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>add-apt-repository &lt;span style="color:#a31515">&amp;#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu &lt;/span>&lt;span style="color:#00f">$(&lt;/span>lsb_release -cs&lt;span style="color:#00f">)&lt;/span>&lt;span style="color:#a31515"> stable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="docker-on-centos">
+&lt;i id="locator-docker-on-centos" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-centos" class="article-h-a">1.2 CentOS&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-469270076ff69464a4e9c5643a39d8f8">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-469270076ff69464a4e9c5643a39d8f8','highlight-file_opened')">docker-on-centos.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-centos.sh" title="下载 docker-on-centos.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-centos.sh" title="源码 docker-on-centos.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-centos.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-centos.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum install -y yum-utils device-mapper-persistent-data lvm2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="docker-on-debian">
+&lt;i id="locator-docker-on-debian" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-debian" class="article-h-a">1.3 Debian&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-cfe6663860faeaf9300427266766bc65">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-cfe6663860faeaf9300427266766bc65','highlight-file_opened')">docker-on-debian.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-debian.sh" title="下载 docker-on-debian.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-debian.sh" title="源码 docker-on-debian.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-debian.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-debian.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt remove -y docker docker-engine docker.io
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg1 gnupg2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg | apt-key add -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>add-apt-repository &lt;span style="color:#a31515">&amp;#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/debian &lt;/span>&lt;span style="color:#00f">$(&lt;/span>lsb_release -cs&lt;span style="color:#00f">)&lt;/span>&lt;span style="color:#a31515"> stable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="config-dockerd">
+&lt;i id="locator-config-dockerd" class="header-locator">&lt;/i>
+&lt;a href="#config-dockerd" class="article-h-a">1.4 Config dockerd&lt;/a>
+&lt;/h2>
+&lt;p>&lt;a href="https://docs.docker.com/engine/reference/commandline/dockerd/"
+
+ target="_blank" rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/&lt;/a>&lt;/p></description></item><item><title>[Java] Install</title><link>https://linianhui.github.io/java/install/</link><pubDate>Sun, 06 Aug 2017 16:34:01 +0800</pubDate><guid>https://linianhui.github.io/java/install/</guid><description>&lt;h1 id="openjdk">
+&lt;i id="locator-openjdk" class="header-locator">&lt;/i>
+&lt;a href="#openjdk" class="article-h-a">1 OpenJdk&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 :&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://adoptium.net/"
+
+ target="_blank" rel="noopener norefferrer">https://adoptium.net/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.microsoft.com/openjdk"
+
+ target="_blank" rel="noopener norefferrer">https://www.microsoft.com/openjdk&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developers.redhat.com/products/openjdk/download"
+
+ target="_blank" rel="noopener norefferrer">https://developers.redhat.com/products/openjdk/download&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 设置环境变量 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetJavaEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看版本信息 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>java -version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="maven">
+&lt;i id="locator-maven" class="header-locator">&lt;/i>
+&lt;a href="#maven" class="article-h-a">2 Maven&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 : &lt;a href="https://maven.apache.org/download.cgi"
+
+ target="_blank" rel="noopener norefferrer">https://maven.apache.org/download.cgi&lt;/a>&lt;/p>
+&lt;p>下载二进制包 : &lt;code>apache-maven-3.8.1-bin.zip&lt;/code>解压至&lt;code>d:\_app\_maven\&lt;/code>目录下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 设置环境变量&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Env-SetMavenEnvironmentVariable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看版本信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn -v
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wrapper&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/takari/maven-wrapper&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mvn --non-recursive --debug io.takari&lt;span style="">:&lt;/span>maven&lt;span style="">:&lt;/span>wrapper -Dmaven=&lt;span style="color:#a31515">&amp;#39;3.8.1&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="settings-xml">
+&lt;i id="locator-settings-xml" class="header-locator">&lt;/i>
+&lt;a href="#settings-xml" class="article-h-a">2.1 settings.xml&lt;/a>
+&lt;/h2>
+&lt;p>复制&lt;code>settings.xml&lt;/code>配置文件到&lt;code>HOME/.m2/&lt;/code>目录。&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-add90aa826c2c258970f3e077b40a1b5">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-add90aa826c2c258970f3e077b40a1b5','highlight-file_opened')">~/.m2/setting.xml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/java/install/settings.xml" title="下载 ~/.m2/setting.xml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/java/install/settings.xml" title="源码 ~/.m2/setting.xml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">&amp;lt;!-- https://maven.apache.org/settings.html --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">&amp;lt;!--
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 加载顺序
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 1. 全局设置 M2_HOME/conf/settiing.xml
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> 2. 用户设置 HOME/.m2/settiing.xml
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;settings xmlns=&lt;span style="color:#a31515">&amp;#34;http://maven.apache.org/SETTINGS/1.0.0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> xmlns:xsi=&lt;span style="color:#a31515">&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> xsi:schemaLocation=&lt;span style="color:#a31515">&amp;#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;profiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;profile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- https://maven.aliyun.com/mvn/guide --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;aliyun&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;repositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/repository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!--&amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;repository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;apache snapshots&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/apache-snapshots&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/repository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/repositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;pluginRepositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000">&amp;lt;!-- &amp;lt;pluginRepository&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;id&amp;gt;apache snapshots&amp;lt;/id&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/apache-snapshots&amp;lt;/url&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"> &amp;lt;/pluginRepository&amp;gt;--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/pluginRepositories&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/profile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/profiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;activeProfiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;activeProfile&amp;gt;aliyun&amp;lt;/activeProfile&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/activeProfiles&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/settings&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="3.gradle">
+&lt;i id="locator-3.gradle" class="header-locator">&lt;/i>
+&lt;a href="#3.gradle" class="article-h-a">3 Gradle&lt;/a>
+&lt;/h1>
+&lt;p>下载地址 : &lt;a href="https://gradle.org/releases/"
+
+ target="_blank" rel="noopener norefferrer">https://gradle.org/releases/&lt;/a>&lt;/p></description></item></channel></rss>
