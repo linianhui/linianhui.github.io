@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ssh on Timetombs</title><link>https://linianhui.github.io/tag/ssh/</link><description>Recent content in Ssh on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Aug 2023 10:57:18 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>[Linux] SSH</title><link>https://linianhui.github.io/linux/ssh/</link><pubDate>Wed, 29 Mar 2017 09:42:01 +0800</pubDate><guid>https://linianhui.github.io/linux/ssh/</guid><description>&lt;h1 id="ssh">
+&lt;i id="locator-ssh" class="header-locator">&lt;/i>
+&lt;a href="#ssh" class="article-h-a">1 ssh&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>ssh lnh@deb1 -p 22
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="ssh-keygen">
+&lt;i id="locator-ssh-keygen" class="header-locator">&lt;/i>
+&lt;a href="#ssh-keygen" class="article-h-a">2 ssh-keygen&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Create RSA private(`id_rsa`) and public(`id_rsa.pub`) key pair.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ssh-keygen -t rsa
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="scp">
+&lt;i id="locator-scp" class="header-locator">&lt;/i>
+&lt;a href="#scp" class="article-h-a">3 scp&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Copy file.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>scp 1.txt lnh@deb1:/home/lnh/1.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="ssh-copy-id">
+&lt;i id="locator-ssh-copy-id" class="header-locator">&lt;/i>
+&lt;a href="#ssh-copy-id" class="article-h-a">4 ssh-copy-id&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Copy `id_rsa.pub` to `~/.ssh/authorized_keys`.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ssh-copy-id -i id_rsa.pub lnh@deb1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="sshd-config">
+&lt;i id="locator-sshd-config" class="header-locator">&lt;/i>
+&lt;a href="#sshd-config" class="article-h-a">5 sshd_config&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code> /etc/ssh/sshd_config&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>RSAAuthentication yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PubkeyAuthentication yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>AuthorizedKeysFile .ssh/authorized_keys
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

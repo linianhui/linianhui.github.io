@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>REST on Timetombs</title><link>https://linianhui.github.io/tag/rest/</link><description>Recent content in REST on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 29 Dec 2024 22:26:54 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/rest/index.xml" rel="self" type="application/rss+xml"/><item><title>[代码规范] HTTP APIs 设计/规范指南</title><link>https://linianhui.github.io/code-guide/http-api/</link><pubDate>Sat, 31 Mar 2018 09:02:21 +0800</pubDate><guid>https://linianhui.github.io/code-guide/http-api/</guid><description>&lt;p>根据REST APIs的成熟度模型 ，此规范关注的是&lt;code>Level 2&lt;/code>的APIs。&lt;br />
+&lt;img src="richardson-maturity-model.png" loading="lazy" decoding="auto" alt="REST APIs 成熟度模型" title="REST APIs 成熟度模型"/>&lt;/p>
+&lt;h1 id="design-guide">
+&lt;i id="locator-design-guide" class="header-locator">&lt;/i>
+&lt;a href="#design-guide" class="article-h-a">1 设计指南&lt;/a>
+&lt;/h1>
+&lt;p>HTTP APIs主要由四部分组成 : &lt;a href="#http"
+
+>#HTTP&lt;/a>, &lt;a href="#url"
+
+>#URL&lt;/a>, &lt;code>资源&lt;/code>，&lt;code>资源的表述&lt;/code>。&lt;/p>
+&lt;blockquote>
+&lt;p>资源的表述通常都采用&lt;a href="#json"
+
+>#JSON&lt;/a>格式，故而下文使用&lt;a href="#json"
+
+>#JSON&lt;/a>代指&lt;code>资源的表述&lt;/code>。&lt;/p>&lt;/blockquote>
+&lt;p>根据这些组成部分，按照以下&lt;strong>3&lt;/strong>个步骤设计APIs。&lt;/p>
+&lt;h2 id="resource-based-design-api">
+&lt;i id="locator-resource-based-design-api" class="header-locator">&lt;/i>
+&lt;a href="#resource-based-design-api" class="article-h-a">1.1 基于&lt;code>资源&lt;/code>设计API&lt;/a>
+&lt;/h2>
+&lt;p>设计HTTP APIs的首要任务是识别出业务领域中的资源。资源是对服务端提供的服务进行分解、组合后的一个被命名的抽象概念。&lt;/p></description></item><item><title>[理解REST] 05 Web的需求 &amp; 推导REST</title><link>https://linianhui.github.io/understand-rest/05-web-and-rest/</link><pubDate>Sun, 15 Oct 2017 15:44:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/05-web-and-rest/</guid><description>&lt;p>衔接上文&lt;a href="../04-network-based-software-architecture-style/"
+
+ target="_blank" rel="noopener norefferrer">[理解REST] 04 基于网络应用的架构风格&lt;/a>，上文总结了一些适用于基于网络应用的架构风格，以及其评估结果。在前文的基础上，本文介绍一下Web架构的需求，以及在对Web的关键协议进行设计和改进的过程中遇到的问题；以及在对基于网络应用的架构风格进行评估的过程中的领悟；结合Web的需求进而推导出REST这种架构风格，随后使用REST来指导Web架构的设计和改进工作。&lt;/p></description></item><item><title>[理解REST] 06 REST的应用经验以及教训</title><link>https://linianhui.github.io/understand-rest/06-experience/</link><pubDate>Sat, 21 Oct 2017 15:21:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/06-experience/</guid><description>&lt;p>衔接上文&lt;a href="../05-web-and-rest/"
+
+ target="_blank" rel="noopener norefferrer">[理解REST] 05 Web的需求 &amp;amp; 推导REST&lt;/a>，上文根据Web的需求推导出了REST架构风格，以及REST的详细描述和解释。自从1994年以来，REST架构风格被用于指导Web架构的设计和开发工作，最重要的两点体现在设计HTTP和URI两个互联网规范协议的过程中，以及实现这些规范的libwww-perl客户端库，Apache HTTP项目(httpd)以及其他的实现中，所得到的经验以及教训。&lt;/p></description></item><item><title>[理解REST] 04 基于网络应用的架构风格</title><link>https://linianhui.github.io/understand-rest/04-network-based-software-architecture-style/</link><pubDate>Sun, 24 Sep 2017 13:33:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/04-network-based-software-architecture-style/</guid><description>&lt;p>衔接上文&lt;a href="../03-network-based-software-architecture/"
+
+ target="_blank" rel="noopener norefferrer">[理解REST] 03 基于网络应用的架构&lt;/a>，上文介绍了一组自洽的术语来描述和解释软件架构；如何利用架构属性评估一个架构风格；以及对于基于网络的应用架构来说，那些架构属性是值得我们重点关注评估的。本篇在以上的基础上，列举一下一些常见的(REST除外)的适用于基于网络应用的架构风格，并使用对比架构属性的方式对其进行评估。&lt;/p></description></item><item><title>[理解REST] 03 基于网络应用的架构</title><link>https://linianhui.github.io/understand-rest/03-network-based-software-architecture/</link><pubDate>Sun, 17 Sep 2017 16:58:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/03-network-based-software-architecture/</guid><description>&lt;p>链接上文&lt;a href="../02-what-is-rest-used-for/"
+
+ target="_blank" rel="noopener norefferrer">[理解REST] 02 REST是用来干什么的？&lt;/a>，上文中解释到什么是架构风格和应该以怎样的视角来理解REST(Web的架构风格)。本篇来介绍一组自洽的术语，用它来描述和解释软件架构；以及列举下对于基于网络的应用来说，哪些点是需要我们重点关注的。&lt;/p>
+&lt;h1 id="software-architecture">
+&lt;i id="locator-software-architecture" class="header-locator">&lt;/i>
+&lt;a href="#software-architecture" class="article-h-a">1 软件架构&lt;/a>
+&lt;/h1>
+&lt;p>软件架构方面关注的是如何以最佳的方式划分一个系统、如何标识组件、组件之间如何通信、信息如何表达、组成系统的元素如何独立的进化，以及如何表达上述的内容。一个优秀的软件架构并非凭空靠想象得来的，每一个架构级的决策，都应该根据被设计的系统功能、行为和社交三方面的需求而作出。这是一个基本的设计原则，即 &lt;strong>&amp;quot;形式追随功能&amp;quot;&lt;/strong> ，这条原则源自于建筑学领域在数百年中失败的建筑项目中获得的经验，但是却总被软件行业所忽略。&lt;strong>&amp;quot;dedign-by-buzzword&amp;quot;&lt;/strong> 的行为随处可见，出现这种行为的原因在于很多设计者在选择某一个优秀的软件架构时，不了解这个架构的适用场景是什么、背后是基于什么考量才得出的这样的架构，以及是否吻合自己的需求。下面先介绍一组自洽的术语来描述解释软件架构。&lt;/p></description></item><item><title>[理解REST] 02 REST是用来干什么的？</title><link>https://linianhui.github.io/understand-rest/02-what-is-rest-used-for/</link><pubDate>Fri, 15 Sep 2017 23:24:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/02-what-is-rest-used-for/</guid><description>&lt;p>衔接上文&lt;a href="../01-origin/"
+
+ target="_blank" rel="noopener norefferrer">[理解REST] 01 REST的起源&lt;/a>，介绍了REST的诞生背景。每当笔者遇到一个新事物的想去了解的时候，总是会问上自己第一个问题，这个新事物是干什么用的？在解释我所理解的REST这个过程中也不例外，这篇博客我们先关注一下REST是干什么用的，然后后续再解释REST是什么。好了，不说废话了，在上篇结尾处说到，REST是Web的架构风格，暂且不管REST和Web，我们先看看架构风格是什么东西？&lt;/p></description></item><item><title>[理解REST] 01 REST的起源</title><link>https://linianhui.github.io/understand-rest/01-origin/</link><pubDate>Wed, 06 Sep 2017 10:06:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/01-origin/</guid><description>&lt;h1 id="the-first-web-site-in-the-world">
+&lt;i id="locator-the-first-web-site-in-the-world" class="header-locator">&lt;/i>
+&lt;a href="#the-first-web-site-in-the-world" class="article-h-a">1 世界上第一个网站&lt;/a>
+&lt;/h1>
+&lt;p>1990年12月20日，这一天对于现在的互联网来说意义非凡。欧洲核子研究组织(CREN)的科学家Tim Berners-Lee在一台NeXT电脑上启动了世界上的第一个网站(当然当时仅能Tim Berners-Lee自己访问)，这台电脑至今仍保留在CREN，但当年那个网站已经不复存在了。鉴于这个网站的意义重大，CREN在2013年 &lt;strong>“复刻”&lt;/strong> 了这个网站，并指向了原来的网址 : &lt;a href="http://info.cern.ch"
+
+ target="_blank" rel="noopener norefferrer">http://info.cern.ch&lt;/a> 。由于现在的浏览器早已不是当初的样子，所以CREN还提供了一个模拟器来模拟当时浏览这个网站是什么情形。 &lt;a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html"
+
+ target="_blank" rel="noopener norefferrer">http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html&lt;/a> 打开后如下 :&lt;br />
+&lt;img src="info.cern.ch.png" loading="lazy" decoding="auto" alt="http://info.cern.ch" title="http://info.cern.ch"/>&lt;/p></description></item><item><title>[理解REST] 00 参考资料</title><link>https://linianhui.github.io/understand-rest/00-reference/</link><pubDate>Fri, 01 Sep 2017 10:06:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/00-reference/</guid><description>&lt;p>Web之父 Tim Berners Lee : &lt;a href="https://en.wikipedia.org/wiki/Tim_Berners-Lee"
+
+ target="_blank" rel="noopener norefferrer">https://en.wikipedia.org/wiki/Tim_Berners-Lee&lt;/a>&lt;/p>
+&lt;p>世界上诞生的第一个网站 : &lt;a href="http://info.cern.ch/"
+
+ target="_blank" rel="noopener norefferrer">http://info.cern.ch/&lt;/a>&lt;/p>
+&lt;p>世界上诞生的第一个网站-模拟器 : &lt;a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html"
+
+ target="_blank" rel="noopener norefferrer">http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html&lt;/a>&lt;/p>
+&lt;p>Web的生日 : &lt;a href="http://home.cern/topics/birth-web"
+
+ target="_blank" rel="noopener norefferrer">http://home.cern/topics/birth-web&lt;/a>&lt;/p>
+&lt;p>HTTP 0.9 : &lt;a href="https://www.w3.org/Protocols/HTTP/AsImplemented.html"
+
+ target="_blank" rel="noopener norefferrer">https://www.w3.org/Protocols/HTTP/AsImplemented.html&lt;/a>&lt;/p>
+&lt;p>HTTP 历史 : &lt;a href="https://www.w3.org/Protocols/History.html"
+
+ target="_blank" rel="noopener norefferrer">https://www.w3.org/Protocols/History.html&lt;/a>&lt;/p>
+&lt;p>HTTP 1.1 : &lt;a href="https://www.ietf.org/rfc/rfc2616.txt"
+
+ target="_blank" rel="noopener norefferrer">https://www.ietf.org/rfc/rfc2616.txt&lt;/a>&lt;/p>
+&lt;p>Evolution of HTTP : &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP"
+
+ target="_blank" rel="noopener norefferrer">https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP&lt;/a>&lt;/p>
+&lt;p>Roy T. Fielding : &lt;a href="https://en.wikipedia.org/wiki/Roy_Fielding"
+
+ target="_blank" rel="noopener norefferrer">https://en.wikipedia.org/wiki/Roy_Fielding&lt;/a>&lt;/p>
+&lt;p>Roy T. Fielding : REST 论文《Architectural Styles and the Design of Network-based Software Architectures》 : &lt;a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm"
+
+ target="_blank" rel="noopener norefferrer">https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm&lt;/a>&lt;/p>
+&lt;p>Roy T. Fielding : REST 论文(中文版 译者:李锟)《架构风格与基于网络应用软件的架构设计(中文修订版)》 : &lt;a href="https://www.infoq.cn/minibook/web-based-apps-archit-design"
+
+ target="_blank" rel="noopener norefferrer">https://www.infoq.cn/minibook/web-based-apps-archit-design&lt;/a>&lt;/p>
+&lt;p>Roy T. Fielding : Roy T. Fielding 谈Google SPDY协议 : &lt;a href="https://www.infoq.cn/article/2012/07/roy-on-google-spdy"
+
+ target="_blank" rel="noopener norefferrer">https://www.infoq.cn/article/2012/07/roy-on-google-spdy&lt;/a>&lt;/p></description></item></channel></rss>
