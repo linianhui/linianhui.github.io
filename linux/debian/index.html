@@ -1,0 +1,120 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Linux] Debian - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/linux/ target=_blank>[Linux]</a></section><section class=toc-page><a class=toc-page-title href=/linux/script/ target=_blank>[Linux] Script</a></section><section class=toc-page><a class=toc-page-title href=/linux/ssh/ target=_blank>[Linux] SSH</a></section><section class=toc-page><a class=toc-page-title href=/linux/systemd/ target=_blank>[Linux] systemd</a></section><section class=toc-page><a class=toc-page-title href=/linux/ubuntu/ target=_blank>[Linux] Ubuntu</a></section><section class=toc-page><a class=toc-page-title href=/linux/centos/ target=_blank>[Linux] CentOS</a></section><section class=toc-page><a class=toc-page-title href=/linux/top/ target=_blank>[Linux] top</a></section><section class="toc-page selected"><span class=toc-page-title>[Linux] Debian</span><nav id=TableOfContents><ul><li><a href=#install>1 Install</a></li><li><a href=#config>2 Config</a></li><li><a href=#reference>3 Reference</a></li></ul></nav></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Linux] Debian</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2023-08-06 01:18，约328字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/linux/ title=[Linux] target=_blank><i class="fa fa-folder"></i>[Linux]</a></section><section class=article-tags><a class=article-tag href=/tag/debian target=_blank><i class="fa fa-tag"></i>Debian</a>
+<a class=article-tag href=/tag/linux target=_blank><i class="fa fa-tag"></i>Linux</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/e03f637c56fa43d4aeb77e38f8c8fb87f954f861 target=_blank><i class="fa fa-code-fork"></i>e03f637</a>
+<span class=article-git-commit-subject>replace apt-get to apt</span>
+<span class=article-git-commit-time>2023-08-09 21:43</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/linux/debian/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=install><i id=locator-install class=header-locator></i>
+<a href=#install class=article-h-a>1 Install</a></h1><table><thead><tr><th>iso</th><th>url</th></tr></thead><tbody><tr><td>official</td><td><a href=https://www.debian.org/distrib/ target=_blank rel="noopener norefferrer">https://www.debian.org/distrib/</a></td></tr><tr><td>163</td><td><a href=http://mirrors.163.com/debian-cd/ target=_blank rel="noopener norefferrer">http://mirrors.163.com/debian-cd/</a></td></tr><tr><td>aliyun</td><td><a href=https://mirrors.aliyun.com/debian-cd/ target=_blank rel="noopener norefferrer">https://mirrors.aliyun.com/debian-cd/</a></td></tr><tr><td>old</td><td><a href=https://cdimage.debian.org/mirror/cdimage/archive/ target=_blank rel="noopener norefferrer">https://cdimage.debian.org/mirror/cdimage/archive/</a></td></tr><tr><td>Installation Guide</td><td><a href=https://www.debian.org/releases/stable/amd64/install.zh-cn.pdf target=_blank rel="noopener norefferrer">https://www.debian.org/releases/stable/amd64/install.zh-cn.pdf</a></td></tr></tbody></table><table><thead><tr><th>source</th><th>url</th></tr></thead><tbody><tr><td>163</td><td><a href=http://mirrors.163.com/.help/debian.html target=_blank rel="noopener norefferrer">http://mirrors.163.com/.help/debian.html</a></td></tr><tr><td>aliyun</td><td><a href=https://developer.aliyun.com/mirror/debian target=_blank rel="noopener norefferrer">https://developer.aliyun.com/mirror/debian</a></td></tr><tr><td>ustc</td><td><a href=https://mirrors.ustc.edu.cn/help/debian.html target=_blank rel="noopener norefferrer">https://mirrors.ustc.edu.cn/help/debian.html</a></td></tr></tbody></table><h1 id=config><i id=locator-config class=header-locator></i>
+<a href=#config class=article-h-a>2 Config</a></h1><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>sudo passwd root
+</span></span><span style=display:flex><span><span style=color:green># /etc/ssh/sshd_cofig </span>
+</span></span><span style=display:flex><span><span style=color:green># PermitRootLogin yes</span>
+</span></span><span style=display:flex><span>apt -y autoremove clean
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>Optimize-VHD -Path E:<span style=color:#a31515>\_</span>vhd<span style=color:#a31515>\d</span>eb1.vhdx -Mode Full
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 更改主机名</span>
+</span></span><span style=display:flex><span><span style=color:green># /etc/hostname</span>
+</span></span><span style=display:flex><span><span style=color:green># /etc/hosts</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看硬盘</span>
+</span></span><span style=display:flex><span>fdisk -l
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 创建新分区 n w</span>
+</span></span><span style=display:flex><span>gdisk /dev/sdb
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 格式化新分区</span>
+</span></span><span style=display:flex><span>mkfs.xfs /dev/sdb1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 挂载 /etc/fstab</span>
+</span></span><span style=display:flex><span><span style=color:green># 查看uuid</span>
+</span></span><span style=display:flex><span>blkid
+</span></span><span style=display:flex><span><span style=color:green># UUID=6ee00141-8904-4734-8096-d95bf7ac645f /data  ext4  defaults 0 0</span>
+</span></span></code></pre></div><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>3 Reference</a></h1><div class="highlight-file highlight-file_opened" id=hf-3f8d0a4d28d08add9c25668fd119935e><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-3f8d0a4d28d08add9c25668fd119935e","highlight-file_opened")'>sysctl.conf</a><a class="fa fa-download highlight-file-download" target=_blank href=/linux/debian/sysctl.conf title="下载 sysctl.conf" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/debian/sysctl.conf title="源码 sysctl.conf"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># /etc/sysctl.conf</span>
+</span></span><span style=display:flex><span>net.ipv6.conf.all.disable_ipv6=<span style=color:#a31515>1</span>
+</span></span><span style=display:flex><span>net.ipv6.conf.default.disable_ipv6=<span style=color:#a31515>1</span>
+</span></span><span style=display:flex><span>net.ipv6.conf.lo.disable_ipv6=<span style=color:#a31515>1</span>
+</span></span><span style=display:flex><span>net.ipv6.conf.ens3.disable_ipv6=<span style=color:#a31515>1</span></span></span></code></pre></div></div></div><div class="highlight-file highlight-file_opened" id=hf-da382d60909ed864f1cf966ff2677a97><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-da382d60909ed864f1cf966ff2677a97","highlight-file_opened")'>interfaces</a><a class="fa fa-download highlight-file-download" target=_blank href=/linux/debian/interfaces title="下载 interfaces" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/debian/interfaces title="源码 interfaces"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># /etc/network/interfaces</span>
+</span></span><span style=display:flex><span>auto eth0
+</span></span><span style=display:flex><span>iface lo inet loopback
+</span></span><span style=display:flex><span>allow-hotplug eth0
+</span></span><span style=display:flex><span>iface eth0 inet static
+</span></span><span style=display:flex><span>address 192.168.2.201
+</span></span><span style=display:flex><span>netmask 255.255.255.0
+</span></span><span style=display:flex><span>gateway 192.168.2.1</span></span></code></pre></div></div></div><div class="highlight-file highlight-file_opened" id=hf-2b7f4142629543e959d509cae7f5f59e><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-2b7f4142629543e959d509cae7f5f59e","highlight-file_opened")'>sources-bullseye.list</a><a class="fa fa-download highlight-file-download" target=_blank href=/linux/debian/sources-bullseye.list title="下载 sources-bullseye.list" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/debian/sources-bullseye.list title="源码 sources-bullseye.list"></a></div><div class=highlight-file-content><pre tabindex=0><code class=language-list data-lang=list>deb http://mirrors.ustc.edu.cn/debian/ bullseye main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/debian/ bullseye main non-free contrib
+deb http://mirrors.ustc.edu.cn/debian-security/ bullseye-security main
+deb-src http://mirrors.ustc.edu.cn/debian-security/ bullseye-security main
+deb http://mirrors.ustc.edu.cn/debian/ bullseye-updates main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/debian/ bullseye-updates main non-free contrib
+deb http://mirrors.ustc.edu.cn/debian/ bullseye-backports main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/debian/ bullseye-backports main non-free contrib
+</code></pre></div></div><div class="highlight-file highlight-file_opened" id=hf-40251ebd057f3d2d3442524e65235b6c><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-40251ebd057f3d2d3442524e65235b6c","highlight-file_opened")'>init.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/linux/debian/init.sh title="下载 init.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/linux/debian/init.sh title="源码 init.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># sudo bash &lt;(wget -q -O - https://linianhui.github.io/linux/debian/init.sh)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -x
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update <span style=color:#a31515>\
+</span></span></span><span style=display:flex><span><span style=color:#a31515></span>    &amp;&amp; apt -y install sudo vim curl wget unzip tcpdump net-tools iproute2 vim jq coreutils tini gdisk apt-transport-https ca-certificates software-properties-common gnupg1 gnupg2<span style=color:#a31515>\
+</span></span></span><span style=display:flex><span><span style=color:#a31515></span>    &amp;&amp; apt -y autoremove <span style=color:#a31515>\
+</span></span></span><span style=display:flex><span><span style=color:#a31515></span>    &amp;&amp; apt -y clean
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 禁用防火墙</span>
+</span></span><span style=display:flex><span><span style=color:green># debian</span>
+</span></span><span style=display:flex><span>ufw disable
+</span></span><span style=display:flex><span><span style=color:green># centos</span>
+</span></span><span style=display:flex><span>systemctl stop firewalld
+</span></span><span style=display:flex><span>systemctl disable firewalld
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 禁用swap</span>
+</span></span><span style=display:flex><span>swapoff -a
+</span></span><span style=display:flex><span><span style=color:green># 永久禁用swap</span>
+</span></span><span style=display:flex><span>cat /etc/fstab
+</span></span><span style=display:flex><span>cat /etc/fstab | grep -v swap &gt; /etc/fstab
+</span></span><span style=display:flex><span>cat /etc/fstab
+</span></span><span style=display:flex><span><span style=color:green># https://unix.stackexchange.com/questions/671940/disabling-swap-on-debian-permanently</span>
+</span></span><span style=display:flex><span><span style=color:green># https://wiki.archlinux.org/title/swap#Disabling_swap</span>
+</span></span><span style=display:flex><span>systemctl --type swap
+</span></span><span style=display:flex><span>systemctl mask dev-sdb3.swap
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 永久禁用SELINUX</span>
+</span></span><span style=display:flex><span>tee <span style=color:#a31515>&lt;&lt;-EOF /etc/selinux/config
+</span></span></span><span style=display:flex><span><span style=color:#a31515>SELINUX=disabled
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># mount disk</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># fdisk -l</span>
+</span></span><span style=display:flex><span><span style=color:green># mount -l</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># fdisk /dev/sdb</span>
+</span></span><span style=display:flex><span><span style=color:green># mkfs.ext4 -G 4096 /dev/sdb1</span>
+</span></span><span style=display:flex><span><span style=color:green># 挂载 /etc/fstab</span>
+</span></span><span style=display:flex><span><span style=color:green># 查看uuid blkid</span>
+</span></span><span style=display:flex><span><span style=color:green># UUID=6ee00141-8904-4734-8096-d95bf7ac645f /data ext4 defaults 0 0</span>
+</span></span></code></pre></div></div></div></section><section class=article-meta><section class=article-date>2023-08-06 01:18，约328字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/linux/ title=[Linux] target=_blank><i class="fa fa-folder"></i>[Linux]</a></section><section class=article-tags><a class=article-tag href=/tag/debian target=_blank><i class="fa fa-tag"></i>Debian</a>
+<a class=article-tag href=/tag/linux target=_blank><i class="fa fa-tag"></i>Linux</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/e03f637c56fa43d4aeb77e38f8c8fb87f954f861 target=_blank><i class="fa fa-code-fork"></i>e03f637</a>
+<span class=article-git-commit-subject>replace apt-get to apt</span>
+<span class=article-git-commit-time>2023-08-09 21:43</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/linux/debian/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/linux/top/ target=_blank>[Linux] top</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

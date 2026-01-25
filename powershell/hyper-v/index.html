@@ -1,0 +1,357 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[PowerShell] Hyper-V - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/powershell/ target=_blank>[PowerShell]</a></section><section class=toc-page><a class=toc-page-title href=/powershell/help/ target=_blank>[PowerShell] Help</a></section><section class="toc-page selected"><span class=toc-page-title>[PowerShell] Hyper-V</span><nav id=TableOfContents><ul><li><a href=#enable-hyper-v>1 Enable Hyper-V</a></li><li><a href=#create-virtual-switch>2 Create virtual switch</a></li><li><a href=#create-virtual-hard-disk>3 Create virtual hard disk</a></li><li><a href=#create-virtual-machine>4 Create virtual machine</a></li><li><a href=#config>5 config</a></li><li><a href=#reference>6 参考引用</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/powershell/script/ target=_blank>[PowerShell] Script</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[PowerShell] Hyper-V</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2017-07-29 09:42，约690字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/powershell/ title=[PowerShell] target=_blank><i class="fa fa-folder"></i>[PowerShell]</a></section><section class=article-tags><a class=article-tag href=/tag/executionpolicy target=_blank><i class="fa fa-tag"></i>ExecutionPolicy</a>
+<a class=article-tag href=/tag/powershell target=_blank><i class="fa fa-tag"></i>PowerShell</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/affaabe2e0cb41d9f11323433dcf63c2d3d09aa9 target=_blank><i class="fa fa-code-fork"></i>affaabe</a>
+<span class=article-git-commit-subject>add enable-hyper-v.cmd</span>
+<span class=article-git-commit-time>2025-06-28 23:53</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=enable-hyper-v><i id=locator-enable-hyper-v class=header-locator></i>
+<a href=#enable-hyper-v class=article-h-a>1 Enable Hyper-V</a></h1><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span>Enable-WindowsOptionalFeature -Online -FeatureName:Microsoft-Hyper-V -All
+</span></span></code></pre></div><div class="highlight-file highlight-file_opened" id=hf-88a196e2df56f7b2fb6eba38f3e4c04d><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-88a196e2df56f7b2fb6eba38f3e4c04d","highlight-file_opened")'>enable-hyper-v.cmd</a><a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/enable-hyper-v.cmd title="下载 enable-hyper-v.cmd" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/enable-hyper-v.cmd title="源码 enable-hyper-v.cmd"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cmd data-lang=cmd><span style=display:flex><span>CHCP 65001
+</span></span><span style=display:flex><span>@<span style=color:#00f>ECHO</span> ON
+</span></span><span style=display:flex><span><span style=color:green>REM 家庭版启用Hyper-V</span>
+</span></span><span style=display:flex><span><span style=color:#00f>SET</span> PACKAGE_PATH=%SystemRoot%\servicing\Packages\
+</span></span><span style=display:flex><span><span style=color:#00f>FOR</span> <span style=color:#00f>/F</span> <span style=color:#a31515>%%</span>i <span style=color:#00f>IN</span> (<span style=color:#a31515>&#39;DIR /B </span>%PACKAGE_PATH%<span style=color:#a31515>*Hyper-V*.mum&#39;</span>) <span style=color:#00f>DO</span> DISM /Online /NoRestart /Add-Package:<span style=color:#a31515>&#34;</span>%PACKAGE_PATH%<span style=color:#a31515>%%</span><span style=color:#a31515>i&#34;</span>
+</span></span><span style=display:flex><span>DISM /Online /Enable-Feature /FeatureName:Microsoft-Hyper-V -All /LimitAccess /ALL
+</span></span><span style=display:flex><span>PAUSE</span></span></code></pre></div></div></div><p><a href=https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell</a></p><h1 id=create-virtual-switch><i id=locator-create-virtual-switch class=header-locator></i>
+<a href=#create-virtual-switch class=article-h-a>2 Create virtual switch</a></h1><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span>$NetNetAdapter = (Get-NetAdapter)[0]
+</span></span><span style=display:flex><span>New-VMSwitch -Name <span style=color:#a31515>&#39;External Virtual Network Switch&#39;</span> -NetAdapterName $NetNetAdapter.Name -AllowManagementOS $TRUE
+</span></span></code></pre></div><p><a href=https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/connect-to-network target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/connect-to-network</a><br><a href="https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vmswitch?view=win10-ps" target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vmswitch?view=win10-ps</a></p><h1 id=create-virtual-hard-disk><i id=locator-create-virtual-hard-disk class=header-locator></i>
+<a href=#create-virtual-hard-disk class=article-h-a>3 Create virtual hard disk</a></h1><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span>$VHDFilePath = <span style=color:#a31515>&#39;d:\test.vhdx&#39;</span>
+</span></span><span style=display:flex><span>New-VHD -Path $VHDFilePath -Dynamic -SizeBytes 32GB
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># 回收文件系统中未使用的块资源</span>
+</span></span><span style=display:flex><span>fstrim /
+</span></span></code></pre></div><p><a href="https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vhd?view=win10-ps" target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vhd?view=win10-ps</a></p><h1 id=create-virtual-machine><i id=locator-create-virtual-machine class=header-locator></i>
+<a href=#create-virtual-machine class=article-h-a>4 Create virtual machine</a></h1><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span>$VMName = <span style=color:#a31515>&#39;test_vm&#39;</span>
+</span></span><span style=display:flex><span>$VMPath = <span style=color:#a31515>&#34;d:\</span>$VMName<span style=color:#a31515>&#34;</span>
+</span></span><span style=display:flex><span>$VMSwitch = <span style=color:#a31515>&#39;External Virtual Network Switch&#39;</span>
+</span></span><span style=display:flex><span>$InstallMedia = <span style=color:#a31515>&#39;d:\en_windows_server_2016_x64_dvd_9718492.iso&#39;</span>
+</span></span><span style=display:flex><span>$VHDFilePath = <span style=color:#a31515>&#39;d:\test.vhdx&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Create New Virtual Machine</span>
+</span></span><span style=display:flex><span>New-VM -Name $VMName -Generation 2 -VHDPath $VHDFilePath -SwitchName $VMSwitch -MemoryStartupBytes 2147483648 -Path $VMPath
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Add DVD Drive to Virtual Machine</span>
+</span></span><span style=display:flex><span>Add-VMScsiController -VMName $VMName
+</span></span><span style=display:flex><span>Add-VMDvdDrive -VMName $VMName -ControllerNumber 1 -ControllerLocation 0 -Path $InstallMedia
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Mount Installation Media</span>
+</span></span><span style=display:flex><span>$DVDDrive = Get-VMDvdDrive -VMName $VMName
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Configure Virtual Machine to Boot from DVD</span>
+</span></span><span style=display:flex><span>Set-VMFirmware -VMName $VMName -FirstBootDevice $DVDDrive
+</span></span></code></pre></div><h1 id=config><i id=locator-config class=header-locator></i>
+<a href=#config class=article-h-a>5 config</a></h1><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-pwsh data-lang=pwsh><span style=display:flex><span><span style=color:green># linux</span>
+</span></span><span style=display:flex><span>Vm-From-Json -JsonFilePath D:\_code\blog\src\powershell\hyper-v\linux.json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># windows</span>
+</span></span><span style=display:flex><span>Vm-From-Json -JsonFilePath D:\_code\blog\src\powershell\hyper-v\windows.json
+</span></span></code></pre></div><div class=highlight-files><div class=highlight-files-header>Hyper-V Json</div><div class=highlight-files-list><div class=highlight-file id=hfs-ea7b8fdb99d2eb4d7cd4b03d2c70fdc0><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-ea7b8fdb99d2eb4d7cd4b03d2c70fdc0","highlight-file_opened")'>deb1.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/deb1.json title="下载 deb1.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/deb1.json title="源码 deb1.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;deb1&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 2,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;Off&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 4
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;1GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;4GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;mac&#34;: <span style=color:#a31515>&#34;00:15:5D:02:02:01&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;127GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;1MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#a31515>&#34;z:\\_iso\\debian-12.1.0-amd64-dvd-1.9168ff53d789537db4f5233e7dfa5e860519c44b68132b70805218f842b00041.iso&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-f4ed17f0dda55f20a63eb8ac15029143><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-f4ed17f0dda55f20a63eb8ac15029143","highlight-file_opened")'>linux.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/linux.json title="下载 linux.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/linux.json title="源码 linux.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;testlinuxvm&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 2,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;Off&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 2
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;1GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;4GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;mac&#34;: <span style=color:#a31515>&#34;00:15:5D:02:02:01&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;z:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;127GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;1MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#a31515>&#34;z:\\linux.iso&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-7c2bfec577625470b82eaad75f32f14e><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-7c2bfec577625470b82eaad75f32f14e","highlight-file_opened")'>ltsc2019.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/ltsc2019.json title="下载 ltsc2019.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/ltsc2019.json title="源码 ltsc2019.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;ltsc2019&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 2,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;On&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 8
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;8GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;16GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;mac&#34;: <span style=color:#a31515>&#34;00:15:5D:02:02:09&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;127GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;32MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#00f>null</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-078b248cbdce03d669f9263a73d70534><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-078b248cbdce03d669f9263a73d70534","highlight-file_opened")'>ltsc2021.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/ltsc2021.json title="下载 ltsc2021.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/ltsc2021.json title="源码 ltsc2021.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;ltsc2021&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 2,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;Off&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 8
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;8GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;16GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;mac&#34;: <span style=color:#a31515>&#34;00:15:5D:02:02:09&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;127GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;32MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#a31515>&#34;z:\\_iso\\sw_dvd9_win_10_ltsc_2021_64bit_chnsimp_mlf_x22-84402.60ee40b9c76c228832d07c6157155c1cfccba959.iso&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-3c31666b8e77f49fbf864376089a1311><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-3c31666b8e77f49fbf864376089a1311","highlight-file_opened")'>openwrt.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/openwrt.json title="下载 openwrt.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/openwrt.json title="源码 openwrt.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;openwrt&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 1,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;Off&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 2
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;512MB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;1GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;mac&#34;: <span style=color:#a31515>&#34;00:15:5D:02:02:A1&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;16GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;1MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#00f>null</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-59d5e294e8c7340b6c20f86f302626f6><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-59d5e294e8c7340b6c20f86f302626f6","highlight-file_opened")'>tnas.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/tnas.json title="下载 tnas.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/tnas.json title="源码 tnas.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;tnas&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 2,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;Off&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 4
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;1GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;8GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;mac&#34;: <span style=color:#a31515>&#34;00:15:5D:02:02:A2&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;127GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;1MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#a31515>&#34;z:\\_iso\\truenas-scale-22.12.3.3.6c5742b936cb5f0daea41333e23147eaae884834a1307952a55b1623b8f2c6e2.iso&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-b5b6aecae4392f0dd2a2f80af8bb6319><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-b5b6aecae4392f0dd2a2f80af8bb6319","highlight-file_opened")'>win7.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/win7.json title="下载 win7.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/win7.json title="源码 win7.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;win7&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 1,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;Off&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 2
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;1GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;4GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;mac&#34;: <span style=color:#a31515>&#34;00:15:5D:02:02:07&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;127GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;32MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#a31515>&#34;z:\\_iso\\cn_windows_7_professional_with_sp1_vl_build_x64_dvd_u_677816.647b26479a3a46c078f5b1364a89003a31f4aada.iso&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-8ab9c8abf954f9559f7c319f1fba416e><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-8ab9c8abf954f9559f7c319f1fba416e","highlight-file_opened")'>windows.json</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/powershell/hyper-v/windows.json title="下载 windows.json" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/windows.json title="源码 windows.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;name&#34;: <span style=color:#a31515>&#34;testwindowsvm&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;generation&#34;: 2,
+</span></span><span style=display:flex><span>  &#34;path&#34;: <span style=color:#a31515>&#34;e:\\_hyper-v&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;automatic&#34;: {
+</span></span><span style=display:flex><span>    &#34;start&#34;: <span style=color:#a31515>&#34;Nothing&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;stop&#34;: <span style=color:#a31515>&#34;ShutDown&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;checkpoint&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;boot&#34;: {
+</span></span><span style=display:flex><span>    &#34;secure&#34;: <span style=color:#a31515>&#34;Off&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;checkpoint&#34;: {
+</span></span><span style=display:flex><span>    &#34;type&#34;: <span style=color:#a31515>&#34;Disabled&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;cpu&#34;: {
+</span></span><span style=display:flex><span>    &#34;count&#34;: 2
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;mem&#34;: {
+</span></span><span style=display:flex><span>    &#34;min&#34;: <span style=color:#a31515>&#34;1GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max&#34;: <span style=color:#a31515>&#34;4GB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;net&#34;: {
+</span></span><span style=display:flex><span>    &#34;switch&#34;: <span style=color:#a31515>&#34;HVS&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;vhd&#34;: {
+</span></span><span style=display:flex><span>    &#34;path&#34;: <span style=color:#a31515>&#34;z:\\_vhd&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;size&#34;: <span style=color:#a31515>&#34;127GB&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;blockSize&#34;: <span style=color:#a31515>&#34;32MB&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;dvd&#34;: {
+</span></span><span style=display:flex><span>    &#34;iso&#34;: <span style=color:#a31515>&#34;z:\\windows.iso&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div></div></div><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>6 参考引用</a></h1><p><a href="https://docs.microsoft.com/en-us/virtualization/index#pivot=main&amp;panel=server" target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/virtualization/index#pivot=main&panel=server</a></p><p><a href=https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-on-windows-server target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-on-windows-server</a></p><p><a href=https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v</a></p><p><a href=https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines</a></p><p><a href=https://docs.microsoft.com/en-us/windows-server/administration/performance-tuning/role/hyper-v-server/ target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/windows-server/administration/performance-tuning/role/hyper-v-server/</a></p></section><section class=article-meta><section class=article-date>2017-07-29 09:42，约690字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/powershell/ title=[PowerShell] target=_blank><i class="fa fa-folder"></i>[PowerShell]</a></section><section class=article-tags><a class=article-tag href=/tag/executionpolicy target=_blank><i class="fa fa-tag"></i>ExecutionPolicy</a>
+<a class=article-tag href=/tag/powershell target=_blank><i class="fa fa-tag"></i>PowerShell</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/affaabe2e0cb41d9f11323433dcf63c2d3d09aa9 target=_blank><i class="fa fa-code-fork"></i>affaabe</a>
+<span class=article-git-commit-subject>add enable-hyper-v.cmd</span>
+<span class=article-git-commit-time>2025-06-28 23:53</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/powershell/hyper-v/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/powershell/script/ target=_blank>[PowerShell] Script</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

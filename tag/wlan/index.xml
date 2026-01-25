@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wlan on Timetombs</title><link>https://linianhui.github.io/tag/wlan/</link><description>Recent content in Wlan on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/wlan/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] 00 概述</title><link>https://linianhui.github.io/computer-networking/00-overview/</link><pubDate>Sun, 22 Sep 2019 08:10:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/00-overview/</guid><description>&lt;p>1969年11月美国国防部建立了一个名为&lt;strong>ARPANET&lt;/strong>(Internet的雏形)的&lt;strong>分组&amp;amp;交换&lt;/strong>网络，当前时间是2019年，50年过去了，如今的网络已经融入了社会的方方面面，其重要性不言而喻。本系列博客专注于&lt;strong>计算机网络&lt;/strong>的核心概念和体系结构，并不涉及网络编程的概念。&lt;/p>
+&lt;h1 id="standardization">
+&lt;i id="locator-standardization" class="header-locator">&lt;/i>
+&lt;a href="#standardization" class="article-h-a">1 标准化&lt;/a>
+&lt;/h1>
+&lt;p>&lt;strong>计算机网络&lt;/strong> 由 &lt;strong>节点(node : 计算机、集线器、交换机或路由器)&lt;/strong> 和连接它们的 &lt;strong>链路(link)&lt;/strong> 组成。这些众多的设备之间如何通信？其中离不开各种各样的标准，标准的意义在于统一的规则，遵循相同标准的设备之间可以互联互通，从而避免一些不兼容的问题。&lt;strong>IETF(Internet Engineering Task Force)&lt;/strong>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>是负责标准化的一个重要机构，IP、TCP、UDP、DNS、HTTP等等众多协议都是由IETF标准化的。&lt;/p></description></item><item><title>[工具] android</title><link>https://linianhui.github.io/tool/android/</link><pubDate>Thu, 17 May 2018 23:48:01 +0800</pubDate><guid>https://linianhui.github.io/tool/android/</guid><description>&lt;h1 id="download">
+&lt;i id="locator-download" class="header-locator">&lt;/i>
+&lt;a href="#download" class="article-h-a">1 Download&lt;/a>
+&lt;/h1>
+&lt;h2 id="factory-image">
+&lt;i id="locator-factory-image" class="header-locator">&lt;/i>
+&lt;a href="#factory-image" class="article-h-a">1.1 Factory Image&lt;/a>
+&lt;/h2>
+&lt;p>&lt;a href="https://developers.google.com/android/images#ryu"
+
+ target="_blank" rel="noopener norefferrer">https://developers.google.com/android/images#ryu&lt;/a>&lt;/p>
+&lt;h2 id="platform-tools">
+&lt;i id="locator-platform-tools" class="header-locator">&lt;/i>
+&lt;a href="#platform-tools" class="article-h-a">1.2 Platform Tools&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">platform&lt;/th>
+ &lt;th style="text-align: left">url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">Windows&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/platform-tools-latest-windows.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">macOS&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/platform-tools-latest-darwin.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">Linux&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/platform-tools-latest-linux.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/platform-tools-latest-linux.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;blockquote>
+&lt;p>&lt;a href="https://developer.android.com/studio/releases/platform-tools"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com/studio/releases/platform-tools&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;h2 id="driver">
+&lt;i id="locator-driver" class="header-locator">&lt;/i>
+&lt;a href="#driver" class="article-h-a">1.3 Driver&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">platform&lt;/th>
+ &lt;th style="text-align: left">url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">OEM USE Drivers&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://developer.android.com/studio/run/oem-usb"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com/studio/run/oem-usb&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">Google USB Driver&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://developer.android.com/studio/run/win-usb"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com/studio/run/win-usb&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/usb_driver_r12-windows.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/usb_driver_r12-windows.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="recovery">
+&lt;i id="locator-recovery" class="header-locator">&lt;/i>
+&lt;a href="#recovery" class="article-h-a">1.4 Recovery&lt;/a>
+&lt;/h2>
+&lt;p>TWRP: &lt;a href="https://twrp.me/Devices/"
+
+ target="_blank" rel="noopener norefferrer">https://twrp.me/Devices/&lt;/a>&lt;/p>
+&lt;h1 id="command">
+&lt;i id="locator-command" class="header-locator">&lt;/i>
+&lt;a href="#command" class="article-h-a">2 Command&lt;/a>
+&lt;/h1>
+&lt;h2 id="fastboot">
+&lt;i id="locator-fastboot" class="header-locator">&lt;/i>
+&lt;a href="#fastboot" class="article-h-a">2.1 fastboot&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>fastboot flashing unlock
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># fix fastboot error ：unsupported command &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fwtool vbnv write dev_boot_fastboot_full_cap 1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fastboot flash recovery recovery.img
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fastboot flash logo logo.bin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="adb">
+&lt;i id="locator-adb" class="header-locator">&lt;/i>
+&lt;a href="#adb" class="article-h-a">2.2 adb&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>adb reboot bootloader
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>adb reboot recovery
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>adb sideload rom.zip
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>adb push rom.zip /sdcard/0/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="wlan-captive">
+&lt;i id="locator-wlan-captive" class="header-locator">&lt;/i>
+&lt;a href="#wlan-captive" class="article-h-a">3 WLAN captive&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 7.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>settings put global captive_portal_server captive.v2ex.co
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 7.1+&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>settings put global captive_portal_https_url https://captive.v2ex.co/generate_204
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">4 Reference&lt;/a>
+&lt;/h1>
+&lt;ol>
+&lt;li>developer : &lt;a href="https://developer.android.com"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com&lt;/a>&lt;/li>
+&lt;li>lineageos : &lt;a href="https://download.lineageos.org"
+
+ target="_blank" rel="noopener norefferrer">https://download.lineageos.org&lt;/a>&lt;/li>
+&lt;/ol></description></item></channel></rss>

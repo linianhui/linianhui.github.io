@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[认证&amp;授权] on Timetombs</title><link>https://linianhui.github.io/authentication-and-authorization/</link><description>Recent content in [认证&amp;授权] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/authentication-and-authorization/index.xml" rel="self" type="application/rss+xml"/><item><title>[认证&amp;授权] 04 OIDC(OpenId Connect)身份认证(核心部分)</title><link>https://linianhui.github.io/authentication-and-authorization/04-openid-connect-core/</link><pubDate>Tue, 30 May 2017 09:18:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/04-openid-connect-core/</guid><description>&lt;h1 id="what-is-oidc">
+&lt;i id="locator-what-is-oidc" class="header-locator">&lt;/i>
+&lt;a href="#what-is-oidc" class="article-h-a">1 什么是OIDC？&lt;/a>
+&lt;/h1>
+&lt;p>看一下官方的介绍(&lt;a href="http://openid.net/connect/"
+
+ target="_blank" rel="noopener norefferrer">http://openid.net/connect/&lt;/a>) :&lt;/p>
+&lt;blockquote>
+&lt;p>OpenID Connect 1.0 is a simple identity layer on top of the OAuth 2.0 protocol. It allows Clients to verify the identity of the End-User based on the authentication performed by an Authorization Server, as well as to obtain basic profile information about the End-User in an interoperable and REST-like manner.&lt;/p>
+&lt;p>OpenID Connect allows clients of all types, including Web-based, mobile, and JavaScript clients, to request and receive information about authenticated sessions and end-users. The specification suite is extensible, allowing participants to use optional features such as encryption of identity data, discovery of OpenID Providers, and session management, when it makes sense for them.&lt;/p>&lt;/blockquote>
+&lt;p>简单来说 : OIDC是OpenID Connect的简称，&lt;code>OIDC=(Identity, Authentication) + OAuth 2.0&lt;/code>。它在OAuth2上构建了一个身份层，是一个基于OAuth2协议的身份认证标准协议。我们都知道OAuth2是一个授权协议，它无法提供完善的身份认证功能(关于这一点请参考&lt;a href="../03-user-authentication-with-oauth2/"
+
+ target="_blank" rel="noopener norefferrer">[认证&amp;amp;授权] 03 使用OAuth2进行用户认证(译)&lt;/a>)，OIDC使用OAuth2的授权服务器来为第三方客户端提供用户的身份认证，并把对应的身份认证信息传递给客户端，且可以适用于各种类型的客户端(比如服务端应用，移动APP，JS应用)，且完全兼容OAuth2，也就是说你搭建了一个OIDC的服务后，也可以当作一个OAuth2的服务来用。应用场景如图 :&lt;br />
+&lt;img src="oidc-use-for.png" loading="lazy" decoding="auto" alt="OIDC 应用场景" title="OIDC 应用场景"/>&lt;/p></description></item><item><title>[认证&amp;授权] 06 Permission Based Access Control</title><link>https://linianhui.github.io/authentication-and-authorization/06-permission-based-access-control/</link><pubDate>Sat, 13 Jan 2018 15:23:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/06-permission-based-access-control/</guid><description>&lt;p>在前面5篇博客中介绍了OAuth2和OIDC(OpenId Connect)，其作用是授权和认证。那么当我们得到OAuth2的&lt;code>Access Token&lt;/code>或者OIDC的&lt;code>Id Token&lt;/code>之后，我们的&lt;strong>资源服务&lt;/strong>如何来验证这些token是否有权限来执行对资源的某一项操作呢？比如我有一个API &lt;code>/book&lt;/code>，它具有如下5个操作 :&lt;/p>
+&lt;ol>
+&lt;li>POST /book : 添加一本书&lt;/li>
+&lt;li>GET /book/{id} : 获取一本书&lt;/li>
+&lt;li>PUT /book/{id} : 更新一本书&lt;/li>
+&lt;li>DELETE /book/{id} : 删除一本书&lt;/li>
+&lt;li>GET /book : 获取书的列表&lt;/li>
+&lt;/ol>
+&lt;p>其伪代码如下 :&lt;/p></description></item><item><title>[认证&amp;授权] 05 OIDC(OpenId Connect)身份认证(扩展部分)</title><link>https://linianhui.github.io/authentication-and-authorization/05-openid-connect-extension/</link><pubDate>Thu, 16 Nov 2017 13:39:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/05-openid-connect-extension/</guid><description>&lt;p>在上一篇&lt;a href="../04-openid-connect-core/"
+
+ target="_blank" rel="noopener norefferrer">[认证&amp;amp;授权] 04 OIDC(OpenId Connect)身份认证(核心部分)&lt;/a>中解释了OIDC的核心部分的功能，即OIDC如何提供&lt;code>id_token&lt;/code>来用于认证。由于OIDC是一个协议族，如果只是简单的只关注其核心部分其实是不足以搭建一个完整的OIDC服务的。本篇则解释下OIDC中比较常用的几个相关扩展协议，可以说是搭建OIDC服务必备的几个扩展协议(在上一篇中有提到这几个协议规范):&lt;/p></description></item><item><title>[认证&amp;授权] 03 使用OAuth2进行用户认证(译)</title><link>https://linianhui.github.io/authentication-and-authorization/03-user-authentication-with-oauth2/</link><pubDate>Sun, 09 Apr 2017 16:59:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/03-user-authentication-with-oauth2/</guid><description>&lt;p>原作者 : &lt;a href="//https://twitter.com/justin__richer"
+
+ target="_blank" rel="noopener norefferrer">Justin Richer&lt;/a>, 原文: &lt;a href="https://oauth.net/articles/authentication"
+
+ target="_blank" rel="noopener norefferrer">User Authentication with OAuth 2.0&lt;/a>。&lt;/p>
+&lt;p>&lt;a href="http://tools.ietf.org/html/rfc6749"
+
+ target="_blank" rel="noopener norefferrer">OAuth2&lt;/a>规范定义了一个&lt;strong>授权(delegation)&lt;strong>协议，对于使用Web的应用程序和API在网络上传递&lt;/strong>授权决策&lt;/strong>非常有用。OAuth被用在各钟各样的应用程序中，包括提供用户认证的机制。这导致许多的开发者和API提供者得出一个OAuth本身是一个&lt;strong>认证&lt;/strong>协议的&lt;/span>错误结论，并将其错误的使用于此。在此需要明确指出 :&lt;/p></description></item><item><title>[认证&amp;授权] 02 OAuth2授权(续) &amp; JWT(JSON Web Token)</title><link>https://linianhui.github.io/authentication-and-authorization/02-oauth2-extensions-protocol-and-json-web-token/</link><pubDate>Mon, 03 Apr 2017 03:56:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/02-oauth2-extensions-protocol-and-json-web-token/</guid><description>&lt;h1 id="rfc6749-defects">
+&lt;i id="locator-rfc6749-defects" class="header-locator">&lt;/i>
+&lt;a href="#rfc6749-defects" class="article-h-a">1 RFC6749还有哪些可以完善的？&lt;/a>
+&lt;/h1>
+&lt;h2 id="token-revocation">
+&lt;i id="locator-token-revocation" class="header-locator">&lt;/i>
+&lt;a href="#token-revocation" class="article-h-a">1.1 撤销Token&lt;/a>
+&lt;/h2>
+&lt;p>在上篇&lt;a href="../01-oauth2-authorization/"
+
+ target="_blank" rel="noopener norefferrer">[认证&amp;amp;授权] 01 OAuth2授权&lt;/a>中介绍到了OAuth2可以帮我们解决第三方Client访问受保护资源的问题，但是只提供了如何获得access_token，并未说明怎么来撤销一个access_token。关于这部分OAuth2单独定义了一个&lt;a href="https://tools.ietf.org/html/rfc7009"
+
+ target="_blank" rel="noopener norefferrer">RFC7009 - OAuth 2.0 Token Revocation&lt;/a>来解决撤销Token问题。&lt;/p></description></item><item><title>[认证&amp;授权] 01 OAuth2授权</title><link>https://linianhui.github.io/authentication-and-authorization/01-oauth2-authorization/</link><pubDate>Mon, 09 Jan 2017 09:40:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/01-oauth2-authorization/</guid><description>&lt;h1 id="what-is-oauth2-use-for">
+&lt;i id="locator-what-is-oauth2-use-for" class="header-locator">&lt;/i>
+&lt;a href="#what-is-oauth2-use-for" class="article-h-a">1 OAuth2解决什么问题的？&lt;/a>
+&lt;/h1>
+&lt;p>举个栗子先。&lt;strong>小明&lt;/strong>在&lt;strong>QQ空间&lt;/strong>积攒了多年的照片，想挑选一些照片来打印出来。然后小明在找到一家提供在线打印并且包邮的网站(我们叫它&lt;strong>PP&lt;/strong>吧(Print Photo缩写 😂))。&lt;/p>
+&lt;p>那么现在问题来了，小明有两个方案来得到打印的服务。&lt;/p>
+&lt;ol>
+&lt;li>在自己的QQ空间把想要打印的照片下载下来，然后提供给PP(直接发邮件给PP或者网盘共享给PP等等)。&lt;/li>
+&lt;li>把自己的QQ账号密码给PP，然后告诉PP我要打印哪些照片。&lt;/li>
+&lt;/ol>
+&lt;p>针对方案(1) : 小明要去下载这些照片，然后给PP，小明累觉不爱，，，&lt;/p></description></item></channel></rss>

@@ -1,0 +1,211 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Git] 内容寻址文件系统 - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/git/ target=_blank>[Git]</a></section><section class=toc-page><a class=toc-page-title href=/git/config/ target=_blank>[Git] config</a></section><section class=toc-page><a class=toc-page-title href=/git/gitattributes/ target=_blank>[Git] .gitattributes</a></section><section class="toc-page selected"><span class=toc-page-title>[Git] 内容寻址文件系统</span><nav id=TableOfContents><ul><li><a href=#git-directory>1 .git 目录</a></li><li><a href=#git-objects-directory>2 objects目录</a><ul><li><a href=#git-blob-object>2.1 blob object</a></li><li><a href=#git-tree-object>2.2 tree object</a></li><li><a href=#git-commit-object>2.3 commit object</a></li><li><a href=#git-tag-object>2.4 tag object</a></li></ul></li><li><a href=#git-refs-directory>3 refs目录</a><ul><li><a href=#git-head-ref>3.1 head ref</a></li><li><a href=#git-tag-ref>3.2 tag ref</a></li><li><a href=#git-remotes-directory>3.3 remotes目录</a></li></ul></li><li><a href=#git-head-file>4 HEAD文件</a></li><li><a href=#git-index-file>5 index文件</a></li><li><a href=#summary>6 summary</a></li><li><a href=#reference>7 reference</a></li></ul></nav></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Git] 内容寻址文件系统</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2021-04-27 00:55，约3638字，阅读约8分钟</section><section class=article-topics><a class=article-topic href=/git/ title=[Git] target=_blank><i class="fa fa-folder"></i>[Git]</a></section><section class=article-tags><a class=article-tag href=/tag/blob target=_blank><i class="fa fa-tag"></i>blob</a>
+<a class=article-tag href=/tag/commit target=_blank><i class="fa fa-tag"></i>commit</a>
+<a class=article-tag href=/tag/content-addressable target=_blank><i class="fa fa-tag"></i>content-addressable</a>
+<a class=article-tag href=/tag/filesystem target=_blank><i class="fa fa-tag"></i>filesystem</a>
+<a class=article-tag href=/tag/git target=_blank><i class="fa fa-tag"></i>Git</a>
+<a class=article-tag href=/tag/tree target=_blank><i class="fa fa-tag"></i>tree</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/git/content-addressable-filesystem/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>不要感觉奇怪，为什么介绍Git的文章里面怎么会出现一个<strong>文件系统</strong>，还<strong>内容寻址</strong>，这都是什么啊？其实<code>内容寻址文件系统(content-addressable filesystem)</code>才是git的底层核心，而我们平时使用的<code>commit</code>，<code>branch</code>和<code>checkout</code>等等命令仅仅只是在上层包装成了VCS(version control system)的样子。</p><p><strong>文件系统</strong>是用来在物理存储设备上为上层应用提供抽象的文件管理功能的。比如常见的fat、fat32、ntfs、ext4等等。</p><p><strong>内容寻址</strong>指的是基于文件的内容来定位文件，git使用<code>SHA1</code><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>来唯一标识文件的。而非文件系统中常用的基于文件的位置(location)，比如<code>/bin/sh</code>这样的路径位置。</p><p>那么Git的底层就就构建在这样一个基于<code>SHA</code>作为key的KV文件系统。它所有的秘密都藏在<code>.git</code>目录下，我们这就来一探究竟。</p><h1 id=git-directory><i id=locator-git-directory class=header-locator></i>
+<a href=#git-directory class=article-h-a>1 .git 目录</a></h1><p>初始化一个新的仓库<code>git init temp</code>，然后查看一下默认的目录结构<code>tree -p .git</code>。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>.git
+</span></span><span style=display:flex><span>├── [-rw-r--r--]  HEAD
+</span></span><span style=display:flex><span>├── [-rw-r--r--]  config
+</span></span><span style=display:flex><span>├── [-rw-r--r--]  description
+</span></span><span style=display:flex><span>├── [drwxr-xr-x]  hooks
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  applypatch-msg.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  commit-msg.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  fsmonitor-watchman.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  post-update.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  pre-applypatch.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  pre-commit.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  pre-merge-commit.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  pre-push.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  pre-rebase.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  pre-receive.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  prepare-commit-msg.sample
+</span></span><span style=display:flex><span>│   ├── [-rwxr-xr-x]  push-to-checkout.sample
+</span></span><span style=display:flex><span>│   └── [-rwxr-xr-x]  update.sample
+</span></span><span style=display:flex><span>├── [drwxr-xr-x]  info
+</span></span><span style=display:flex><span>│   └── [-rw-r--r--]  exclude
+</span></span><span style=display:flex><span>├── [drwxr-xr-x]  objects
+</span></span><span style=display:flex><span>│   ├── [drwxr-xr-x]  info
+</span></span><span style=display:flex><span>│   └── [drwxr-xr-x]  pack
+</span></span><span style=display:flex><span>└── [drwxr-xr-x]  refs
+</span></span><span style=display:flex><span>    ├── [drwxr-xr-x]  heads
+</span></span><span style=display:flex><span>    └── [drwxr-xr-x]  tags
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>8 directories, 17 files
+</span></span></code></pre></div><ol><li><mark>HEAD文件</mark>：当前工作区的ref信息，文件内容默认是：<code>ref: refs/heads/main</code>，代表当前位于main分支。</li><li>config文件：当前repository的配置信息。</li><li>description文件：GitWeb 程序使用的描述说明，这里不关心。</li><li>hooks目录：客户端或服务端的hook脚本。</li><li>info/exclude文件：配置不希望被记录在.gitignore文件中的忽略模式。</li><li><mark>objects目录</mark>：存放核心对象（blob、tree、commit）数据的位置。</li><li><mark>refs目录</mark>：指向objects数据的指针数据。</li><li><mark>index文件</mark>：这个文件还未创建。用来保存暂存区的信息。</li></ol><p>我们通过操作git的底层命令来直接生成一个commit，以此来介绍下其运行机制。</p><h1 id=git-objects-directory><i id=locator-git-objects-directory class=header-locator></i>
+<a href=#git-objects-directory class=article-h-a>2 objects目录</a></h1><p>objects目录存储着git的4个核心对象：blob、tree、commit和tag。</p><ol><li>blob：文件内容：存储源码、文本或者二进制格式文件。</li><li>tree：文件信息：目录信息、文件名、文件权限属性信息以及文件名对应的blob对象的hash。</li><li>commit：提交信息：parent commit、committer、auther、time、commit message以及tree对象的hash等信息。</li><li>tag：标签信息：tagger、time tag message以及commit对象的hash。</li></ol><h2 id=git-blob-object><i id=locator-git-blob-object class=header-locator></i>
+<a href=#git-blob-object class=article-h-a>2.1 blob object</a></h2><p>首先使用<code>git hash-object</code><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>手动生成一个blob对象，代表我们要保存的文件内容，这个命令会返回根据文件内容+附加信息生成的SHA1。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>echo <span style=color:#a31515>&#39;this is file content 1&#39;</span> | git hash-object -w -t blob --stdin
+</span></span><span style=display:flex><span>068b6574adc8d309c1ff2438ad82b63197144a63
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>tree -f .git/objects
+</span></span><span style=display:flex><span>.git/objects
+</span></span><span style=display:flex><span>├── .git/objects/06
+</span></span><span style=display:flex><span>│   └── .git/objects/06/8b6574adc8d309c1ff2438ad82b63197144a63
+</span></span><span style=display:flex><span>├── .git/objects/info
+</span></span><span style=display:flex><span>└── .git/objects/pack
+</span></span></code></pre></div><p>命令解释：</p><ol><li><code>-w</code>：指示git把生成的blob对象持久化到objects目录下，路径是SHA1的前2个字符作为目录名，后38个字符作为文件名。</li><li><code>-t blob</code>：指定object类型为blob。</li><li><code>--stdin</code>：指示git把从<code>stdin</code><sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>中读取的内容作为文件内容。</li></ol><p>需要注意的是<code>git hash-object</code>并不是直接对内容计算SHA1，而是会添加一个<code>blob 23\0</code>的前缀，其中<code>23</code>是文件内容的byte长度。等效于：</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>echo <span style=color:#a31515>&#39;blob 23\0this is file content 1&#39;</span> | shasum -a 1
+</span></span><span style=display:flex><span>068b6574adc8d309c1ff2438ad82b63197144a63  -
+</span></span></code></pre></div><p>所以如果文件内容保持不变，那么无论你执行多少次<code>git hash-object</code>，都只会生成一个blob对象。那么比如我们的git仓库中有两个文件的文件内容完全相同，但是目录名或者文件名不同，是不是只需要存储一份就可以了呢？感兴趣的可以自己试一试。</p><blockquote><p>答案是只需存储一份blob对象即可。</p></blockquote><p>当你用<code>cat</code>尝试去读取文件内容时，你会发现无法读取，这是因为它本身是一个<strong>采用deflate压缩算法的zlib stream</strong><sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup>，而非文本文件。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>hexdump -C .git/objects/06/8b6574adc8d309c1ff2438ad82b63197144a63
+</span></span><span style=display:flex><span>00000000  78 01 4b ca c9 4f 52 30  32 66 28 c9 c8 2c 56 00  |x.K..OR02f(..,V.|
+</span></span><span style=display:flex><span>00000010  a2 b4 cc 9c 54 85 e4 fc  bc 92 d4 bc 12 05 43 2e  |....T.........C.|
+</span></span><span style=display:flex><span>00000020  00 a2 8a 0a 0f                                    |.....|
+</span></span><span style=display:flex><span>00000025
+</span></span></code></pre></div><p>这时我们可以使用<code>git cat-file</code><sup id=fnref:5><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup>来读取它。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># -p 打印blob的内容</span>
+</span></span><span style=display:flex><span>git cat-file -p 068b6574adc8d309c1ff2438ad82b63197144a63
+</span></span><span style=display:flex><span>this is file content 1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># -s 返回byte长度</span>
+</span></span><span style=display:flex><span>git cat-file -s 068b6574adc8d309c1ff2438ad82b63197144a63
+</span></span><span style=display:flex><span>23
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># -t 返回object的类型</span>
+</span></span><span style=display:flex><span>git cat-file -t 068b6574adc8d309c1ff2438ad82b63197144a63
+</span></span><span style=display:flex><span>blob
+</span></span></code></pre></div><h2 id=git-tree-object><i id=locator-git-tree-object class=header-locator></i>
+<a href=#git-tree-object class=article-h-a>2.2 tree object</a></h2><p>有了blob存储的文件内容，那么目录名和文件名信息怎么存储呢？答案就是tree对象。这里我们使用<code>git update-index</code><sup id=fnref:6><a href=#fn:6 class=footnote-ref role=doc-noteref>6</a></sup>（<a href=#git-index-file>index file</a>下文介绍）和<code>git write-tree</code><sup id=fnref:7><a href=#fn:7 class=footnote-ref role=doc-noteref>7</a></sup>来手工创建一个tree对象。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 指定文件属性100644、blob的hash和目录名、文件名信息</span>
+</span></span><span style=display:flex><span>git update-index --add --cacheinfo 100644 068b6574adc8d309c1ff2438ad82b63197144a63 test-dir/blob-file.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 生成一个tree对象，返回hash</span>
+</span></span><span style=display:flex><span>git write-tree
+</span></span><span style=display:flex><span>73e9fd0cc8f2199bc05ce95cbc0bef2b38e56345
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看一下这个tree对象（它代表的是test-dir这个文件夹），它包含另外一个tree对象</span>
+</span></span><span style=display:flex><span>git cat-file -p 73e9fd0cc8f2199bc05ce95cbc0bef2b38e56345
+</span></span><span style=display:flex><span>040000 tree 9ec1a2094d5084786ba165358deaa8e68cba8314    test-dir
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看另一个tree对象，这次它指向的就是上面创建的blob文件，并且带上了文件名。</span>
+</span></span><span style=display:flex><span>git cat-file -p 9ec1a2094d5084786ba165358deaa8e68cba8314
+</span></span><span style=display:flex><span>100644 blob 068b6574adc8d309c1ff2438ad82b63197144a63    blob-file.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 再来看一下目前所有的对象</span>
+</span></span><span style=display:flex><span>tree .git/objects
+</span></span><span style=display:flex><span>.git/objects
+</span></span><span style=display:flex><span>├── 06
+</span></span><span style=display:flex><span>│   └── 8b6574adc8d309c1ff2438ad82b63197144a63
+</span></span><span style=display:flex><span>├── 73
+</span></span><span style=display:flex><span>│   └── e9fd0cc8f2199bc05ce95cbc0bef2b38e56345
+</span></span><span style=display:flex><span>├── 9e
+</span></span><span style=display:flex><span>│   └── c1a2094d5084786ba165358deaa8e68cba8314
+</span></span><span style=display:flex><span>├── info
+</span></span><span style=display:flex><span>└── pack
+</span></span></code></pre></div><h2 id=git-commit-object><i id=locator-git-commit-object class=header-locator></i>
+<a href=#git-commit-object class=article-h-a>2.3 commit object</a></h2><p>至此有了代表文件内容的blob对象和代表directory和file信息的tree对象，那么是时候创建一个commit了。这里我们使用<code>git commit-tree</code><sup id=fnref:8><a href=#fn:8 class=footnote-ref role=doc-noteref>8</a></sup>命令。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 指定一个commit消息和tree对象，返回了commit对象hash</span>
+</span></span><span style=display:flex><span>echo <span style=color:#a31515>&#39;first commit form manual blob tree and commit&#39;</span> | git commit-tree 73e9fd0cc8f2199bc05ce95cbc0bef2b38e56345
+</span></span><span style=display:flex><span>bf84aa3517c5a51b50289f9ce17d7757b96a39dc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看一下这个commit对象的信息</span>
+</span></span><span style=display:flex><span>git cat-file -p bf84aa3517c5a51b50289f9ce17d7757b96a39dc
+</span></span><span style=display:flex><span>tree 73e9fd0cc8f2199bc05ce95cbc0bef2b38e56345
+</span></span><span style=display:flex><span>author lnh &lt;lnhdyx@outlook.com&gt; 1619526360 +0800
+</span></span><span style=display:flex><span>committer lnh &lt;lnhdyx@outlook.com&gt; 1619526360 +0800
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>first commit form manual blob tree and commit
+</span></span></code></pre></div><h2 id=git-tag-object><i id=locator-git-tag-object class=header-locator></i>
+<a href=#git-tag-object class=article-h-a>2.4 tag object</a></h2><p>这里我们使用<code>git tag</code><sup id=fnref:9><a href=#fn:9 class=footnote-ref role=doc-noteref>9</a></sup>命令。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 当使用 -a 或者 -s 参数时，才会生成tag对象</span>
+</span></span><span style=display:flex><span>git tag -a v0.1 bf84aa3517c5a51b50289f9ce17d7757b96a39dc -m <span style=color:#a31515>&#39;test tag&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看这个tag的hash</span>
+</span></span><span style=display:flex><span>cat .git/refs/tags/v0.1
+</span></span><span style=display:flex><span>8be7fa8832efbcabc48625ee9d651b6cd9f20858
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看一下v0.1这个tag</span>
+</span></span><span style=display:flex><span><span style=color:green># 或者根据tag的hash</span>
+</span></span><span style=display:flex><span>git cat-file -p v0.1
+</span></span><span style=display:flex><span>git cat-file -p 8be7fa8832efbcabc48625ee9d651b6cd9f20858
+</span></span><span style=display:flex><span>object bf84aa3517c5a51b50289f9ce17d7757b96a39dc
+</span></span><span style=display:flex><span>type commit
+</span></span><span style=display:flex><span>tag v0.1
+</span></span><span style=display:flex><span>tagger lnh &lt;lnhdyx@outlook.com&gt; 1619574383 +0800
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>test tag
+</span></span></code></pre></div><h1 id=git-refs-directory><i id=locator-git-refs-directory class=header-locator></i>
+<a href=#git-refs-directory class=article-h-a>3 refs目录</a></h1><p>commit的hash是很不方便记忆和直接操作使用的，我们通常需要指定一些有意义的名字。refs目录就是用来存储这些名字和commit hash的ref用的。主要有一下三个目录：</p><ol><li>heads目录：分支ref信息。</li><li>tags目录：标签ref信息。</li><li>remotes目录：远程的分支ref和标签ref信息。</li></ol><h2 id=git-head-ref><i id=locator-git-head-ref class=header-locator></i>
+<a href=#git-head-ref class=article-h-a>3.1 head ref</a></h2><p>这里我们使用<code>git update-ref</code><sup id=fnref:10><a href=#fn:10 class=footnote-ref role=doc-noteref>10</a></sup>命令来让test分支指向上面的commit。</p><blockquote><p>本质上是在<code>refs/heads</code>目录下添加一个以分支名test命名的文件，内容指向一个commit的hash。</p></blockquote><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 让test分支指向上面创建的commit</span>
+</span></span><span style=display:flex><span>git update-ref refs/heads/test bf84aa3517c5a51b50289f9ce17d7757b96a39dc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看一下存储的文件</span>
+</span></span><span style=display:flex><span>cat .git/refs/heads/test
+</span></span><span style=display:flex><span>bf84aa3517c5a51b50289f9ce17d7757b96a39dc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># -d 删除一个分支，仅仅只是删除ref，而不会删除commit</span>
+</span></span><span style=display:flex><span>git branch -d main
+</span></span><span style=display:flex><span>Deleted branch main (was bf84aa3).
+</span></span></code></pre></div><h2 id=git-tag-ref><i id=locator-git-tag-ref class=header-locator></i>
+<a href=#git-tag-ref class=article-h-a>3.2 tag ref</a></h2><p>除了像上文<a href=#git-tag-object>2.4 tag object</a>那样生成一个tag对象的办法外，git还可以只添加一个tag的ref而不生成taf对象（本质和上面的head ref一样，向<code>refs/tags</code>目录写入一个文件即可）。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 添加一个不生成tag对象的tag ref</span>
+</span></span><span style=display:flex><span>git tag no-object-tag 8be7fa8832efbcabc48625ee9d651b6cd9f20858
+</span></span><span style=display:flex><span><span style=color:green># 或者</span>
+</span></span><span style=display:flex><span>echo <span style=color:#a31515>&#39;8be7fa8832efbcabc48625ee9d651b6cd9f20858&#39;</span> &gt; .git/refs/tags/no-object-tag
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看一下存储的文件</span>
+</span></span><span style=display:flex><span>cat .git/refs/tags/no-object-tag
+</span></span><span style=display:flex><span>bf84aa3517c5a51b50289f9ce17d7757b96a39dc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># -d 删除一个tag，也仅仅只是删除ref，而不会删除commit</span>
+</span></span><span style=display:flex><span>git tag -d no-object-tag
+</span></span><span style=display:flex><span>Deleted tag <span style=color:#a31515>&#39;no-object-tag&#39;</span> (was 8be7fa8)
+</span></span></code></pre></div><h2 id=git-remotes-directory><i id=locator-git-remotes-directory class=header-locator></i>
+<a href=#git-remotes-directory class=article-h-a>3.3 remotes目录</a></h2><p>记录者远程的<a href=#git-head-ref>3.1 head ref</a>、<a href=#git-tag-ref>3.2 tag ref</a>和<a href=#git-head-file>4 HEAD文件</a>。</p><h1 id=git-head-file><i id=locator-git-head-file class=header-locator></i>
+<a href=#git-head-file class=article-h-a>4 HEAD文件</a></h1><p>HEAD文件存储着当前工作区的ref信息，可以是指向branch、tag或者某一个commit hash。可以使用底层命令<code>git symbolic-ref</code><sup id=fnref:11><a href=#fn:11 class=footnote-ref role=doc-noteref>11</a></sup>命令来让操作这个文件。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 更新一下HEAD文件</span>
+</span></span><span style=display:flex><span>git symbolic-ref HEAD refs/heads/test
+</span></span><span style=display:flex><span><span style=color:green># 查看HEAD文件，至此，一个commit算是完整的提交到分支上去了。</span>
+</span></span><span style=display:flex><span>cat .git/HEAD
+</span></span><span style=display:flex><span>ref: refs/heads/test
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 那么我们看一下当前状态。咦，怎么提示我删除了一个文件呢？</span>
+</span></span><span style=display:flex><span><span style=color:green># 这是因为我们上面的commit没有经过当前的工作区和暂存区，而是直接存储到了本地的repo中。</span>
+</span></span><span style=display:flex><span>$ git status
+</span></span><span style=display:flex><span>On branch test
+</span></span><span style=display:flex><span>Changes not staged <span style=color:#00f>for</span> commit:
+</span></span><span style=display:flex><span>  (use <span style=color:#a31515>&#34;git add/rm &lt;file&gt;...&#34;</span> to update what will be committed)
+</span></span><span style=display:flex><span>  (use <span style=color:#a31515>&#34;git restore &lt;file&gt;...&#34;</span> to discard changes in working目录)
+</span></span><span style=display:flex><span>        deleted:    test-dir/blob-file.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>no changes added to commit (use <span style=color:#a31515>&#34;git add&#34;</span> and/or <span style=color:#a31515>&#34;git commit -a&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 我们清空一下暂存区即可。</span>
+</span></span><span style=display:flex><span>git checkout .
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 然后你就看到我们刚刚手工commit的文件内容已经出现了。</span>
+</span></span><span style=display:flex><span>tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>└── test-dir
+</span></span><span style=display:flex><span>    └── blob-file.txt
+</span></span><span style=display:flex><span><span style=color:green># 查看一下文件内容</span>
+</span></span><span style=display:flex><span>cat test-dir/blob-file.txt
+</span></span><span style=display:flex><span>this is file content 1
+</span></span></code></pre></div><h1 id=git-index-file><i id=locator-git-index-file class=header-locator></i>
+<a href=#git-index-file class=article-h-a>5 index文件</a></h1><p>在<a href=#git-tree-object>2.2 tree object</a>创建tree时，我们先向index文件中更新了一些信息，然后才基于index创建出了第一个tree对象。这个index的文件中存储的是暂存区的数据。所有需要添加到仓库区(.git目录)中的数据都必须先进入到index中，这个文件也是一个二进制文件<sup id=fnref:12><a href=#fn:12 class=footnote-ref role=doc-noteref>12</a></sup>。可是使用<code>git ls-files</code><sup id=fnref:13><a href=#fn:13 class=footnote-ref role=doc-noteref>13</a></sup>命令来查看暂存区的内容。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>git ls-files --stage
+</span></span><span style=display:flex><span>100644 068b6574adc8d309c1ff2438ad82b63197144a63 0       test-dir/blob-file.txt
+</span></span></code></pre></div><h1 id=summary><i id=locator-summary class=header-locator></i>
+<a href=#summary class=article-h-a>6 summary</a></h1><p>通过借助底层命令手动创建一个commit分析了一下git的底层存储机制：blob、tree、commit、tag以及ref和index文件。如有错误之处欢迎指正！</p><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>7 reference</a></h1><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>密码散列函数-SHA <a href=https://linianhui.github.io/information-security/01-cryptography-toolbox-1/#sha target=_blank rel="noopener norefferrer">https://linianhui.github.io/information-security/01-cryptography-toolbox-1/#sha</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><code>git hash-object</code> : <a href=https://git-scm.com/docs/git-hash-object target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-hash-object</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><code>man stdin</code> : <a href=https://man7.org/linux/man-pages/man3/stdin.3.html target=_blank rel="noopener norefferrer">https://man7.org/linux/man-pages/man3/stdin.3.html</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4><p>Git Object Storage: <a href=https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_object_storage target=_blank rel="noopener norefferrer">https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_object_storage</a>&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:5><p><code>git cat-file</code> : <a href=https://git-scm.com/docs/git-cat-file target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-cat-file</a>&#160;<a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:6><p><code>git update-index</code> : <a href=https://git-scm.com/docs/git-update-index target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-update-index</a>&#160;<a href=#fnref:6 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:7><p><code>git write-tree</code> : <a href=https://git-scm.com/docs/git-write-tree target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-write-tree</a>&#160;<a href=#fnref:7 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:8><p><code>git commit-tree</code> : <a href=https://git-scm.com/docs/git-commit-tree target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-commit-tree</a>&#160;<a href=#fnref:8 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:9><p><code>git tag</code> : <a href=https://git-scm.com/docs/git-tag target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-tag</a>&#160;<a href=#fnref:9 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:10><p><code>git update-ref</code> : <a href=https://git-scm.com/docs/git-update-ref target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-update-ref</a>&#160;<a href=#fnref:10 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:11><p><code>git symbolic-ref</code> : <a href=https://git-scm.com/docs/git-symbolic-ref target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-symbolic-ref</a>&#160;<a href=#fnref:11 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:12><p>Git index file format : <a href=https://git-scm.com/docs/index-format target=_blank rel="noopener norefferrer">https://git-scm.com/docs/index-format</a>&#160;<a href=#fnref:12 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:13><p><code>git ls-files</code> : <a href=https://git-scm.com/docs/git-ls-files target=_blank rel="noopener norefferrer">https://git-scm.com/docs/git-ls-files</a>&#160;<a href=#fnref:13 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2021-04-27 00:55，约3638字，阅读约8分钟</section><section class=article-topics><a class=article-topic href=/git/ title=[Git] target=_blank><i class="fa fa-folder"></i>[Git]</a></section><section class=article-tags><a class=article-tag href=/tag/blob target=_blank><i class="fa fa-tag"></i>blob</a>
+<a class=article-tag href=/tag/commit target=_blank><i class="fa fa-tag"></i>commit</a>
+<a class=article-tag href=/tag/content-addressable target=_blank><i class="fa fa-tag"></i>content-addressable</a>
+<a class=article-tag href=/tag/filesystem target=_blank><i class="fa fa-tag"></i>filesystem</a>
+<a class=article-tag href=/tag/git target=_blank><i class="fa fa-tag"></i>Git</a>
+<a class=article-tag href=/tag/tree target=_blank><i class="fa fa-tag"></i>tree</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/git/content-addressable-filesystem/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/git/gitattributes/ target=_blank>[Git] .gitattributes</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

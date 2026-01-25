@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://maven.apache.org/settings.html -->
+<!--
+  加载顺序
+  1. 全局设置 M2_HOME/conf/settiing.xml
+  2. 用户设置 HOME/.m2/settiing.xml
+-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <profiles>
+    <profile>
+      <!-- https://maven.aliyun.com/mvn/guide -->
+      <id>aliyun</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://maven.aliyun.com/repository/central</url>
+        </repository>
+        <!-- <repository>
+          <id>public</id>
+          <url>https://maven.aliyun.com/repository/public</url>
+        </repository>-->
+        <!--<repository>
+          <id>gradle-plugin</id>
+          <url>https://maven.aliyun.com/repository/gradle-plugin</url>
+        </repository>-->
+        <!-- <repository>
+          <id>apache snapshots</id>
+          <url>https://maven.aliyun.com/repository/apache-snapshots</url>
+        </repository>-->
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>https://maven.aliyun.com/repository/central</url>
+        </pluginRepository>
+        <!-- <pluginRepository>
+          <id>public</id>
+          <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>-->
+        <!-- <pluginRepository>
+          <id>gradle-plugin</id>
+          <url>https://maven.aliyun.com/repository/gradle-plugin</url>
+        </pluginRepository>-->
+        <!-- <pluginRepository>
+          <id>apache snapshots</id>
+          <url>https://maven.aliyun.com/repository/apache-snapshots</url>
+        </pluginRepository>-->
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>aliyun</activeProfile>
+  </activeProfiles>
+</settings>

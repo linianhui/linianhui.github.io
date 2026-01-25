@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Oidc-Client.js on Timetombs</title><link>https://linianhui.github.io/tag/oidc-client.js/</link><description>Recent content in Oidc-Client.js on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/oidc-client.js/index.xml" rel="self" type="application/rss+xml"/><item><title>[OIDC in Action] 02 基于OIDC的SSO - JS Client</title><link>https://linianhui.github.io/oidc-in-action/02-oidc-sso-js-client/</link><pubDate>Mon, 27 Nov 2017 12:19:00 +0800</pubDate><guid>https://linianhui.github.io/oidc-in-action/02-oidc-sso-js-client/</guid><description>&lt;p>在上一篇&lt;a href="../01-oidc-sso/"
+
+ target="_blank" rel="noopener norefferrer">[OIDC in Action] 01 基于OIDC的SSO&lt;/a>的中涉及到了4个Web站点 :&lt;/p>
+&lt;ol>
+&lt;li>oidc-server.dev : 利用oidc实现的统一认证和授权中心，SSO站点。&lt;/li>
+&lt;li>oidc-client-hybrid.dev : oidc的一个客户端，采用hybrid模式。&lt;/li>
+&lt;li>oidc-client-implicit.dev : odic的另一个客户端，采用implicit模式。&lt;/li>
+&lt;li>oidc-client-js.dev : oidc的又一个客户端，采用implicit模式，纯静态网站，只有js和html，无服务端代码。&lt;/li>
+&lt;/ol>
+&lt;p>其中hybrid和implicit这两个站点都是具有在服务端执行代码的能力的(1，登录需要在服务端做跳转；2，登录状态写入cookie；3，通过服务端的接口接收被动的退出通知)。而js这个客户端则是一个纯粹的静态网站，那么它是如何处理登录和退出的呢？&lt;/p></description></item></channel></rss>

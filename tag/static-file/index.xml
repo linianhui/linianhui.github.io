@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Static-File on Timetombs</title><link>https://linianhui.github.io/tag/static-file/</link><description>Recent content in Static-File on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/static-file/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] caddy</title><link>https://linianhui.github.io/tool/caddy/</link><pubDate>Fri, 12 Mar 2021 17:07:03 +0800</pubDate><guid>https://linianhui.github.io/tool/caddy/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>go语言开发的开源的Http Server。可以作为反向代理服务器和Http静态文件文件服务器。&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-2865793e43e3c03973b191d6472037ee">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-2865793e43e3c03973b191d6472037ee','highlight-file_opened')">Caddyfile&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/caddy/Caddyfile" title="下载 Caddyfile" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/caddy/Caddyfile" title="源码 Caddyfile">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> auto_https off
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>:2015
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>file_server browse
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>templates&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/caddyserver/caddy"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/caddyserver/caddy&lt;/a>&lt;/p></description></item><item><title>[工具] miniserve</title><link>https://linianhui.github.io/tool/miniserve/</link><pubDate>Fri, 12 Mar 2021 17:07:03 +0800</pubDate><guid>https://linianhui.github.io/tool/miniserve/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>rust语言开发的开源的轻量级静态文件Http Server。支持的功能：&lt;/p>
+&lt;ol>
+&lt;li>静态文件目录服务。&lt;/li>
+&lt;li>上传文件。&lt;/li>
+&lt;li>http基本认证。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>miniserve --color-scheme squirrel --qrcode --auth lnh:123 --upload-files
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>官方仓库： &lt;a href="https://github.com/svenstaro/miniserve"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve&lt;/a>&lt;/p>
+&lt;p>下载连接：&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-pc-windows-msvc.exe"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-pc-windows-msvc.exe&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-apple-darwin"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-apple-darwin&lt;/a>&lt;/li>
+&lt;/ol></description></item></channel></rss>

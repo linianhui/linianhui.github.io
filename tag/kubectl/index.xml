@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kubectl on Timetombs</title><link>https://linianhui.github.io/tag/kubectl/</link><description>Recent content in Kubectl on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/kubectl/index.xml" rel="self" type="application/rss+xml"/><item><title>[K8S] kubectl</title><link>https://linianhui.github.io/k8s/kubectl/</link><pubDate>Mon, 13 Apr 2020 22:20:01 +0800</pubDate><guid>https://linianhui.github.io/k8s/kubectl/</guid><description>&lt;p>kubectl是k8s的command-line工具，用来管理k8s中的各种资源。kubectl是一个go编写的单文件可执行程序，支持Windows、Linux、macOS。kubectl通过HTTPS APIs和k8s的集群的API Service进行通信，使用这些APIs来提供管理功能。&lt;/p>
+&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">1 kubectl的安装和配置&lt;/a>
+&lt;/h1>
+&lt;p>因为kubectl是一个单文件可执行程序，安装非常简单，直接下载即可（或者通过yum、apt、brew、choco等包管理器来安装）。&lt;/p></description></item></channel></rss>

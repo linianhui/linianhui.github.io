@@ -1,0 +1,359 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Redis] data type - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/redis/ target=_blank>[Redis]</a></section><section class=toc-page><a class=toc-page-title href=/redis/install/ target=_blank>[Redis] install</a></section><section class=toc-page><a class=toc-page-title href=/redis/resp/ target=_blank>[Redis] resp</a></section><section class="toc-page selected"><span class=toc-page-title>[Redis] data type</span><nav id=TableOfContents><ul><li><a href=#client>1 client使用</a><ul><li><a href=#string>1.1 String</a></li><li><a href=#list>1.2 List</a></li><li><a href=#set>1.3 Set</a></li><li><a href=#zset>1.4 ZSet</a></li><li><a href=#hash>1.5 Hash</a></li><li><a href=#stream>1.6 Stream</a></li><li><a href=#bitmap>1.7 Bitmap</a></li><li><a href=#hyperloglog>1.8 HyperLogLog</a></li><li><a href=#geo>1.9 GEO</a></li></ul></li><li><a href=#server>2 server实现</a><ul><li><a href=#redisdb>2.1 redisDb</a></li><li><a href=#redisobject>2.2 redisObject</a></li><li><a href=#encoding>2.3 encoding</a><ul><li><a href=#sds>2.3.0 sds</a></li><li><a href=#int>2.3.1 int</a></li><li><a href=#dict>2.3.2 dict</a></li><li><a href=#zipmap>2.3.3 zipmap</a></li><li><a href=#linkedlist>2.3.4 linkedlist</a></li><li><a href=#ziplist>2.3.5 ziplist</a></li><li><a href=#intset>2.3.6 intset</a></li><li><a href=#skiplist>2.3.7 skiplist</a></li><li><a href=#embstr>2.3.8 embstr</a></li><li><a href=#quicklist>2.3.9 quicklist</a></li></ul></li></ul></li><li><a href=#summary>3 总结</a></li><li><a href=#reference>4 参考</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/redis/pipelining/ target=_blank>[Redis] pipelining</a></section><section class=toc-page><a class=toc-page-title href=/redis/expire/ target=_blank>[Redis] expire</a></section><section class=toc-page><a class=toc-page-title href=/redis/lua/ target=_blank>[Redis] lua script</a></section><section class=toc-page><a class=toc-page-title href=/redis/persistence/ target=_blank>[Redis] persistence</a></section><section class=toc-page><a class=toc-page-title href=/redis/benchmark/ target=_blank>[Redis] benchmark</a></section><section class=toc-page><a class=toc-page-title href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></section><section class=toc-page><a class=toc-page-title href=/redis/replication/ target=_blank>[Redis] replication</a></section><section class=toc-page><a class=toc-page-title href=/redis/sentinel/ target=_blank>[Redis] sentinel</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Redis] data type</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2021-03-19 19:50，约6007字，阅读约12分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/bitmap target=_blank><i class="fa fa-tag"></i>bitmap</a>
+<a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/dev target=_blank><i class="fa fa-tag"></i>dev</a>
+<a class=article-tag href=/tag/hash target=_blank><i class="fa fa-tag"></i>hash</a>
+<a class=article-tag href=/tag/hyperloglog target=_blank><i class="fa fa-tag"></i>hyperloglog</a>
+<a class=article-tag href=/tag/list target=_blank><i class="fa fa-tag"></i>list</a>
+<a class=article-tag href=/tag/module target=_blank><i class="fa fa-tag"></i>module</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a>
+<a class=article-tag href=/tag/sds target=_blank><i class="fa fa-tag"></i>sds</a>
+<a class=article-tag href=/tag/set target=_blank><i class="fa fa-tag"></i>set</a>
+<a class=article-tag href=/tag/sorted-set target=_blank><i class="fa fa-tag"></i>sorted set</a>
+<a class=article-tag href=/tag/stream target=_blank><i class="fa fa-tag"></i>stream</a>
+<a class=article-tag href=/tag/string target=_blank><i class="fa fa-tag"></i>string</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/data-type/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>redis支持丰富的数据类型<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>。我们这里从两个角度来介绍：</p><ol><li>client使用：client可以使用到的数据类型。</li><li>server实现：server内部的具体实现。</li></ol><h1 id=client><i id=locator-client class=header-locator></i>
+<a href=#client class=article-h-a>1 client使用</a></h1><h2 id=string><i id=locator-string class=header-locator></i>
+<a href=#string class=article-h-a>1.1 String</a></h2><p>string是一个<strong>二进制安全的</strong>字符串，类似于java的String，但是它是可以修改的。value最大长度不能超过<strong>512MB</strong>。</p><p>redis中的key是string类型的，key的命名规则的通常采用<code>:</code>分割的具有层级结构的形式，比如<code>account:1001:followers</code>。</p><p>常用命令：</p><ol><li><code>SET key value [EX seconds|PX milliseconds|EXAT timestamp|PXAT milliseconds-timestamp|KEEPTTL] [NX|XX] [GET]</code>：O(1)。设置一个。</li><li><code>MSET key value [key value ...]</code>：O(N)，N=key/value数量。批量设置多个。</li><li><code>GET key</code>：O(1)。获取一个。</li><li><code>MGET key [key ...]</code>：O(N)，N=key数量。批量获取多个。</li><li><code>DEL key [key ...]</code>：O(N)，N=key数量。批量删除多个。</li><li><code>STRLEN key</code>：O(1)。获取长度。</li><li><code>GETDEL key</code>：O(1)。获取并且删除。</li></ol><p>底层encoding：</p><ol><li><a href=#int>int</a></li><li><a href=#sds>sds</a></li><li><a href=#embstr>embstr</a></li></ol><h2 id=list><i id=locator-list class=header-locator></i>
+<a href=#list class=article-h-a>1.2 List</a></h2><p>list是一个有序的string元素序列，它类似于java中的linkedlist。最大元素数量是<code>2<sup>32</sup>-1=4294967295(40亿+)</code>。</p><p>常用命令：</p><ol><li><code>LPUSH key element [element ...]</code>：O(N)，N=element数量。在左侧添加一个或多个。</li><li><code>RPUSH key element [element ...]</code>：O(N)，N=element数量。在右侧添加一个或多个。</li><li><code>LPOP key [count]</code>：O(N)，N=count。在左侧返回一个或多个并删除。</li><li><code>RPOP key [count]</code>：O(N)，N=count。在右侧返回一个或多个并删除。</li><li><code>LLEN key</code>：O(1)。获取长度。</li><li><code>LRANGE key start_index stop_index</code>：O(N)。返回指定的范围的元素序列，索引从0开始，负数表示从最后一个元素倒数，比如-1是最后一个元素，-2是倒数第二个元素。</li></ol><p>底层encoding：</p><ol><li><a href=#quicklist>quicklist</a></li><li><a href=#linkedlist>linkedlist</a></li><li><a href=#ziplist>ziplist</a></li></ol><h2 id=set><i id=locator-set class=header-locator></i>
+<a href=#set class=article-h-a>1.3 Set</a></h2><p>set是一个无序string元素的集合，但是其中的元素的具有唯一性，因此可以判断元素是否存在，取交集、并集和差集这样的操作。最大元素数量是<code>2<sup>32</sup>-1=4294967295(40亿+)</code>。</p><p>常用命令：</p><ol><li><code>SADD key member [member ...]</code>: O(N)，N=memner数量。添加元素。</li><li><code>SISMEMBER key member</code>: O(1)。判断元素是否存在。</li><li><code>SMISMEMBER key member [member ...]</code>: O(N)，N=memner数量。判断多个元素是否分别存在。</li><li><code>SMEMBERS key</code>: O(N)，N=memner数量。返回所有元素。</li><li><code>SREM key member [member ...]</code>: O(N)，N=memner数量。移除指定的元素。</li><li><code>SRANDMEMBER key [count]</code>: O(N)，N=count。随机返回count个元素。</li><li><code>SPOP key [count]</code>: O(N)，N=count。随机移除并返回count个元素。</li><li><code>SCARD key</code>: O(1)。返回元素的个数（基数）。</li><li><code>SDIFF key [key ...]</code>: O(N)，N=所有key的元素数之和。差集。返回第一个key中不存在于后续key中的元素集合。</li><li><code>SDIFFSTORE destination key [key ...]</code>: 同SDIFF，区别在于把结果存储到另外一个指定的key。</li><li><code>SINTER key [key ...]</code>: O(N*M)，N=key的数量，M=元素数。交集。</li><li><code>SUNION key [key ...]</code>: O(N)，N=key的数量，M=元素数。并集。</li></ol><p>底层encoding：</p><ol><li><a href=#intset>intset</a></li><li><a href=#dict>dict</a></li></ol><h2 id=zset><i id=locator-zset class=header-locator></i>
+<a href=#zset class=article-h-a>1.4 ZSet</a></h2><p>类似set，不同之处它是有序的，通过手动指定score来排序。</p><p>常用命令：</p><ol><li><code>ZADD key [NX|XX] [GT|LT] [CH] [INCR] score member [score member ...]</code>：O(log(N))，N=score/member数。</li><li><code>ZCARD key</code>: O(1)。返回元素数量。</li><li><code>ZREM key member [member ...]</code>：O(M*log(N)) 。移除指定元素。</li><li><code>ZRANK key member</code>：O(log(N))。返回指定元素的排名。</li><li><code>ZPOPMIN key [count]</code>：O(log(N)*M) 。移除并且返回最小的count个元素。</li></ol><p>底层encoding：</p><ol><li><a href=#skiplist>skiplist</a></li><li><a href=#dict>dict</a></li></ol><h2 id=hash><i id=locator-hash class=header-locator></i>
+<a href=#hash class=article-h-a>1.5 Hash</a></h2><p>hash是一个K/V集合（K/V都是string），类似于java中的HashMap。最大元素数量是<code>2<sup>32</sup>-1=4294967295(40亿+)</code>。</p><p>常用命令：</p><ol><li><code>HSET key field value [field value ...]</code>：O(N)，N=field/value数量。设置一个或多个。</li><li><code>HGET key field</code>：O(1)。获取用一个。</li><li><code>HMGET key field [field ...]</code>：O(N)，N=field数量。获取一个或多个。</li><li><code>HLEN key</code>：O(1)。获取长度。</li><li><code>HEXISTS key field</code>：O(1)。检查field是否存在。</li><li><code>HKEYS key</code>：O(N)，实际元素数量。获取所有key。</li><li><code>HVALS key</code>：O(N)，实际元素数量。获取所有value。</li><li><code>HGETALL key</code>：O(N)，实际元素数量。获取所有key/value。</li></ol><p>底层encoding：</p><ol><li><a href=#ziplist>ziplist</a></li><li><a href=#dict>dict</a></li></ol><h2 id=stream><i id=locator-stream class=header-locator></i>
+<a href=#stream class=article-h-a>1.6 Stream</a></h2><h2 id=bitmap><i id=locator-bitmap class=header-locator></i>
+<a href=#bitmap class=article-h-a>1.7 Bitmap</a></h2><p>Bitmap是一个由<code>01</code>bit构成的有序序列，可以对其进行<strong>位运算</strong><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>。Bitmap的优点是它非常节约存储空间（这和其底层实现有关）。对Bitmap的操作可以分为两类，一类是单个bit的操作，一类是一段bit区间的操作。可以用它来实现布隆过滤器。</p><p>常用命令：</p><ol><li><code>SETBIT key offset value</code>: O(1)。设置offset的bit值，返回offset的旧值。</li><li><code>GETBIT key offset</code>: O(1)。返回offset的bit值，未设置或者超出范围返回为0。</li><li><code>BITCOUNT key [start end]</code>: O(N)，N=end-start，单位是字节而不是bit。计算指定位置的1的数量。</li></ol><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 设置index=63的位置为1。63的单位是bit。</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SETBIT bm 63 1
+</span></span><span style=display:flex><span>(integer) 0
+</span></span><span style=display:flex><span><span style=color:green># 未设置，返回0。</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GETBIT bm 62
+</span></span><span style=display:flex><span>(integer) 0
+</span></span><span style=display:flex><span><span style=color:green># 63刚被设置为1。</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GETBIT bm 63
+</span></span><span style=display:flex><span>(integer) 1
+</span></span><span style=display:flex><span><span style=color:green># 65超出范围了，返回0。</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GETBIT bm 65
+</span></span><span style=display:flex><span>(integer) 0
+</span></span><span style=display:flex><span><span style=color:green># 单位byte，最开始设置的是63bit处，故而需要8个字节，0-7正好包含。故而返回被设置的1的个数1。</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; BITCOUNT bm 0 7
+</span></span><span style=display:flex><span>(integer) 1
+</span></span><span style=display:flex><span><span style=color:green># 只有第index=7位置的byte被设置过1。故而返回0。</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; BITCOUNT bm 0 6
+</span></span><span style=display:flex><span>(integer) 0
+</span></span><span style=display:flex><span><span style=color:green># 就是一个string</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GET bm
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;\x00\x00\x00\x00\x00\x00\x00\x01&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># 标准的sds</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT bm
+</span></span><span style=display:flex><span>Value at:0x7fd8fc616a80 refcount:1 encoding:raw serializedlength:9 lru:6589153 lru_seconds_idle:13
+</span></span></code></pre></div><p>Bitmap底层是<a href=#string>string</a>类型，因为string最大长度为512MB，故而Bitmap最多可以表示<code>512MB =2<sup>29</sup>byte = 2<sup>32</sup>bit=4294967295(40亿+)</code>。</p><p>底层encoding：</p><ol><li><a href=#sds>sds</a></li></ol><h2 id=hyperloglog><i id=locator-hyperloglog class=header-locator></i>
+<a href=#hyperloglog class=article-h-a>1.8 HyperLogLog</a></h2><p>HyperLogLog是一种概率数据结构，用来计算唯一元素的个数（估算的，并不是100%准确，redis中的实现误差在1%）。其优点是无需存储需要计数的元素，<strong>占用内存极小，最多12k的内存</strong>。很合适用来做统计，但是又不要求精确数据的场景，比如访问量。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 添加9个元素，其中3个重复，实际上唯一的只是6个。</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; PFADD hll a b c d e f a b c
+</span></span><span style=display:flex><span>(integer) 1
+</span></span><span style=display:flex><span><span style=color:green># 返回个数</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; PFCOUNT hll
+</span></span><span style=display:flex><span>(integer) 6
+</span></span><span style=display:flex><span><span style=color:green># 再添加两个</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; PFADD hll g h
+</span></span><span style=display:flex><span>(integer) 1
+</span></span><span style=display:flex><span><span style=color:green># 返回新个数</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; PFCOUNT hll
+</span></span><span style=display:flex><span>(integer) 8
+</span></span><span style=display:flex><span><span style=color:green># 当作string来查看</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GET hll
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;HYLL\x01\x00\x00\x00\b\x00\x00\x00\x00\x00\x00\x00Fm\x80V\x0c\x80D&lt;\x848\x80M\xc2\x80B\xed\x84I\x8c\x80Bm\x80BZ&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># 标准的sds</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT hll
+</span></span><span style=display:flex><span>Value at:0x7fcb9ec10bd0 refcount:1 encoding:raw serializedlength:42 lru:6720168 lru_seconds_idle:237
+</span></span></code></pre></div><p>常用命令：</p><ol><li><code>PFADD key element [element ...]</code>：O(N)，N=element数。添加元素。</li><li><code>PFCOUNT key [key ...]</code>：O(N)，N=element数。获取元素个数。</li></ol><p>HyperLogLog底层是<a href=#string>string</a>类型，所以你可以使用<code>GET</code>这样的命令来读取它。<br>底层encoding：</p><ol><li><a href=#sds>sds</a></li></ol><h2 id=geo><i id=locator-geo class=header-locator></i>
+<a href=#geo class=article-h-a>1.9 GEO</a></h2><p>存储经纬度坐标，用于计算距离和半径搜索。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># ⚠️ 经度在前 纬度在后</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEOADD subway1 116.177780 39.926325 PingGuoYuan 116.212821 39.907431 BaJiaoYouLeYuan
+</span></span><span style=display:flex><span>(integer) 2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 获取两地之间距离，单位km</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEODIST subway1 PingGuoYuan BaJiaoYouLeYuan km
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;3.6540&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 获取geohash</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEOHASH subway1 PingGuoYuan BaJiaoYouLeYuan
+</span></span><span style=display:flex><span>1) <span style=color:#a31515>&#34;wx4e5sq5dq0&#34;</span>
+</span></span><span style=display:flex><span>2) <span style=color:#a31515>&#34;wx4eh2ztdu0&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 获取经纬度</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEOPOS subway1 PingGuoYuan BaJiaoYouLeYuan
+</span></span><span style=display:flex><span>1) 1) <span style=color:#a31515>&#34;116.17777794599533081&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;39.92632570563181815&#34;</span>
+</span></span><span style=display:flex><span>2) 1) <span style=color:#a31515>&#34;116.21281832456588745&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;39.90743189411009695&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 根据经纬度搜索附近指定距离半径内的元素</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEORADIUS subway1 116.177780 39.926325 2 km WITHDIST
+</span></span><span style=display:flex><span>1) 1) <span style=color:#a31515>&#34;PingGuoYuan&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;0.0002&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEORADIUS subway1 116.177780 39.926325 4 km WITHDIST
+</span></span><span style=display:flex><span>1) 1) <span style=color:#a31515>&#34;PingGuoYuan&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;0.0002&#34;</span>
+</span></span><span style=display:flex><span>2) 1) <span style=color:#a31515>&#34;BaJiaoYouLeYuan&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;3.6538&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 根据经纬度搜索附近指定矩形区域内的元素</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEOSEARCH subway1 FROMLONLAT 116.177780 39.926325 BYBOX 3 3 km WITHDIST
+</span></span><span style=display:flex><span>1) 1) <span style=color:#a31515>&#34;PingGuoYuan&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;0.0002&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GEOSEARCH subway1 FROMLONLAT 116.177780 39.926325 BYBOX 8 8 km WITHDIST
+</span></span><span style=display:flex><span>1) 1) <span style=color:#a31515>&#34;PingGuoYuan&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;0.0002&#34;</span>
+</span></span><span style=display:flex><span>2) 1) <span style=color:#a31515>&#34;BaJiaoYouLeYuan&#34;</span>
+</span></span><span style=display:flex><span>   2) <span style=color:#a31515>&#34;3.6538&#34;</span>
+</span></span></code></pre></div><p>常用命令：</p><ol><li><code>GEOADD key [NX|XX] [CH] longitude latitude member [longitude latitude member ...]</code>：O(log(N))，N=longitude/latitude/member的个数。添加元素。</li><li><code>GEODIST key member1 member2 [m|km|ft|mi]</code>：O(log(N))。返回两者之间的距离。</li><li><code>GEOHASH key member [member ...]</code>：O(log(N))。GEOHASH。</li><li><code>GEOPOS key member [member ...]</code>：O(N)。返回经纬度坐标（GEOHASH）。</li><li><code>GEORADIUS key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count [ANY]] [ASC|DESC] [STORE key] [STOREDIST key]</code>：O(N+log(M))。根据元素搜索附近指定半径内地元素。</li><li><code>GEOSEARCH key [FROMMEMBER member] [FROMLONLAT longitude latitude] [BYRADIUS radius m|km|ft|mi] [BYBOX width height m|km|ft|mi] [ASC|DESC] [COUNT count [ANY]] [WITHCOORD] [WITHDIST] [WITHHASH]</code>：O(N+log(M)) 。在6.2中新增，用来取代GEOSEARCH，可以提供矩形区域搜索。</li></ol><p>GEO底层存储是<a href=#zset>zset</a>类型，其中经纬度被<code>geohash</code><sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>算法转换为一个<code>52bit</code>的整数，这个整数作为zset的score参数，member则之间对应到zset的member参数。所以你可以使用<code>ZREM</code>这样的命令来删除某些元素。</p><h1 id=server><i id=locator-server class=header-locator></i>
+<a href=#server class=article-h-a>2 server实现</a></h1><p>上面介绍了从client使用者的角度可以使用的9种数据类型。下面介绍下server端是如何实现的。</p><h2 id=redisdb><i id=locator-redisdb class=header-locator></i>
+<a href=#redisdb class=article-h-a>2.1 redisDb</a></h2><p>我们来看一下redis-server的db数据存储结构。</p><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/server.h#L1158-L1613 target=_blank>https://github.com/redis/redis/blob/6.2/src/server.h#L1158-L1613</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>struct</span> redisServer {
+</span></span><span style=display:flex><span>    <span style=color:green>// redisDb数组。
+</span></span></span><span style=display:flex><span><span style=color:green></span>    redisDb *db;
+</span></span><span style=display:flex><span>    <span style=color:green>// 配置的db数量。
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>int</span> dbnum;
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div><p>一个redis-server的实例在默认会维护16个db，默认是<code>db 0</code>，可以使用<code>SELECT &lt;dbid></code>来切换。<br><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/redis.conf#L314-L317 target=_blank>https://github.com/redis/redis/blob/6.2/redis.conf#L314-L317</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span>databases 16</span></span></code></pre></div></div></div></p><p>db之间是完全隔离的。比如：</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>127.0.0.1:6379&gt; SET name lnh0
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GET name
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;lnh0&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SELECT 1
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379[1]&gt; GET name
+</span></span><span style=display:flex><span>(nil)
+</span></span><span style=display:flex><span>127.0.0.1:6379[1]&gt; 
+</span></span></code></pre></div><p>再看一下<code>redisDb</code>的结构。<br><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/server.h#L702-L715 target=_blank>https://github.com/redis/redis/blob/6.2/src/server.h#L702-L715</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> redisDb {
+</span></span><span style=display:flex><span>    dict *dict;                 <span style=color:green>/* The keyspace for this DB */</span>
+</span></span><span style=display:flex><span>    dict *expires;              <span style=color:green>/* Timeout of keys with a timeout set */</span>
+</span></span><span style=display:flex><span>    dict *blocking_keys;        <span style=color:green>/* Keys with clients waiting for data (BLPOP)*/</span>
+</span></span><span style=display:flex><span>    dict *ready_keys;           <span style=color:green>/* Blocked keys that received a PUSH */</span>
+</span></span><span style=display:flex><span>    dict *watched_keys;         <span style=color:green>/* WATCHED keys for MULTI/EXEC CAS */</span>
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>int</span> id;                     <span style=color:green>/* Database ID */</span>
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>long</span> <span style=color:#2b91af>long</span> avg_ttl;          <span style=color:green>/* Average TTL, just for stats */</span>
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>unsigned</span> <span style=color:#2b91af>long</span> expires_cursor; <span style=color:green>/* Cursor of the active expire cycle. */</span>
+</span></span><span style=display:flex><span>    list *defrag_later;         <span style=color:green>/* List of key names to attempt to defrag one by one, gradually. */</span>
+</span></span><span style=display:flex><span>} redisDb;</span></span></code></pre></div></div></div></p><p>可以看到它包含了<code>id</code>来标识数据库，然后使用<a href=#dict>dict</a>来存储我们的数据。</p><h2 id=redisobject><i id=locator-redisobject class=header-locator></i>
+<a href=#redisobject class=article-h-a>2.2 redisObject</a></h2><p>所有数据都是存放在这个巨大的<a href=#dict>dict</a>中，其中key是固定的<a href=#string>string</a>类型，但是value却是各种各样的，那么dict如何使用统一的方式来存储value呢？这就需要一个统一的结构来表示dict中的对象，这个结构就是<code>redisObject</code>。</p><p>redis源码中定义了7中基本类型，redis正是用这7种基本数据类型实现了上述的9种数据类型。</p><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/server.h#L499-L521 target=_blank>https://github.com/redis/redis/blob/6.2/src/server.h#L499-L521</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>#define OBJ_STRING 0    </span><span style=color:green>/* String object. */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_LIST 1      </span><span style=color:green>/* List object. */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_SET 2       </span><span style=color:green>/* Set object. */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ZSET 3      </span><span style=color:green>/* Sorted set object. */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_HASH 4      </span><span style=color:green>/* Hash object. */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_MODULE 5    </span><span style=color:green>/* Module object. */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_STREAM 6    </span><span style=color:green>/* Stream object. */</span></span></span></code></pre></div></div></div><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/server.h#L667-L675 target=_blank>https://github.com/redis/redis/blob/6.2/src/server.h#L667-L675</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> redisObject {
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>unsigned</span> type:4;       <span style=color:green>// 上面的7种基本数据类型。
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>unsigned</span> encoding:4;   <span style=color:green>// 下面的11种具体encoding类型。
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>unsigned</span> lru:LRU_BITS; <span style=color:green>// expire信息
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>int</span> refcount;          <span style=color:green>// 引用计数
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>void</span> *ptr;             <span style=color:green>// 数据指针，指向具体的encoding数据
+</span></span></span><span style=display:flex><span><span style=color:green></span>} robj;</span></span></code></pre></div></div></div><p><code>redisObject</code>的用途是作为一个桥梁，一段映射到7种基本数据类型上面，一端映射到底层的编码存储结构上，同时也保存着expire信息。</p><h2 id=encoding><i id=locator-encoding class=header-locator></i>
+<a href=#encoding class=article-h-a>2.3 encoding</a></h2><p>源码中定义的11中encoding类型：</p><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/server.h#L645-L658 target=_blank>https://github.com/redis/redis/blob/6.2/src/server.h#L645-L658</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_RAW 0        </span><span style=color:green>/* Raw representation : sds */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_INT 1        </span><span style=color:green>/* Encoded as integer */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_HT 2         </span><span style=color:green>/* Encoded as hash table */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_ZIPMAP 3     </span><span style=color:green>/* Encoded as zipmap */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_LINKEDLIST 4 </span><span style=color:green>/* No longer used: old list encoding. */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_ZIPLIST 5    </span><span style=color:green>/* Encoded as ziplist */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_INTSET 6     </span><span style=color:green>/* Encoded as intset */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_SKIPLIST 7   </span><span style=color:green>/* Encoded as skiplist */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_EMBSTR 8     </span><span style=color:green>/* Embedded sds string encoding */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_QUICKLIST 9  </span><span style=color:green>/* Encoded as linked list of ziplists */</span><span style=color:#00f>
+</span></span></span><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_STREAM 10    </span><span style=color:green>/* Encoded as a radix tree of listpacks */</span></span></span></code></pre></div></div></div><h3 id=sds><i id=locator-sds class=header-locator></i>
+<a href=#sds class=article-h-a>2.3.0 sds</a></h3><p>为了实现二进制安全的字符串，redis并没有直接采用c语言中的string类型，而是自定义了一个sds(Simple Dynamic String)的数据结构。其中一个定义如下（8，16，32，64的区别）：<br><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/sds.h#L45-L74 target=_blank>https://github.com/redis/redis/blob/6.2/src/sds.h#L45-L74</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>struct</span> __attribute__ ((__packed__)) sdshdr64 {
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>uint64_t</span> len;         <span style=color:green>/* used */</span>
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>uint64_t</span> alloc;       <span style=color:green>/* excluding the header and null terminator */</span>
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>unsigned</span> <span style=color:#2b91af>char</span> flags;  <span style=color:green>/* 3 lsb of type, 5 unused bits */</span>
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>char</span> buf[];           <span style=color:green>/* data */</span>
+</span></span><span style=display:flex><span>};</span></span></code></pre></div></div></div></p><ol><li><code>len</code>：代表的是string的实际长度，这就使得<code>STRLEN</code>的时间复杂度可以达到<code>O(1)</code>。</li><li><code>alloc</code>：预先分配的长度。</li><li><code>flags</code>：标记位，前三bit代表类型。</li><li><code>buf</code>：实际的数据。</li></ol><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>127.0.0.1:6379&gt; SET name 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGH
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GET name
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGH&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; STRLEN name
+</span></span><span style=display:flex><span>(integer) 44
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT name
+</span></span><span style=display:flex><span>Value at:0x7fcb9f8346f0 refcount:1 encoding:raw serializedlength:45 lru:6671789 lru_seconds_idle:3
+</span></span></code></pre></div><p>在<code>DEBUG OBJECT name</code>命令的响应中显示了<code>name</code>相关的存储信息：<code>encoding:raw</code>指的就是sds；其中<code>serializedlength:4</code>看起来有点奇怪，我们的value的长度明明是<code>44</code>，怎么实际是<code>45</code>呢？这是因为方便兼容使用<code>glibc</code>的函数库，而在结尾处自动补了一个<code>\0</code>的结束符。而且sds的指针的位置实际是指向<code>buf</code>字段的位置，这使得它可以当作一个正常的c字符串来使用。</p><p>当追加新的数据时，如果<code>alloc</code>的容量不足，则会触发扩容。当字符串在长度小于1M之前，扩容采用加倍的策略。当长度超过1M后，为了避免加倍后的冗余空间过大而导致浪费，每次扩容只会多分配1M大小的冗余空间。</p><h3 id=int><i id=locator-int class=header-locator></i>
+<a href=#int class=article-h-a>2.3.1 int</a></h3><p>当string是一个整数时，会采用int方式进行存储。其实际范围是int64。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 最小整数</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SET minnumber -9223372036854775808
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span><span style=color:green># encoding:int</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT minnumber
+</span></span><span style=display:flex><span>Value at:0x7fcb9ef0e7d0 refcount:1 encoding:int serializedlength:21 lru:6671270 lru_seconds_idle:15
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 比int64最小值还小，就变成了encoding:embstr</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SET minnumber -9223372036854775809
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT minnumber
+</span></span><span style=display:flex><span>Value at:0x7fcb9ec18b00 refcount:1 encoding:embstr serializedlength:21 lru:6671297 lru_seconds_idle:2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 最大整数</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SET maxnumber 9223372036854775807
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span><span style=color:green># encoding:int</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT maxnumber
+</span></span><span style=display:flex><span>Value at:0x7fcb9ec15950 refcount:1 encoding:int serializedlength:20 lru:6671334 lru_seconds_idle:10
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 比int64最大值还大，也变成了encoding:embstr</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SET maxnumber 9223372036854775808
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT maxnumber
+</span></span><span style=display:flex><span>Value at:0x7fcb9f8346c0 refcount:1 encoding:embstr serializedlength:20 lru:6671350 lru_seconds_idle:2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 浮点数也是encoding:embstr</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SET floatnumber 1.1
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT floatnumber
+</span></span><span style=display:flex><span>Value at:0x7fcb9ec296e0 refcount:1 encoding:embstr serializedlength:4 lru:6671548 lru_seconds_idle:14
+</span></span></code></pre></div><h3 id=dict><i id=locator-dict class=header-locator></i>
+<a href=#dict class=article-h-a>2.3.2 dict</a></h3><p>底层实现和java的hashmap很相似，数组+链表的方式实现的。</p><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/dict.h#L50-L100 target=_blank>https://github.com/redis/redis/blob/6.2/src/dict.h#L50-L100</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> dict {
+</span></span><span style=display:flex><span>    dictType *type;         
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>void</span> *privdata;
+</span></span><span style=display:flex><span>    dictht ht[2];
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>long</span> rehashidx;          <span style=color:green>// /* rehashing not in progress if rehashidx == -1 */
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>int16_t</span> pauserehash;     <span style=color:green>//* If &gt;0 rehashing is paused (&lt;0 indicates coding error) */
+</span></span></span><span style=display:flex><span><span style=color:green></span>} dict;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> dictType {
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>uint64_t</span> (*hashFunction)(<span style=color:#00f>const</span> <span style=color:#2b91af>void</span> *key);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>void</span> *(*keyDup)(<span style=color:#2b91af>void</span> *privdata, <span style=color:#00f>const</span> <span style=color:#2b91af>void</span> *key);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>void</span> *(*valDup)(<span style=color:#2b91af>void</span> *privdata, <span style=color:#00f>const</span> <span style=color:#2b91af>void</span> *obj);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>int</span> (*keyCompare)(<span style=color:#2b91af>void</span> *privdata, <span style=color:#00f>const</span> <span style=color:#2b91af>void</span> *key1, <span style=color:#00f>const</span> <span style=color:#2b91af>void</span> *key2);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>void</span> (*keyDestructor)(<span style=color:#2b91af>void</span> *privdata, <span style=color:#2b91af>void</span> *key);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>void</span> (*valDestructor)(<span style=color:#2b91af>void</span> *privdata, <span style=color:#2b91af>void</span> *obj);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>int</span> (*expandAllowed)(<span style=color:#2b91af>size_t</span> moreMem, <span style=color:#2b91af>double</span> usedRatio);
+</span></span><span style=display:flex><span>} dictType;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> dictht {
+</span></span><span style=display:flex><span>    dictEntry **table;      <span style=color:green>// entry数组
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>unsigned</span> <span style=color:#2b91af>long</span> size;     <span style=color:green>// 容量大小
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>unsigned</span> <span style=color:#2b91af>long</span> sizemask; <span style=color:green>// hash掩码
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>unsigned</span> <span style=color:#2b91af>long</span> used;     <span style=color:green>// 已用大小
+</span></span></span><span style=display:flex><span><span style=color:green></span>} dictht;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> dictEntry {
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>void</span> *key;                <span style=color:green>// key
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#00f>union</span> {                   <span style=color:green>// vaue
+</span></span></span><span style=display:flex><span><span style=color:green></span>        <span style=color:#2b91af>void</span> *val;
+</span></span><span style=display:flex><span>        <span style=color:#2b91af>uint64_t</span> u64;
+</span></span><span style=display:flex><span>        <span style=color:#2b91af>int64_t</span> s64;
+</span></span><span style=display:flex><span>        <span style=color:#2b91af>double</span> d;
+</span></span><span style=display:flex><span>    } v;
+</span></span><span style=display:flex><span>    <span style=color:#00f>struct</span> dictEntry *next;   <span style=color:green>// 下一个元素（key的hash相同时，这些元素构成一个单向链表）
+</span></span></span><span style=display:flex><span><span style=color:green></span>} dictEntry;</span></span></code></pre></div></div></div><p>其中一个关键的字段<code>dictht ht[2];</code>，redis存储了2个<code>dictht</code>，一个<code>dictht</code>代表一个数组+链表。这个用两个的目的在于优化扩容操作，我们知道在扩容时需要把数组*2，然后把旧数组中的元素的key都rehash一下，然后再放置到新的数组中，这个过程会比较耗时。故而redis就把这个操作给分摊到了一些读操作中，每次只rehash其中一部分，然后记录其进度（<code>rehashidx</code>和<code>pauserehash</code>字段）。待到全部rehash完毕后再切换这个数组。</p><p>实际演示如下。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>127.0.0.1:6379&gt; HSET h k1 v1
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HSET h k2 v2
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HGET h k1
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;v1&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HMGET h k1 k2
+</span></span><span style=display:flex><span>1) <span style=color:#a31515>&#34;v1&#34;</span>
+</span></span><span style=display:flex><span>2) <span style=color:#a31515>&#34;v2&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HEXISTs h k1
+</span></span><span style=display:flex><span>(integer) 1
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HEXISTs h k2
+</span></span><span style=display:flex><span>(integer) 1
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HEXISTs h k3
+</span></span><span style=display:flex><span>(integer) 0
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HKEYS h
+</span></span><span style=display:flex><span>1) <span style=color:#a31515>&#34;k1&#34;</span>
+</span></span><span style=display:flex><span>2) <span style=color:#a31515>&#34;k2&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HVALS h
+</span></span><span style=display:flex><span>1) <span style=color:#a31515>&#34;v1&#34;</span>
+</span></span><span style=display:flex><span>2) <span style=color:#a31515>&#34;v2&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HLEN h
+</span></span><span style=display:flex><span>(integer) 2
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; HGETALL h
+</span></span><span style=display:flex><span>1) <span style=color:#a31515>&#34;k1&#34;</span>
+</span></span><span style=display:flex><span>2) <span style=color:#a31515>&#34;v1&#34;</span>
+</span></span><span style=display:flex><span>3) <span style=color:#a31515>&#34;k2&#34;</span>
+</span></span><span style=display:flex><span>4) <span style=color:#a31515>&#34;v2&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT h
+</span></span><span style=display:flex><span>Value at:0x7f8990637db0 refcount:1 encoding:ziplist serializedlength:28 lru:5709958 lru_seconds_idle:9
+</span></span></code></pre></div><h3 id=zipmap><i id=locator-zipmap class=header-locator></i>
+<a href=#zipmap class=article-h-a>2.3.3 zipmap</a></h3><h3 id=linkedlist><i id=locator-linkedlist class=header-locator></i>
+<a href=#linkedlist class=article-h-a>2.3.4 linkedlist</a></h3><p>linkedlist的底层数据结构是一个双向链表。<br><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/adlist.h#L34-L55 target=_blank>https://github.com/redis/redis/blob/6.2/src/adlist.h#L34-L55</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> listNode {
+</span></span><span style=display:flex><span>    <span style=color:#00f>struct</span> listNode *prev;  <span style=color:green>// 前一个元素指针
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#00f>struct</span> listNode *next;  <span style=color:green>// 后一个元素指针
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>void</span> *value;            <span style=color:green>// 值的指针
+</span></span></span><span style=display:flex><span><span style=color:green></span>} listNode;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00f>typedef</span> <span style=color:#00f>struct</span> list {
+</span></span><span style=display:flex><span>    listNode *head;                      <span style=color:green>// 头部指针
+</span></span></span><span style=display:flex><span><span style=color:green></span>    listNode *tail;                      <span style=color:green>// 尾部指针
+</span></span></span><span style=display:flex><span><span style=color:green></span>    <span style=color:#2b91af>void</span> *(*dup)(<span style=color:#2b91af>void</span> *ptr);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>void</span> (*free)(<span style=color:#2b91af>void</span> *ptr);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>int</span> (*match)(<span style=color:#2b91af>void</span> *ptr, <span style=color:#2b91af>void</span> *key);
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>unsigned</span> <span style=color:#2b91af>long</span> len;                   <span style=color:green>// 长度
+</span></span></span><span style=display:flex><span><span style=color:green></span>} list;</span></span></code></pre></div></div></div></p><p>演示一下常用的操作：</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>127.0.0.1:6379&gt; LPUSH l 1
+</span></span><span style=display:flex><span>(integer) 1
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; LPUSH l 2
+</span></span><span style=display:flex><span>(integer) 2
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; RPUSH l 3
+</span></span><span style=display:flex><span>(integer) 3
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; LLEN l
+</span></span><span style=display:flex><span>(integer) 3
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; LRANGE l 0 -1
+</span></span><span style=display:flex><span>1) <span style=color:#a31515>&#34;2&#34;</span>
+</span></span><span style=display:flex><span>2) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>3) <span style=color:#a31515>&#34;3&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; RPOP l
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;3&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; LRANGE l 0 -1
+</span></span><span style=display:flex><span>1) <span style=color:#a31515>&#34;2&#34;</span>
+</span></span><span style=display:flex><span>2) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT l
+</span></span><span style=display:flex><span>Value at:0x7f8990405c20 refcount:1 encoding:quicklist serializedlength:17 lru:5706395 lru_seconds_idle:15 ql_nodes:1 ql_avg_node:2.00 ql_ziplist_max:-2 ql_compressed:0 ql_uncompressed_size:15
+</span></span></code></pre></div><h3 id=ziplist><i id=locator-ziplist class=header-locator></i>
+<a href=#ziplist class=article-h-a>2.3.5 ziplist</a></h3><h3 id=intset><i id=locator-intset class=header-locator></i>
+<a href=#intset class=article-h-a>2.3.6 intset</a></h3><h3 id=skiplist><i id=locator-skiplist class=header-locator></i>
+<a href=#skiplist class=article-h-a>2.3.7 skiplist</a></h3><h3 id=embstr><i id=locator-embstr class=header-locator></i>
+<a href=#embstr class=article-h-a>2.3.8 embstr</a></h3><p>当字符串的长度<code>&lt;=44</code>byte时，会采用embstr的方式编码string。<br><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/object.c#L112-L124 target=_blank>https://github.com/redis/redis/blob/6.2/src/object.c#L112-L124</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#00f>#define OBJ_ENCODING_EMBSTR_SIZE_LIMIT 44
+</span></span></span><span style=display:flex><span><span style=color:#00f></span>robj *createStringObject(<span style=color:#00f>const</span> <span style=color:#2b91af>char</span> *ptr, <span style=color:#2b91af>size_t</span> len) {
+</span></span><span style=display:flex><span>    <span style=color:#00f>if</span> (len &lt;= OBJ_ENCODING_EMBSTR_SIZE_LIMIT)
+</span></span><span style=display:flex><span>        <span style=color:#00f>return</span> createEmbeddedStringObject(ptr,len);
+</span></span><span style=display:flex><span>    <span style=color:#00f>else</span>
+</span></span><span style=display:flex><span>        <span style=color:#00f>return</span> createRawStringObject(ptr,len);
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div></p><p>为什么是44呢？是因为embstr的内存布局导致的。redis把大于64byte的string视为长字符串，采用sds方式来编码。而embstr其实也是sds，不过是一个紧凑的sds，采用一次性申请一块连续的内存，分配给<code>redisObject</code>+<code>sdshdr8</code>这2个结构使用。<code>redisObject</code>占用16byte，<code>sdshdr8</code>占用3byte，那么64-16-3=45，45就是sds的buf的最大大小，减去结尾自动添加的<code>\0</code>1个byte。则就是44byte。</p><p>但是embstr不支持修改，一旦修改，就会转成标准的sds。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>127.0.0.1:6379&gt; SET name abc
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT name
+</span></span><span style=display:flex><span>Value at:0x7fcb9f835140 refcount:1 encoding:embstr serializedlength:4 lru:6675667 lru_seconds_idle:3
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; APPEND name 123
+</span></span><span style=display:flex><span>(integer) 6
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; GET name
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;abc123&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; DEBUG OBJECT name
+</span></span><span style=display:flex><span>Value at:0x7fcb9ec15560 refcount:1 encoding:raw serializedlength:7 lru:6675676 lru_seconds_idle:3
+</span></span></code></pre></div><h3 id=quicklist><i id=locator-quicklist class=header-locator></i>
+<a href=#quicklist class=article-h-a>2.3.9 quicklist</a></h3><h1 id=summary><i id=locator-summary class=header-locator></i>
+<a href=#summary class=article-h-a>3 总结</a></h1><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>4 参考</a></h1><p>Redis内部数据结构详解：<a href=http://zhangtielei.com/posts/server.html target=_blank rel="noopener norefferrer">http://zhangtielei.com/posts/server.html</a></p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://redis.io/topics/data-types target=_blank rel="noopener norefferrer">https://redis.io/topics/data-types</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://en.wikipedia.org/wiki/Bitwise_operation target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Bitwise_operation</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><a href=https://en.wikipedia.org/wiki/Geohash target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Geohash</a><br><a href=http://geohash.co/ target=_blank rel="noopener norefferrer">http://geohash.co/</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2021-03-19 19:50，约6007字，阅读约12分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/bitmap target=_blank><i class="fa fa-tag"></i>bitmap</a>
+<a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/dev target=_blank><i class="fa fa-tag"></i>dev</a>
+<a class=article-tag href=/tag/hash target=_blank><i class="fa fa-tag"></i>hash</a>
+<a class=article-tag href=/tag/hyperloglog target=_blank><i class="fa fa-tag"></i>hyperloglog</a>
+<a class=article-tag href=/tag/list target=_blank><i class="fa fa-tag"></i>list</a>
+<a class=article-tag href=/tag/module target=_blank><i class="fa fa-tag"></i>module</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a>
+<a class=article-tag href=/tag/sds target=_blank><i class="fa fa-tag"></i>sds</a>
+<a class=article-tag href=/tag/set target=_blank><i class="fa fa-tag"></i>set</a>
+<a class=article-tag href=/tag/sorted-set target=_blank><i class="fa fa-tag"></i>sorted set</a>
+<a class=article-tag href=/tag/stream target=_blank><i class="fa fa-tag"></i>stream</a>
+<a class=article-tag href=/tag/string target=_blank><i class="fa fa-tag"></i>string</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/data-type/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/redis/resp/ target=_blank>[Redis] resp</a></div><div class=article-page-next><span>下一篇 : </span><a href=/redis/pipelining/ target=_blank>[Redis] pipelining</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

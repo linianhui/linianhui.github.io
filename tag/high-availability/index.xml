@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>High Availability on Timetombs</title><link>https://linianhui.github.io/tag/high-availability/</link><description>Recent content in High Availability on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/high-availability/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] sentinel</title><link>https://linianhui.github.io/redis/sentinel/</link><pubDate>Sat, 20 Mar 2021 09:30:23 +0800</pubDate><guid>https://linianhui.github.io/redis/sentinel/</guid><description>&lt;p>在上一篇博客&lt;code>Replication&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>中我们构建了一个简单的主从复制架构的redis服务，利用Replication我们可以让redis提供读写分离、提供读取能力、数据备份等功能，也支持slave从鼓掌中恢复。但是如果master出现了故障，那么整Replication都会处于一个不可用的状态。这显然无法满足高可用的目标。而整个目标需要借助&lt;code>sentinel&lt;/code>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>来实现。&lt;/p>
+&lt;p>sentinel概述：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>监控&lt;/strong>：sentinel是一个分布式系统，多个实例利用&lt;code>gossip&lt;/code>协议协同工作。sentinel监控master和slave实例，同时sentinel实例之间也互相监控。&lt;/li>
+&lt;li>&lt;strong>通知&lt;/strong>： 当某一个实例出现问题时，sentinel可以通过API通知系统管理员。&lt;/li>
+&lt;li>&lt;strong>自动故障转移&lt;/strong>：如果被监控的master出现问题，sentinel可以启动一个自动故障转移的过程，sentinel实例之间选举出来一个slave提升为master，然后配置其他slave的配置使其成为新的master的slave，并且通知client使用新的连接地址。&lt;/li>
+&lt;li>&lt;strong>配置提供者&lt;/strong>：client不再之间连接到master或者slave，而是连接到sentinel，由sentinel提供redis的master和slave的地址。&lt;/li>
+&lt;/ol>
+&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">1 搭建环境&lt;/a>
+&lt;/h1>
+&lt;p>运行sentinel有两种方式：&lt;/p></description></item></channel></rss>

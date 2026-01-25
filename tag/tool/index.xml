@@ -1,0 +1,2190 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tool on Timetombs</title><link>https://linianhui.github.io/tag/tool/</link><description>Recent content in Tool on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 25 Jan 2026 19:11:16 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/tool/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] Rio Terminal</title><link>https://linianhui.github.io/tool/rio/</link><pubDate>Sun, 21 Sep 2025 15:09:01 +0800</pubDate><guid>https://linianhui.github.io/tool/rio/</guid><description>&lt;h1 id="home">
+&lt;i id="locator-home" class="header-locator">&lt;/i>
+&lt;a href="#home" class="article-h-a">Home&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://rioterm.com/"
+
+ target="_blank" rel="noopener norefferrer">https://rioterm.com/&lt;/a>&lt;/p>
+&lt;h1 id="config">
+&lt;i id="locator-config" class="header-locator">&lt;/i>
+&lt;a href="#config" class="article-h-a">Config&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-125a7c640aada8d3446781af0606205c">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-125a7c640aada8d3446781af0606205c','highlight-file_opened')">config.toml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/rio/config.toml" title="下载 config.toml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/rio/config.toml" title="源码 config.toml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-toml" data-lang="toml">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Hide the cursor while typing&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default is `false`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># hide-cursor-when-typing = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Ignore theme selection foreground color&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default is false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># ignore-selection-foreground-color = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Theme&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># It makes Rio look for the specified theme in the themes folder&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># (macos: ~/.config/rio/themes/dracula.toml)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># (linux: $XDG_HOME_CONFIG/rio/themes/dracula.toml or ~/.config/rio/themes/dracula.toml)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># (windows: C:\Users\USER\AppData\Local\rio\themes\dracula.toml)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># theme = &amp;#34;dracula&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Padding-x&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># define x axis padding (default is 0)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>padding-x = 10
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Padding-y&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># define y axis padding based on a format [top, bottom]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># (default is [0, 0])&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>padding-y = [0, 10]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Option as Alt&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># This config only works on MacOS.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Possible choices: &amp;#39;both&amp;#39;, &amp;#39;left&amp;#39; and &amp;#39;right&amp;#39;.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># option-as-alt = &amp;#39;left&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Line height&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># This option will apply an modifier to line-height&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default is `1.0`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># line-height = 1.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Startup directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Directory the shell is started in. If this is unset the working&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># directory of the parent process will be used.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># This configuration only has effect if use-fork is disabled.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># working-dir = &amp;#34;/Users/raphael/Documents/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Environment variables&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># env-vars = []&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Use fork&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Defaults for POSIX-based systems (Windows is not configurable):&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># MacOS: spawn processes&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Linux/BSD: fork processes&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># use-fork = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Confirm before exiting Rio&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default is `true`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>confirm-before-quit = &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Cursor&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># shape - Default cursor shape is &amp;#39;block&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Other available options are: &amp;#39;underline&amp;#39;, &amp;#39;beam&amp;#39; or &amp;#39;hidden&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># blinking - Whether the cursor blinks. The default is false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># blinking-interval - Cursor update on milliseconds interval&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[cursor]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>shape = &lt;span style="color:#a31515">&amp;#39;underline&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blinking = &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blinking-interval = 1000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Editor&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default editor on Linux and MacOS is &amp;#34;vi&amp;#34;,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># on Windows it is &amp;#34;notepad&amp;#34;.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Whenever the key binding `OpenConfigEditor` is triggered it will&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># use the value of the editor along with the rio configuration path.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[editor]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>program = &lt;span style="color:#a31515">&amp;#34;/usr/local/bin/code&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># args = []&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Window configuration&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • width - define the initial window width.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default: 600&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • height - define the initial window height.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default: 400&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • mode - define how the window will be created&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - &amp;#34;Windowed&amp;#34; (default) is based on width and height&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - &amp;#34;Maximized&amp;#34; window is created with maximized&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - &amp;#34;Fullscreen&amp;#34; window is created with fullscreen&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • opacity - Set window opacity&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • blur - Set blur on the window background. Changing this config requires restarting Rio to take effect.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • decorations - Set window decorations, options: &amp;#34;Enabled&amp;#34;, &amp;#34;Disabled&amp;#34;, &amp;#34;Transparent&amp;#34;, &amp;#34;Buttonless&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[window]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>width = 1000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>height = 600
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mode = &lt;span style="color:#a31515">&amp;#34;windowed&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>opacity = 0.8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blur = &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>decorations = &lt;span style="color:#a31515">&amp;#34;Transparent&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Renderer&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • Performance: Set WGPU rendering performance&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - High: Adapter that has the highest performance. This is often a discrete GPU.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - Low: Adapter that uses the least possible power. This is often an integrated GPU.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • Backend: Set WGPU rendering backend&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - Automatic: Leave Sugarloaf/WGPU to decide&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - GL: Supported on Linux/Android, and Windows and macOS/iOS via ANGLE&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - Vulkan: Supported on Windows, Linux/Android&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - DX12: Supported on Windows 10&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - Metal: Supported on macOS/iOS&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • disable-unfocused-render: This property disable renderer processes while Rio is unfocused.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • level: Configure renderer level&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - Available options: 0 and 1.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Higher the level more rendering features and computations&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># will be done like enable font ligatures or emoji support.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># For more information please check the docs.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • filters: A list of paths to RetroArch slang shaders. Might not work with OpenGL.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [renderer]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># performance = &amp;#34;high&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># backend = &amp;#34;automatic&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># disable-unfocused-render = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># level = 1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># filters = []&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Keyboard&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># use-kitty-keyboard-protocol - Enable Kitty Keyboard protocol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># disable-ctlseqs-alt - Disable ctlseqs with ALT keys&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - For example: Terminal.app does not deal with ctlseqs with ALT keys&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [keyboard]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># use-kitty-keyboard-protocol = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># disable-ctlseqs-alt = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Fonts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Configure fonts used by the terminal&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Note: You can set different font families but Rio terminal&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># will always look for regular font bounds whene&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can also set family on root to overwrite all fonts.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[fonts]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>family = &lt;span style="color:#a31515">&amp;#34;Source Code Pro&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can also specify extra fonts to load&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># extras = [{ family = &amp;#34;Microsoft JhengHei&amp;#34; }]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># In case you want to specify any font feature:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># features = [&amp;#34;ss02&amp;#34;, &amp;#34;ss03&amp;#34;, &amp;#34;ss05&amp;#34;, &amp;#34;ss19&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Note: Font features do not have support to live reload on configuration,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># so to reflect your changes, you will need to close and reopen Rio.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can also disable font hinting. Font hinting is enabled by default.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># hinting = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can also map the specified Unicode codepoints to a particular font.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># symbol-map = [&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># { start = &amp;#34;2297&amp;#34;, end = &amp;#34;2299&amp;#34;, font-family = &amp;#34;Cascadia Code NF&amp;#34; }&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># ]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Simple example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>size = 18
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts.regular]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># family = &amp;#34;cascadiamono&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># style = &amp;#34;Normal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># weight = 400&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts.bold]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># family = &amp;#34;cascadiamono&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># style = &amp;#34;Normal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># weight = 800&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts.italic]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># family = &amp;#34;cascadiamono&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># style = &amp;#34;Italic&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># weight = 400&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [fonts.bold-italic]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># family = &amp;#34;cascadiamono&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># style = &amp;#34;Italic&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># weight = 800&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Scroll&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can change how many lines are scrolled each time by setting this option.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Scroll calculation for canonical mode will be based on `lines = (accumulated scroll * multiplier / divider)`,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># If you want a quicker scroll, keep increasing the multiplier.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># If you want to reduce scroll speed you will need to increase the divider.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can use both properties also to find the best scroll for you.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Multiplier default is 3.0.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Divider default is 1.0.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [scroll]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># multiplier = 3.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># divider = 1.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Navigation&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># &amp;#34;mode&amp;#34; - Define navigation mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • NativeTab (MacOS only)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • Bookmark&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • BottomTab&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • TopTab&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># • Plain&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># &amp;#34;hide-if-single&amp;#34; - Hide navigation UI if is single.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># &amp;#34;clickable&amp;#34; - Enable click on tabs to switch.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># &amp;#34;use-current-path&amp;#34; - Use same path whenever a new tab is created (Note: requires `use-fork` to be set to false).&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># &amp;#34;color-automation&amp;#34; - Set a specific color for the tab whenever a specific program is running, or in a specific directory.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [navigation]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># mode = &amp;#34;NativeTab&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># clickable = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># hide-if-single = true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># use-current-path = false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># color-automation = []&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Shell&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Entries in `shell.args` are passed unmodified as arguments to the shell.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Default:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - (macOS) user login shell&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - (Linux/BSD) user login shell&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># - (Windows) powershell&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example 1 using fish shell from bin path:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [shell]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># program = &amp;#34;/bin/fish&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># args = [&amp;#34;--login&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example 2 for Windows using powershell&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [shell]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># program = &amp;#34;pwsh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># args = []&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example 3 for Windows using powershell with login&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [shell]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># program = &amp;#34;pwsh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># args = [&amp;#34;-l&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example 4 for MacOS with tmux installed by homebrew&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [shell]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># program = &amp;#34;/opt/homebrew/bin/tmux&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># args = [&amp;#34;new-session&amp;#34;, &amp;#34;-c&amp;#34;, &amp;#34;/var/www&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Colors&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Colors definition will overwrite any property in theme&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># (considering if theme folder does exists and is being used)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[colors]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># background = &amp;#39;#0F0D0E&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># foreground = &amp;#39;#F9F4DA&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cursor = &lt;span style="color:#a31515">&amp;#39;#00FF00&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># tabs = &amp;#39;#443d40&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># tabs-active = &amp;#39;#F38BA3&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># green = &amp;#39;#0BA95B&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># red = &amp;#39;#ED203D&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># blue = &amp;#39;#12B5E5&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># yellow = &amp;#39;#FCBA28&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Bindings&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Create custom Key bindings for Rio terminal&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># More information in: https://raphamorim.io/rio/docs/key-bindings&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [bindings]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># keys = [&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># { key = &amp;#34;q&amp;#34;, with = &amp;#34;super&amp;#34;, action = &amp;#34;Quit&amp;#34; },&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># # Bytes[27, 91, 53, 126] is equivalent to &amp;#34;\x1b[5~&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># { key = &amp;#34;home&amp;#34;, with = &amp;#34;super | shift&amp;#34;, bytes = [27, 91, 53, 126] }&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># ]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Platform&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Rio now allows you to have different configurations per OS&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># You can write ovewrite properties like `Shell`, `Navigation`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># and `Window`.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [shell]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># # default (in this case will be used only on MacOS)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># program = &amp;#34;/bin/fish&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># args = [&amp;#34;--login&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [platform]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># # Microsoft Windows overwrite&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># windows.shell.program = &amp;#34;pwsh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># windows.shell.args = [&amp;#34;-l&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># # Linux overwrite&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># linux.shell.program = &amp;#34;tmux&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># linux.shell.args = [&amp;#34;new-session&amp;#34;, &amp;#34;-c&amp;#34;, &amp;#34;/var/www&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Log level&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># This property enables log level filter and file. The default level is &amp;#34;OFF&amp;#34; and the logs are not logged to a file as default.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># Example:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [developer]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># log-level = &amp;#34;OFF&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># enable-log-file = false&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div></description></item><item><title>[工具] 房贷计算器</title><link>https://linianhui.github.io/tool/loan/</link><pubDate>Sun, 28 Jan 2024 15:28:01 +0800</pubDate><guid>https://linianhui.github.io/tool/loan/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;script src="https://s4.zstatic.net/ajax/libs/echarts/6.0.0/echarts.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;style>
+ th {
+ text-align: right;
+ }
+
+ td {
+ text-align: right;
+ vertical-align: top;
+ padding: 6px 4px;
+ }
+
+ .cell {
+ padding: 0 !important;
+ }
+
+ .input-fieldset section {
+ margin: 6px 0;
+ }
+
+ .form-name,
+ .form-input {
+ position: relative;
+ display: inline-block;
+ vertical-align: middle;
+ }
+
+ .form-input-weight {
+ width: 13em !important;
+ }
+
+ .form-input-weight input {
+ text-align: center;
+ }
+
+ .form-name {
+ width: 4.5em;
+ text-align: right;
+ }
+
+ .form-input {
+ margin-left: 6px;
+ }
+
+ .el-collapse {
+ border: unset;
+ }
+
+ .el-collapse-item__wrap,
+ .el-collapse-item__header {
+ border: unset;
+ }
+
+ .el-input-group__prepend {
+ padding: 0;
+ }
+
+ fieldset {
+ border: unset;
+ box-shadow: 0 0 2px #ccc;
+ max-width: 100%;
+ min-width: 100%;
+ margin-top: 1em;
+ box-sizing: border-box;
+ padding: 6px;
+ }
+
+ legend {
+ background-color: #FFF;
+ color: #909399;
+ }
+
+ .result-wrapper {
+ overflow-x: auto;
+ max-width: 100%;
+ }
+
+ .result-pre {
+ font-family: unset;
+ font-size: 0;
+ margin: 0;
+ }
+
+ .result-table {
+ width: 100%;
+ margin: 0;
+ font-size: 14px;
+ }
+
+ .result-summary sub {
+ font-size: 10px;
+ padding-left: 2px;
+ color: #bbb;
+ }
+
+ .row-data {
+ color: #666;
+ font-family: monospace, Courier, 'Courier New'
+ }
+
+ .row-data:hover {
+ background-color: #eee;
+ cursor: pointer;
+ }
+
+ .row-data-year-first-month {
+ background-color: #eee;
+ }
+
+ .row-data-action-prepayment {
+ color: rgb(103, 194, 58);
+ }
+
+ .row-data-action-reset-rate {
+ color: rgb(64, 158, 255);
+ }
+
+ .insurance-table input {
+ min-width: 2em;
+ max-width: 4em;
+ text-align: right;
+ }
+
+ .month-detail {
+ display: none;
+ background-color: #efe;
+ }
+
+ .month-detail_opened+tr {
+ display: table-row;
+ }
+
+ .month-detail_opened .month-action-icon::before {
+ content: "\e6df";
+ }
+
+ .ahead {
+ display: inline-block;
+ color: #093;
+ margin-left: 2px;
+ font-family: monospace, Courier, 'Courier New'
+ }
+
+ .e-input-ahead input {
+ color: #093;
+ }
+
+ .area-hidden {
+ display: none;
+ }
+
+ .area-show {
+ display: block;
+ }
+
+ sub {
+ margin-left: 1em;
+ color: #093;
+ }
+&lt;/style>
+&lt;div id="app">
+ &lt;fieldset class="input-fieldset">
+ &lt;legend>参数区域&lt;/legend>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="ePrincipal">
+ 贷款总额
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="ePrincipal" v-model="loan.totalPrincipal" step="10000" :min="0">
+ &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eMonth">
+ 月数
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="eMonth" v-model="loan.totalNumberOfRepayment" step="12"> &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eYearRate">
+ 利率
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="eYearRate" v-model="loan.yearRate" :min="0" step="0.01">&lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eBeginDate">
+ 贷款时间
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-date-picker id="eBeginDate" v-model="loan.beginDate" type="date" placeholder="贷款时间"
+ value-format="yyyy-MM-dd" format="yyyy-MM-dd" class="form-input-weight">
+ &lt;/el-date-picker>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eRepaymentDayOfMonth">
+ 还款日期
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="eRepaymentDayOfMonth" v-model="loan.repaymentDayOfMonth" step="1" :min="1" :max="31">
+ &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eRepaymentDayOfMonth">
+ 下载
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-link icon="el-icon-download" @click="downloadCsv()" :underline="false">CSV-UTF8&lt;/el-link>
+ &lt;el-link icon="el-icon-download" @click="downloadCsvUtf8Bom()" :underline="false">CSV-UTF8-BOM&lt;/el-link>
+ &lt;/div>
+ &lt;/section>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend @click="showActionArea()" style="cursor:pointer;">操作区域 &lt;i class="el"
+ :class="{'el-icon-arrow-down':showAction,'el-icon-arrow-right':!showAction}">&lt;/i>&lt;/legend>
+ &lt;div class="result-wrapper" :class="{'area-show':showAction,'area-hidden':!showAction}">
+ &lt;pre class="result-pre">
+ &lt;table class="result-table">
+ &lt;tr>
+ &lt;td>{{prepaymentAction.type}}&lt;/td>
+ &lt;td>&lt;el-date-picker v-model="prepaymentAction.date" type="date" placeholder="提前还款的扣款日期"
+ value-format="yyyy-MM-dd" format="yyyy-MM-dd" class="form-input-weight">&lt;/el-date-picker>&lt;/td>
+ &lt;td>&lt;el-input-number v-model="prepaymentAction.principal" :min="10000" step="10000">&lt;/el-input-number>&lt;/td>
+ &lt;td>&lt;el-select v-model="prepaymentAction.afterAction">&lt;el-option v-for="item in afterActionTypes" :key="item"
+ :label="item" :value="item">&lt;/el-option>&lt;/el-select>&lt;/td>
+ &lt;td>&lt;el-button v-on:click="addPrepaymentAction" type="success" icon="el-icon-circle-plus-outline" size="small" plain>&lt;/el-button>
+ &lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>{{resetRateAction.type}}&lt;/td>
+ &lt;td>&lt;el-date-picker v-model="resetRateAction.date" type="date" placeholder="利率变更日期" value-format="yyyy-MM-dd"
+ format="yyyy-MM-dd" class="form-input-weight">&lt;/el-date-picker>&lt;/td>
+ &lt;td>&lt;el-input-number v-model="resetRateAction.yearRate" :min="0" step="0.01">&lt;/el-input-number>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;el-button v-on:click="addResetRateAction" type="primary" icon="el-icon-circle-plus-outline" size="small" plain>&lt;/el-button>
+ &lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>{{changePrincipalAction.type}}&lt;/td>
+ &lt;td>&lt;el-date-picker v-model="changePrincipalAction.date" type="date" placeholder="提前还款的扣款日期"
+ value-format="yyyy-MM-dd" format="yyyy-MM-dd" class="form-input-weight">&lt;/el-date-picker>&lt;/td>
+ &lt;td>&lt;el-input-number v-model="changePrincipalAction.principal">&lt;/el-input-number>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;el-button v-on:click="addChangePrincipalAction" type="success" icon="el-icon-circle-plus-outline" size="small" plain>&lt;/el-button>
+ &lt;/td>
+ &lt;/tr>
+ &lt;template v-for="(action,i) in actions">
+ &lt;tr class="row-data" :class="{'row-data-action-reset-rate': action.type=='调整利率','row-data-action-prepayment':action.type=='提前还款'}">
+ &lt;td>{{action.type}}&lt;/td>
+ &lt;td>{{action.date}}&lt;/td>
+ &lt;td>{{action.yearRate}}{{action.principal}}&lt;/td>
+ &lt;td>{{action.afterAction}}&lt;/td>
+ &lt;td>&lt;el-button @click="deleteAction(i)" type="danger" icon="el-icon-delete" size="small" plain>&lt;/el-button>&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-合计&lt;/legend>
+ &lt;div class="result-wrapper">
+ &lt;div ref="sumChartDiv" style="width: 100%;height: 300px;">&lt;/div>
+ &lt;pre class="result-pre">
+ &lt;table class="result-table">
+ &lt;tr class="row-header">
+ &lt;th>类型&lt;/th>
+ &lt;th>本金&lt;/th>
+ &lt;th>利息&lt;/th>
+ &lt;th>总金额&lt;/th>
+ &lt;th>开始时间&lt;/th>
+ &lt;th>结束时间&lt;/th>
+ &lt;th>最后还款&lt;/th>
+ &lt;th>期数&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="sum in result.sumItems">
+ &lt;tr class="row-data">
+ &lt;td>{{sum.type}}&lt;/td>
+ &lt;td>{{sum.principal | CNY}}&lt;sub v-show="sum.principalPercent">{{sum.principalPercent}}%&lt;/sub>&lt;/td>
+ &lt;td>{{sum.interest | CNY}}&lt;sub v-show="sum.interestPercent">{{sum.interestPercent}}%&lt;/sub>&lt;/td>
+ &lt;td>{{sum.amount | CNY}}&lt;sub v-show="sum.amountPercent">{{sum.amountPercent}}%&lt;/sub>&lt;/td>
+ &lt;td>{{sum.beginInterestDate}}&lt;/td>
+ &lt;td>{{sum.endInterestDate}}&lt;/td>
+ &lt;td>{{sum.repaymentDate}}&lt;/td>
+ &lt;td>{{sum.totalNumberOfRepayment}}期 {{sum.daysText}}&lt;sub v-show="sum.totalNumberOfRepaymentPercent">{{sum.totalNumberOfRepaymentPercent}}%&lt;/sub>&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend @click="showRepairedArea()" style="cursor:pointer;">结果区域-明细-已还-{{result.repairedItems.length}}期 &lt;i
+ class="el" :class="{'el-icon-arrow-down':showRepaired,'el-icon-arrow-right':!showRepaired}">&lt;/i>&lt;/legend>
+ &lt;div class="result-wrapper" :class="{'area-show':showRepaired,'area-hidden':!showRepaired}">
+ &lt;div ref="repairedChartDiv" style="width: 100%;height: 300px;">&lt;/div>
+ &lt;pre class="result-pre">
+ &lt;table class="result-table">
+ &lt;tr class="row-header">
+ &lt;th style="cursor:pointer;width: 8em;" @click="sortTable()">月份 &lt;i :class="{'el-icon-caret-top':asc,'el-icon-caret-bottom':!asc}">&lt;/i>&lt;/th>
+ &lt;th style="width: 8em;">计息本金&lt;/th>
+ &lt;th>利率&lt;/th>
+ &lt;th>还款利息&lt;/th>
+ &lt;th>还款本金&lt;/th>
+ &lt;th>还款金额&lt;/th>
+ &lt;th>剩余本金&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="item in result.repairedItems">
+ &lt;tr :id="'month-'+item.plan.repaymentDate+'-detail'" class="row-data" :class="{'row-data-action-reset-rate': item.hasAdditionalRateTextList,'row-data-action-prepayment':item.hasAdditionalActionTextList}" :onclick="'blog.toggleClassName(\'month-'+item.plan.repaymentDate+'-detail\',\'month-detail_opened\')'">
+ &lt;td>{{item.plan.repaymentDate}}&lt;i class="el el-icon-arrow-right month-action-icon">&lt;/i>&lt;span v-for="action in item.additionalActionTextList">&lt;br/>{{action}}&lt;/span>&lt;/td>
+ &lt;td>{{item.plan.balancePrincipal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.yearRate}}&lt;span v-for="rate in item.additionalRateTextList">&lt;br/>{{rate}}&lt;/span>&lt;/td>
+ &lt;td>{{item.repayment.interest | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.principal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.amount | CNY}}&lt;/td>
+ &lt;td>{{item.balance.principal | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data month-detail" :class="{'row-data-action-reset-rate': item.hasRate,'row-data-action-prepayment':item.hasAction}" >
+ &lt;td>{{item.plan.beginInterestDate}}&lt;br/>{{item.plan.endInterestDate}}&lt;br/>{{item.repayment.rateTimesText}}&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;span v-for="rateFormula in item.repayment.yearRateFormulaList">{{rateFormula.endDate}} - {{rateFormula.beginDate}} = {{rateFormula.days}} 天&lt;br/>{{rateFormula.weightRateFormula}} = {{rateFormula.weightRate}}&lt;br/>{{rateFormula.yearRateFormula}} = {{rateFormula.yearRate}}&lt;br/>&lt;/span>{{item.repayment.rateFormula}} = {{item.repayment.rate}}&lt;/td>
+ &lt;td>{{item.repayment.interestFormula}}&lt;/td>
+ &lt;td>{{item.plan.repaymentPrincipalFormula}}&lt;/td>
+ &lt;td>{{item.repayment.amountFormula}}&lt;/td>
+ &lt;td>{{item.balance.principalFormula}}&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-明细-待还-{{result.balanceItems.length}}期&lt;/legend>
+ &lt;div class="result-wrapper">
+ &lt;pre class="result-pre">
+ &lt;div ref="balanceChartDiv" style="width: 100%;height: 300px;">&lt;/div>
+ &lt;table class="result-table">
+ &lt;tr class="row-header">
+ &lt;th style="cursor:pointer;width: 8em;" @click="sortTable()">月份 &lt;i :class="{'el-icon-caret-top':asc,'el-icon-caret-bottom':!asc}">&lt;/i>&lt;/th>
+ &lt;th style="width: 8em;">计息本金&lt;/th>
+ &lt;th>利率&lt;/th>
+ &lt;th>还款利息&lt;/th>
+ &lt;th>还款本金&lt;/th>
+ &lt;th>还款金额&lt;/th>
+ &lt;th>剩余本金&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="item in result.balanceItems">
+ &lt;tr :id="'month-'+item.plan.repaymentDate+'-detail'" class="row-data" :class="{'row-data-action-reset-rate': item.hasAdditionalRateTextList,'row-data-action-prepayment':item.hasAdditionalActionTextList}" :onclick="'blog.toggleClassName(\'month-'+item.plan.repaymentDate+'-detail\',\'month-detail_opened\')'">
+ &lt;td>{{item.plan.repaymentDate}}&lt;i class="el el-icon-arrow-right month-action-icon">&lt;/i>&lt;span v-for="action in item.additionalActionTextList">&lt;br/>{{action}}&lt;/span>&lt;/td>
+ &lt;td>{{item.plan.balancePrincipal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.yearRate}}&lt;span v-for="rate in item.additionalRateTextList">&lt;br/>{{rate}}&lt;/span>&lt;/td>
+ &lt;td>{{item.repayment.interest | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.principal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.amount | CNY}}&lt;/td>
+ &lt;td>{{item.balance.principal | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data month-detail" :class="{'row-data-action-reset-rate': item.hasRate,'row-data-action-prepayment':item.hasAction}" >
+ &lt;td>{{item.plan.beginInterestDate}}&lt;br/>{{item.plan.endInterestDate}}&lt;br/>{{item.repayment.rateTimesText}}&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;span v-for="rateFormula in item.repayment.yearRateFormulaList">{{rateFormula.endDate}} - {{rateFormula.beginDate}} = {{rateFormula.days}} 天&lt;br/>{{rateFormula.weightRateFormula}} = {{rateFormula.weightRate}}&lt;br/>{{rateFormula.yearRateFormula}} = {{rateFormula.yearRate}}&lt;br/>&lt;/span>{{item.repayment.rateFormula}} = {{item.repayment.rate}}&lt;/td>
+ &lt;td>{{item.repayment.interestFormula}}&lt;/td>
+ &lt;td>{{item.plan.repaymentPrincipalFormula}}&lt;/td>
+ &lt;td>{{item.repayment.amountFormula}}&lt;/td>
+ &lt;td>{{item.balance.principalFormula}}&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+&lt;/div>
+&lt;script src="calculator2.js">&lt;/script>
+&lt;script src="app.js">&lt;/script>&lt;/p></description></item><item><title>[工具] etc</title><link>https://linianhui.github.io/tool/etc/</link><pubDate>Wed, 16 Nov 2022 23:09:01 +0800</pubDate><guid>https://linianhui.github.io/tool/etc/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;script src="https://unpkg.com/moment@2.29.4/min/moment-with-locales.min.js">&lt;/script>
+&lt;script src="https://unpkg.com/md5@2.3.0/dist/md5.min.js">&lt;/script>
+&lt;script src="https://unpkg.com/numeral@2.0.6/min/numeral.min.js">&lt;/script>
+&lt;script src="https://unpkg.com/js-base64@3.7.3/base64.js">&lt;/script>
+&lt;script src="func.js">&lt;/script>
+
+&lt;div id="app">
+ &lt;el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="input" @input="onInputChange">&lt;/el-input>
+ &lt;fieldset v-for="item in items" style="border-width: 1px;border-color:#ddd;border-style: dashed;">
+ &lt;legend>{{item.name}}&lt;/legend>
+ &lt;a :href="'?'+encodeURIComponent(item.value)" target="_blank">{{item.value}}&lt;/a>
+ &lt;/fieldset>
+&lt;/div>
+
+&lt;script type="text/javascript">
+ function handleValue(value) {
+ var result = [];
+ for (var key in functionList) {
+ try {
+ var item = {
+ name: key,
+ value: functionList[key](value)
+ };
+ if (item.value) {
+ result.push(item);
+ }
+ } catch (e) {
+ console.error(key, value, e);
+ }
+ }
+ return result.sort(function (a, b) {
+ return a.name.localeCompare(b.name);
+ });
+ }
+
+ function getInitInput() {
+ if (window.location.search) {
+ return decodeURIComponent(window.location.search.substring(1));
+ }
+ return new Date().getTime();
+ }
+
+ var initInput = getInitInput();
+ var initItems = handleValue(initInput);
+ new Vue({
+ el: "#app",
+ data: {
+ input: initInput,
+ items: initItems
+ },
+ methods: {
+ onInputChange(value) {
+ this.items = handleValue(value);
+ console.log(handleValue(value));
+ }
+ }
+ });
+&lt;/script>&lt;/p></description></item><item><title>[工具] pc</title><link>https://linianhui.github.io/tool/pc/</link><pubDate>Wed, 16 Nov 2022 23:09:01 +0800</pubDate><guid>https://linianhui.github.io/tool/pc/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;style>
+ .inner-html table {
+ border-collapse: collapse !important;
+ padding: 0;
+ margin-top: 0 !important;
+ }
+
+ .inner-html th {
+ text-align: right;
+ }
+
+ .inner-html td {
+ text-align: right;
+ padding: 6px;
+ }
+
+
+ .inner-html .cell {
+ padding: 0 !important;
+ }
+
+ .inner-html .el-collapse {
+ border: unset;
+ }
+
+ .inner-html .el-collapse-item__wrap,
+ .inner-html .el-collapse-item__header {
+ border: unset;
+ }
+
+ .inner-html .el-input-group__prepend {
+ padding: 0;
+ }
+
+ .inner-html a {
+ margin: 0 !important;
+ }
+&lt;/style>&lt;/p>
+&lt;h1 id="cpu">
+&lt;i id="locator-cpu" class="header-locator">&lt;/i>
+&lt;a href="#cpu" class="article-h-a">CPU&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://nanoreview.net/en/cpu-list/desktop-chips-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/cpu-list/desktop-chips-rating&lt;/a>&lt;br />
+&lt;a href="https://nanoreview.net/en/cpu-list/amd-chips-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/cpu-list/amd-chips-rating&lt;/a>&lt;br />
+&lt;a href="https://nanoreview.net/en/cpu-list/intel-chips-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/cpu-list/intel-chips-rating&lt;/a>&lt;/p>
+&lt;h1 id="gpu">
+&lt;i id="locator-gpu" class="header-locator">&lt;/i>
+&lt;a href="#gpu" class="article-h-a">GPU&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://nanoreview.net/en/gpu-list/desktop-graphics-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/gpu-list/desktop-graphics-rating&lt;/a>&lt;/p>
+&lt;h1 id="ssd">
+&lt;i id="locator-ssd" class="header-locator">&lt;/i>
+&lt;a href="#ssd" class="article-h-a">SSD&lt;/a>
+&lt;/h1>
+&lt;p>致态TiPro9000:&lt;a href="https://www.ymtc.com/cn/products/59.html?cat=44"
+
+ target="_blank" rel="noopener norefferrer">https://www.ymtc.com/cn/products/59.html?cat=44&lt;/a>&lt;/p>
+&lt;h1 id="usb">
+&lt;i id="locator-usb" class="header-locator">&lt;/i>
+&lt;a href="#usb" class="article-h-a">USB&lt;/a>
+&lt;/h1>
+&lt;h2 id="usb-rtl9210b">
+&lt;i id="locator-usb-rtl9210b" class="header-locator">&lt;/i>
+&lt;a href="#usb-rtl9210b" class="article-h-a">RTL9210B&lt;/a>
+&lt;/h2>
+&lt;p>最新固件下载：&lt;a href="https://www.station-drivers.com/index.php/zh/component/search/?searchword=RTL9210&amp;amp;searchphrase=all&amp;amp;Itemid=101"
+
+ target="_blank" rel="noopener norefferrer">https://www.station-drivers.com/index.php/zh/component/search/?searchword=RTL9210&amp;searchphrase=all&amp;Itemid=101&lt;/a>&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-b792cd88dba89eae7445110ecf9d8483">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-b792cd88dba89eae7445110ecf9d8483','highlight-file_opened')">i9A-2242.cfg&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/pc/i9A-2242.cfg" title="下载 i9A-2242.cfg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/pc/i9A-2242.cfg" title="源码 i9A-2242.cfg">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>VID = &lt;span style="color:#a31515">0xbda&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PID = &lt;span style="color:#a31515">0x9210&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MANUFACTURE = &lt;span style="color:#a31515">&amp;#34;JEYI&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PRODUCT = &lt;span style="color:#a31515">&amp;#34;i9A-2242&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SERIAL = &lt;span style="color:#a31515">&amp;#34;221010010021&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SCSI_VENDOR = &lt;span style="color:#a31515">&amp;#34;Realtek&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SCSI_PRODUCT = &lt;span style="color:#a31515">&amp;#34;RTL9210B&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ASPMDIS = &lt;span style="color:#a31515">0x1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DISK_IPS_THRES = &lt;span style="color:#a31515">0x0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LED = &lt;span style="color:#a31515">0x02&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CUSTOMIZED_LED = &lt;span style="color:#a31515">22 02 00 00 00 00 00 00 00 00 00 00 00 00 00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SUSPEND_LED_OFF = &lt;span style="color:#a31515">0x1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SUSPEND_DISK_OFF = &lt;span style="color:#a31515">0x0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>UART_DBG_PIN = &lt;span style="color:#a31515">0x5&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>U2_MAXPWR = &lt;span style="color:#a31515">0xfa&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>U3_MAXPWR = &lt;span style="color:#a31515">0x70&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DISK_HOTPLUG = &lt;span style="color:#a31515">0x0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="hdd">
+&lt;i id="locator-hdd" class="header-locator">&lt;/i>
+&lt;a href="#hdd" class="article-h-a">机械硬盘&lt;/a>
+&lt;/h1>
+&lt;div id="hddList" class="inner-html">
+ &lt;el-table :data="hdds" :default-sort="{prop: 'price'}" highlight-current-row="true">
+ &lt;el-table-column prop="capacityBytes" label="容量" sortable="true" min-width="70">
+ &lt;template slot-scope="scope">
+ &lt;span :title="scope.row.actualCapacityTB+'\n'+scope.row.actualCapacityGB">
+ {{scope.row.capacity}}
+ &lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="brand" label="品牌" sortable="true" min-width="80">
+ &lt;template slot-scope="scope">
+ &lt;a v-if="scope.row.brandUrl" :href="scope.row.brandUrl" target="_blank">{{scope.row.brand}}&lt;/a>
+ &lt;span v-else>{{scope.row.brand}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="series" label="系列" sortable="true" min-width="150">
+ &lt;template slot-scope="scope">
+ &lt;a v-if="scope.row.seriesUrl" :href="scope.row.seriesUrl" target="_blank">{{scope.row.series}}&lt;/a>
+ &lt;span v-else>{{scope.row.series}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="model" label="型号" sortable="true" min-width="150">
+ &lt;template slot-scope="scope">
+ &lt;a v-if="scope.row.datasheetUrl" :href="scope.row.datasheetUrl" target="_blank">{{scope.row.model}}&lt;/a>
+ &lt;span v-else>{{scope.row.model}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="recording" label="记录" sortable="true" min-width="60">
+ &lt;/el-table-column>
+ &lt;el-table-column prop="cache" label="缓存" sortable="true" min-width="70">
+ &lt;/el-table-column>
+ &lt;el-table-column prop="rpm" label="转速" sortable="true" min-width="70">
+ &lt;/el-table-column>
+ &lt;el-table-column prop="price" label="价格" sortable="true" min-width="120">
+ &lt;template slot-scope="scope">
+ {{scope.row.price}} &lt;sub style="color: #999;font-size: 10px;font-style: italic;">{{scope.row.priceDate}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="model" label="电商">
+ &lt;template slot-scope="scope">
+ &lt;a :href="scope.row.shopJDUrl" target="_blank">京东&lt;/a>
+ &lt;a :href="scope.row.shopTBUrl" target="_blank">淘宝&lt;/a>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;/el-table>
+&lt;/div>
+&lt;script src="hdd.data.js">&lt;/script>
+&lt;script type="text/javascript">
+ new Vue({
+ el: "#hddList",
+ data: { hdds: hdds }
+ })
+&lt;/script>
+&lt;p>注意：购买明确标注&lt;code>CMR&lt;/code>的机械硬盘，希捷较西部数据安静一些（但是希捷故障率高一些）。其他的核心特性&lt;/p></description></item><item><title>[工具] rinetd</title><link>https://linianhui.github.io/tool/rinetd/</link><pubDate>Tue, 23 Mar 2021 23:01:03 +0800</pubDate><guid>https://linianhui.github.io/tool/rinetd/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>c语言开发的一个端口转发转发工具，非常小巧方便，比&lt;code>iptables&lt;/code>方便使用。或者像是在&lt;code>macOS&lt;/code>这种不支持转发到&lt;code>remote ip&lt;/code>的系统下。&lt;/p>
+&lt;blockquote>
+&lt;p>windows 下有内置的&lt;code>netsh interface portproxy add v4tov4 listenport=80 connectaddress=192.168.2.201 connectport=80&lt;/code>可以使用。&lt;/p>&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看帮助&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rinetd -h
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 前台运行(默认运行在background)，并且指定配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rinetd --foreground --conf-file rinetd.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-e49e3a4af7b2803d2d3c2186ece347ac">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e49e3a4af7b2803d2d3c2186ece347ac','highlight-file_opened')">rinetd.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/rinetd/rinetd.conf" title="下载 rinetd.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/rinetd/rinetd.conf" title="源码 rinetd.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>logfile /lnh/_cache/_rinetd/rinetd.log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#127.0.0.1 80 192.168.2.201 80&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>127.0.0.1 2375 192.168.2.201 2375
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>127.0.0.1 3306 192.168.2.201 3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>127.0.0.1 6379 192.168.2.201 6379&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="macos-install">
+&lt;i id="locator-macos-install" class="header-locator">&lt;/i>
+&lt;a href="#macos-install" class="article-h-a">1.1 macOS 安装&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>brew install rinetd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或者源码自己编译安装。&lt;/p></description></item><item><title>[工具] caddy</title><link>https://linianhui.github.io/tool/caddy/</link><pubDate>Fri, 12 Mar 2021 17:07:03 +0800</pubDate><guid>https://linianhui.github.io/tool/caddy/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>go语言开发的开源的Http Server。可以作为反向代理服务器和Http静态文件文件服务器。&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-2865793e43e3c03973b191d6472037ee">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-2865793e43e3c03973b191d6472037ee','highlight-file_opened')">Caddyfile&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/caddy/Caddyfile" title="下载 Caddyfile" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/caddy/Caddyfile" title="源码 Caddyfile">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> auto_https off
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>:2015
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>file_server browse
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>templates&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/caddyserver/caddy"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/caddyserver/caddy&lt;/a>&lt;/p></description></item><item><title>[工具] miniserve</title><link>https://linianhui.github.io/tool/miniserve/</link><pubDate>Fri, 12 Mar 2021 17:07:03 +0800</pubDate><guid>https://linianhui.github.io/tool/miniserve/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>rust语言开发的开源的轻量级静态文件Http Server。支持的功能：&lt;/p>
+&lt;ol>
+&lt;li>静态文件目录服务。&lt;/li>
+&lt;li>上传文件。&lt;/li>
+&lt;li>http基本认证。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>miniserve --color-scheme squirrel --qrcode --auth lnh:123 --upload-files
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>官方仓库： &lt;a href="https://github.com/svenstaro/miniserve"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve&lt;/a>&lt;/p>
+&lt;p>下载连接：&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-pc-windows-msvc.exe"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-pc-windows-msvc.exe&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-apple-darwin"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/svenstaro/miniserve/releases/download/v0.22.0/miniserve-0.22.0-x86_64-apple-darwin&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>[工具] goproxy</title><link>https://linianhui.github.io/tool/goproxy/</link><pubDate>Thu, 28 May 2020 13:12:00 +0800</pubDate><guid>https://linianhui.github.io/tool/goproxy/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/snail007/goproxy"
+
+ target="_blank" rel="noopener norefferrer">goproxy&lt;/a>是一个基于Go语言编写的开源的网络代理工具。&lt;/p>
+&lt;p>下载: &lt;a href="https://github.com/snail007/goproxy/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/snail007/goproxy/releases&lt;/a>&lt;/p>
+&lt;p>使用示例:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 配置(转发本地的2375和9000端口到182.168.2.201的对应端口)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>proxy @config.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-e312957c4d10f2872d11640dc58ebe5e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e312957c4d10f2872d11640dc58ebe5e','highlight-file_opened')">config.txt&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/goproxy/config.txt" title="下载 config.txt" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/goproxy/config.txt" title="源码 config.txt">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>tcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-p &lt;span style="color:#a31515">&amp;#34;:2375,:9000&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-T tcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-P &lt;span style="color:#a31515">&amp;#34;192.168.2.201:0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--log proxy.log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--daemon&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://snail007.github.io/goproxy/"
+
+ target="_blank" rel="noopener norefferrer">https://snail007.github.io/goproxy/&lt;/a>&lt;/p></description></item><item><title>[工具] v2ray</title><link>https://linianhui.github.io/tool/v2ray/</link><pubDate>Thu, 13 Feb 2020 08:01:00 +0800</pubDate><guid>https://linianhui.github.io/tool/v2ray/</guid><description>&lt;h1 id="server-install">
+&lt;i id="locator-server-install" class="header-locator">&lt;/i>
+&lt;a href="#server-install" class="article-h-a">1 服务器安装&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-b2f0fa3e9bdb6cb2d567ca18cf22aeef">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-b2f0fa3e9bdb6cb2d567ca18cf22aeef','highlight-file_opened')">init.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/v2ray/init.sh" title="下载 init.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/v2ray/init.sh" title="源码 init.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">#!/bin/bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.sh 127.0.0.1 127.0.0.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/v2fly/v2ray-core&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/gfwlist/gfwlist&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>V2RAY_VERSION=5.14.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export V2RAY_SERVER_IP=&lt;span style="color:#a31515">${&lt;/span>1&lt;span style="color:#00f">:-&lt;/span>127.0.0.1&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export V2RAY_CLIENT_IP=&lt;span style="color:#a31515">${&lt;/span>2&lt;span style="color:#00f">:-&lt;/span>127.0.0.1&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y wget gettext lsof net-tools
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bash &amp;lt;(wget -q -O - https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) --version $V2RAY_VERSION
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/usr/local/bin/v2ray version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>UUID=&lt;span style="color:#00f">$(&lt;/span>/usr/local/bin/v2ray uuid&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CRET_NAME=&lt;span style="color:#a31515">${&lt;/span>UUID:0:8&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CRET_ORG=&lt;span style="color:#a31515">${&lt;/span>UUID:9:4&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export TEMPLATE_SERVER_DOMAIN_NAME=&lt;span style="color:#a31515">&amp;#34;&lt;/span>&lt;span style="color:#a31515">${&lt;/span>UUID:14:4&lt;span style="color:#a31515">}&lt;/span>&lt;span style="color:#a31515">.test&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export TEMPLATE_CLIENT_ID=$UUID
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export TEMPLATE_CERTIFICATE_JSON=&lt;span style="color:#00f">$(&lt;/span>/usr/local/bin/v2ray tls cert --ca --json --domain=$TEMPLATE_SERVER_DOMAIN_NAME --expire=720 --name=$CRET_NAME --org=$CRET_ORG&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SERVER_JSON_TEMPLATE=&lt;span style="color:#00f">$(&lt;/span>cat &lt;span style="color:#a31515">&amp;lt;&amp;lt;&amp;#39;SERVER_JSON&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">{
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;log&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;logLevel&amp;#34;: &amp;#34;None&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;inbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;listen&amp;#34;: &amp;#34;${V2RAY_SERVER_IP}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;port&amp;#34;: 443,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;vless&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;decryption&amp;#34;: &amp;#34;none&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;clients&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;id&amp;#34;: &amp;#34;${TEMPLATE_CLIENT_ID}&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;streamSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;network&amp;#34;: &amp;#34;tcp&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;security&amp;#34;: &amp;#34;tls&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;tlsSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;serverName&amp;#34;: &amp;#34;${TEMPLATE_SERVER_DOMAIN_NAME}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecure&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecureCiphers&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;disableSystemRoot&amp;#34;: true,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;certificates&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ${TEMPLATE_CERTIFICATE_JSON}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ],
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;outbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">SERVER_JSON&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#a31515">&amp;#34;&lt;/span>&lt;span style="color:#a31515">${&lt;/span>SERVER_JSON_TEMPLATE&lt;span style="color:#a31515">}&lt;/span>&lt;span style="color:#a31515">&amp;#34;&lt;/span> | envsubst &amp;gt; /usr/local/etc/v2ray/config.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/usr/local/bin/v2ray test -c /usr/local/etc/v2ray/config.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CLIENT_JSON_TEMPLATE=&lt;span style="color:#00f">$(&lt;/span>cat &lt;span style="color:#a31515">&amp;lt;&amp;lt;&amp;#39;CLIENT_JSON&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">{
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;log&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;logLevel&amp;#34;: &amp;#34;None&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;inbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;listen&amp;#34;: &amp;#34;$V2RAY_CLIENT_IP&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;port&amp;#34;: 1080,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;socks&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;auth&amp;#34;: &amp;#34;noauth&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;udp&amp;#34;: true
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ],
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;outbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;vless&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;vnext&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;address&amp;#34;: &amp;#34;${V2RAY_SERVER_IP}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;port&amp;#34;: 443,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;users&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;id&amp;#34;: &amp;#34;${TEMPLATE_CLIENT_ID}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;encryption&amp;#34;: &amp;#34;none&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;streamSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;network&amp;#34;: &amp;#34;tcp&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;security&amp;#34;: &amp;#34;tls&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;tlsSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;serverName&amp;#34;: &amp;#34;${TEMPLATE_SERVER_DOMAIN_NAME}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecure&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecureCiphers&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;disableSystemRoot&amp;#34;: true,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;certificates&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ${TEMPLATE_CERTIFICATE_JSON}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;mux&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;enabled&amp;#34;: false
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {},
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;mux&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;enabled&amp;#34;: false
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">CLIENT_JSON&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#a31515">&amp;#34;&lt;/span>&lt;span style="color:#a31515">${&lt;/span>CLIENT_JSON_TEMPLATE&lt;span style="color:#a31515">}&lt;/span>&lt;span style="color:#a31515">&amp;#34;&lt;/span> | envsubst &amp;gt; v2ray-client-config.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>setcap cap_net_bind_service=+ep /usr/local/bin/v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl daemon-reload
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl restart v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl status v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>lsof -i:443
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -an | grep 443&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="client-install">
+&lt;i id="locator-client-install" class="header-locator">&lt;/i>
+&lt;a href="#client-install" class="article-h-a">2 客户端安装&lt;/a>
+&lt;/h1>
+&lt;h2 id="client-install-windows">
+&lt;i id="locator-client-install-windows" class="header-locator">&lt;/i>
+&lt;a href="#client-install-windows" class="article-h-a">2.1 Windows&lt;/a>
+&lt;/h2>
+&lt;p>下载客户端&lt;a href="https://github.com/v2fly/v2ray-core/releases/download/v5.14.1/v2ray-windows-64.zip"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/v2fly/v2ray-core/releases/download/v5.14.1/v2ray-windows-64.zip&lt;/a>。&lt;/p></description></item><item><title>[工具] app</title><link>https://linianhui.github.io/tool/app/</link><pubDate>Tue, 22 Oct 2019 15:03:03 +0800</pubDate><guid>https://linianhui.github.io/tool/app/</guid><description>&lt;h1 id="7z">
+&lt;i id="locator-7z" class="header-locator">&lt;/i>
+&lt;a href="#7z" class="article-h-a">7z&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.7-zip.org/download.html"
+
+ target="_blank" rel="noopener norefferrer">https://www.7-zip.org/download.html&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.7-zip.org/a/7z2408-x64.exe"
+
+ target="_blank" rel="noopener norefferrer">https://www.7-zip.org/a/7z2408-x64.exe&lt;/a>&lt;/p>
+&lt;h1 id="adb">
+&lt;i id="locator-adb" class="header-locator">&lt;/i>
+&lt;a href="#adb" class="article-h-a">Adb&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://linianhui.github.io/tool/android/"
+
+ target="_blank" rel="noopener norefferrer">https://linianhui.github.io/tool/android/&lt;/a>&lt;/p>
+&lt;h1 id="aida64">
+&lt;i id="locator-aida64" class="header-locator">&lt;/i>
+&lt;a href="#aida64" class="article-h-a">Aida64&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.aida64.com/downloads"
+
+ target="_blank" rel="noopener norefferrer">https://www.aida64.com/downloads&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://download2.aida64.com/aida64extreme740.zip"
+
+ target="_blank" rel="noopener norefferrer">https://download2.aida64.com/aida64extreme740.zip&lt;/a>&lt;/p>
+&lt;h1 id="aomei">
+&lt;i id="locator-aomei" class="header-locator">&lt;/i>
+&lt;a href="#aomei" class="article-h-a">Aomei&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.disktool.cn/"
+
+ target="_blank" rel="noopener norefferrer">https://www.disktool.cn/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.disktool.cn/go/download/PAInstall.zip"
+
+ target="_blank" rel="noopener norefferrer">https://www.disktool.cn/go/download/PAInstall.zip&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.disktool.cn/go/download/PAGreen.zip"
+
+ target="_blank" rel="noopener norefferrer">https://www.disktool.cn/go/download/PAGreen.zip&lt;/a>&lt;/p>
+&lt;h1 id="as-ssd-benchmark">
+&lt;i id="locator-as-ssd-benchmark" class="header-locator">&lt;/i>
+&lt;a href="#as-ssd-benchmark" class="article-h-a">As ssd benchmark&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.alex-is.de/PHP/fusion/downloads.php?cat_id=4&amp;amp;download_id=9"
+
+ target="_blank" rel="noopener norefferrer">https://www.alex-is.de/PHP/fusion/downloads.php?cat_id=4&amp;download_id=9&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.alex-is.de/progs/AS%20SSD%20Benchmark.zip"
+
+ target="_blank" rel="noopener norefferrer">https://www.alex-is.de/progs/AS%20SSD%20Benchmark.zip&lt;/a>&lt;/p>
+&lt;h1 id="caddy">
+&lt;i id="locator-caddy" class="header-locator">&lt;/i>
+&lt;a href="#caddy" class="article-h-a">Caddy&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/mholt/caddy"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/mholt/caddy&lt;/a>&lt;/p>
+&lt;h1 id="calibre">
+&lt;i id="locator-calibre" class="header-locator">&lt;/i>
+&lt;a href="#calibre" class="article-h-a">Calibre&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/kovidgoyal/calibre"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/kovidgoyal/calibre&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/kovidgoyal/calibre/releases/download/v7.21.0/calibre-portable-installer-7.21.0.exe"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/kovidgoyal/calibre/releases/download/v7.21.0/calibre-portable-installer-7.21.0.exe&lt;/a>&lt;/p>
+&lt;h1 id="chip-genius">
+&lt;i id="locator-chip-genius" class="header-locator">&lt;/i>
+&lt;a href="#chip-genius" class="article-h-a">Chip genius&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.softpedia.com/get/System/System-Info/ChipGenius.shtml"
+
+ target="_blank" rel="noopener norefferrer">https://www.softpedia.com/get/System/System-Info/ChipGenius.shtml&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://softpedia-secure-download.com/dl/5f8afea87878a54cd9c5243423504cd5/63674464/100251552/software/system/info/ChipGenius_v4_19_0319.zip"
+
+ target="_blank" rel="noopener norefferrer">https://softpedia-secure-download.com/dl/5f8afea87878a54cd9c5243423504cd5/63674464/100251552/software/system/info/ChipGenius_v4_19_0319.zip&lt;/a>&lt;/p>
+&lt;h1 id="context-menu-manager">
+&lt;i id="locator-context-menu-manager" class="header-locator">&lt;/i>
+&lt;a href="#context-menu-manager" class="article-h-a">Context Menu Manager&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/BluePointLilac/ContextMenuManager"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/BluePointLilac/ContextMenuManager&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://mirrors.sdu.edu.cn/github-release/BluePointLilac_ContextMenuManager/"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.sdu.edu.cn/github-release/BluePointLilac_ContextMenuManager/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://mirrors.sdu.edu.cn/github-release/BluePointLilac_ContextMenuManager/3.3.3.1/ContextMenuManager.zip"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.sdu.edu.cn/github-release/BluePointLilac_ContextMenuManager/3.3.3.1/ContextMenuManager.zip&lt;/a>&lt;/p>
+&lt;h1 id="cpu-z">
+&lt;i id="locator-cpu-z" class="header-locator">&lt;/i>
+&lt;a href="#cpu-z" class="article-h-a">Cpu-z&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.cpuid.com/softwares/cpu-z.html"
+
+ target="_blank" rel="noopener norefferrer">https://www.cpuid.com/softwares/cpu-z.html&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.cpuid.com/downloads/cpu-z/cpu-z_2.12-en.zip"
+
+ target="_blank" rel="noopener norefferrer">https://www.cpuid.com/downloads/cpu-z/cpu-z_2.12-en.zip&lt;/a>&lt;/p>
+&lt;h1 id="crystal-disk-info">
+&lt;i id="locator-crystal-disk-info" class="header-locator">&lt;/i>
+&lt;a href="#crystal-disk-info" class="article-h-a">Crystal disk info&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://crystalmark.info/en/download"
+
+ target="_blank" rel="noopener norefferrer">https://crystalmark.info/en/download&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://jaist.dl.sourceforge.net/project/crystaldiskinfo/9.4.4/CrystalDiskInfo9_4_4.zip"
+
+ target="_blank" rel="noopener norefferrer">https://jaist.dl.sourceforge.net/project/crystaldiskinfo/9.4.4/CrystalDiskInfo9_4_4.zip&lt;/a>&lt;/p>
+&lt;h1 id="crystal-disk-mark">
+&lt;i id="locator-crystal-disk-mark" class="header-locator">&lt;/i>
+&lt;a href="#crystal-disk-mark" class="article-h-a">Crystal disk mark&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://sourceforge.net/projects/crystaldiskmark/"
+
+ target="_blank" rel="noopener norefferrer">https://sourceforge.net/projects/crystaldiskmark/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://sourceforge.net/projects/crystaldiskmark/files/8.0.5/CrystalDiskMark8_0_5.zip"
+
+ target="_blank" rel="noopener norefferrer">https://sourceforge.net/projects/crystaldiskmark/files/8.0.5/CrystalDiskMark8_0_5.zip&lt;/a>&lt;/p>
+&lt;h1 id="cybermania">
+&lt;i id="locator-cybermania" class="header-locator">&lt;/i>
+&lt;a href="#cybermania" class="article-h-a">Cybermania&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.cybermania.ws/"
+
+ target="_blank" rel="noopener norefferrer">https://www.cybermania.ws/&lt;/a>&lt;/p>
+&lt;h1 id="disk-genius">
+&lt;i id="locator-disk-genius" class="header-locator">&lt;/i>
+&lt;a href="#disk-genius" class="article-h-a">Disk-genius&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.diskgenius.cn/download.php"
+
+ target="_blank" rel="noopener norefferrer">https://www.diskgenius.cn/download.php&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://download.eassos.cn/DG5431342_x64.zip"
+
+ target="_blank" rel="noopener norefferrer">https://download.eassos.cn/DG5431342_x64.zip&lt;/a>&lt;/p>
+&lt;h1 id="dism">
+&lt;i id="locator-dism" class="header-locator">&lt;/i>
+&lt;a href="#dism" class="article-h-a">Dism++&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/Chuyu-Team/Dism-Multi-language"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/Chuyu-Team/Dism-Multi-language&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://mirrors.sdu.edu.cn/github-release/Chuyu-Team_Dism-Multi-language/"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.sdu.edu.cn/github-release/Chuyu-Team_Dism-Multi-language/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://mirrors.sdu.edu.cn/github-release/Chuyu-Team_Dism-Multi-language/v10.1.1002.2/Dism&amp;#43;&amp;#43;10.1.1002.1B.zip"
+
+ target="_blank" rel="noopener norefferrer">https://mirrors.sdu.edu.cn/github-release/Chuyu-Team_Dism-Multi-language/v10.1.1002.2/Dism++10.1.1002.1B.zip&lt;/a>&lt;/p>
+&lt;h1 id="dufs">
+&lt;i id="locator-dufs" class="header-locator">&lt;/i>
+&lt;a href="#dufs" class="article-h-a">DuFs&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/sigoden/dufs"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/sigoden/dufs&lt;/a>&lt;br />
+&lt;a href="https://github.com/sigoden/dufs/releases/download/v0.43.0/dufs-v0.43.0-x86_64-pc-windows-msvc.zip"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/sigoden/dufs/releases/download/v0.43.0/dufs-v0.43.0-x86_64-pc-windows-msvc.zip&lt;/a>&lt;/p>
+&lt;h1 id="edgelesspe">
+&lt;i id="locator-edgelesspe" class="header-locator">&lt;/i>
+&lt;a href="#edgelesspe" class="article-h-a">EdgelessPE&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://home.edgeless.top/"
+
+ target="_blank" rel="noopener norefferrer">https://home.edgeless.top/&lt;/a>&lt;br />
+&lt;a href="https://github.com/EdgelessPE/Edgeless"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/EdgelessPE/Edgeless&lt;/a>&lt;/p>
+&lt;h1 id="etcher">
+&lt;i id="locator-etcher" class="header-locator">&lt;/i>
+&lt;a href="#etcher" class="article-h-a">Etcher&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://etcher.balena.io/"
+
+ target="_blank" rel="noopener norefferrer">https://etcher.balena.io/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25.Setup.exe"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25.Setup.exe&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25-x64.dmg"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25-x64.dmg&lt;/a>&lt;/p>
+&lt;h1 id="everything">
+&lt;i id="locator-everything" class="header-locator">&lt;/i>
+&lt;a href="#everything" class="article-h-a">Everything&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.voidtools.com/"
+
+ target="_blank" rel="noopener norefferrer">https://www.voidtools.com/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.voidtools.com/Everything-1.4.1.1026.x64.zip"
+
+ target="_blank" rel="noopener norefferrer">https://www.voidtools.com/Everything-1.4.1.1026.x64.zip&lt;/a>&lt;/p>
+&lt;h1 id="ffmpeg">
+&lt;i id="locator-ffmpeg" class="header-locator">&lt;/i>
+&lt;a href="#ffmpeg" class="article-h-a">FFmpeg&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://ffmpeg.org/download.html"
+
+ target="_blank" rel="noopener norefferrer">https://ffmpeg.org/download.html&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z"
+
+ target="_blank" rel="noopener norefferrer">https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z&lt;/a>&lt;/p>
+&lt;h1 id="fast-copy">
+&lt;i id="locator-fast-copy" class="header-locator">&lt;/i>
+&lt;a href="#fast-copy" class="article-h-a">Fast-copy&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://fastcopy.jp"
+
+ target="_blank" rel="noopener norefferrer">https://fastcopy.jp&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://fastcopy.jp/archive/FastCopy5.8.0_installer.exe"
+
+ target="_blank" rel="noopener norefferrer">https://fastcopy.jp/archive/FastCopy5.8.0_installer.exe&lt;/a>&lt;/p>
+&lt;h1 id="fiddler">
+&lt;i id="locator-fiddler" class="header-locator">&lt;/i>
+&lt;a href="#fiddler" class="article-h-a">Fiddler&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.telerik.com/fiddler"
+
+ target="_blank" rel="noopener norefferrer">https://www.telerik.com/fiddler&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.telerik.com/download/fiddler"
+
+ target="_blank" rel="noopener norefferrer">https://www.telerik.com/download/fiddler&lt;/a>&lt;/p>
+&lt;h1 id="foobar2000">
+&lt;i id="locator-foobar2000" class="header-locator">&lt;/i>
+&lt;a href="#foobar2000" class="article-h-a">Foobar2000&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.foobar2000.org/"
+
+ target="_blank" rel="noopener norefferrer">https://www.foobar2000.org/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.foobar2000.org/getfile/foobar2000-x64_v2.1.6.exe"
+
+ target="_blank" rel="noopener norefferrer">https://www.foobar2000.org/getfile/foobar2000-x64_v2.1.6.exe&lt;/a>&lt;/p>
+&lt;h1 id="free-download-manager">
+&lt;i id="locator-free-download-manager" class="header-locator">&lt;/i>
+&lt;a href="#free-download-manager" class="article-h-a">Free download manager&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.freedownloadmanager.org/"
+
+ target="_blank" rel="noopener norefferrer">https://www.freedownloadmanager.org/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://files2.freedownloadmanager.org/6/latest/fdm_x64_setup.exe"
+
+ target="_blank" rel="noopener norefferrer">https://files2.freedownloadmanager.org/6/latest/fdm_x64_setup.exe&lt;/a>&lt;/p>
+&lt;h1 id="geek-uninstaller">
+&lt;i id="locator-geek-uninstaller" class="header-locator">&lt;/i>
+&lt;a href="#geek-uninstaller" class="article-h-a">Geek uninstaller&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://geekuninstaller.com"
+
+ target="_blank" rel="noopener norefferrer">https://geekuninstaller.com&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://geekuninstaller.com/geek.zip"
+
+ target="_blank" rel="noopener norefferrer">https://geekuninstaller.com/geek.zip&lt;/a>&lt;/p>
+&lt;h1 id="gpu-z">
+&lt;i id="locator-gpu-z" class="header-locator">&lt;/i>
+&lt;a href="#gpu-z" class="article-h-a">Gpu-z&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.techpowerup.com/gpuz/"
+
+ target="_blank" rel="noopener norefferrer">https://www.techpowerup.com/gpuz/&lt;/a>&lt;/p></description></item><item><title>[工具] 个税计算器</title><link>https://linianhui.github.io/tool/tax/</link><pubDate>Tue, 01 Jan 2019 01:01:01 +0800</pubDate><guid>https://linianhui.github.io/tool/tax/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;style>
+ th {
+ text-align: right;
+ }
+
+ td {
+ text-align: right;
+ vertical-align: baseline;
+ padding: 6px 4px;
+ }
+
+ .cell {
+ padding: 0 !important;
+ }
+
+ .input-fieldset section {
+ margin: 6px 0;
+ }
+
+ .form-name,
+ .form-input {
+ position: relative;
+ display: inline-block;
+ vertical-align: middle;
+ }
+
+ .form-name {
+ width: 5em;
+ text-align: right;
+ }
+
+ .form-input {
+ margin-left: 1em;
+ }
+
+ .el-collapse {
+ border: unset;
+ }
+
+ .el-collapse-item__wrap,
+ .el-collapse-item__header {
+ border: unset;
+ }
+
+ .el-input-group__prepend {
+ padding: 0;
+ }
+
+ fieldset {
+ border: unset;
+ box-shadow: 0 0 2px #ccc;
+ max-width: 100%;
+ min-width: 100%;
+ margin-top: 1em;
+ box-sizing: border-box;
+ }
+
+ legend {
+ background-color: #FFF;
+ color: #909399;
+ }
+
+ .salary-wrapper {
+ overflow-x: auto;
+ max-width: 100%;
+ }
+
+ .salary-pre {
+ font-family: unset;
+ font-size: 0;
+ margin: 0;
+ }
+
+ .salary-table {
+ width: 100%;
+ margin: 0;
+ font-size: 14px;
+ }
+
+ .salary-summary sub {
+ font-size: 10px;
+ padding-left: 2px;
+ color: #bbb;
+ }
+
+ .row-data {
+ color: #666;
+ font-family: monospace, Courier, 'Courier New'
+ }
+
+ .row-data:hover {
+ background-color: #eee;
+ cursor: pointer;
+ }
+
+ .insurance-table input {
+ min-width: 2em;
+ max-width: 4em;
+ text-align: right;
+ }
+
+ .month-detail {
+ display: none;
+ }
+
+ .month-detail_opened+tr {
+ display: table-row;
+ }
+
+ .month-detail_opened .month-action-icon::before {
+ content: "\e6df";
+ }
+
+ .form-input-weight {
+ width: 14em !important;
+ }
+&lt;/style>
+&lt;div id="app">
+ &lt;fieldset class="input-fieldset">
+ &lt;legend>参数区域&lt;/legend>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="salary">
+ 税前月工资
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="salary" v-model="amount" step="1000" :min="0">
+ &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="month">
+ 月数
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="month" v-model="month" :min="1" @input="onMonthChange">&lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="insurance">
+ 社保基数
+ &lt;/label>
+ &lt;/div>
+ &lt;div class="form-input">
+ &lt;el-collapse>
+ &lt;el-collapse-item>
+ &lt;template slot="title">
+ &lt;el-select id="insurance" v-model="insuranceName" :popper-append-to-body="false" class="form-input-weight"
+ @change="onInsuranceNameChange">
+ &lt;el-option v-for="item in insuranceNameList" :key="item" :label="item" :value="item">
+ &lt;/el-option>
+ &lt;/el-select>
+ &lt;span>&amp;nbsp;&amp;nbsp;{{insurance.min | CNY}}~{{insurance.max | CNY}}&lt;/span>
+ &lt;/template>
+ &lt;table class="insurance-table">
+ &lt;tr class="row-header">
+ &lt;th>社保类型&lt;/th>
+ &lt;th>最低基数&lt;/th>
+ &lt;th>最高基数&lt;/th>
+ &lt;th>个人%&lt;/th>
+ &lt;th>公司%&lt;/th>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;input v-model="insurance.min" @input="onInsuranceMinChange" type="number" min="0" placeholder="最低基数">&lt;/td>
+ &lt;td>&lt;input v-model="insurance.max" @input="onInsuranceMaxChange" type="number" min="0" placeholder="最高基数">&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr v-for="item in insurance.items" class="row-data">
+ &lt;td>{{item.name}}&lt;/td>
+ &lt;td>&lt;input v-model="item.min" type="number" min="0" placeholder="最低基数">&lt;/td>
+ &lt;td>&lt;input v-model="item.max" type="number" min="0" placeholder="最高基数">&lt;/td>
+ &lt;td>&lt;input v-model="item.personalPercentage" type="number" min="0" max="100" placeholder="个人比例">&lt;/td>
+ &lt;td>&lt;input v-model="item.corporationPercentage" type="number" min="0" max="100" placeholder="公司比例">&lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/el-collapse-item>
+ &lt;/el-collapse>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="rate">税率表&lt;/label>
+ &lt;/div>
+ &lt;div class="form-input">
+ &lt;el-collapse>
+ &lt;el-collapse-item>
+ &lt;template slot="title">
+ &lt;el-select id="rate" v-model="rateName" :popper-append-to-body="false" class="form-input-weight">
+ &lt;el-option v-for="item in rateNameList" :key="item" :label="item" :value="item">
+ &lt;/el-option>
+ &lt;/el-select>
+ &lt;span>&amp;nbsp;&amp;nbsp;免征额 {{rate.exempted | CNY}}&lt;/span>
+ &lt;/template>
+ &lt;table>
+ &lt;tr class="row-header">
+ &lt;th>范围&lt;/th>
+ &lt;th>税率&lt;/th>
+ &lt;th>速算扣除数&lt;/th>
+ &lt;/tr>
+ &lt;tr v-for="item in rate.items" class="row-data">
+ &lt;td>
+ &lt;span>
+ {{item.min | CNY}} ~
+ &lt;span v-if="item.max">{{item.max | CNY}}&lt;/span>
+ &lt;span v-else>￥∞&lt;/span>
+ &lt;/span>
+ &lt;/td>
+ &lt;td>
+ {{item.rate}}%
+ &lt;/td>
+ &lt;td>
+ {{item.quickDeduction | CNY}}
+ &lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/el-collapse-item>
+ &lt;/el-collapse>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="bonus">
+ 奖金
+ &lt;/label>
+ &lt;/div>
+ &lt;div class="form-input">
+ &lt;el-collapse>
+ &lt;el-collapse-item>
+ &lt;template slot="title">
+ &lt;el-input-number id="ebonus" v-model="bonus" step="1000">&lt;/el-input-number>
+ &amp;nbsp;&amp;nbsp;
+ &lt;el-checkbox v-model="bonusSingleTax">单独计税&lt;/el-checkbox>
+ &amp;nbsp;&amp;nbsp; 税率表(月)
+ &lt;/template>
+ &lt;table>
+ &lt;tr class="row-header">
+ &lt;th>范围&lt;/th>
+ &lt;th>税率&lt;/th>
+ &lt;th>速算扣除数&lt;/th>
+ &lt;/tr>
+ &lt;tr v-for="item in bonusRates.items" class="row-data">
+ &lt;td>
+ &lt;span>
+ {{item.min | CNY}} ~
+ &lt;span v-if="item.max">{{item.max | CNY}}&lt;/span>
+ &lt;span v-else>￥∞&lt;/span>
+ &lt;/span>
+ &lt;/td>
+ &lt;td>
+ {{item.rate}}%
+ &lt;/td>
+ &lt;td>
+ {{item.quickDeduction | CNY}}
+ &lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/el-collapse-item>
+ &lt;/el-collapse>
+ &lt;/div>
+ &lt;/section>
+ &lt;section style="min-height: 47px;">
+ &lt;div class="form-name">
+ &lt;label for="precision">
+ 小数位
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="precision" v-model="precision" :min="0" :max="2"
+ @change="onPrecisionChange">&lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-年合计&lt;/legend>
+ &lt;table class="salary-summary">
+ &lt;tr class="row-data">
+ &lt;td>税前&lt;/td>
+ &lt;td>{{amount | CNY}}&lt;sub>工资&lt;/sub>&lt;/td>
+ &lt;td>*&lt;/td>
+ &lt;td>{{month}}&lt;sub>月&lt;/sub>&lt;/td>
+ &lt;td>=&lt;/td>
+ &lt;td>{{salarys.summary.last.baseYTD | CNY}}&lt;/td>
+ &lt;td>+&lt;/td>
+ &lt;td>{{salarys.summary.last.insurances.corporationYTD | CNY}}&lt;sub>公司社保&lt;/sub>&lt;/td>
+ &lt;td>=&lt;/td>
+ &lt;td>{{salarys.summary.last.corporationYTD | CNY}}&lt;sub>公司支出&lt;/sub>&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td colspan="6">-&lt;/td>
+ &lt;td colspan="4">-&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>税后&lt;/td>
+ &lt;td>{{salarys.summary.last.actualYTD | CNY}}&lt;sub>税后YTD&lt;/sub>&lt;/td>
+ &lt;td>+&lt;/td>
+ &lt;td>{{salarys.summary.公积金SumYTD| CNY}}&lt;sub>公积金YTD&lt;/sub>&lt;/td>
+ &lt;td>=&lt;/td>
+ &lt;td colspan="5">{{salarys.summary.totalActualYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td colspan="6">=&lt;/td>
+ &lt;td colspan="4">=&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>差额&lt;/td>
+ &lt;td colspan="5">{{salarys.summary.personalDiffYTD | CNY}}&lt;/td>
+ &lt;td colspan="4">{{salarys.summary.corporationDiffYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-月列表&lt;/legend>
+ &lt;div class="salary-wrapper">
+ &lt;pre class="salary-pre">
+ &lt;table class="salary-table">
+ &lt;tr class="row-header">
+ &lt;th style="width: 5em;">月份&lt;/th>
+ &lt;th>税前YTD&lt;/th>
+ &lt;th style="width: 6em;">免征额YTD&lt;/th>
+ &lt;th style="width: 7em;">社保个人YTD&lt;/th>
+ &lt;th>税基YTD&lt;/th>
+ &lt;th style="width: 3em;">税率&lt;/th>
+ &lt;th>个税&lt;/th>
+ &lt;th>个税YTD&lt;/th>
+ &lt;th>税后&lt;/th>
+ &lt;th>税后YTD&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="salary in salarys.items">
+ &lt;tr :id="'month-'+salary.month+'-detail'" class="row-data" :onclick="'blog.toggleClassName(\'month-'+salary.month+'-detail\',\'month-detail_opened\')'">
+ &lt;td v-if="salary.bonus > 0">奖金 &lt;i class="el-icon-arrow-right month-action-icon">&lt;/i>&lt;/td>
+ &lt;td v-else >{{salary.month}}月 &lt;i class="el-icon-arrow-right month-action-icon">&lt;/i>&lt;/td>
+ &lt;td>{{salary.baseYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.exemptedYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.insurances.personalYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.taxableYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.rate.rate}}%&lt;/td>
+ &lt;td>{{salary.tax | CNY}}&lt;/td>
+ &lt;td>{{salary.taxYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.actual | CNY}}&lt;/td>
+ &lt;td>{{salary.actualYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="month-detail">
+ &lt;td style="padding: 0; font-size: 0;"> &lt;/td>
+ &lt;td colspan="10" style="padding: 0; font-size: 0;">
+ &lt;table style="padding: 0;margin: 0; font-size: 14px;width: 100%;border-width: 0;background-color: #efe;">
+ &lt;tr>
+ &lt;td v-if="salary.bonus > 0" colspan="3">奖金&lt;/td>
+ &lt;td colspan="3" v-else >{{salary.month}}月&lt;/td>
+ &lt;td>社保基数&lt;/td>
+ &lt;td>税率/费率&lt;/td>
+ &lt;td>本月&lt;/td>
+ &lt;td>YTD(年累计)&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="12">个人&lt;/td>
+ &lt;td>税前&lt;/td>
+ &lt;td colspan="3">&lt;/td>
+ &lt;td>{{salary.base | CNY}}&lt;/td>
+ &lt;td>{{salary.baseYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="7">社保&lt;/td>
+ &lt;td>合计&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.insurances.personal | CNY}}&lt;/td>
+ &lt;td>{{salary.insurances.personalYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr v-for="insurance in salary.insurances.items" class="row-data">
+ &lt;td>{{insurance.name}}&lt;/td>
+ &lt;td>{{insurance.base}}&lt;/td>
+ &lt;td>{{insurance.personalPercentage}}%&lt;/td>
+ &lt;td>{{insurance.personal | CNY}}&lt;/td>
+ &lt;td>{{insurance.personalYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="3">个税&lt;/td>
+ &lt;td>应纳税所得额&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>{{salary.rate.rate | CNY}}%&lt;/td>
+ &lt;td>{{salary.taxable | CNY}}&lt;/td>
+ &lt;td>{{salary.taxableYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>免征额&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.exempted | CNY}}&lt;/td>
+ &lt;td>{{salary.exemptedYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td >应纳税&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.tax | CNY}}&lt;/td>
+ &lt;td>{{salary.taxYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>税后&lt;/td>
+ &lt;td colspan="3">&lt;/td>
+ &lt;td>{{salary.actual | CNY}}&lt;/td>
+ &lt;td>{{salary.actualYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="8">公司&lt;/td>
+ &lt;td>支出&lt;/td>
+ &lt;td colspan="3">&lt;/td>
+ &lt;td>{{salary.corporation | CNY}}&lt;/td>
+ &lt;td>{{salary.corporationYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="7">社保&lt;/td>
+ &lt;td>合计&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.insurances.corporation | CNY}}&lt;/td>
+ &lt;td>{{salary.insurances.corporationYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr v-for="insurance in salary.insurances.items" class="row-data">
+ &lt;td>{{insurance.name}}&lt;/td>
+ &lt;td>{{insurance.base}}&lt;/td>
+ &lt;td>{{insurance.corporationPercentage}}%&lt;/td>
+ &lt;td>{{insurance.corporation | CNY}}&lt;/td>
+ &lt;td>{{insurance.corporationYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+&lt;/div>
+&lt;script src="rates.js">&lt;/script>
+&lt;script src="insurances.js">&lt;/script>
+&lt;script src="calculator.js">&lt;/script>
+&lt;script src="app.js">&lt;/script>&lt;/p></description></item><item><title>[工具] android</title><link>https://linianhui.github.io/tool/android/</link><pubDate>Thu, 17 May 2018 23:48:01 +0800</pubDate><guid>https://linianhui.github.io/tool/android/</guid><description>&lt;h1 id="download">
+&lt;i id="locator-download" class="header-locator">&lt;/i>
+&lt;a href="#download" class="article-h-a">1 Download&lt;/a>
+&lt;/h1>
+&lt;h2 id="factory-image">
+&lt;i id="locator-factory-image" class="header-locator">&lt;/i>
+&lt;a href="#factory-image" class="article-h-a">1.1 Factory Image&lt;/a>
+&lt;/h2>
+&lt;p>&lt;a href="https://developers.google.com/android/images#ryu"
+
+ target="_blank" rel="noopener norefferrer">https://developers.google.com/android/images#ryu&lt;/a>&lt;/p>
+&lt;h2 id="platform-tools">
+&lt;i id="locator-platform-tools" class="header-locator">&lt;/i>
+&lt;a href="#platform-tools" class="article-h-a">1.2 Platform Tools&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">platform&lt;/th>
+ &lt;th style="text-align: left">url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">Windows&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/platform-tools-latest-windows.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">macOS&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/platform-tools-latest-darwin.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">Linux&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/platform-tools-latest-linux.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/platform-tools-latest-linux.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;blockquote>
+&lt;p>&lt;a href="https://developer.android.com/studio/releases/platform-tools"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com/studio/releases/platform-tools&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;h2 id="driver">
+&lt;i id="locator-driver" class="header-locator">&lt;/i>
+&lt;a href="#driver" class="article-h-a">1.3 Driver&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">platform&lt;/th>
+ &lt;th style="text-align: left">url&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">OEM USE Drivers&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://developer.android.com/studio/run/oem-usb"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com/studio/run/oem-usb&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">Google USB Driver&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://developer.android.com/studio/run/win-usb"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com/studio/run/win-usb&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;/td>
+ &lt;td style="text-align: left">&lt;a href="https://dl.google.com/android/repository/usb_driver_r12-windows.zip"
+
+ target="_blank" rel="noopener norefferrer">https://dl.google.com/android/repository/usb_driver_r12-windows.zip&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="recovery">
+&lt;i id="locator-recovery" class="header-locator">&lt;/i>
+&lt;a href="#recovery" class="article-h-a">1.4 Recovery&lt;/a>
+&lt;/h2>
+&lt;p>TWRP: &lt;a href="https://twrp.me/Devices/"
+
+ target="_blank" rel="noopener norefferrer">https://twrp.me/Devices/&lt;/a>&lt;/p>
+&lt;h1 id="command">
+&lt;i id="locator-command" class="header-locator">&lt;/i>
+&lt;a href="#command" class="article-h-a">2 Command&lt;/a>
+&lt;/h1>
+&lt;h2 id="fastboot">
+&lt;i id="locator-fastboot" class="header-locator">&lt;/i>
+&lt;a href="#fastboot" class="article-h-a">2.1 fastboot&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>fastboot flashing unlock
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># fix fastboot error ：unsupported command &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fwtool vbnv write dev_boot_fastboot_full_cap 1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fastboot flash recovery recovery.img
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fastboot flash logo logo.bin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="adb">
+&lt;i id="locator-adb" class="header-locator">&lt;/i>
+&lt;a href="#adb" class="article-h-a">2.2 adb&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>adb reboot bootloader
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>adb reboot recovery
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>adb sideload rom.zip
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>adb push rom.zip /sdcard/0/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="wlan-captive">
+&lt;i id="locator-wlan-captive" class="header-locator">&lt;/i>
+&lt;a href="#wlan-captive" class="article-h-a">3 WLAN captive&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 7.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>settings put global captive_portal_server captive.v2ex.co
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 7.1+&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>settings put global captive_portal_https_url https://captive.v2ex.co/generate_204
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">4 Reference&lt;/a>
+&lt;/h1>
+&lt;ol>
+&lt;li>developer : &lt;a href="https://developer.android.com"
+
+ target="_blank" rel="noopener norefferrer">https://developer.android.com&lt;/a>&lt;/li>
+&lt;li>lineageos : &lt;a href="https://download.lineageos.org"
+
+ target="_blank" rel="noopener norefferrer">https://download.lineageos.org&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>[工具] traefik</title><link>https://linianhui.github.io/tool/traefik/</link><pubDate>Fri, 20 Apr 2018 11:21:00 +0800</pubDate><guid>https://linianhui.github.io/tool/traefik/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://docs.traefik.io/"
+
+ target="_blank" rel="noopener norefferrer">Traefik&lt;/a>是一个基于Go语言编写的开源的云原生的边界路由器。&lt;/p>
+&lt;p>下载: &lt;a href="https://github.com/containous/traefik/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/containous/traefik/releases&lt;/a>&lt;/p>
+&lt;p>配置:&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-e7de9b8c326edfb3ece61b71b1a46240">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e7de9b8c326edfb3ece61b71b1a46240','highlight-file_opened')">traefik.yml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/traefik/traefik.yml" title="下载 traefik.yml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/traefik/traefik.yml" title="源码 traefik.yml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/reference/static-configuration/file/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>global:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> checkNewVersion: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sendAnonymousUsage: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> level: DEBUG
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/operations/api&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>api:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dashboard: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> insecure: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> debug: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/routing/entrypoints&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>entryPoints:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address: :80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address: :3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>providers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> providersThrottleDuration: 2s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000"># https://docs.traefik.io/v2.2/providers/file/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> file:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> watch: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> filename: dynamic.yml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-58855b4b5686f79e33e84b30f0b842d7">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-58855b4b5686f79e33e84b30f0b842d7','highlight-file_opened')">dynamic.yml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/traefik/dynamic.yml" title="下载 dynamic.yml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/traefik/dynamic.yml" title="源码 dynamic.yml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> routers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> example.test.router:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rule: Host(`example.test`)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service: example.test.service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> example.test.service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> loadBalancer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> servers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - url: http://192.168.2.201:5000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> healthCheck:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> scheme: http
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> path: /
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> interval: 10s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timeout: 3s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcp:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> routers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql.router:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> entryPoints:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - mysql
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rule: HostSNI(`mysql`)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service: mysql.service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql.service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> loadBalancer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> servers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - address: 192.168.2.201:3306
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div></description></item></channel></rss>

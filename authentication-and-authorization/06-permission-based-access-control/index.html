@@ -1,0 +1,138 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[认证&授权] 06 Permission Based Access Control - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/authentication-and-authorization/ target=_blank>[认证&授权]</a></section><section class=toc-page><a class=toc-page-title href=/authentication-and-authorization/01-oauth2-authorization/ target=_blank>[认证&授权] 01 OAuth2授权</a></section><section class=toc-page><a class=toc-page-title href=/authentication-and-authorization/02-oauth2-extensions-protocol-and-json-web-token/ target=_blank>[认证&授权] 02 OAuth2授权(续) & JWT(JSON Web Token)</a></section><section class=toc-page><a class=toc-page-title href=/authentication-and-authorization/03-user-authentication-with-oauth2/ target=_blank>[认证&授权] 03 使用OAuth2进行用户认证(译)</a></section><section class=toc-page><a class=toc-page-title href=/authentication-and-authorization/04-openid-connect-core/ target=_blank>[认证&授权] 04 OIDC(OpenId Connect)身份认证(核心部分)</a></section><section class=toc-page><a class=toc-page-title href=/authentication-and-authorization/05-openid-connect-extension/ target=_blank>[认证&授权] 05 OIDC(OpenId Connect)身份认证(扩展部分)</a></section><section class="toc-page selected"><span class=toc-page-title>[认证&授权] 06 Permission Based Access Control</span><nav id=TableOfContents><ul><li><a href=#oauth2-access-token-scope>1 OAuth2 Access Token scope</a></li><li><a href=#oidc-id-token-sub>2 OIDC Id Token sub</a></li><li><a href=#problem>3 以上两种方式的弊端在哪里？</a></li><li><a href=#permission>4 基于权限为最小粒度的解决方案</a></li><li><a href=#apache-shiro>5 Apache Shiro</a></li><li><a href=#reference>6 参考资料</a></li></ul></nav></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[认证&授权] 06 Permission Based Access Control</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2018-01-13 15:23，约2736字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/authentication-and-authorization/ title=[认证&授权] target=_blank><i class="fa fa-folder"></i>[认证&授权]</a></section><section class=article-tags><a class=article-tag href=/tag/access-token target=_blank><i class="fa fa-tag"></i>Access Token</a>
+<a class=article-tag href=/tag/id-token target=_blank><i class="fa fa-tag"></i>Id Token</a>
+<a class=article-tag href=/tag/permission target=_blank><i class="fa fa-tag"></i>Permission</a>
+<a class=article-tag href=/tag/role target=_blank><i class="fa fa-tag"></i>Role</a>
+<a class=article-tag href=/tag/scope target=_blank><i class="fa fa-tag"></i>Scope</a>
+<a class=article-tag href=/tag/shiro target=_blank><i class="fa fa-tag"></i>Shiro</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/authentication-and-authorization/06-permission-based-access-control/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>在前面5篇博客中介绍了OAuth2和OIDC(OpenId Connect)，其作用是授权和认证。那么当我们得到OAuth2的<code>Access Token</code>或者OIDC的<code>Id Token</code>之后，我们的<strong>资源服务</strong>如何来验证这些token是否有权限来执行对资源的某一项操作呢？比如我有一个API <code>/book</code>，它具有如下5个操作 :</p><ol><li>POST /book : 添加一本书</li><li>GET /book/{id} : 获取一本书</li><li>PUT /book/{id} : 更新一本书</li><li>DELETE /book/{id} : 删除一本书</li><li>GET /book : 获取书的列表</li></ol><p>其伪代码如下 :</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>[Route(&#34;book&#34;)]
+</span></span><span style=display:flex><span><span style=color:#00f>public</span> <span style=color:#00f>class</span> <span style=color:#2b91af>BookController</span> : Controller
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    [HttpGet(&#34;&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book[] Get() { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpGet(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Get(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPost(&#34;&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Post(Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPut(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Put(<span style=color:#2b91af>int</span> id, Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpDelete(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Delete(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>那么我们先看看基于OAuth2的Access Token，OIDC的Id Token和传统的基于角色的权限控制是如何处理控制这些资源的操作。</p><h1 id=oauth2-access-token-scope><i id=locator-oauth2-access-token-scope class=header-locator></i>
+<a href=#oauth2-access-token-scope class=article-h-a>1 OAuth2 Access Token scope</a></h1><p>我们都知道OAuth2的最终产物是提供给我们一个<code>Access Token</code>，而这个Access Token中包含了一个<a href=../01-oauth2-authorization/#authorization-request target=_blank rel="noopener norefferrer">Scope</a>的字段，这个字段代表的是<strong>授权服务器</strong>或者<strong>资源拥有者</strong>授予第三方客户端允许操作<strong>资源服务器</strong>的哪些资源的范围。这里有一点需要注意的是，这个授权过程可以有<strong>资源拥有者</strong>的参与(<a href=../01-oauth2-authorization/#authorization-code target=_blank rel="noopener norefferrer">Authorization Code</a>,<a href=../01-oauth2-authorization/#implicit target=_blank rel="noopener norefferrer">Implicit</a>,<a href=../01-oauth2-authorization/#resource-owner-password-credentials-grant target=_blank rel="noopener norefferrer">Resource Owner Password Credentials Grant</a>)，也可以没有<strong>资源拥有者</strong>的参与(<a href=../01-oauth2-authorization/#client-credentials-grant target=_blank rel="noopener norefferrer">Client Credentials Grant</a>)。那么基于上述的book的资源，我们可以定义一个<code>user_manager</code>的Scope，来控制对book的五个操作的权限控制。那么book的基于Scope的权限控制看起来就像是这样的 :</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>[Route(&#34;book&#34;)]
+</span></span><span style=display:flex><span><span style=color:#00f>public</span> <span style=color:#00f>class</span> <span style=color:#2b91af>BookController</span> : Controller
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    [HttpGet(&#34;&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book[] Get() { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpGet(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Get(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPost(&#34;&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Post(Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPut(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Put(<span style=color:#2b91af>int</span> id, Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpDelete(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Delete(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>注意看红色的部分，为每一个操作都添加了一个<code>[Scope("book_manager")]</code>的描述。如果Access Token拥有<code>user_manager</code>这个Scope(不管他是OAuth2的哪一个授权方式颁发的，我们的最终代码部分只认Scope)，那么对这些API的调用就是被允许的，否则视为无权操作。</p><h1 id=oidc-id-token-sub><i id=locator-oidc-id-token-sub class=header-locator></i>
+<a href=#oidc-id-token-sub class=article-h-a>2 OIDC Id Token sub</a></h1><p>关于<code>Id Token</code>的用途以及其包含哪些信息请参考<a href=../04-openid-connect-core/ target=_blank rel="noopener norefferrer">Id Token</a>。<strong>Id Token和Access Token的不同之处在于它一定是包含某一个用户的标识<code>sub</code>，但是没有Scope，这是因为Id Token的用途是认证当前用户是谁，所以用户是必须存在的；由于仅仅是认证，则不会包含被认证用户可以做哪些操作之类的授权相关的事情</strong>。那么针对Id Token，我们的API应该如何进行权限管控呢？通常的做法是使用传统的基于校色的权限控制(Role Based Access Control)。其实现细节就不解释了，它的模型大致是 : 一个实体(用户或者组织)拥有一组角色，每一个角色代表着一组权限集合。感觉是不是和Scope很像呢，其实差不多。我们定义一个这样的角色<code>图书管理员</code>吧。这里是故意和Scope的命名区分开的，因为其来源不同，那么我们最终实现的时候也会是独立开来的。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span> [Route(&#34;book&#34;)]
+</span></span><span style=display:flex><span><span style=color:#00f>public</span> <span style=color:#00f>class</span> <span style=color:#2b91af>BookController</span> : Controller
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    [HttpGet(&#34;&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    [Role(&#34;图书管理员&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book[] Get() { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpGet(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    [Role(&#34;图书管理员&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Get(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPost(&#34;&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    [Role(&#34;图书管理员&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Post(Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPut(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    [Role(&#34;图书管理员&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Put(<span style=color:#2b91af>int</span> id, Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpDelete(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>    [Role(&#34;图书管理员&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Delete(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>如果<code>sub</code>代表的用户自身拥有或者其所属的组织机构拥有(不管其是怎么组织管理的吧，最终我们可以知道这个用户是否具有某一个角色)<code>图书管理员</code>这个角色。则允许其访问book的这些操作。</p><h1 id=problem><i id=locator-problem class=header-locator></i>
+<a href=#problem class=article-h-a>3 以上两种方式的弊端在哪里？</a></h1><p>其实不止以上两种，比如在Asp.Net Core中有内置的这些授权控制组件 :<br><img src=asp-net-core-authorization.png loading=lazy decoding=auto alt="Asp Net Core Authorization" title="Asp Net Core Authorization"></p><p>以上这些本质上和上面的基于Scope和基于Role的属于同一种类型。我们这样做当然可以工作，但是问题来了，<strong>它们是不是理解起来很混乱？能满足我们变化的需求吗？总有着一种把简单的事情搞复杂的感觉</strong>。比如现在我增需要增加一个角色，超级管理员，那么上述的代码是不是需要我们做出改变呢？</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>[HttpGet(&#34;&#34;)]
+</span></span><span style=display:flex><span>[Scope(&#34;book_manager&#34;)]
+</span></span><span style=display:flex><span>[Role(&#34;图书管理员&#34;,&#34;超级管理员&#34;)]
+</span></span><span style=display:flex><span><span style=color:#00f>public</span> Book[] Get() { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span></code></pre></div><p>再比如，现在需要增加一个Scope<code>book_reader</code>，它只能执行读取的操作，又要做出改变了吧。况且即使我们把Scope和Role合二为一了，还是混乱不堪。</p><h1 id=permission><i id=locator-permission class=header-locator></i>
+<a href=#permission class=article-h-a>4 基于权限为最小粒度的解决方案</a></h1><p>那么造成这些问题的根本原因是什么？答 : <strong>不管是Scope还是Role它们体现的都是一个隐式的描述信息，而不是某一个具体的操作行为的描述信息</strong>。既然我们知道了其症结所在，那么怎么解决这个问题呢？原理很简单，使用权限作为我们的最小单元，把Scope和Role等等还有其他的一些管理组织权限的概念都作为一个中间层，禁止它们出现在接口权限验证的地方，而是仅作为管理组织<code>Permission</code>的手段存在。然后改造上面的代码如下 :</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>[Route(&#34;book&#34;)]
+</span></span><span style=display:flex><span><span style=color:#00f>public</span> <span style=color:#00f>class</span> <span style=color:#2b91af>BookController</span> : Controller
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    [HttpGet(&#34;&#34;)]
+</span></span><span style=display:flex><span>    [Permission(&#34;book.read&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book[] Get() { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpGet(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Permission(&#34;book.read&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Get(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPost(&#34;&#34;)]
+</span></span><span style=display:flex><span>    [Permission(&#34;book.add&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Post(Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpPut(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Permission(&#34;book.edit&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Put(<span style=color:#2b91af>int</span> id, Book book) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [HttpDelete(&#34;{id}&#34;)]
+</span></span><span style=display:flex><span>    [Permission(&#34;book.delete&#34;)]
+</span></span><span style=display:flex><span>    <span style=color:#00f>public</span> Book Delete(<span style=color:#2b91af>int</span> id) { <span style=color:#00f>return</span> <span style=color:#00f>null</span>; }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>我们把每一个操作都定义一个权限Permission，不管你是Access Token的Scope，还是Role，都不会在这里出现。比如在检查<strong>超级管理员</strong>是否允许操作的时候，我们可以直接放行(把这些检查和我们对接口的操作权限的描述分开)。如果是名为<code>book_reader</code>的Scope的时候，我们让book_reader只关联<code>book.read</code>这个Permission即可，而这种关联关系的管理，我们是可以通过数据存储来维持的，也很方便的提供管理页面来灵活的配置。而最终的代码上关心的只是<code>Permission</code>。这种方式可以称为<strong>Resource Based Access Control</strong>或者<strong>Permission Based Access Control</strong>。</p><h1 id=apache-shiro><i id=locator-apache-shiro class=header-locator></i>
+<a href=#apache-shiro class=article-h-a>5 Apache Shiro</a></h1><p>以上是我自己的一些理解和思路，然后我发现了Apache Shiro这个项目，感觉就像是找到了组织，Apache Shiro走的更远，而且为Permission定义了一套规则。强烈建议读一读<a href=https://shiro.apache.org/permissions.html target=_blank rel="noopener norefferrer">https://shiro.apache.org/permissions.html</a>这篇文档。而.Net这边就没有这么好的福气了，，，Asp.Net Core中的默认授权过滤器还是传统的方式。<br><img src=asp-net-core-IAuthorizeData.png loading=lazy decoding=auto alt="Asp Net Core IAuthorizeData 接口" title="Asp Net Core IAuthorizeData 接口"></p><p>不过基于Asp.Net Core的Filter : IAuthorizationFilter，我们可以把这一整套授权控制方式给替换掉。示例代码 :</p><ol><li>定义Filter : <a href=https://github.com/linianhui/oidc.example/tree/master/1-src/aspnetcore.filters.permissions target=_blank rel="noopener norefferrer">https://github.com/linianhui/oidc.example/tree/master/1-src/aspnetcore.filters.permissions</a></li><li>消费Filter : <a href=https://github.com/linianhui/oidc.example/tree/master/1-src/web.oauth2.resources.aspnetcore target=_blank rel="noopener norefferrer">https://github.com/linianhui/oidc.example/tree/master/1-src/web.oauth2.resources.aspnetcore</a></li></ol><img src=asp-net-core-permission-example.png loading=lazy decoding=auto alt title><p>从此和讨厌的<code>[Authorize(Roles = "图书管理员",Policy = "XXX")]</code>说再见了。</p><p>以上只是个人的一些理解，如有错误，欢迎指正。</p><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>6 参考资料</a></h1><p>强烈推荐 : <a href=https://shiro.apache.org/permissions.html target=_blank rel="noopener norefferrer">https://shiro.apache.org/permissions.html</a></p><p><a href=https://shiro.apache.org/ target=_blank rel="noopener norefferrer">https://shiro.apache.org/</a></p><p><a href=https://stormpath.com/blog/new-rbac-resource-based-access-control target=_blank rel="noopener norefferrer">https://stormpath.com/blog/new-rbac-resource-based-access-control</a></p><p><a href=https://docs.microsoft.com/en-us/aspnet/core/security/authorization/ target=_blank rel="noopener norefferrer">https://docs.microsoft.com/en-us/aspnet/core/security/authorization/</a></p></section><section class=article-meta><section class=article-date>2018-01-13 15:23，约2736字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/authentication-and-authorization/ title=[认证&授权] target=_blank><i class="fa fa-folder"></i>[认证&授权]</a></section><section class=article-tags><a class=article-tag href=/tag/access-token target=_blank><i class="fa fa-tag"></i>Access Token</a>
+<a class=article-tag href=/tag/id-token target=_blank><i class="fa fa-tag"></i>Id Token</a>
+<a class=article-tag href=/tag/permission target=_blank><i class="fa fa-tag"></i>Permission</a>
+<a class=article-tag href=/tag/role target=_blank><i class="fa fa-tag"></i>Role</a>
+<a class=article-tag href=/tag/scope target=_blank><i class="fa fa-tag"></i>Scope</a>
+<a class=article-tag href=/tag/shiro target=_blank><i class="fa fa-tag"></i>Shiro</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/authentication-and-authorization/06-permission-based-access-control/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/authentication-and-authorization/05-openid-connect-extension/ target=_blank>[认证&授权] 05 OIDC(OpenId Connect)身份认证(扩展部分)</a></div><div class=article-page-next><span>下一篇 : </span><a href=/authentication-and-authorization/04-openid-connect-core/ target=_blank>[认证&授权] 04 OIDC(OpenId Connect)身份认证(核心部分)</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

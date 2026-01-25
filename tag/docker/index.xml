@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Timetombs</title><link>https://linianhui.github.io/tag/docker/</link><description>Recent content in Docker on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Aug 2023 02:31:51 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>[Docker] File</title><link>https://linianhui.github.io/docker/file/</link><pubDate>Sun, 06 Feb 2022 16:21:01 +0800</pubDate><guid>https://linianhui.github.io/docker/file/</guid><description>&lt;h1 id="list">
+&lt;i id="locator-list" class="header-locator">&lt;/i>
+&lt;a href="#list" class="article-h-a">1 File List&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/linianhui/docker/tree/main/image"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/linianhui/docker/tree/main/image&lt;/a>&lt;/p>
+&lt;div class="highlight-files">
+ &lt;div class="highlight-files-header">文件列表&lt;/div>
+ &lt;div class="highlight-files-list">&lt;div class="highlight-file" id="hfs-a9971dd704979172bea10b6e2e5f5839">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-a9971dd704979172bea10b6e2e5f5839','highlight-file_opened')">debian-bullseye-sources.list&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/file/debian-bullseye-sources.list" title="下载 debian-bullseye-sources.list" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/file/debian-bullseye-sources.list" title="源码 debian-bullseye-sources.list">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;pre tabindex="0">&lt;code>deb http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb http://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb-src http://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+&lt;/code>&lt;/pre>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-3c387ccd2a6071fc27aaeb7f60b895b3">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-3c387ccd2a6071fc27aaeb7f60b895b3','highlight-file_opened')">debian-buster-sources.list&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/file/debian-buster-sources.list" title="下载 debian-buster-sources.list" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/file/debian-buster-sources.list" title="源码 debian-buster-sources.list">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;pre tabindex="0">&lt;code>deb http://mirrors.163.com/debian/ buster main non-free contrib
+deb http://mirrors.163.com/debian/ buster-updates main non-free contrib
+deb http://mirrors.163.com/debian/ buster-backports main non-free contrib
+deb-src http://mirrors.163.com/debian/ buster main non-free contrib
+deb-src http://mirrors.163.com/debian/ buster-updates main non-free contrib
+deb-src http://mirrors.163.com/debian/ buster-backports main non-free contrib
+deb http://mirrors.163.com/debian-security/ buster/updates main non-free contrib
+deb-src http://mirrors.163.com/debian-security/ buster/updates main non-free contrib
+&lt;/code>&lt;/pre>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-5f6ba24d0e1126fa6ab40bf626b20ce9">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-5f6ba24d0e1126fa6ab40bf626b20ce9','highlight-file_opened')">debian-stretch-source.list&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/file/debian-stretch-source.list" title="下载 debian-stretch-source.list" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/file/debian-stretch-source.list" title="源码 debian-stretch-source.list">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;pre tabindex="0">&lt;code>deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib
+deb http://mirrors.aliyun.com/debian-security stretch/updates main
+deb-src http://mirrors.aliyun.com/debian-security stretch/updates main
+deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib
+deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib
+&lt;/code>&lt;/pre>&lt;/div>
+ &lt;/div>&lt;div class="highlight-file" id="hfs-f969731a7eb5fec08664cd30df6dbd65">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hfs-f969731a7eb5fec08664cd30df6dbd65','highlight-file_opened')">maven-settings.xml&lt;/a>
+ &lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/file/maven-settings.xml" title="下载 maven-settings.xml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/file/maven-settings.xml" title="源码 maven-settings.xml">&lt;/a>
+ &lt;/div>
+ &lt;div class="highlight-file-content">&lt;pre tabindex="0">&lt;code>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&amp;lt;!-- https://maven.apache.org/settings.html --&amp;gt;
+&amp;lt;!--
+ 加载顺序
+ 1. 全局设置 M2_HOME/conf/settiing.xml
+ 2. 用户设置 HOME/.m2/settiing.xml
+--&amp;gt;
+&amp;lt;settings xmlns=&amp;#34;http://maven.apache.org/SETTINGS/1.0.0&amp;#34;
+ xmlns:xsi=&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34; xsi:schemaLocation=&amp;#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&amp;#34;&amp;gt;
+
+ &amp;lt;localRepository&amp;gt;/repo&amp;lt;/localRepository&amp;gt;
+
+ &amp;lt;profiles&amp;gt;
+ &amp;lt;profile&amp;gt;
+ &amp;lt;!-- /lib/maven-model-builder-${version}.jar --&amp;gt;
+ &amp;lt;!-- /org/apache/maven/model/pom-4.0.0.xml --&amp;gt;
+ &amp;lt;id&amp;gt;default&amp;lt;/id&amp;gt;
+ &amp;lt;repositories&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://repo1.maven.org/maven2/&amp;lt;/url&amp;gt;
+ &amp;lt;snapshots&amp;gt;
+ &amp;lt;enabled&amp;gt;false&amp;lt;/enabled&amp;gt;
+ &amp;lt;/snapshots&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;/repositories&amp;gt;
+ &amp;lt;pluginRepositories&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://repo1.maven.org/maven2/&amp;lt;/url&amp;gt;
+ &amp;lt;snapshots&amp;gt;
+ &amp;lt;enabled&amp;gt;false&amp;lt;/enabled&amp;gt;
+ &amp;lt;/snapshots&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;/pluginRepositories&amp;gt;
+ &amp;lt;/profile&amp;gt;
+ &amp;lt;profile&amp;gt;
+ &amp;lt;!-- https://developer.aliyun.com/mvn/guide --&amp;gt;
+ &amp;lt;id&amp;gt;aliyun&amp;lt;/id&amp;gt;
+ &amp;lt;repositories&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central&amp;lt;/url&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;jcenter&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/jcenter&amp;lt;/url&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;spring&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/spring&amp;lt;/url&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;google&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/google&amp;lt;/url&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;repository&amp;gt;
+ &amp;lt;id&amp;gt;grails-core&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/grails-core&amp;lt;/url&amp;gt;
+ &amp;lt;/repository&amp;gt;
+ &amp;lt;/repositories&amp;gt;
+ &amp;lt;pluginRepositories&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;public&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public&amp;lt;/url&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/central/&amp;lt;/url&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;jcenter&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/jcenter&amp;lt;/url&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;spring&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/spring&amp;lt;/url&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;gradle-plugin&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/gradle-plugin&amp;lt;/url&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;google&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/google&amp;lt;/url&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;pluginRepository&amp;gt;
+ &amp;lt;id&amp;gt;grails-core&amp;lt;/id&amp;gt;
+ &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/grails-core&amp;lt;/url&amp;gt;
+ &amp;lt;/pluginRepository&amp;gt;
+ &amp;lt;/pluginRepositories&amp;gt;
+ &amp;lt;/profile&amp;gt;
+ &amp;lt;/profiles&amp;gt;
+
+ &amp;lt;activeProfiles&amp;gt;
+ &amp;lt;activeProfile&amp;gt;aliyun&amp;lt;/activeProfile&amp;gt;
+ &amp;lt;activeProfile&amp;gt;default&amp;lt;/activeProfile&amp;gt;
+ &amp;lt;/activeProfiles&amp;gt;
+&amp;lt;/settings&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>
+ &lt;/div>&lt;/div>
+&lt;/div></description></item><item><title>[Docker] Best Practice</title><link>https://linianhui.github.io/docker/best-practice/</link><pubDate>Sun, 12 Apr 2020 17:13:01 +0800</pubDate><guid>https://linianhui.github.io/docker/best-practice/</guid><description>&lt;h1 id="entrypoint">
+&lt;i id="locator-entrypoint" class="header-locator">&lt;/i>
+&lt;a href="#entrypoint" class="article-h-a">1 ENTRYPOINT&lt;/a>
+&lt;/h1>
+&lt;p>推荐使用ENTRYPOINT(不要和CMD同时使用) : 当ENTRYPOINT存在时，CMD会作为它的参数存在，增加复杂性。ENTRYPOINT指令&lt;a href="#entrypoint-exec"
+
+>ENTRYPOINT EXEC&lt;/a>和&lt;a href="#entrypoint-shell"
+
+>ENTRYPOINT SHELL&lt;/a>两种语法形式。但是不管是那种形式，都只是dockerfile中的语法形式，实际build后的结果都是统一的JSON数组格式。&lt;/p>
+&lt;h2 id="entrypoint-exec">
+&lt;i id="locator-entrypoint-exec" class="header-locator">&lt;/i>
+&lt;a href="#entrypoint-exec" class="article-h-a">1.1 EXEC&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">ENTRYPOINT&lt;/span> [&lt;span style="color:#a31515">&amp;#34;executable&amp;#34;&lt;/span>, &lt;span style="color:#a31515">&amp;#34;param1&amp;#34;&lt;/span>, &lt;span style="color:#a31515">&amp;#34;param2&amp;#34;&lt;/span>]&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ENTRYPOINT指令后面是JSON数组, 由于是JSON数组，那么则只能使用双引号&lt;code>&amp;quot;&lt;/code>而不是单引号&lt;code>'&lt;/code>。&lt;strong>官方推荐使用EXEC方式，推荐理由是默认&lt;a href="#pid"
+
+>PID&lt;/a>=1，但是默认的写法无法解析ENV&lt;/strong>。&lt;strong>这里也推荐使用EXEC的方式，理由是保持和build后的结果是完全一致的清晰性&lt;/strong>。比如一下示例：&lt;/p></description></item><item><title>[Java] JVM(Java Virtual Machine)</title><link>https://linianhui.github.io/java/jvm/</link><pubDate>Wed, 04 Mar 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/jvm/</guid><description>&lt;p>Java是一个跨平台的语言，当初的口号&lt;strong>编译一次，到处运行&lt;/strong>。那么它是如何实现跨平台运行的呢？计算机领域有个有个著名的定理&lt;strong>中间层定律&lt;/strong>：计算机科学领域的任何问题都可以通过增加一个中间层来解决。那么Java的跨平台也不例外，它就是通过添加了一个中间层来解决跨平台运行的问题的。&lt;/p>
+&lt;p>我们知道计算机是无法直接运行我们编写的程序设计语言&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>的代码的，需要编译为计算机可理解的特定底层汇编或者机器码指令才可以。所以Java从诞生之初就没有编译成平台相关的代码，而是编译为了平台无关的&lt;code>bytecode&lt;/code>字节码（文件扩展名&lt;code>.class&lt;/code>）。然后交由Java虚拟机JVM(Java Virtual Machine)来执行字节码文件，而JVM则需要在每个支持的平台上独立的编写，由它充当我们的&lt;strong>中间层&lt;/strong>，以此达到我们编写的代码跨平台运行的目的。&lt;/p></description></item><item><title>[Docker] Install</title><link>https://linianhui.github.io/docker/install/</link><pubDate>Sun, 28 Jan 2018 16:53:01 +0800</pubDate><guid>https://linianhui.github.io/docker/install/</guid><description>&lt;h1 id="dockerd">
+&lt;i id="locator-dockerd" class="header-locator">&lt;/i>
+&lt;a href="#dockerd" class="article-h-a">1 dokcerd&lt;/a>
+&lt;/h1>
+&lt;p>reference: &lt;a href="https://docs.docker.com/engine/reference/commandline/dockerd/"
+
+ target="_blank" rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/&lt;/a>&lt;/p>
+&lt;h2 id="docker-on-ubuntu">
+&lt;i id="locator-docker-on-ubuntu" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-ubuntu" class="article-h-a">1.1 Ubuntu&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-20977f47b347e0f3203ebf25c1378db8">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-20977f47b347e0f3203ebf25c1378db8','highlight-file_opened')">docker-on-ubuntu.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-ubuntu.sh" title="下载 docker-on-ubuntu.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-ubuntu.sh" title="源码 docker-on-ubuntu.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-ubuntu.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-ubuntu.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt remove -y docker docker-engine docker.io
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y apt-transport-https ca-certificates curl software-properties-common
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | apt-key add -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt-key fingerprint 0EBFCD88
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>add-apt-repository &lt;span style="color:#a31515">&amp;#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu &lt;/span>&lt;span style="color:#00f">$(&lt;/span>lsb_release -cs&lt;span style="color:#00f">)&lt;/span>&lt;span style="color:#a31515"> stable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="docker-on-centos">
+&lt;i id="locator-docker-on-centos" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-centos" class="article-h-a">1.2 CentOS&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-469270076ff69464a4e9c5643a39d8f8">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-469270076ff69464a4e9c5643a39d8f8','highlight-file_opened')">docker-on-centos.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-centos.sh" title="下载 docker-on-centos.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-centos.sh" title="源码 docker-on-centos.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-centos.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-centos.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum install -y yum-utils device-mapper-persistent-data lvm2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="docker-on-debian">
+&lt;i id="locator-docker-on-debian" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-debian" class="article-h-a">1.3 Debian&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-cfe6663860faeaf9300427266766bc65">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-cfe6663860faeaf9300427266766bc65','highlight-file_opened')">docker-on-debian.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-debian.sh" title="下载 docker-on-debian.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-debian.sh" title="源码 docker-on-debian.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-debian.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-debian.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt remove -y docker docker-engine docker.io
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg1 gnupg2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg | apt-key add -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>add-apt-repository &lt;span style="color:#a31515">&amp;#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/debian &lt;/span>&lt;span style="color:#00f">$(&lt;/span>lsb_release -cs&lt;span style="color:#00f">)&lt;/span>&lt;span style="color:#a31515"> stable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="config-dockerd">
+&lt;i id="locator-config-dockerd" class="header-locator">&lt;/i>
+&lt;a href="#config-dockerd" class="article-h-a">1.4 Config dockerd&lt;/a>
+&lt;/h2>
+&lt;p>&lt;a href="https://docs.docker.com/engine/reference/commandline/dockerd/"
+
+ target="_blank" rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/&lt;/a>&lt;/p></description></item></channel></rss>

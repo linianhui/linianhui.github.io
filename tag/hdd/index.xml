@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hdd on Timetombs</title><link>https://linianhui.github.io/tag/hdd/</link><description>Recent content in Hdd on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 08 Aug 2025 23:53:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/hdd/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] pc</title><link>https://linianhui.github.io/tool/pc/</link><pubDate>Wed, 16 Nov 2022 23:09:01 +0800</pubDate><guid>https://linianhui.github.io/tool/pc/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;style>
+ .inner-html table {
+ border-collapse: collapse !important;
+ padding: 0;
+ margin-top: 0 !important;
+ }
+
+ .inner-html th {
+ text-align: right;
+ }
+
+ .inner-html td {
+ text-align: right;
+ padding: 6px;
+ }
+
+
+ .inner-html .cell {
+ padding: 0 !important;
+ }
+
+ .inner-html .el-collapse {
+ border: unset;
+ }
+
+ .inner-html .el-collapse-item__wrap,
+ .inner-html .el-collapse-item__header {
+ border: unset;
+ }
+
+ .inner-html .el-input-group__prepend {
+ padding: 0;
+ }
+
+ .inner-html a {
+ margin: 0 !important;
+ }
+&lt;/style>&lt;/p>
+&lt;h1 id="cpu">
+&lt;i id="locator-cpu" class="header-locator">&lt;/i>
+&lt;a href="#cpu" class="article-h-a">CPU&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://nanoreview.net/en/cpu-list/desktop-chips-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/cpu-list/desktop-chips-rating&lt;/a>&lt;br />
+&lt;a href="https://nanoreview.net/en/cpu-list/amd-chips-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/cpu-list/amd-chips-rating&lt;/a>&lt;br />
+&lt;a href="https://nanoreview.net/en/cpu-list/intel-chips-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/cpu-list/intel-chips-rating&lt;/a>&lt;/p>
+&lt;h1 id="gpu">
+&lt;i id="locator-gpu" class="header-locator">&lt;/i>
+&lt;a href="#gpu" class="article-h-a">GPU&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://nanoreview.net/en/gpu-list/desktop-graphics-rating"
+
+ target="_blank" rel="noopener norefferrer">https://nanoreview.net/en/gpu-list/desktop-graphics-rating&lt;/a>&lt;/p>
+&lt;h1 id="ssd">
+&lt;i id="locator-ssd" class="header-locator">&lt;/i>
+&lt;a href="#ssd" class="article-h-a">SSD&lt;/a>
+&lt;/h1>
+&lt;p>致态TiPro9000:&lt;a href="https://www.ymtc.com/cn/products/59.html?cat=44"
+
+ target="_blank" rel="noopener norefferrer">https://www.ymtc.com/cn/products/59.html?cat=44&lt;/a>&lt;/p>
+&lt;h1 id="usb">
+&lt;i id="locator-usb" class="header-locator">&lt;/i>
+&lt;a href="#usb" class="article-h-a">USB&lt;/a>
+&lt;/h1>
+&lt;h2 id="usb-rtl9210b">
+&lt;i id="locator-usb-rtl9210b" class="header-locator">&lt;/i>
+&lt;a href="#usb-rtl9210b" class="article-h-a">RTL9210B&lt;/a>
+&lt;/h2>
+&lt;p>最新固件下载：&lt;a href="https://www.station-drivers.com/index.php/zh/component/search/?searchword=RTL9210&amp;amp;searchphrase=all&amp;amp;Itemid=101"
+
+ target="_blank" rel="noopener norefferrer">https://www.station-drivers.com/index.php/zh/component/search/?searchword=RTL9210&amp;searchphrase=all&amp;Itemid=101&lt;/a>&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-b792cd88dba89eae7445110ecf9d8483">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-b792cd88dba89eae7445110ecf9d8483','highlight-file_opened')">i9A-2242.cfg&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/pc/i9A-2242.cfg" title="下载 i9A-2242.cfg" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/pc/i9A-2242.cfg" title="源码 i9A-2242.cfg">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>VID = &lt;span style="color:#a31515">0xbda&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PID = &lt;span style="color:#a31515">0x9210&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MANUFACTURE = &lt;span style="color:#a31515">&amp;#34;JEYI&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PRODUCT = &lt;span style="color:#a31515">&amp;#34;i9A-2242&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SERIAL = &lt;span style="color:#a31515">&amp;#34;221010010021&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SCSI_VENDOR = &lt;span style="color:#a31515">&amp;#34;Realtek&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SCSI_PRODUCT = &lt;span style="color:#a31515">&amp;#34;RTL9210B&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ASPMDIS = &lt;span style="color:#a31515">0x1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DISK_IPS_THRES = &lt;span style="color:#a31515">0x0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LED = &lt;span style="color:#a31515">0x02&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CUSTOMIZED_LED = &lt;span style="color:#a31515">22 02 00 00 00 00 00 00 00 00 00 00 00 00 00&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SUSPEND_LED_OFF = &lt;span style="color:#a31515">0x1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SUSPEND_DISK_OFF = &lt;span style="color:#a31515">0x0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>UART_DBG_PIN = &lt;span style="color:#a31515">0x5&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>U2_MAXPWR = &lt;span style="color:#a31515">0xfa&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>U3_MAXPWR = &lt;span style="color:#a31515">0x70&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DISK_HOTPLUG = &lt;span style="color:#a31515">0x0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="hdd">
+&lt;i id="locator-hdd" class="header-locator">&lt;/i>
+&lt;a href="#hdd" class="article-h-a">机械硬盘&lt;/a>
+&lt;/h1>
+&lt;div id="hddList" class="inner-html">
+ &lt;el-table :data="hdds" :default-sort="{prop: 'price'}" highlight-current-row="true">
+ &lt;el-table-column prop="capacityBytes" label="容量" sortable="true" min-width="70">
+ &lt;template slot-scope="scope">
+ &lt;span :title="scope.row.actualCapacityTB+'\n'+scope.row.actualCapacityGB">
+ {{scope.row.capacity}}
+ &lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="brand" label="品牌" sortable="true" min-width="80">
+ &lt;template slot-scope="scope">
+ &lt;a v-if="scope.row.brandUrl" :href="scope.row.brandUrl" target="_blank">{{scope.row.brand}}&lt;/a>
+ &lt;span v-else>{{scope.row.brand}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="series" label="系列" sortable="true" min-width="150">
+ &lt;template slot-scope="scope">
+ &lt;a v-if="scope.row.seriesUrl" :href="scope.row.seriesUrl" target="_blank">{{scope.row.series}}&lt;/a>
+ &lt;span v-else>{{scope.row.series}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="model" label="型号" sortable="true" min-width="150">
+ &lt;template slot-scope="scope">
+ &lt;a v-if="scope.row.datasheetUrl" :href="scope.row.datasheetUrl" target="_blank">{{scope.row.model}}&lt;/a>
+ &lt;span v-else>{{scope.row.model}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="recording" label="记录" sortable="true" min-width="60">
+ &lt;/el-table-column>
+ &lt;el-table-column prop="cache" label="缓存" sortable="true" min-width="70">
+ &lt;/el-table-column>
+ &lt;el-table-column prop="rpm" label="转速" sortable="true" min-width="70">
+ &lt;/el-table-column>
+ &lt;el-table-column prop="price" label="价格" sortable="true" min-width="120">
+ &lt;template slot-scope="scope">
+ {{scope.row.price}} &lt;sub style="color: #999;font-size: 10px;font-style: italic;">{{scope.row.priceDate}}&lt;/span>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;el-table-column prop="model" label="电商">
+ &lt;template slot-scope="scope">
+ &lt;a :href="scope.row.shopJDUrl" target="_blank">京东&lt;/a>
+ &lt;a :href="scope.row.shopTBUrl" target="_blank">淘宝&lt;/a>
+ &lt;/template>
+ &lt;/el-table-column>
+ &lt;/el-table>
+&lt;/div>
+&lt;script src="hdd.data.js">&lt;/script>
+&lt;script type="text/javascript">
+ new Vue({
+ el: "#hddList",
+ data: { hdds: hdds }
+ })
+&lt;/script>
+&lt;p>注意：购买明确标注&lt;code>CMR&lt;/code>的机械硬盘，希捷较西部数据安静一些（但是希捷故障率高一些）。其他的核心特性&lt;/p></description></item></channel></rss>

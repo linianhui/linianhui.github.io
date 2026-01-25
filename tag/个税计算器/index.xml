@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>个税计算器 on Timetombs</title><link>https://linianhui.github.io/tag/%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/</link><description>Recent content in 个税计算器 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 27 Apr 2024 18:56:13 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] 个税计算器</title><link>https://linianhui.github.io/tool/tax/</link><pubDate>Tue, 01 Jan 2019 01:01:01 +0800</pubDate><guid>https://linianhui.github.io/tool/tax/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;style>
+ th {
+ text-align: right;
+ }
+
+ td {
+ text-align: right;
+ vertical-align: baseline;
+ padding: 6px 4px;
+ }
+
+ .cell {
+ padding: 0 !important;
+ }
+
+ .input-fieldset section {
+ margin: 6px 0;
+ }
+
+ .form-name,
+ .form-input {
+ position: relative;
+ display: inline-block;
+ vertical-align: middle;
+ }
+
+ .form-name {
+ width: 5em;
+ text-align: right;
+ }
+
+ .form-input {
+ margin-left: 1em;
+ }
+
+ .el-collapse {
+ border: unset;
+ }
+
+ .el-collapse-item__wrap,
+ .el-collapse-item__header {
+ border: unset;
+ }
+
+ .el-input-group__prepend {
+ padding: 0;
+ }
+
+ fieldset {
+ border: unset;
+ box-shadow: 0 0 2px #ccc;
+ max-width: 100%;
+ min-width: 100%;
+ margin-top: 1em;
+ box-sizing: border-box;
+ }
+
+ legend {
+ background-color: #FFF;
+ color: #909399;
+ }
+
+ .salary-wrapper {
+ overflow-x: auto;
+ max-width: 100%;
+ }
+
+ .salary-pre {
+ font-family: unset;
+ font-size: 0;
+ margin: 0;
+ }
+
+ .salary-table {
+ width: 100%;
+ margin: 0;
+ font-size: 14px;
+ }
+
+ .salary-summary sub {
+ font-size: 10px;
+ padding-left: 2px;
+ color: #bbb;
+ }
+
+ .row-data {
+ color: #666;
+ font-family: monospace, Courier, 'Courier New'
+ }
+
+ .row-data:hover {
+ background-color: #eee;
+ cursor: pointer;
+ }
+
+ .insurance-table input {
+ min-width: 2em;
+ max-width: 4em;
+ text-align: right;
+ }
+
+ .month-detail {
+ display: none;
+ }
+
+ .month-detail_opened+tr {
+ display: table-row;
+ }
+
+ .month-detail_opened .month-action-icon::before {
+ content: "\e6df";
+ }
+
+ .form-input-weight {
+ width: 14em !important;
+ }
+&lt;/style>
+&lt;div id="app">
+ &lt;fieldset class="input-fieldset">
+ &lt;legend>参数区域&lt;/legend>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="salary">
+ 税前月工资
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="salary" v-model="amount" step="1000" :min="0">
+ &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="month">
+ 月数
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="month" v-model="month" :min="1" @input="onMonthChange">&lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="insurance">
+ 社保基数
+ &lt;/label>
+ &lt;/div>
+ &lt;div class="form-input">
+ &lt;el-collapse>
+ &lt;el-collapse-item>
+ &lt;template slot="title">
+ &lt;el-select id="insurance" v-model="insuranceName" :popper-append-to-body="false" class="form-input-weight"
+ @change="onInsuranceNameChange">
+ &lt;el-option v-for="item in insuranceNameList" :key="item" :label="item" :value="item">
+ &lt;/el-option>
+ &lt;/el-select>
+ &lt;span>&amp;nbsp;&amp;nbsp;{{insurance.min | CNY}}~{{insurance.max | CNY}}&lt;/span>
+ &lt;/template>
+ &lt;table class="insurance-table">
+ &lt;tr class="row-header">
+ &lt;th>社保类型&lt;/th>
+ &lt;th>最低基数&lt;/th>
+ &lt;th>最高基数&lt;/th>
+ &lt;th>个人%&lt;/th>
+ &lt;th>公司%&lt;/th>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;input v-model="insurance.min" @input="onInsuranceMinChange" type="number" min="0" placeholder="最低基数">&lt;/td>
+ &lt;td>&lt;input v-model="insurance.max" @input="onInsuranceMaxChange" type="number" min="0" placeholder="最高基数">&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr v-for="item in insurance.items" class="row-data">
+ &lt;td>{{item.name}}&lt;/td>
+ &lt;td>&lt;input v-model="item.min" type="number" min="0" placeholder="最低基数">&lt;/td>
+ &lt;td>&lt;input v-model="item.max" type="number" min="0" placeholder="最高基数">&lt;/td>
+ &lt;td>&lt;input v-model="item.personalPercentage" type="number" min="0" max="100" placeholder="个人比例">&lt;/td>
+ &lt;td>&lt;input v-model="item.corporationPercentage" type="number" min="0" max="100" placeholder="公司比例">&lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/el-collapse-item>
+ &lt;/el-collapse>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="rate">税率表&lt;/label>
+ &lt;/div>
+ &lt;div class="form-input">
+ &lt;el-collapse>
+ &lt;el-collapse-item>
+ &lt;template slot="title">
+ &lt;el-select id="rate" v-model="rateName" :popper-append-to-body="false" class="form-input-weight">
+ &lt;el-option v-for="item in rateNameList" :key="item" :label="item" :value="item">
+ &lt;/el-option>
+ &lt;/el-select>
+ &lt;span>&amp;nbsp;&amp;nbsp;免征额 {{rate.exempted | CNY}}&lt;/span>
+ &lt;/template>
+ &lt;table>
+ &lt;tr class="row-header">
+ &lt;th>范围&lt;/th>
+ &lt;th>税率&lt;/th>
+ &lt;th>速算扣除数&lt;/th>
+ &lt;/tr>
+ &lt;tr v-for="item in rate.items" class="row-data">
+ &lt;td>
+ &lt;span>
+ {{item.min | CNY}} ~
+ &lt;span v-if="item.max">{{item.max | CNY}}&lt;/span>
+ &lt;span v-else>￥∞&lt;/span>
+ &lt;/span>
+ &lt;/td>
+ &lt;td>
+ {{item.rate}}%
+ &lt;/td>
+ &lt;td>
+ {{item.quickDeduction | CNY}}
+ &lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/el-collapse-item>
+ &lt;/el-collapse>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="bonus">
+ 奖金
+ &lt;/label>
+ &lt;/div>
+ &lt;div class="form-input">
+ &lt;el-collapse>
+ &lt;el-collapse-item>
+ &lt;template slot="title">
+ &lt;el-input-number id="ebonus" v-model="bonus" step="1000">&lt;/el-input-number>
+ &amp;nbsp;&amp;nbsp;
+ &lt;el-checkbox v-model="bonusSingleTax">单独计税&lt;/el-checkbox>
+ &amp;nbsp;&amp;nbsp; 税率表(月)
+ &lt;/template>
+ &lt;table>
+ &lt;tr class="row-header">
+ &lt;th>范围&lt;/th>
+ &lt;th>税率&lt;/th>
+ &lt;th>速算扣除数&lt;/th>
+ &lt;/tr>
+ &lt;tr v-for="item in bonusRates.items" class="row-data">
+ &lt;td>
+ &lt;span>
+ {{item.min | CNY}} ~
+ &lt;span v-if="item.max">{{item.max | CNY}}&lt;/span>
+ &lt;span v-else>￥∞&lt;/span>
+ &lt;/span>
+ &lt;/td>
+ &lt;td>
+ {{item.rate}}%
+ &lt;/td>
+ &lt;td>
+ {{item.quickDeduction | CNY}}
+ &lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/el-collapse-item>
+ &lt;/el-collapse>
+ &lt;/div>
+ &lt;/section>
+ &lt;section style="min-height: 47px;">
+ &lt;div class="form-name">
+ &lt;label for="precision">
+ 小数位
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="precision" v-model="precision" :min="0" :max="2"
+ @change="onPrecisionChange">&lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-年合计&lt;/legend>
+ &lt;table class="salary-summary">
+ &lt;tr class="row-data">
+ &lt;td>税前&lt;/td>
+ &lt;td>{{amount | CNY}}&lt;sub>工资&lt;/sub>&lt;/td>
+ &lt;td>*&lt;/td>
+ &lt;td>{{month}}&lt;sub>月&lt;/sub>&lt;/td>
+ &lt;td>=&lt;/td>
+ &lt;td>{{salarys.summary.last.baseYTD | CNY}}&lt;/td>
+ &lt;td>+&lt;/td>
+ &lt;td>{{salarys.summary.last.insurances.corporationYTD | CNY}}&lt;sub>公司社保&lt;/sub>&lt;/td>
+ &lt;td>=&lt;/td>
+ &lt;td>{{salarys.summary.last.corporationYTD | CNY}}&lt;sub>公司支出&lt;/sub>&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td colspan="6">-&lt;/td>
+ &lt;td colspan="4">-&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>税后&lt;/td>
+ &lt;td>{{salarys.summary.last.actualYTD | CNY}}&lt;sub>税后YTD&lt;/sub>&lt;/td>
+ &lt;td>+&lt;/td>
+ &lt;td>{{salarys.summary.公积金SumYTD| CNY}}&lt;sub>公积金YTD&lt;/sub>&lt;/td>
+ &lt;td>=&lt;/td>
+ &lt;td colspan="5">{{salarys.summary.totalActualYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td colspan="6">=&lt;/td>
+ &lt;td colspan="4">=&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>差额&lt;/td>
+ &lt;td colspan="5">{{salarys.summary.personalDiffYTD | CNY}}&lt;/td>
+ &lt;td colspan="4">{{salarys.summary.corporationDiffYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-月列表&lt;/legend>
+ &lt;div class="salary-wrapper">
+ &lt;pre class="salary-pre">
+ &lt;table class="salary-table">
+ &lt;tr class="row-header">
+ &lt;th style="width: 5em;">月份&lt;/th>
+ &lt;th>税前YTD&lt;/th>
+ &lt;th style="width: 6em;">免征额YTD&lt;/th>
+ &lt;th style="width: 7em;">社保个人YTD&lt;/th>
+ &lt;th>税基YTD&lt;/th>
+ &lt;th style="width: 3em;">税率&lt;/th>
+ &lt;th>个税&lt;/th>
+ &lt;th>个税YTD&lt;/th>
+ &lt;th>税后&lt;/th>
+ &lt;th>税后YTD&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="salary in salarys.items">
+ &lt;tr :id="'month-'+salary.month+'-detail'" class="row-data" :onclick="'blog.toggleClassName(\'month-'+salary.month+'-detail\',\'month-detail_opened\')'">
+ &lt;td v-if="salary.bonus > 0">奖金 &lt;i class="el-icon-arrow-right month-action-icon">&lt;/i>&lt;/td>
+ &lt;td v-else >{{salary.month}}月 &lt;i class="el-icon-arrow-right month-action-icon">&lt;/i>&lt;/td>
+ &lt;td>{{salary.baseYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.exemptedYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.insurances.personalYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.taxableYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.rate.rate}}%&lt;/td>
+ &lt;td>{{salary.tax | CNY}}&lt;/td>
+ &lt;td>{{salary.taxYTD | CNY}}&lt;/td>
+ &lt;td>{{salary.actual | CNY}}&lt;/td>
+ &lt;td>{{salary.actualYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="month-detail">
+ &lt;td style="padding: 0; font-size: 0;"> &lt;/td>
+ &lt;td colspan="10" style="padding: 0; font-size: 0;">
+ &lt;table style="padding: 0;margin: 0; font-size: 14px;width: 100%;border-width: 0;background-color: #efe;">
+ &lt;tr>
+ &lt;td v-if="salary.bonus > 0" colspan="3">奖金&lt;/td>
+ &lt;td colspan="3" v-else >{{salary.month}}月&lt;/td>
+ &lt;td>社保基数&lt;/td>
+ &lt;td>税率/费率&lt;/td>
+ &lt;td>本月&lt;/td>
+ &lt;td>YTD(年累计)&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="12">个人&lt;/td>
+ &lt;td>税前&lt;/td>
+ &lt;td colspan="3">&lt;/td>
+ &lt;td>{{salary.base | CNY}}&lt;/td>
+ &lt;td>{{salary.baseYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="7">社保&lt;/td>
+ &lt;td>合计&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.insurances.personal | CNY}}&lt;/td>
+ &lt;td>{{salary.insurances.personalYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr v-for="insurance in salary.insurances.items" class="row-data">
+ &lt;td>{{insurance.name}}&lt;/td>
+ &lt;td>{{insurance.base}}&lt;/td>
+ &lt;td>{{insurance.personalPercentage}}%&lt;/td>
+ &lt;td>{{insurance.personal | CNY}}&lt;/td>
+ &lt;td>{{insurance.personalYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="3">个税&lt;/td>
+ &lt;td>应纳税所得额&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>{{salary.rate.rate | CNY}}%&lt;/td>
+ &lt;td>{{salary.taxable | CNY}}&lt;/td>
+ &lt;td>{{salary.taxableYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>免征额&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.exempted | CNY}}&lt;/td>
+ &lt;td>{{salary.exemptedYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td >应纳税&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.tax | CNY}}&lt;/td>
+ &lt;td>{{salary.taxYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td>税后&lt;/td>
+ &lt;td colspan="3">&lt;/td>
+ &lt;td>{{salary.actual | CNY}}&lt;/td>
+ &lt;td>{{salary.actualYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="8">公司&lt;/td>
+ &lt;td>支出&lt;/td>
+ &lt;td colspan="3">&lt;/td>
+ &lt;td>{{salary.corporation | CNY}}&lt;/td>
+ &lt;td>{{salary.corporationYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data">
+ &lt;td rowspan="7">社保&lt;/td>
+ &lt;td>合计&lt;/td>
+ &lt;td colspan="2">&lt;/td>
+ &lt;td>{{salary.insurances.corporation | CNY}}&lt;/td>
+ &lt;td>{{salary.insurances.corporationYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr v-for="insurance in salary.insurances.items" class="row-data">
+ &lt;td>{{insurance.name}}&lt;/td>
+ &lt;td>{{insurance.base}}&lt;/td>
+ &lt;td>{{insurance.corporationPercentage}}%&lt;/td>
+ &lt;td>{{insurance.corporation | CNY}}&lt;/td>
+ &lt;td>{{insurance.corporationYTD | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;/table>
+ &lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+&lt;/div>
+&lt;script src="rates.js">&lt;/script>
+&lt;script src="insurances.js">&lt;/script>
+&lt;script src="calculator.js">&lt;/script>
+&lt;script src="app.js">&lt;/script>&lt;/p></description></item></channel></rss>

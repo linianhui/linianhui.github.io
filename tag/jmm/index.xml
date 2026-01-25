@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JMM on Timetombs</title><link>https://linianhui.github.io/tag/jmm/</link><description>Recent content in JMM on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/jmm/index.xml" rel="self" type="application/rss+xml"/><item><title>[Java] JMM(Java Memory Model)</title><link>https://linianhui.github.io/java/jmm/</link><pubDate>Thu, 05 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/jmm/</guid><description>&lt;p>Java内存模型JMM(Java Memory Model)在Java中由两份规范文档定义:&lt;/p>
+&lt;ol>
+&lt;li>JLS(Java Language Specification)的Chapter 17. Threads and Locks]&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>。&lt;/li>
+&lt;li>JSR-133: Java Memory Model and Thread Specification Revision&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>。JSR-133(JDK 5实现了)是对JLS中的补充和完善。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>A memory model describes, given a program and an execution trace of that program, whether the execution trace is a legal execution of the program. The Java programming language memory model works by examining each read in an execution trace and checking that the write observed by that read is valid according to certain rules.&lt;/p>&lt;/blockquote>
+&lt;p>以上部分是JLS中关于JMM的总结性解释。简单来说就是&lt;strong>规定了Java中的各种变量的读写访问规则&lt;/strong>。&lt;/p></description></item></channel></rss>

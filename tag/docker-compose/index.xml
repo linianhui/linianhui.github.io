@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker-Compose on Timetombs</title><link>https://linianhui.github.io/tag/docker-compose/</link><description>Recent content in Docker-Compose on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Aug 2023 02:31:51 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/docker-compose/index.xml" rel="self" type="application/rss+xml"/><item><title>[Docker] Install</title><link>https://linianhui.github.io/docker/install/</link><pubDate>Sun, 28 Jan 2018 16:53:01 +0800</pubDate><guid>https://linianhui.github.io/docker/install/</guid><description>&lt;h1 id="dockerd">
+&lt;i id="locator-dockerd" class="header-locator">&lt;/i>
+&lt;a href="#dockerd" class="article-h-a">1 dokcerd&lt;/a>
+&lt;/h1>
+&lt;p>reference: &lt;a href="https://docs.docker.com/engine/reference/commandline/dockerd/"
+
+ target="_blank" rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/&lt;/a>&lt;/p>
+&lt;h2 id="docker-on-ubuntu">
+&lt;i id="locator-docker-on-ubuntu" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-ubuntu" class="article-h-a">1.1 Ubuntu&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-20977f47b347e0f3203ebf25c1378db8">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-20977f47b347e0f3203ebf25c1378db8','highlight-file_opened')">docker-on-ubuntu.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-ubuntu.sh" title="下载 docker-on-ubuntu.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-ubuntu.sh" title="源码 docker-on-ubuntu.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-ubuntu.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-ubuntu.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt remove -y docker docker-engine docker.io
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y apt-transport-https ca-certificates curl software-properties-common
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | apt-key add -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt-key fingerprint 0EBFCD88
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>add-apt-repository &lt;span style="color:#a31515">&amp;#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu &lt;/span>&lt;span style="color:#00f">$(&lt;/span>lsb_release -cs&lt;span style="color:#00f">)&lt;/span>&lt;span style="color:#a31515"> stable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="docker-on-centos">
+&lt;i id="locator-docker-on-centos" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-centos" class="article-h-a">1.2 CentOS&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-469270076ff69464a4e9c5643a39d8f8">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-469270076ff69464a4e9c5643a39d8f8','highlight-file_opened')">docker-on-centos.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-centos.sh" title="下载 docker-on-centos.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-centos.sh" title="源码 docker-on-centos.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-centos.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-centos.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum install -y yum-utils device-mapper-persistent-data lvm2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="docker-on-debian">
+&lt;i id="locator-docker-on-debian" class="header-locator">&lt;/i>
+&lt;a href="#docker-on-debian" class="article-h-a">1.3 Debian&lt;/a>
+&lt;/h2>
+&lt;div class="highlight-file highlight-file_opened" id="hf-cfe6663860faeaf9300427266766bc65">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-cfe6663860faeaf9300427266766bc65','highlight-file_opened')">docker-on-debian.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/docker/install/docker-on-debian.sh" title="下载 docker-on-debian.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-debian.sh" title="源码 docker-on-debian.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># wget https://linianhui.github.io/docker/install/docker-on-debian.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.docker-on-debian.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt remove -y docker docker-engine docker.io
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg1 gnupg2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg | apt-key add -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>add-apt-repository &lt;span style="color:#a31515">&amp;#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/debian &lt;/span>&lt;span style="color:#00f">$(&lt;/span>lsb_release -cs&lt;span style="color:#00f">)&lt;/span>&lt;span style="color:#a31515"> stable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y docker-ce
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="config-dockerd">
+&lt;i id="locator-config-dockerd" class="header-locator">&lt;/i>
+&lt;a href="#config-dockerd" class="article-h-a">1.4 Config dockerd&lt;/a>
+&lt;/h2>
+&lt;p>&lt;a href="https://docs.docker.com/engine/reference/commandline/dockerd/"
+
+ target="_blank" rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/&lt;/a>&lt;/p></description></item></channel></rss>

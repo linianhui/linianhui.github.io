@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[信息安全] on Timetombs</title><link>https://linianhui.github.io/information-security/</link><description>Recent content in [信息安全] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/information-security/index.xml" rel="self" type="application/rss+xml"/><item><title>[信息安全] 05 X.509 公钥证书的格式标准</title><link>https://linianhui.github.io/information-security/05-x.509/</link><pubDate>Sat, 15 Feb 2020 13:07:23 +0800</pubDate><guid>https://linianhui.github.io/information-security/05-x.509/</guid><description>&lt;p>&lt;a href="https://en.wikipedia.org/wiki/X.509"
+
+ target="_blank" rel="noopener norefferrer">X.509&lt;/a>是&lt;a href="#public-key-certificate"
+
+># 公钥证书&lt;/a>的格式标准, 广泛用于TLS/SSL安全通信或者其他需要认证的环境中。X.509证书可以由&lt;a href="#certificate-authority"
+
+># CA&lt;/a>颁发，也可以自签名产生。&lt;/p>
+&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 Overview&lt;/a>
+&lt;/h1>
+&lt;p>X.509证书中主要含有&lt;code>公钥&lt;/code>、&lt;code>身份信息&lt;/code>、&lt;code>签名信息&lt;/code>和&lt;code>有效性信息&lt;/code>等信息。这些信息用于构建一个验证公钥的体系，用来保证客户端得到的公钥正是它期望的公钥。&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>公钥&lt;/code> : 非对称密码中的公钥。公钥证书的目的就是为了在互联网上分发公钥。&lt;/li>
+&lt;li>&lt;code>身份信息&lt;/code> : 公钥对应的私钥持有者的信息，域名以及用途等。&lt;/li>
+&lt;li>&lt;code>签名信息&lt;/code> : 对公钥进行签名的信息，提供公钥的验证链。可以是CA的签名或者是自签名，不同之处在于CA证书的根证书大都内置于操作系统或者浏览器中，而自签名证书的公钥验证链则需要自己维护（手动导入到操作系统中或者再验证流程中单独提供自签名的根证书）。&lt;/li>
+&lt;li>&lt;code>有效性信息&lt;/code>：证书的有效时间区间，以及&lt;a href="#certificate-revocation-list"
+
+># CRL&lt;/a>等相关信息。&lt;/li>
+&lt;/ol>
+&lt;p>X.509证书的标准规范&lt;a href="https://tools.ietf.org/html/rfc5280"
+
+ target="_blank" rel="noopener norefferrer">RFC5280&lt;/a>中详细描述了证书的&lt;a href="#encoding-format"
+
+># 1.1 Encoding Format&lt;/a>和&lt;a href="#structure"
+
+># 1.2 Structure&lt;/a>。&lt;/p></description></item><item><title>[信息安全] 04 一次性密码 &amp; 身份认证</title><link>https://linianhui.github.io/information-security/04-one-time-password/</link><pubDate>Sun, 23 Jul 2017 14:24:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/04-one-time-password/</guid><description>&lt;p>在信息安全领域，一般把&lt;strong>Cryptography&lt;/strong>称为&lt;strong>密码&lt;/strong>，而把&lt;strong>Password&lt;/strong>称为&lt;strong>口令&lt;/strong>。日常用户的认知中，以及我们开发人员沟通过程中，绝大多数被称作密码的东西其实都是Password(口令)，而不是真正意义上的密码。本文保持这种语义，采用密码来代指Password，而当密码和口令同时出现时，用英文表示以示区分。&lt;/p>
+&lt;h1 id="one-time-password">
+&lt;i id="locator-one-time-password" class="header-locator">&lt;/i>
+&lt;a href="#one-time-password" class="article-h-a">1 OTP 一次性密码&lt;/a>
+&lt;/h1>
+&lt;p>OTP是One Time Password的简写，即一次性密码。在平时生活中，我们接触一次性密码的场景非常多，比如在登录账号、找回密码，更改密码和转账操作等等这些场景，其中一些常用到的方式有 :&lt;/p></description></item><item><title>[信息安全] 03 HTTPS工作流程</title><link>https://linianhui.github.io/information-security/03-https/</link><pubDate>Tue, 04 Jul 2017 22:25:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/03-https/</guid><description>&lt;h1 id="review">
+&lt;i id="locator-review" class="header-locator">&lt;/i>
+&lt;a href="#review" class="article-h-a">1 简单回顾&lt;/a>
+&lt;/h1>
+&lt;p>在前面两篇博客中介绍了密码相关的一些基本工具，包括(&lt;a href="../01-cryptography-toolbox-1/#symmetric-cryptography"
+
+ target="_blank" rel="noopener norefferrer">对称密码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#asymmetric-cryptography"
+
+ target="_blank" rel="noopener norefferrer">公钥密码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#cryptographic-hash-function"
+
+ target="_blank" rel="noopener norefferrer">密码散列函数&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#hybrid-cryptosystem"
+
+ target="_blank" rel="noopener norefferrer">混合密码系统&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#message-authentication-code"
+
+ target="_blank" rel="noopener norefferrer">消息认证码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#digital-signature"
+
+ target="_blank" rel="noopener norefferrer">数字签名&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#pseudo-random-number"
+
+ target="_blank" rel="noopener norefferrer">伪随机数&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#certificate"
+
+ target="_blank" rel="noopener norefferrer">数字证书&lt;/a>)这几个。其中它们之间也是互相依赖的，我们来简单的梳理一下它们的依赖关系。&lt;/p></description></item><item><title>[信息安全] 02 密码工具箱 第2部分</title><link>https://linianhui.github.io/information-security/02-cryptography-toolbox-2/</link><pubDate>Sun, 02 Jul 2017 15:08:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/02-cryptography-toolbox-2/</guid><description>&lt;p>在上一篇&lt;a href="../01-cryptography-toolbox-1/"
+
+ target="_blank" rel="noopener norefferrer">[信息安全] 01 密码工具箱 第1部分&lt;/a>中介绍了一些密码技术相关的一些基本工具，同时遗留了&lt;strong>一个鸡生蛋蛋生鸡的问题&lt;/strong>和&lt;strong>公钥的认证问题&lt;/strong>(￣▽￣)&amp;quot;，这里再补充几个常用的工具先。&lt;/p>
+&lt;h1 id="pseudo-random-number">
+&lt;i id="locator-pseudo-random-number" class="header-locator">&lt;/i>
+&lt;a href="#pseudo-random-number" class="article-h-a">1 伪随机数(Pseudo-Random Number)&lt;/a>
+&lt;/h1>
+&lt;p>随机数大家不陌生，但是随机数怎么就和信息安全扯上关系了呢?其实想一想我们在给自己的账号设置密码的时候，是不是都会尽量的让其他人不会轻易的猜到我们的密码，虽然并不是随机，但是它就像是满足了随机数的一个特征 : &lt;strong>不可预测性&lt;/strong>。那么对于信息安全来说来说，也是用到了这个特定，当然还有随机数的&lt;strong>随机性&lt;/strong>，&lt;strong>不可重复性&lt;/strong>这两点特征。&lt;/p></description></item><item><title>[信息安全] 01 密码工具箱 第1部分</title><link>https://linianhui.github.io/information-security/01-cryptography-toolbox-1/</link><pubDate>Mon, 26 Jun 2017 22:55:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/01-cryptography-toolbox-1/</guid><description>&lt;h1 id="0.what-is-information-security">
+&lt;i id="locator-0.what-is-information-security" class="header-locator">&lt;/i>
+&lt;a href="#0.what-is-information-security" class="article-h-a">0 何谓信息安全？&lt;/a>
+&lt;/h1>
+&lt;p>对于信息安全性的重要性，我想大家都不会否认。那么具体来说应该具有哪些特性才能称之为安全呢？举个简单的例子 : 我给你发送一条消息&amp;quot;借给我100元&amp;quot;，当你收到这条消息并且处理后你的账户里面会少出来100块，我的账户会多出来100块。在这个过程中，你是消息接收方，我是消息发送方。&lt;/p>
+&lt;ol>
+&lt;li>作为通信双方的你我都不希望让其他人能读懂这条消息。这是信息的&lt;strong>机密性&lt;/strong> : &lt;strong>即消息在传递过程中不被其他人解读。&lt;/strong>&lt;/li>
+&lt;li>作为通信双方的你我都不希望消息内容变成&amp;quot;借老子1000块！&amp;quot;(操，借钱还这么牛逼，100块都不给你，还要1000块！死去...)。这是信息的&lt;strong>完整性&lt;/strong> : &lt;strong>即可以校验出信息在传送过程中是否被篡改。&lt;/strong>&lt;/li>
+&lt;li>作为消息接收方的你需要确认是不是真正的我给你发的借钱的消息吧，会不会是个诈骗犯要骗我100块！这是对信息的&lt;strong>认证&lt;/strong> : &lt;strong>即接收者要可以验证消息的发送者确实是自己希望的发送者。&lt;/strong>&lt;/li>
+&lt;li>作为消息接收方的你肯定不希望在借给了我100块之后，我耍无赖失口否认说没借过你钱，这是信息的&lt;strong>不可否认性&lt;/strong> : &lt;strong>即消息发送者不可以否认说这个信息不是我发送的。&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;p>总结来说，在通信过程中，满足这4个特征 : &lt;strong>机密性&lt;/strong>，&lt;strong>完整性，认证，不可否认性&lt;/strong>，就可以认为信息是安全的。那么接下来的几个小节来介绍一下有那些工具可以使得我们在传递消息的时候具有以上4个特征。&lt;/p></description></item></channel></rss>

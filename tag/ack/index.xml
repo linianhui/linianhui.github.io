@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ack on Timetombs</title><link>https://linianhui.github.io/tag/ack/</link><description>Recent content in Ack on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/ack/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] TCP</title><link>https://linianhui.github.io/computer-networking/tcp/</link><pubDate>Thu, 20 Feb 2020 20:55:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/tcp/</guid><description>&lt;p>TCP(Transmission Control Protocol)是一种&lt;strong>全双工的&lt;/strong>、&lt;strong>面向连接的&lt;/strong>、&lt;strong>基于字节流的&lt;/strong>、&lt;strong>可靠的（尽最大努力交付）&lt;/strong>、&lt;strong>有状态的&lt;/strong> 传输层通信协议。先看一TCP的数据包&lt;code>Segment&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>长什么样子，后续的各种功能都会体现在其中：&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-53b13545c7cc9b624b918f7873fa7667">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-53b13545c7cc9b624b918f7873fa7667','highlight-file_opened')">tcp.segment&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/tcp/tcp.segment" title="下载 tcp.segment" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/tcp/tcp.segment" title="源码 tcp.segment">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span> TCP Segment
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Source Port (2 octets) | Destination Port (2 octets) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Sequence number (4 octets) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Acknowledgment number (if ACK set) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| data | |N|C|E|U|A|P|R|S|F| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|offset | |S|W|C|R|C|S|S|Y|I| Window Size (2 octets) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|(4 bit)| | |R|E|G|K|H|T|N|N| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Checksum | Urgent pointer (if URG set) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Options (if data offset &amp;gt; 5) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| Padded at the end with &amp;#34;0&amp;#34; bytes if necessary.) |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| data |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>| |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># https://en.wikipedia.org/wiki/Transmission_Control_Protocol&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

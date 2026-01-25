@@ -1,0 +1,357 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Redis] sentinel - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A02Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/redis/ target=_blank>[Redis]</a></section><section class=toc-page><a class=toc-page-title href=/redis/install/ target=_blank>[Redis] install</a></section><section class=toc-page><a class=toc-page-title href=/redis/resp/ target=_blank>[Redis] resp</a></section><section class=toc-page><a class=toc-page-title href=/redis/data-type/ target=_blank>[Redis] data type</a></section><section class=toc-page><a class=toc-page-title href=/redis/pipelining/ target=_blank>[Redis] pipelining</a></section><section class=toc-page><a class=toc-page-title href=/redis/expire/ target=_blank>[Redis] expire</a></section><section class=toc-page><a class=toc-page-title href=/redis/lua/ target=_blank>[Redis] lua script</a></section><section class=toc-page><a class=toc-page-title href=/redis/persistence/ target=_blank>[Redis] persistence</a></section><section class=toc-page><a class=toc-page-title href=/redis/benchmark/ target=_blank>[Redis] benchmark</a></section><section class=toc-page><a class=toc-page-title href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></section><section class=toc-page><a class=toc-page-title href=/redis/replication/ target=_blank>[Redis] replication</a></section><section class="toc-page selected"><span class=toc-page-title>[Redis] sentinel</span><nav id=TableOfContents><ul><li><a href=#install>1 搭建环境</a></li><li><a href=#theory>2 运行原理</a></li><li><a href=#config>3 详细配置</a></li><li><a href=#reference>4 参考</a></li></ul></nav></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:02Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Redis] sentinel</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2021-03-20 09:30，约1705字，阅读约4分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/high-availability target=_blank><i class="fa fa-tag"></i>high availability</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a>
+<a class=article-tag href=/tag/replication target=_blank><i class="fa fa-tag"></i>replication</a>
+<a class=article-tag href=/tag/sentinel target=_blank><i class="fa fa-tag"></i>sentinel</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/sentinel/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>在上一篇博客<code>Replication</code><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>中我们构建了一个简单的主从复制架构的redis服务，利用Replication我们可以让redis提供读写分离、提供读取能力、数据备份等功能，也支持slave从鼓掌中恢复。但是如果master出现了故障，那么整Replication都会处于一个不可用的状态。这显然无法满足高可用的目标。而整个目标需要借助<code>sentinel</code><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>来实现。</p><p>sentinel概述：</p><ol><li><strong>监控</strong>：sentinel是一个分布式系统，多个实例利用<code>gossip</code>协议协同工作。sentinel监控master和slave实例，同时sentinel实例之间也互相监控。</li><li><strong>通知</strong>： 当某一个实例出现问题时，sentinel可以通过API通知系统管理员。</li><li><strong>自动故障转移</strong>：如果被监控的master出现问题，sentinel可以启动一个自动故障转移的过程，sentinel实例之间选举出来一个slave提升为master，然后配置其他slave的配置使其成为新的master的slave，并且通知client使用新的连接地址。</li><li><strong>配置提供者</strong>：client不再之间连接到master或者slave，而是连接到sentinel，由sentinel提供redis的master和slave的地址。</li></ol><h1 id=install><i id=locator-install class=header-locator></i>
+<a href=#install class=article-h-a>1 搭建环境</a></h1><p>运行sentinel有两种方式：</p><ol><li><code>redis-sentinel /path/to/sentinel.conf</code>;</li><li><code>redis-server /path/to/sentinel.conf --sentinel</code>;</li></ol><p>两种方式完全一样的（通常<code>redis-sentinel</code>文件是<code>redis-server</code>的一个符号连接，redis-server启动时会做如下检查）：<br><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/src/server.c#L5826-L5835 target=_blank>https://github.com/redis/redis/blob/6.2/src/server.c#L5826-L5835</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:green>/* Returns 1 if there is --sentinel among the arguments or if
+</span></span></span><span style=display:flex><span><span style=color:green> * argv[0] contains &#34;redis-sentinel&#34;. */</span>
+</span></span><span style=display:flex><span><span style=color:#2b91af>int</span> checkForSentinelMode(<span style=color:#2b91af>int</span> argc, <span style=color:#2b91af>char</span> **argv) {
+</span></span><span style=display:flex><span>    <span style=color:#2b91af>int</span> j;
+</span></span><span style=display:flex><span>    <span style=color:#00f>if</span> (strstr(argv[0],<span style=color:#a31515>&#34;redis-sentinel&#34;</span>) != NULL) <span style=color:#00f>return</span> 1;
+</span></span><span style=display:flex><span>    <span style=color:#00f>for</span> (j = 1; j &lt; argc; j++)
+</span></span><span style=display:flex><span>        <span style=color:#00f>if</span> (!strcmp(argv[j],<span style=color:#a31515>&#34;--sentinel&#34;</span>)) <span style=color:#00f>return</span> 1;
+</span></span><span style=display:flex><span>    <span style=color:#00f>return</span> 0;
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div></p><p>与<code>redis-server</code>默认的<code>6379</code>端口号不同的是，<code>redis-sentinel</code>默认运行在<code>26379</code>端口。</p><p>这里使用<code>docker-compose -f redis.yml up -d</code>启动一个主从复制的环境，一个<code>master</code>、两个<code>slave</code>和三个<code>sentinel</code>。<br><div class=highlight-file id=hf-8dffae3af8247bc93a4b5ab7681a5dca><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-8dffae3af8247bc93a4b5ab7681a5dca","highlight-file_opened")'>redis.yml</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/sentinel/redis.yml title="下载 redis.yml" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/sentinel/redis.yml title="源码 redis.yml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:green># https://docs.docker.com/compose/compose-file/compose-file-v3/</span>
+</span></span><span style=display:flex><span>version: <span style=color:#a31515>&#39;3&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>services:
+</span></span><span style=display:flex><span>  master.test:
+</span></span><span style=display:flex><span>    image: redis:6.2
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - volume_master:/data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  slave1.test:
+</span></span><span style=display:flex><span>    image: redis:6.2
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server --slaveof master.test 6379
+</span></span><span style=display:flex><span>    depends_on:
+</span></span><span style=display:flex><span>      - master.test
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - volume_slave1:/data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  slave2.test:
+</span></span><span style=display:flex><span>    image: redis:6.2
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server --slaveof master.test 6379
+</span></span><span style=display:flex><span>    depends_on:
+</span></span><span style=display:flex><span>      - master.test
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - volume_slave2:/data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  sentinel1.test:
+</span></span><span style=display:flex><span>    build: .
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server /etc/redis/sentinel.conf --sentinel
+</span></span><span style=display:flex><span>    depends_on:
+</span></span><span style=display:flex><span>      - master.test
+</span></span><span style=display:flex><span>      - slave1.test
+</span></span><span style=display:flex><span>      - slave2.test
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  sentinel2.test:
+</span></span><span style=display:flex><span>    build: .
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server /etc/redis/sentinel.conf --sentinel
+</span></span><span style=display:flex><span>    depends_on:
+</span></span><span style=display:flex><span>      - master.test
+</span></span><span style=display:flex><span>      - slave1.test
+</span></span><span style=display:flex><span>      - slave2.test
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  sentinel3.test:
+</span></span><span style=display:flex><span>    build: .
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server /etc/redis/sentinel.conf --sentinel
+</span></span><span style=display:flex><span>    depends_on:
+</span></span><span style=display:flex><span>      - master.test
+</span></span><span style=display:flex><span>      - slave1.test
+</span></span><span style=display:flex><span>      - slave2.test
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>volumes:
+</span></span><span style=display:flex><span>  volume_master:
+</span></span><span style=display:flex><span>  volume_slave1:
+</span></span><span style=display:flex><span>  volume_slave2:
+</span></span></code></pre></div></div></div></p><div class=highlight-file id=hf-102718d31be42cda2141d76ad9a9b6b7><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-102718d31be42cda2141d76ad9a9b6b7","highlight-file_opened")'>Dockerfile</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/sentinel/Dockerfile title="下载 Dockerfile" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/sentinel/Dockerfile title="源码 Dockerfile"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:green># https://hub.docker.com/_/redis/</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=color:green># https://github.com/docker-library/redis/blob/master/6.2/Dockerfile</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=color:#00f>FROM</span><span style=color:#a31515> redis:6.2</span><span>
+</span></span></span><span style=display:flex><span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=color:#00f>COPY</span> --chown=redis:redis sentinel.conf /etc/redis/sentinel.conf<span>
+</span></span></span><span style=display:flex><span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=color:#00f>EXPOSE</span><span style=color:#a31515> 26379</span></span></span></code></pre></div></div></div><div class=highlight-file id=hf-43ba81c2ed7493f2952a2ac128333172><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-43ba81c2ed7493f2952a2ac128333172","highlight-file_opened")'>sentinel.conf</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/sentinel/sentinel.conf title="下载 sentinel.conf" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/sentinel/sentinel.conf title="源码 sentinel.conf"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># https://github.com/redis/redis/blob/6.2/sentinel.conf</span>
+</span></span><span style=display:flex><span>protected-mode no
+</span></span><span style=display:flex><span>port 26379
+</span></span><span style=display:flex><span>daemonize no
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>sentinel monitor master1 master.test 6379 2
+</span></span><span style=display:flex><span>sentinel down-after-milliseconds master1 30000
+</span></span><span style=display:flex><span>sentinel failover-timeout master1 180000
+</span></span><span style=display:flex><span>sentinel parallel-syncs master1 1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>SENTINEL resolve-hostnames yes
+</span></span><span style=display:flex><span>SENTINEL announce-hostnames no</span></span></code></pre></div></div></div><p>启动后进入到其中的一个sentinel中<code>docker exec -it sentinel_sentinel1.test_1 redis-cli -p 26379</code>:<br><div class=highlight-file id=hf-435b5d27e1a6dc43737046b4be2c4250><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-435b5d27e1a6dc43737046b4be2c4250","highlight-file_opened")'>sentinel master master1</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/sentinel/sentinel.26379 title="下载 sentinel master master1" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/sentinel/sentinel.26379 title="源码 sentinel master master1"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 查看启动后的redis主从复制+Sentinel的容器</span>
+</span></span><span style=display:flex><span>docker-compose -f redis.yml ps
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>          Name                         Command               State          Ports
+</span></span><span style=display:flex><span>----------------------------------------------------------------------------------------
+</span></span><span style=display:flex><span>sentinel_master.test_1      docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span><span style=display:flex><span>sentinel_slave1.test_1      docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span><span style=display:flex><span>sentinel_slave2.test_1      docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span><span style=display:flex><span>sentinel_sentinel1.test_1   docker-entrypoint.sh redis ...   Up      26379/tcp, 6379/tcp
+</span></span><span style=display:flex><span>sentinel_sentinel2.test_1   docker-entrypoint.sh redis ...   Up      26379/tcp, 6379/tcp
+</span></span><span style=display:flex><span>sentinel_sentinel3.test_1   docker-entrypoint.sh redis ...   Up      26379/tcp, 6379/tcp
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 进入其中一个sentinel</span>
+</span></span><span style=display:flex><span>docker exec -it sentinel_sentinel1.test_1 redis-cli -p 26379
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>127.0.0.1:26379&gt; SENTINEL master master1
+</span></span><span style=display:flex><span> 1) <span style=color:#a31515>&#34;name&#34;</span>
+</span></span><span style=display:flex><span> 2) <span style=color:#a31515>&#34;master1&#34;</span>
+</span></span><span style=display:flex><span> 3) <span style=color:#a31515>&#34;ip&#34;</span>
+</span></span><span style=display:flex><span> 4) <span style=color:#a31515>&#34;172.20.0.2&#34;</span>
+</span></span><span style=display:flex><span> 5) <span style=color:#a31515>&#34;port&#34;</span>
+</span></span><span style=display:flex><span> 6) <span style=color:#a31515>&#34;6379&#34;</span>
+</span></span><span style=display:flex><span> 7) <span style=color:#a31515>&#34;runid&#34;</span>
+</span></span><span style=display:flex><span> 8) <span style=color:#a31515>&#34;f12d1ec60110762a0c8d04e1a41e5a35475cd180&#34;</span>
+</span></span><span style=display:flex><span> 9) <span style=color:#a31515>&#34;flags&#34;</span>
+</span></span><span style=display:flex><span>10) <span style=color:#a31515>&#34;master&#34;</span>
+</span></span><span style=display:flex><span>11) <span style=color:#a31515>&#34;link-pending-commands&#34;</span>
+</span></span><span style=display:flex><span>12) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>13) <span style=color:#a31515>&#34;link-refcount&#34;</span>
+</span></span><span style=display:flex><span>14) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>15) <span style=color:#a31515>&#34;last-ping-sent&#34;</span>
+</span></span><span style=display:flex><span>16) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>17) <span style=color:#a31515>&#34;last-ok-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>18) <span style=color:#a31515>&#34;954&#34;</span>
+</span></span><span style=display:flex><span>19) <span style=color:#a31515>&#34;last-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>20) <span style=color:#a31515>&#34;954&#34;</span>
+</span></span><span style=display:flex><span>21) <span style=color:#a31515>&#34;down-after-milliseconds&#34;</span>
+</span></span><span style=display:flex><span>22) <span style=color:#a31515>&#34;30000&#34;</span>
+</span></span><span style=display:flex><span>23) <span style=color:#a31515>&#34;info-refresh&#34;</span>
+</span></span><span style=display:flex><span>24) <span style=color:#a31515>&#34;1008&#34;</span>
+</span></span><span style=display:flex><span>25) <span style=color:#a31515>&#34;role-reported&#34;</span>
+</span></span><span style=display:flex><span>26) <span style=color:#a31515>&#34;master&#34;</span>
+</span></span><span style=display:flex><span>27) <span style=color:#a31515>&#34;role-reported-time&#34;</span>
+</span></span><span style=display:flex><span>28) <span style=color:#a31515>&#34;231902&#34;</span>
+</span></span><span style=display:flex><span>29) <span style=color:#a31515>&#34;config-epoch&#34;</span>
+</span></span><span style=display:flex><span>30) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>31) <span style=color:#a31515>&#34;num-slaves&#34;</span>
+</span></span><span style=display:flex><span>32) <span style=color:#a31515>&#34;2&#34;</span>
+</span></span><span style=display:flex><span>33) <span style=color:#a31515>&#34;num-other-sentinels&#34;</span>
+</span></span><span style=display:flex><span>34) <span style=color:#a31515>&#34;2&#34;</span>
+</span></span><span style=display:flex><span>35) <span style=color:#a31515>&#34;quorum&#34;</span>
+</span></span><span style=display:flex><span>36) <span style=color:#a31515>&#34;2&#34;</span>
+</span></span><span style=display:flex><span>37) <span style=color:#a31515>&#34;failover-timeout&#34;</span>
+</span></span><span style=display:flex><span>38) <span style=color:#a31515>&#34;180000&#34;</span>
+</span></span><span style=display:flex><span>39) <span style=color:#a31515>&#34;parallel-syncs&#34;</span>
+</span></span><span style=display:flex><span>40) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>127.0.0.1:26379&gt; SENTINEL replicas master1
+</span></span><span style=display:flex><span>1)  1) <span style=color:#a31515>&#34;name&#34;</span>
+</span></span><span style=display:flex><span>    2) <span style=color:#a31515>&#34;172.20.0.3:6379&#34;</span>
+</span></span><span style=display:flex><span>    3) <span style=color:#a31515>&#34;ip&#34;</span>
+</span></span><span style=display:flex><span>    4) <span style=color:#a31515>&#34;172.20.0.3&#34;</span>
+</span></span><span style=display:flex><span>    5) <span style=color:#a31515>&#34;port&#34;</span>
+</span></span><span style=display:flex><span>    6) <span style=color:#a31515>&#34;6379&#34;</span>
+</span></span><span style=display:flex><span>    7) <span style=color:#a31515>&#34;runid&#34;</span>
+</span></span><span style=display:flex><span>    8) <span style=color:#a31515>&#34;1af97ddae7eccd5fca707b202188498d990d8cb8&#34;</span>
+</span></span><span style=display:flex><span>    9) <span style=color:#a31515>&#34;flags&#34;</span>å
+</span></span><span style=display:flex><span>   10) <span style=color:#a31515>&#34;slave&#34;</span>
+</span></span><span style=display:flex><span>   11) <span style=color:#a31515>&#34;link-pending-commands&#34;</span>
+</span></span><span style=display:flex><span>   12) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   13) <span style=color:#a31515>&#34;link-refcount&#34;</span>
+</span></span><span style=display:flex><span>   14) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>   15) <span style=color:#a31515>&#34;last-ping-sent&#34;</span>
+</span></span><span style=display:flex><span>   16) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   17) <span style=color:#a31515>&#34;last-ok-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   18) <span style=color:#a31515>&#34;11&#34;</span>
+</span></span><span style=display:flex><span>   19) <span style=color:#a31515>&#34;last-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   20) <span style=color:#a31515>&#34;11&#34;</span>
+</span></span><span style=display:flex><span>   21) <span style=color:#a31515>&#34;down-after-milliseconds&#34;</span>
+</span></span><span style=display:flex><span>   22) <span style=color:#a31515>&#34;30000&#34;</span>
+</span></span><span style=display:flex><span>   23) <span style=color:#a31515>&#34;info-refresh&#34;</span>
+</span></span><span style=display:flex><span>   24) <span style=color:#a31515>&#34;7516&#34;</span>
+</span></span><span style=display:flex><span>   25) <span style=color:#a31515>&#34;role-reported&#34;</span>
+</span></span><span style=display:flex><span>   26) <span style=color:#a31515>&#34;slave&#34;</span>
+</span></span><span style=display:flex><span>   27) <span style=color:#a31515>&#34;role-reported-time&#34;</span>
+</span></span><span style=display:flex><span>   28) <span style=color:#a31515>&#34;278534&#34;</span>
+</span></span><span style=display:flex><span>   29) <span style=color:#a31515>&#34;master-link-down-time&#34;</span>
+</span></span><span style=display:flex><span>   30) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   31) <span style=color:#a31515>&#34;master-link-status&#34;</span>
+</span></span><span style=display:flex><span>   32) <span style=color:#a31515>&#34;ok&#34;</span>
+</span></span><span style=display:flex><span>   33) <span style=color:#a31515>&#34;master-host&#34;</span>
+</span></span><span style=display:flex><span>   34) <span style=color:#a31515>&#34;master.test&#34;</span>
+</span></span><span style=display:flex><span>   35) <span style=color:#a31515>&#34;master-port&#34;</span>
+</span></span><span style=display:flex><span>   36) <span style=color:#a31515>&#34;6379&#34;</span>
+</span></span><span style=display:flex><span>   37) <span style=color:#a31515>&#34;slave-priority&#34;</span>
+</span></span><span style=display:flex><span>   38) <span style=color:#a31515>&#34;100&#34;</span>
+</span></span><span style=display:flex><span>   39) <span style=color:#a31515>&#34;slave-repl-offset&#34;</span>
+</span></span><span style=display:flex><span>   40) <span style=color:#a31515>&#34;54607&#34;</span>
+</span></span><span style=display:flex><span>2)  1) <span style=color:#a31515>&#34;name&#34;</span>
+</span></span><span style=display:flex><span>    2) <span style=color:#a31515>&#34;172.20.0.4:6379&#34;</span>
+</span></span><span style=display:flex><span>    3) <span style=color:#a31515>&#34;ip&#34;</span>
+</span></span><span style=display:flex><span>    4) <span style=color:#a31515>&#34;172.20.0.4&#34;</span>
+</span></span><span style=display:flex><span>    5) <span style=color:#a31515>&#34;port&#34;</span>
+</span></span><span style=display:flex><span>    6) <span style=color:#a31515>&#34;6379&#34;</span>
+</span></span><span style=display:flex><span>    7) <span style=color:#a31515>&#34;runid&#34;</span>
+</span></span><span style=display:flex><span>    8) <span style=color:#a31515>&#34;4d3128c95909fab2969f508247906fe2cbd74837&#34;</span>
+</span></span><span style=display:flex><span>    9) <span style=color:#a31515>&#34;flags&#34;</span>
+</span></span><span style=display:flex><span>   10) <span style=color:#a31515>&#34;slave&#34;</span>
+</span></span><span style=display:flex><span>   11) <span style=color:#a31515>&#34;link-pending-commands&#34;</span>
+</span></span><span style=display:flex><span>   12) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   13) <span style=color:#a31515>&#34;link-refcount&#34;</span>
+</span></span><span style=display:flex><span>   14) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>   15) <span style=color:#a31515>&#34;last-ping-sent&#34;</span>
+</span></span><span style=display:flex><span>   16) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   17) <span style=color:#a31515>&#34;last-ok-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   18) <span style=color:#a31515>&#34;11&#34;</span>
+</span></span><span style=display:flex><span>   19) <span style=color:#a31515>&#34;last-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   20) <span style=color:#a31515>&#34;11&#34;</span>
+</span></span><span style=display:flex><span>   21) <span style=color:#a31515>&#34;down-after-milliseconds&#34;</span>
+</span></span><span style=display:flex><span>   22) <span style=color:#a31515>&#34;30000&#34;</span>
+</span></span><span style=display:flex><span>   23) <span style=color:#a31515>&#34;info-refresh&#34;</span>
+</span></span><span style=display:flex><span>   24) <span style=color:#a31515>&#34;7517&#34;</span>
+</span></span><span style=display:flex><span>   25) <span style=color:#a31515>&#34;role-reported&#34;</span>
+</span></span><span style=display:flex><span>   26) <span style=color:#a31515>&#34;slave&#34;</span>
+</span></span><span style=display:flex><span>   27) <span style=color:#a31515>&#34;role-reported-time&#34;</span>
+</span></span><span style=display:flex><span>   28) <span style=color:#a31515>&#34;278528&#34;</span>
+</span></span><span style=display:flex><span>   29) <span style=color:#a31515>&#34;master-link-down-time&#34;</span>
+</span></span><span style=display:flex><span>   30) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   31) <span style=color:#a31515>&#34;master-link-status&#34;</span>
+</span></span><span style=display:flex><span>   32) <span style=color:#a31515>&#34;ok&#34;</span>
+</span></span><span style=display:flex><span>   33) <span style=color:#a31515>&#34;master-host&#34;</span>
+</span></span><span style=display:flex><span>   34) <span style=color:#a31515>&#34;master.test&#34;</span>
+</span></span><span style=display:flex><span>   35) <span style=color:#a31515>&#34;master-port&#34;</span>
+</span></span><span style=display:flex><span>   36) <span style=color:#a31515>&#34;6379&#34;</span>
+</span></span><span style=display:flex><span>   37) <span style=color:#a31515>&#34;slave-priority&#34;</span>
+</span></span><span style=display:flex><span>   38) <span style=color:#a31515>&#34;100&#34;</span>
+</span></span><span style=display:flex><span>   39) <span style=color:#a31515>&#34;slave-repl-offset&#34;</span>
+</span></span><span style=display:flex><span>   40) <span style=color:#a31515>&#34;54607&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>127.0.0.1:26379&gt; SENTINEL sentinels master1
+</span></span><span style=display:flex><span>1)  1) <span style=color:#a31515>&#34;name&#34;</span>
+</span></span><span style=display:flex><span>    2) <span style=color:#a31515>&#34;3aaba35f1c2307febfc42a8587370d87b633cf4e&#34;</span>
+</span></span><span style=display:flex><span>    3) <span style=color:#a31515>&#34;ip&#34;</span>
+</span></span><span style=display:flex><span>    4) <span style=color:#a31515>&#34;172.20.0.5&#34;</span>
+</span></span><span style=display:flex><span>    5) <span style=color:#a31515>&#34;port&#34;</span>
+</span></span><span style=display:flex><span>    6) <span style=color:#a31515>&#34;26379&#34;</span>
+</span></span><span style=display:flex><span>    7) <span style=color:#a31515>&#34;runid&#34;</span>
+</span></span><span style=display:flex><span>    8) <span style=color:#a31515>&#34;3aaba35f1c2307febfc42a8587370d87b633cf4e&#34;</span>
+</span></span><span style=display:flex><span>    9) <span style=color:#a31515>&#34;flags&#34;</span>
+</span></span><span style=display:flex><span>   10) <span style=color:#a31515>&#34;sentinel&#34;</span>
+</span></span><span style=display:flex><span>   11) <span style=color:#a31515>&#34;link-pending-commands&#34;</span>
+</span></span><span style=display:flex><span>   12) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   13) <span style=color:#a31515>&#34;link-refcount&#34;</span>
+</span></span><span style=display:flex><span>   14) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>   15) <span style=color:#a31515>&#34;last-ping-sent&#34;</span>
+</span></span><span style=display:flex><span>   16) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   17) <span style=color:#a31515>&#34;last-ok-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   18) <span style=color:#a31515>&#34;934&#34;</span>
+</span></span><span style=display:flex><span>   19) <span style=color:#a31515>&#34;last-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   20) <span style=color:#a31515>&#34;934&#34;</span>
+</span></span><span style=display:flex><span>   21) <span style=color:#a31515>&#34;down-after-milliseconds&#34;</span>
+</span></span><span style=display:flex><span>   22) <span style=color:#a31515>&#34;30000&#34;</span>
+</span></span><span style=display:flex><span>   23) <span style=color:#a31515>&#34;last-hello-message&#34;</span>
+</span></span><span style=display:flex><span>   24) <span style=color:#a31515>&#34;532&#34;</span>
+</span></span><span style=display:flex><span>   25) <span style=color:#a31515>&#34;voted-leader&#34;</span>
+</span></span><span style=display:flex><span>   26) <span style=color:#a31515>&#34;?&#34;</span>
+</span></span><span style=display:flex><span>   27) <span style=color:#a31515>&#34;voted-leader-epoch&#34;</span>
+</span></span><span style=display:flex><span>   28) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>2)  1) <span style=color:#a31515>&#34;name&#34;</span>
+</span></span><span style=display:flex><span>    2) <span style=color:#a31515>&#34;bee5b59d166a278cd66dc147a21a25ba8e9e566c&#34;</span>
+</span></span><span style=display:flex><span>    3) <span style=color:#a31515>&#34;ip&#34;</span>
+</span></span><span style=display:flex><span>    4) <span style=color:#a31515>&#34;172.20.0.6&#34;</span>
+</span></span><span style=display:flex><span>    5) <span style=color:#a31515>&#34;port&#34;</span>
+</span></span><span style=display:flex><span>    6) <span style=color:#a31515>&#34;26379&#34;</span>
+</span></span><span style=display:flex><span>    7) <span style=color:#a31515>&#34;runid&#34;</span>
+</span></span><span style=display:flex><span>    8) <span style=color:#a31515>&#34;bee5b59d166a278cd66dc147a21a25ba8e9e566c&#34;</span>
+</span></span><span style=display:flex><span>    9) <span style=color:#a31515>&#34;flags&#34;</span>
+</span></span><span style=display:flex><span>   10) <span style=color:#a31515>&#34;sentinel&#34;</span>
+</span></span><span style=display:flex><span>   11) <span style=color:#a31515>&#34;link-pending-commands&#34;</span>
+</span></span><span style=display:flex><span>   12) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   13) <span style=color:#a31515>&#34;link-refcount&#34;</span>
+</span></span><span style=display:flex><span>   14) <span style=color:#a31515>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>   15) <span style=color:#a31515>&#34;last-ping-sent&#34;</span>
+</span></span><span style=display:flex><span>   16) <span style=color:#a31515>&#34;0&#34;</span>
+</span></span><span style=display:flex><span>   17) <span style=color:#a31515>&#34;last-ok-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   18) <span style=color:#a31515>&#34;316&#34;</span>
+</span></span><span style=display:flex><span>   19) <span style=color:#a31515>&#34;last-ping-reply&#34;</span>
+</span></span><span style=display:flex><span>   20) <span style=color:#a31515>&#34;316&#34;</span>
+</span></span><span style=display:flex><span>   21) <span style=color:#a31515>&#34;down-after-milliseconds&#34;</span>
+</span></span><span style=display:flex><span>   22) <span style=color:#a31515>&#34;30000&#34;</span>
+</span></span><span style=display:flex><span>   23) <span style=color:#a31515>&#34;last-hello-message&#34;</span>
+</span></span><span style=display:flex><span>   24) <span style=color:#a31515>&#34;1353&#34;</span>
+</span></span><span style=display:flex><span>   25) <span style=color:#a31515>&#34;voted-leader&#34;</span>
+</span></span><span style=display:flex><span>   26) <span style=color:#a31515>&#34;?&#34;</span>
+</span></span><span style=display:flex><span>   27) <span style=color:#a31515>&#34;voted-leader-epoch&#34;</span>
+</span></span><span style=display:flex><span>   28) <span style=color:#a31515>&#34;0&#34;</span></span></span></code></pre></div></div></div></p><h1 id=theory><i id=locator-theory class=header-locator></i>
+<a href=#theory class=article-h-a>2 运行原理</a></h1><h1 id=config><i id=locator-config class=header-locator></i>
+<a href=#config class=article-h-a>3 详细配置</a></h1><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/sentinel.conf target=_blank>https://github.com/redis/redis/blob/6.2/sentinel.conf</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># 配置监控的master、ip、port和ODOWN的人数，并起一个名字</span>
+</span></span><span style=display:flex><span><span style=color:green># sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;</span>
+</span></span><span style=display:flex><span>sentinel monitor master1 master.test 6379 2
+</span></span><span style=display:flex><span><span style=color:green># master密码</span>
+</span></span><span style=display:flex><span><span style=color:green># sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 判定SDOWN的时间间隔</span>
+</span></span><span style=display:flex><span><span style=color:green># sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;</span>
+</span></span><span style=display:flex><span>sentinel down-after-milliseconds master1 30000
+</span></span><span style=display:flex><span><span style=color:green># sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</span>
+</span></span><span style=display:flex><span>sentinel failover-timeout master1 180000
+</span></span><span style=display:flex><span><span style=color:green># sentinel parallel-syncs &lt;master-name&gt; &lt;numreplicas&gt;</span>
+</span></span><span style=display:flex><span>sentinel parallel-syncs master1 1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>protected-mode no
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 端口号</span>
+</span></span><span style=display:flex><span>port 26379
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 以daemon方式运行时会写入一个/var/run/redis-sentinel.pid文件 </span>
+</span></span><span style=display:flex><span>daemonize no
+</span></span><span style=display:flex><span><span style=color:green># 自定义pid文件路径</span>
+</span></span><span style=display:flex><span>pidfile /var/run/redis-sentinel.pid
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 日志文件地址，默认/dev/null</span>
+</span></span><span style=display:flex><span>logfile &#34;&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># NAT网络环境中配置的IP和Port</span>
+</span></span><span style=display:flex><span>sentinel announce-ip 1.2.3.4
+</span></span><span style=display:flex><span>sentinel announce-port 26379
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 其中主机名代替IP</span>
+</span></span><span style=display:flex><span>SENTINEL resolve-hostnames yes
+</span></span><span style=display:flex><span>SENTINEL announce-hostnames no</span></span></code></pre></div></div></div><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>4 参考</a></h1><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://linianhui.github.io/redis/replication target=_blank rel="noopener norefferrer">https://linianhui.github.io/redis/replication</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://redis.io/topics/sentinel target=_blank rel="noopener norefferrer">https://redis.io/topics/sentinel</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2021-03-20 09:30，约1705字，阅读约4分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/high-availability target=_blank><i class="fa fa-tag"></i>high availability</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a>
+<a class=article-tag href=/tag/replication target=_blank><i class="fa fa-tag"></i>replication</a>
+<a class=article-tag href=/tag/sentinel target=_blank><i class="fa fa-tag"></i>sentinel</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/sentinel/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/redis/replication/ target=_blank>[Redis] replication</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

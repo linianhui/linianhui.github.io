@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DER on Timetombs</title><link>https://linianhui.github.io/tag/der/</link><description>Recent content in DER on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/der/index.xml" rel="self" type="application/rss+xml"/><item><title>[信息安全] 05 X.509 公钥证书的格式标准</title><link>https://linianhui.github.io/information-security/05-x.509/</link><pubDate>Sat, 15 Feb 2020 13:07:23 +0800</pubDate><guid>https://linianhui.github.io/information-security/05-x.509/</guid><description>&lt;p>&lt;a href="https://en.wikipedia.org/wiki/X.509"
+
+ target="_blank" rel="noopener norefferrer">X.509&lt;/a>是&lt;a href="#public-key-certificate"
+
+># 公钥证书&lt;/a>的格式标准, 广泛用于TLS/SSL安全通信或者其他需要认证的环境中。X.509证书可以由&lt;a href="#certificate-authority"
+
+># CA&lt;/a>颁发，也可以自签名产生。&lt;/p>
+&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 Overview&lt;/a>
+&lt;/h1>
+&lt;p>X.509证书中主要含有&lt;code>公钥&lt;/code>、&lt;code>身份信息&lt;/code>、&lt;code>签名信息&lt;/code>和&lt;code>有效性信息&lt;/code>等信息。这些信息用于构建一个验证公钥的体系，用来保证客户端得到的公钥正是它期望的公钥。&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>公钥&lt;/code> : 非对称密码中的公钥。公钥证书的目的就是为了在互联网上分发公钥。&lt;/li>
+&lt;li>&lt;code>身份信息&lt;/code> : 公钥对应的私钥持有者的信息，域名以及用途等。&lt;/li>
+&lt;li>&lt;code>签名信息&lt;/code> : 对公钥进行签名的信息，提供公钥的验证链。可以是CA的签名或者是自签名，不同之处在于CA证书的根证书大都内置于操作系统或者浏览器中，而自签名证书的公钥验证链则需要自己维护（手动导入到操作系统中或者再验证流程中单独提供自签名的根证书）。&lt;/li>
+&lt;li>&lt;code>有效性信息&lt;/code>：证书的有效时间区间，以及&lt;a href="#certificate-revocation-list"
+
+># CRL&lt;/a>等相关信息。&lt;/li>
+&lt;/ol>
+&lt;p>X.509证书的标准规范&lt;a href="https://tools.ietf.org/html/rfc5280"
+
+ target="_blank" rel="noopener norefferrer">RFC5280&lt;/a>中详细描述了证书的&lt;a href="#encoding-format"
+
+># 1.1 Encoding Format&lt;/a>和&lt;a href="#structure"
+
+># 1.2 Structure&lt;/a>。&lt;/p></description></item></channel></rss>

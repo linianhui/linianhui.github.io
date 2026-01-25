@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>NAT on Timetombs</title><link>https://linianhui.github.io/tag/nat/</link><description>Recent content in NAT on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/nat/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] NAT</title><link>https://linianhui.github.io/computer-networking/nat/</link><pubDate>Thu, 20 Feb 2020 21:20:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/nat/</guid><description>&lt;h1 id="nat">
+&lt;i id="locator-nat" class="header-locator">&lt;/i>
+&lt;a href="#nat" class="article-h-a">1 NAT&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>NAT&lt;/code>(Network Address Translation)&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> : 网络地址转换。是一种重写 &lt;code>IP Packet&lt;/code> 的 &lt;code>Source IP&lt;/code> 或 &lt;code>Destination IP&lt;/code> 的技术，用来解决私有地址无法和外部通信的问题，也大大的缓解了IPv4的枯竭问题，同时促进了互联网的蓬勃发展。&lt;/p>
+&lt;p>假设原始的 &lt;code>IP Packet&lt;/code> 如下 :&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Source IP&lt;/th>
+ &lt;th style="text-align: left">Destination IP&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">192.168.2.2&lt;/td>
+ &lt;td style="text-align: left">9.9.9.9&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="snat">
+&lt;i id="locator-snat" class="header-locator">&lt;/i>
+&lt;a href="#snat" class="article-h-a">1.1 SNAT&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>SNAT&lt;/code>(Source Network Address Translation) : 源地址转换，重写的是 &lt;code>Source IP&lt;/code>。&lt;/p>
+&lt;p>重写后如下 :&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Source IP&lt;/th>
+ &lt;th style="text-align: left">Destination IP&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;font color='#DC143C'>1.1.1.1&lt;/font>&lt;/td>
+ &lt;td style="text-align: left">9.9.9.9&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="dnat">
+&lt;i id="locator-dnat" class="header-locator">&lt;/i>
+&lt;a href="#dnat" class="article-h-a">1.2 DNAT&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>DNAT&lt;/code>(Destination Network Address Translation) : 目标地址转换，重写的是 &lt;code>Destination IP&lt;/code>。&lt;/p>
+&lt;p>重写后如下 :&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Source IP&lt;/th>
+ &lt;th style="text-align: left">Destination IP&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">192.168.2.2&lt;/td>
+ &lt;td style="text-align: left">&lt;font color='#009a61'>2.2.2.2&lt;/font>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="pat">
+&lt;i id="locator-pat" class="header-locator">&lt;/i>
+&lt;a href="#pat" class="article-h-a">2 PAT&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>PAT&lt;/code>(Port Address Translation) : 端口地址转换(或者称为&lt;code>Port Forwarding&lt;/code>)，是一种重写传输层的 &lt;code>Source Port&lt;/code> 或者 &lt;code>Destination Port&lt;/code> 的技术（隶属于 &lt;code>NAT&lt;/code> 体系）。&lt;/p></description></item></channel></rss>

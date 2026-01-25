@@ -1,0 +1,146 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[信息安全] 05 X.509 公钥证书的格式标准 - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/information-security/ target=_blank>[信息安全]</a></section><section class=toc-page><a class=toc-page-title href=/information-security/01-cryptography-toolbox-1/ target=_blank>[信息安全] 01 密码工具箱 第1部分</a></section><section class=toc-page><a class=toc-page-title href=/information-security/02-cryptography-toolbox-2/ target=_blank>[信息安全] 02 密码工具箱 第2部分</a></section><section class=toc-page><a class=toc-page-title href=/information-security/03-https/ target=_blank>[信息安全] 03 HTTPS工作流程</a></section><section class=toc-page><a class=toc-page-title href=/information-security/04-one-time-password/ target=_blank>[信息安全] 04 一次性密码 & 身份认证</a></section><section class="toc-page selected"><span class=toc-page-title>[信息安全] 05 X.509 公钥证书的格式标准</span><nav id=TableOfContents><ul><li><a href=#overview>1 Overview</a><ul><li><a href=#encoding-format>1.1 Encoding Format</a></li><li><a href=#structure>1.2 Structure</a></li></ul></li><li><a href=#file-extension>2 File Extension</a></li><li><a href=#reference>3 Reference</a><ul><li><a href=#public-key-certificate>3.1 公钥证书</a></li><li><a href=#certificate-authority>3.2 CA</a></li><li><a href=#distinguished-encoding-rules>3.3 DER</a></li><li><a href=#privacy-enhanced-mail>3.4 PEM</a></li><li><a href=#certificate-signing-request>3.5 CSR</a></li><li><a href=#certificate-revocation-list>3.6 CRL</a></li><li><a href=#x690>3.7 X.690</a></li><li><a href=#abstract-syntax-notation-1>3.8 ASN.1</a></li></ul></li></ul></nav></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[信息安全] 05 X.509 公钥证书的格式标准</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2020-02-15 13:07，约2492字，阅读约5分钟</section><section class=article-topics><a class=article-topic href=/information-security/ title=[信息安全] target=_blank><i class="fa fa-folder"></i>[信息安全]</a></section><section class=article-tags><a class=article-tag href=/tag/asn.1 target=_blank><i class="fa fa-tag"></i>ASN.1</a>
+<a class=article-tag href=/tag/ca target=_blank><i class="fa fa-tag"></i>CA</a>
+<a class=article-tag href=/tag/crl target=_blank><i class="fa fa-tag"></i>CRL</a>
+<a class=article-tag href=/tag/der target=_blank><i class="fa fa-tag"></i>DER</a>
+<a class=article-tag href=/tag/pem target=_blank><i class="fa fa-tag"></i>PEM</a>
+<a class=article-tag href=/tag/x.509 target=_blank><i class="fa fa-tag"></i>X.509</a>
+<a class=article-tag href=/tag/x.690 target=_blank><i class="fa fa-tag"></i>X.690</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/information-security/05-x.509/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p><a href=https://en.wikipedia.org/wiki/X.509 target=_blank rel="noopener norefferrer">X.509</a>是<a href=#public-key-certificate># 公钥证书</a>的格式标准, 广泛用于TLS/SSL安全通信或者其他需要认证的环境中。X.509证书可以由<a href=#certificate-authority># CA</a>颁发，也可以自签名产生。</p><h1 id=overview><i id=locator-overview class=header-locator></i>
+<a href=#overview class=article-h-a>1 Overview</a></h1><p>X.509证书中主要含有<code>公钥</code>、<code>身份信息</code>、<code>签名信息</code>和<code>有效性信息</code>等信息。这些信息用于构建一个验证公钥的体系，用来保证客户端得到的公钥正是它期望的公钥。</p><ol><li><code>公钥</code> : 非对称密码中的公钥。公钥证书的目的就是为了在互联网上分发公钥。</li><li><code>身份信息</code> : 公钥对应的私钥持有者的信息，域名以及用途等。</li><li><code>签名信息</code> : 对公钥进行签名的信息，提供公钥的验证链。可以是CA的签名或者是自签名，不同之处在于CA证书的根证书大都内置于操作系统或者浏览器中，而自签名证书的公钥验证链则需要自己维护（手动导入到操作系统中或者再验证流程中单独提供自签名的根证书）。</li><li><code>有效性信息</code>：证书的有效时间区间，以及<a href=#certificate-revocation-list># CRL</a>等相关信息。</li></ol><p>X.509证书的标准规范<a href=https://tools.ietf.org/html/rfc5280 target=_blank rel="noopener norefferrer">RFC5280</a>中详细描述了证书的<a href=#encoding-format># 1.1 Encoding Format</a>和<a href=#structure># 1.2 Structure</a>。</p><h2 id=encoding-format><i id=locator-encoding-format class=header-locator></i>
+<a href=#encoding-format class=article-h-a>1.1 Encoding Format</a></h2><ol><li><a href=#distinguished-encoding-rules># DER</a>格式 : <code>二进制</code>格式。</li><li><a href=#privacy-enhanced-mail># PEM</a>格式 : <code>ASCII文本</code>格式。在DER格式或者其他二进制数据的基础上，使用<a href=../01-cryptography-toolbox-1/#base64 target=_blank rel="noopener norefferrer">base64</a>编码为ASCII文本，以便于在仅支持ASCII的环境中使用<code>二进制的DER编码的数据</code>。</li></ol><h2 id=structure><i id=locator-structure class=header-locator></i>
+<a href=#structure class=article-h-a>1.2 Structure</a></h2><p>一个具体的X.509 v3数字证书结构大致如下 :</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>Certificate
+</span></span><span style=display:flex><span>  Version Number
+</span></span><span style=display:flex><span>  Serial Number
+</span></span><span style=display:flex><span>  Signature Algorithm ID
+</span></span><span style=display:flex><span>  Issuer Name
+</span></span><span style=display:flex><span>  Validity period
+</span></span><span style=display:flex><span>  Not Before
+</span></span><span style=display:flex><span>  Not After
+</span></span><span style=display:flex><span>  Subject name
+</span></span><span style=display:flex><span>  Subject Public Key Info
+</span></span><span style=display:flex><span>  Public Key Algorithm
+</span></span><span style=display:flex><span>  Subject Public Key
+</span></span><span style=display:flex><span>  Issuer Unique Identifier (optional)
+</span></span><span style=display:flex><span>  Subject Unique Identifier (optional)
+</span></span><span style=display:flex><span>  Extensions (optional)
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>Certificate Signature Algorithm
+</span></span><span style=display:flex><span>Certificate Signature
+</span></span></code></pre></div><h1 id=file-extension><i id=locator-file-extension class=header-locator></i>
+<a href=#file-extension class=article-h-a>2 File Extension</a></h1><p>X.509有很多种常用的扩展名。不过这些扩展名有时候也是其他类型文件的扩展名，也就是说具有这个扩展名的文件并不一定是X.509证书。也可能只是保存了私钥的文件。</p><ol><li><code>.pem</code> : PEM格式。</li><li><code>.key</code> : PEM格式的<a href=../01-cryptography-toolbox-1/#asymmetric-cryptography target=_blank rel="noopener norefferrer">私钥</a>文件。</li><li><code>.pub</code> : PEM格式的<a href=../01-cryptography-toolbox-1/#asymmetric-cryptography target=_blank rel="noopener norefferrer">公钥</a>文件。</li><li><code>.crt</code> : PEM格式的<a href=#public-key-certificate># 公钥证书</a>文件，也可能是DER。</li><li><code>.cer</code> : DER格式的<a href=#public-key-certificate># 公钥证书</a>文件，也可能是PEM。</li><li><code>.crs</code> : PEM格式的<a href=#certificate-signing-request># CSR</a>文件，也可能是DER。</li></ol><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>3 Reference</a></h1><h2 id=public-key-certificate><i id=locator-public-key-certificate class=header-locator></i>
+<a href=#public-key-certificate class=article-h-a>3.1 公钥证书</a></h2><p><code>Public Key Certificate</code>=<code>公钥证书</code>。</p><p>参考资料 : <a href=https://en.wikipedia.org/wiki/Public_key_certificate target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Public_key_certificate</a></p><h2 id=certificate-authority><i id=locator-certificate-authority class=header-locator></i>
+<a href=#certificate-authority class=article-h-a>3.2 CA</a></h2><p><code>CA</code>=<code>Certificate Authority</code>=<code>证书颁发机构</code>。</p><p>参考资料 : <a href=https://en.wikipedia.org/wiki/Certificate_authority target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Certificate_authority</a></p><h2 id=distinguished-encoding-rules><i id=locator-distinguished-encoding-rules class=header-locator></i>
+<a href=#distinguished-encoding-rules class=article-h-a>3.3 DER</a></h2><p><code>DER</code>=<code>Distinguished Encoding Rules</code>是<a href=#x690># X.690</a>标准中的一种二进制编码格式。</p><p>下面的文件是<a href=https://google.com target=_blank rel="noopener norefferrer">https://google.com</a>所使用的DER编码的二进制公钥证书文件(由于是二进制，故而显示乱码)。<br><div class="highlight-file highlight-file_opened" id=hf-73cd6c46eafef7526b8a5906f832f71d><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-73cd6c46eafef7526b8a5906f832f71d","highlight-file_opened")'>google.com.der.cer</a><a class="fa fa-download highlight-file-download" target=_blank href=/information-security/05-x.509/google.com.der.cer title="下载 google.com.der.cer" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/information-security/05-x.509/google.com.der.cer title="源码 google.com.der.cer"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>0��0��� ԰��Z쉼    W��0
+</span></span><span style=display:flex><span>	*�H��
+</span></span><span style=display:flex><span> 0B10	UUS10U
+</span></span><span style=display:flex><span>Google Trust Services10U
+</span></span><span style=display:flex><span>GTS CA 1O10
+</span></span><span style=display:flex><span>200129220137Z
+</span></span><span style=display:flex><span>200422220137Z0h10	UUS10U
+</span></span><span style=display:flex><span>California10U
+</span></span><span style=display:flex><span>Mountain View10U
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Google LLC10Uwww.google.com0Y0*�H�=*�H�=B ������m��v��ǖ��(B�F�{=��G�&amp;�IG=&gt;�KR���O�|�$��c��] ����rE��U0�Q0U��0U%0
+</span></span><span style=display:flex><span>+0U�0 0U:ƏXӴ����z���I�AR�0U#0����n�ϛ�`����}	�+0d+X0V0&#39;+0�http://ocsp.pki.goog/gts1o10++0�http://pki.goog/gsr2/GTS1O1.crt0U0�www.google.com0!U 00g�0
+</span></span><span style=display:flex><span>+�y0/U(0&amp;0$�&#34;� �http://crl.pki.goog/GTS1O1.crl0�
+</span></span><span style=display:flex><span>+�y���� � v �̋�͊ N�f�+��% gk��p��IS-^  o����   G0E 
+</span></span><span style=display:flex><span>}&amp;y�&lt;In�K{�iGc-ٯ��2�2�_��G�! �3��X�8�u�����a��*�ۺ^��s�� w ^�s��V���6H}�I�2z�����u��qEX  o���   H0F! ��*��{�AW�7Y� 
+</span></span><span style=display:flex><span>/�-�q���[p)��! �_�Fh7j&#34;ok��!9�*1������z�0a���0
+</span></span><span style=display:flex><span>	*�H��
+</span></span><span style=display:flex><span> � �L�׷���Y�#����l��)�Lp���  �9A���!��%ҔԼ�&#39;j˖{9k��K~���V�(J~�Y���:���l�����]_bVx߰P&#39;#�//��������P����I����#˓)�kVt!0�H��Y�����]�,E�^O��&gt;��Z����^w��&#34;�LJ�2�5�J� 6���.�BFx�2��,�~����T�ڌ/\�/n�EZ�E�M�G�5zI�d�9�7�T��������}�
+</span></span><span style=display:flex><span>%�����ں�</span></span></code></pre></div></div></div></p><p>参考资料 : <a href=https://en.wikipedia.org/wiki/X.690#DER_encoding target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/X.690#DER_encoding</a>。</p><h2 id=privacy-enhanced-mail><i id=locator-privacy-enhanced-mail class=header-locator></i>
+<a href=#privacy-enhanced-mail class=article-h-a>3.4 PEM</a></h2><p><code>PEM</code>=<code>Privacy Enhanced Mail</code>=<code>隐私增强邮件</code>。</p><p>PEM是一种事实上的标准文件格式，采用<a href=../01-cryptography-toolbox-1/#base64 target=_blank rel="noopener norefferrer">base64</a>来编码密钥或证书等其他二进制数据，以便在仅支持<code>ASCII</code>文本的环境中使用<code>二进制数据</code>。PEM在<a href=https://tools.ietf.org/html/rfc7468 target=_blank rel="noopener norefferrer">RFC7468</a>中被正式标准化。具体格式如下:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>-----BEGIN label 1-----
+</span></span><span style=display:flex><span>base64 string...
+</span></span><span style=display:flex><span>-----END label 1-----
+</span></span><span style=display:flex><span>-----BEGIN label 2-----
+</span></span><span style=display:flex><span>base64 string...
+</span></span><span style=display:flex><span>-----END label 2-----
+</span></span></code></pre></div><p>其中<code>label 1</code>和<code>label 2</code>可以有<code>1~N</code>个。常用的<code>label</code>有(<a href=https://tools.ietf.org/html/rfc7468#section-4 target=_blank rel="noopener norefferrer">https://tools.ietf.org/html/rfc7468#section-4</a>):</p><ol><li><code>CERTIFICATE</code> : 公钥证书文件 。</li><li><code>CERTIFICATE REQUEST</code> : CSR请求证书文件。</li><li><code>PRIVATE KEY</code> : 私钥文件。</li><li><code>PUBLIC KEY</code> : 公钥文件。</li><li><code>X509 CRL</code> : X509证书吊销列表文件。</li></ol><p>下面的文件是上面的<code>google.com.der.cer</code>的PEM编码形式 :<br><div class="highlight-file highlight-file_opened" id=hf-d553b6ea3c1977993e11bd7d03a6d738><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-d553b6ea3c1977993e11bd7d03a6d738","highlight-file_opened")'>google.com.pem.crt</a><a class="fa fa-download highlight-file-download" target=_blank href=/information-security/05-x.509/google.com.pem.crt title="下载 google.com.pem.crt" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/information-security/05-x.509/google.com.pem.crt title="源码 google.com.pem.crt"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>-----BEGIN CERTIFICATE-----
+</span></span><span style=display:flex><span>MIIEwTCCA6mgAwIBAgIRANSwh9Ra7Im8AgAAAABXm9QwDQYJKoZIhvcNAQELBQAw
+</span></span><span style=display:flex><span>QjELMAkGA1UEBhMCVVMxHjAcBgNVBAoTFUdvb2dsZSBUcnVzdCBTZXJ2aWNlczET
+</span></span><span style=display:flex><span>MBEGA1UEAxMKR1RTIENBIDFPMTAeFw0yMDAxMjkyMjAxMzdaFw0yMDA0MjIyMjAx
+</span></span><span style=display:flex><span>MzdaMGgxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH
+</span></span><span style=display:flex><span>Ew1Nb3VudGFpbiBWaWV3MRMwEQYDVQQKEwpHb29nbGUgTExDMRcwFQYDVQQDEw53
+</span></span><span style=display:flex><span>d3cuZ29vZ2xlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJGR8JWXAfht
+</span></span><span style=display:flex><span>ix2BGXbqD5oTx5a88ihCi0azez22oUfeJt9JRz0+tktS1xriqU+nfPYkjRWiY6OK
+</span></span><span style=display:flex><span>XQDQzvfKckWjggJVMIICUTAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYB
+</span></span><span style=display:flex><span>BQUHAwEwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUOsaPWAXTtOPb5/56lIqJSZNB
+</span></span><span style=display:flex><span>Ut8wHwYDVR0jBBgwFoAUmNH4bhDrz5vsYJ8YkBug630J/SswZAYIKwYBBQUHAQEE
+</span></span><span style=display:flex><span>WDBWMCcGCCsGAQUFBzABhhtodHRwOi8vb2NzcC5wa2kuZ29vZy9ndHMxbzEwKwYI
+</span></span><span style=display:flex><span>KwYBBQUHMAKGH2h0dHA6Ly9wa2kuZ29vZy9nc3IyL0dUUzFPMS5jcnQwGQYDVR0R
+</span></span><span style=display:flex><span>BBIwEIIOd3d3Lmdvb2dsZS5jb20wIQYDVR0gBBowGDAIBgZngQwBAgIwDAYKKwYB
+</span></span><span style=display:flex><span>BAHWeQIFAzAvBgNVHR8EKDAmMCSgIqAghh5odHRwOi8vY3JsLnBraS5nb29nL0dU
+</span></span><span style=display:flex><span>UzFPMS5jcmwwggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgCyHgXMi6LNiiBOh2b5
+</span></span><span style=display:flex><span>K7mKJSBna9r6cOeySVMt74uQXgAAAW/zieHNAAAEAwBHMEUCIAoYAn0medQ8SW7P
+</span></span><span style=display:flex><span>S3vVaR1HYy3Zr6vrMtEyvF+ArkemAiEA0h4ztv1YiwE4v3XO4csbvKJhwuUqyNu6
+</span></span><span style=display:flex><span>XvWuBHMd+OcAdwBep3P531bA57U2SH3QSeAyepGaDIShEhKEGHWWgXFFWAAAAW/z
+</span></span><span style=display:flex><span>ieIBAAAEAwBIMEYCIQDZFOwqCwekxHuZQVe9N1maAAovti2ecRaslvtbcCn1rQIh
+</span></span><span style=display:flex><span>AKhfgEZoN2oib2sf6eUhOaIqMZb4kqjJ0nq2MGGu+QPwMA0GCSqGSIb3DQEBCwUA
+</span></span><span style=display:flex><span>A4IBAQCbTO7Xt4f3pVnMI6sTqgHrxGyf3CnQTHAP4emYIAgAFIE5Qaf85yGdkyXS
+</span></span><span style=display:flex><span>lNS8zydqy5YEezlru7lLfqq3zFbXKEp+/1mZmYA6mfb2A2yo+7MV0uNdGF9iVnjf
+</span></span><span style=display:flex><span>sFAnIxfRLy/D5r/06Pv9+FC3gf67SZwOjbPLI8uTKblrVnQhMMdI7oAMWbmQpvGk
+</span></span><span style=display:flex><span>XaYsRX/5Xk/8zD7C/Fq08+maXneyGbAimUxKmzLeNX8SHdNKyiA2tbAaqS6pQkZ4
+</span></span><span style=display:flex><span>kTKHD/Es/H7/j+W4VBXp2owvXBYEhi9u/x5FWsdFpk0Z6UevNXpJGwPcZOs5nTfe
+</span></span><span style=display:flex><span>VL6en7KJ5JLIfeoNJbK32dHe2rrE
+</span></span><span style=display:flex><span>-----END CERTIFICATE-----
+</span></span></code></pre></div></div></div></p><p>参考资料 :</p><ol><li><a href=https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail</a></li><li><a href=https://tools.ietf.org/html/rfc7468 target=_blank rel="noopener norefferrer">https://tools.ietf.org/html/rfc7468</a></li></ol><h2 id=certificate-signing-request><i id=locator-certificate-signing-request class=header-locator></i>
+<a href=#certificate-signing-request class=article-h-a>3.5 CSR</a></h2><p><code>CSR</code>=<code>Certificate Signing Request</code>=<code>证书签名请求</code>。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>-----BEGIN CERTIFICATE REQUEST-----
+</span></span><span style=display:flex><span>MIIBWDCCAQcCAQAwTjELMAkGA1UEBhMCU0UxJzAlBgNVBAoTHlNpbW9uIEpvc2Vm
+</span></span><span style=display:flex><span>c3NvbiBEYXRha29uc3VsdCBBQjEWMBQGA1UEAxMNam9zZWZzc29uLm9yZzBOMBAG
+</span></span><span style=display:flex><span>ByqGSM49AgEGBSuBBAAhAzoABLLPSkuXY0l66MbxVJ3Mot5FCFuqQfn6dTs+9/CM
+</span></span><span style=display:flex><span>EOlSwVej77tj56kj9R/j9Q+LfysX8FO9I5p3oGIwYAYJKoZIhvcNAQkOMVMwUTAY
+</span></span><span style=display:flex><span>BgNVHREEETAPgg1qb3NlZnNzb24ub3JnMAwGA1UdEwEB/wQCMAAwDwYDVR0PAQH/
+</span></span><span style=display:flex><span>BAUDAwegADAWBgNVHSUBAf8EDDAKBggrBgEFBQcDATAKBggqhkjOPQQDAgM/ADA8
+</span></span><span style=display:flex><span>AhxBvfhxPFfbBbsE1NoFmCUczOFApEuQVUw3ZP69AhwWXk3dgSUsKnuwL5g/ftAY
+</span></span><span style=display:flex><span>dEQc8B8jAcnuOrfU
+</span></span><span style=display:flex><span>-----END CERTIFICATE REQUEST-----
+</span></span></code></pre></div><p>参考资料 : <a href=https://en.wikipedia.org/wiki/Certificate_signing_request target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Certificate_signing_request</a></p><h2 id=certificate-revocation-list><i id=locator-certificate-revocation-list class=header-locator></i>
+<a href=#certificate-revocation-list class=article-h-a>3.6 CRL</a></h2><p><code>CRL</code>=<code>Certificate Revocation List</code>=<code>证书吊销列表</code>。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>-----BEGIN X509 CRL-----
+</span></span><span style=display:flex><span>MIIB9DCCAV8CAQEwCwYJKoZIhvcNAQEFMIIBCDEXMBUGA1UEChMOVmVyaVNpZ24s
+</span></span><span style=display:flex><span>IEluYy4xHzAdBgNVBAsTFlZlcmlTaWduIFRydXN0IE5ldHdvcmsxRjBEBgNVBAsT
+</span></span><span style=display:flex><span>PXd3dy52ZXJpc2lnbi5jb20vcmVwb3NpdG9yeS9SUEEgSW5jb3JwLiBieSBSZWYu
+</span></span><span style=display:flex><span>LExJQUIuTFREKGMpOTgxHjAcBgNVBAsTFVBlcnNvbmEgTm90IFZhbGlkYXRlZDEm
+</span></span><span style=display:flex><span>MCQGA1UECxMdRGlnaXRhbCBJRCBDbGFzcyAxIC0gTmV0c2NhcGUxGDAWBgNVBAMU
+</span></span><span style=display:flex><span>D1NpbW9uIEpvc2Vmc3NvbjEiMCAGCSqGSIb3DQEJARYTc2ltb25Aam9zZWZzc29u
+</span></span><span style=display:flex><span>Lm9yZxcNMDYxMjI3MDgwMjM0WhcNMDcwMjA3MDgwMjM1WjAjMCECEC4QNwPfRoWd
+</span></span><span style=display:flex><span>elUNpllhhTgXDTA2MTIyNzA4MDIzNFowCwYJKoZIhvcNAQEFA4GBAD0zX+J2hkcc
+</span></span><span style=display:flex><span>Nbrq1Dn5IKL8nXLgPGcHv1I/le1MNo9t1ohGQxB5HnFUkRPAY82fR6Epor4aHgVy
+</span></span><span style=display:flex><span>b+5y+neKN9Kn2mPF4iiun+a4o26CjJ0pArojCL1p8T0yyi9Xxvyc/ezaZ98HiIyP
+</span></span><span style=display:flex><span>c3DGMNR+oUmSjKZ0jIhAYmeLxaPHfQwR
+</span></span><span style=display:flex><span>-----END X509 CRL-----
+</span></span></code></pre></div><p>参考资料 : <a href=https://en.wikipedia.org/wiki/Certificate_revocation_list target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Certificate_revocation_list</a></p><h2 id=x690><i id=locator-x690 class=header-locator></i>
+<a href=#x690 class=article-h-a>3.7 X.690</a></h2><p><a href=https://en.wikipedia.org/wiki/X.690 target=_blank rel="noopener norefferrer">X.690</a>是一个ITU-T标准，规定了几种<a href=#abstract-syntax-notation-1>ASN.1</a>编码格式:</p><p><code>BER</code>=<code>Basic Encoding Rules</code> : <a href=https://en.wikipedia.org/wiki/X.690#BER_encoding target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/X.690#BER_encoding</a><br><code>CER</code>=<code>Canonical Encoding Rules</code> : <a href=https://en.wikipedia.org/wiki/X.690#CER_encoding target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/X.690#CER_encoding</a><br><code>DER</code>=<code>Distinguished Encoding Rules</code> : <a href=https://en.wikipedia.org/wiki/X.690#DER_encoding target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/X.690#DER_encoding</a></p><p>参考资料 : <a href=https://en.wikipedia.org/wiki/X.690 target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/X.690</a></p><h2 id=abstract-syntax-notation-1><i id=locator-abstract-syntax-notation-1 class=header-locator></i>
+<a href=#abstract-syntax-notation-1 class=article-h-a>3.8 ASN.1</a></h2><p><code>ASN.1</code>=<code>Abstract Syntax Notation 1</code>=<code>抽象标记语法1</code>。</p><p>参考资料 : <a href=https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One target=_blank rel="noopener norefferrer">https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One</a></p></section><section class=article-meta><section class=article-date>2020-02-15 13:07，约2492字，阅读约5分钟</section><section class=article-topics><a class=article-topic href=/information-security/ title=[信息安全] target=_blank><i class="fa fa-folder"></i>[信息安全]</a></section><section class=article-tags><a class=article-tag href=/tag/asn.1 target=_blank><i class="fa fa-tag"></i>ASN.1</a>
+<a class=article-tag href=/tag/ca target=_blank><i class="fa fa-tag"></i>CA</a>
+<a class=article-tag href=/tag/crl target=_blank><i class="fa fa-tag"></i>CRL</a>
+<a class=article-tag href=/tag/der target=_blank><i class="fa fa-tag"></i>DER</a>
+<a class=article-tag href=/tag/pem target=_blank><i class="fa fa-tag"></i>PEM</a>
+<a class=article-tag href=/tag/x.509 target=_blank><i class="fa fa-tag"></i>X.509</a>
+<a class=article-tag href=/tag/x.690 target=_blank><i class="fa fa-tag"></i>X.690</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/information-security/05-x.509/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/information-security/04-one-time-password/ target=_blank>[信息安全] 04 一次性密码 & 身份认证</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

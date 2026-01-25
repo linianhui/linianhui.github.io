@@ -1,0 +1,184 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Docker] Install - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/docker/ target=_blank>[Docker]</a></section><section class="toc-page selected"><span class=toc-page-title>[Docker] Install</span><nav id=TableOfContents><ul><li><a href=#dockerd>1 dokcerd</a><ul><li><a href=#docker-on-ubuntu>1.1 Ubuntu</a></li><li><a href=#docker-on-centos>1.2 CentOS</a></li><li><a href=#docker-on-debian>1.3 Debian</a></li><li><a href=#config-dockerd>1.4 Config dockerd</a></li></ul></li><li><a href=#docker>2 docker</a></li><li><a href=#docker-compose>3 dokcer-compose</a></li><li><a href=#docker-machine>4 dokcer-machine</a></li><li><a href=#reference>5 reference</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/docker/best-practice/ target=_blank>[Docker] Best Practice</a></section><section class=toc-page><a class=toc-page-title href=/docker/file/ target=_blank>[Docker] File</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Docker] Install</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2018-01-28 16:53，约330字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/docker/ title=[Docker] target=_blank><i class="fa fa-folder"></i>[Docker]</a></section><section class=article-tags><a class=article-tag href=/tag/docker target=_blank><i class="fa fa-tag"></i>docker</a>
+<a class=article-tag href=/tag/docker-compose target=_blank><i class="fa fa-tag"></i>docker-compose</a>
+<a class=article-tag href=/tag/docker-machine target=_blank><i class="fa fa-tag"></i>docker-machine</a>
+<a class=article-tag href=/tag/install target=_blank><i class="fa fa-tag"></i>Install</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/883faf9d5bc78e2b0b7d36791fc9626249565f15 target=_blank><i class="fa fa-code-fork"></i>883faf9</a>
+<span class=article-git-commit-subject>add debian</span>
+<span class=article-git-commit-time>2023-08-06 02:31</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/docker/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=dockerd><i id=locator-dockerd class=header-locator></i>
+<a href=#dockerd class=article-h-a>1 dokcerd</a></h1><p>reference: <a href=https://docs.docker.com/engine/reference/commandline/dockerd/ target=_blank rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/</a></p><h2 id=docker-on-ubuntu><i id=locator-docker-on-ubuntu class=header-locator></i>
+<a href=#docker-on-ubuntu class=article-h-a>1.1 Ubuntu</a></h2><div class="highlight-file highlight-file_opened" id=hf-20977f47b347e0f3203ebf25c1378db8><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-20977f47b347e0f3203ebf25c1378db8","highlight-file_opened")'>docker-on-ubuntu.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/docker/install/docker-on-ubuntu.sh title="下载 docker-on-ubuntu.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-ubuntu.sh title="源码 docker-on-ubuntu.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># wget https://linianhui.github.io/docker/install/docker-on-ubuntu.sh</span>
+</span></span><span style=display:flex><span><span style=color:green># sudo bash install.docker-on-ubuntu.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt remove -y docker docker-engine docker.io
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt install -y apt-transport-https ca-certificates curl software-properties-common
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | apt-key add -
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt-key fingerprint 0EBFCD88
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>add-apt-repository <span style=color:#a31515>&#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu </span><span style=color:#00f>$(</span>lsb_release -cs<span style=color:#00f>)</span><span style=color:#a31515> stable&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span>apt install -y docker-ce
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>groupadd docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>systemctl enable docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker version
+</span></span></code></pre></div></div></div><h2 id=docker-on-centos><i id=locator-docker-on-centos class=header-locator></i>
+<a href=#docker-on-centos class=article-h-a>1.2 CentOS</a></h2><div class="highlight-file highlight-file_opened" id=hf-469270076ff69464a4e9c5643a39d8f8><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-469270076ff69464a4e9c5643a39d8f8","highlight-file_opened")'>docker-on-centos.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/docker/install/docker-on-centos.sh title="下载 docker-on-centos.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-centos.sh title="源码 docker-on-centos.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># wget https://linianhui.github.io/docker/install/docker-on-centos.sh</span>
+</span></span><span style=display:flex><span><span style=color:green># sudo bash install.docker-on-centos.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>yum install -y yum-utils device-mapper-persistent-data lvm2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>yum install -y docker-ce
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>groupadd docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>systemctl enable docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker version</span></span></code></pre></div></div></div><h2 id=docker-on-debian><i id=locator-docker-on-debian class=header-locator></i>
+<a href=#docker-on-debian class=article-h-a>1.3 Debian</a></h2><div class="highlight-file highlight-file_opened" id=hf-cfe6663860faeaf9300427266766bc65><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-cfe6663860faeaf9300427266766bc65","highlight-file_opened")'>docker-on-debian.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/docker/install/docker-on-debian.sh title="下载 docker-on-debian.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/docker/install/docker-on-debian.sh title="源码 docker-on-debian.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># wget https://linianhui.github.io/docker/install/docker-on-debian.sh</span>
+</span></span><span style=display:flex><span><span style=color:green># sudo bash install.docker-on-debian.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt remove -y docker docker-engine docker.io
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg1 gnupg2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg | apt-key add -
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>add-apt-repository <span style=color:#a31515>&#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/debian </span><span style=color:#00f>$(</span>lsb_release -cs<span style=color:#00f>)</span><span style=color:#a31515> stable&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span>apt install -y docker-ce
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>groupadd docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>systemctl enable docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker version
+</span></span></code></pre></div></div></div><h2 id=config-dockerd><i id=locator-config-dockerd class=header-locator></i>
+<a href=#config-dockerd class=article-h-a>1.4 Config dockerd</a></h2><p><a href=https://docs.docker.com/engine/reference/commandline/dockerd/ target=_blank rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/dockerd/</a></p><div class="highlight-file highlight-file_opened" id=hf-98bfb6e4a1420d88a18b9f39840ae60c><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-98bfb6e4a1420d88a18b9f39840ae60c","highlight-file_opened")'>config-dockerd.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/docker/install/config-dockerd.sh title="下载 config-dockerd.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/docker/install/config-dockerd.sh title="源码 config-dockerd.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># wget https://linianhui.github.io/docker/install/config-dockerd.sh</span>
+</span></span><span style=display:flex><span><span style=color:green># sudo bash config-dockerd.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span><span style=color:green># https://docs.docker.com/engine/reference/commandline/dockerd//#daemon-configuration-file</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>mkdir /etc/docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>wget -O /etc/docker/daemon.json https://linianhui.github.io/docker/install/daemon.json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cat /etc/docker/daemon.json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>systemctl daemon-reload
+</span></span><span style=display:flex><span>systemctl restart docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker info
+</span></span></code></pre></div></div></div><div class="highlight-file highlight-file_opened" id=hf-a13a90f28609ba683dc0685bb01721ba><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-a13a90f28609ba683dc0685bb01721ba","highlight-file_opened")'>daemon.json</a><a class="fa fa-download highlight-file-download" target=_blank href=/docker/install/daemon.json title="下载 daemon.json" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/docker/install/daemon.json title="源码 daemon.json"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;data-root&#34;: <span style=color:#a31515>&#34;/data/dockerd&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;debug&#34;: <span style=color:#00f>true</span>,
+</span></span><span style=display:flex><span>  &#34;default-shm-size&#34;: <span style=color:#a31515>&#34;64M&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;exec-opts&#34;: [
+</span></span><span style=display:flex><span>    <span style=color:#a31515>&#34;native.cgroupdriver=systemd&#34;</span>
+</span></span><span style=display:flex><span>  ],
+</span></span><span style=display:flex><span>  &#34;group&#34;: <span style=color:#a31515>&#34;docker&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;hosts&#34;: [
+</span></span><span style=display:flex><span>    <span style=color:#a31515>&#34;unix:///var/run/docker.sock&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a31515>&#34;tcp://0.0.0.0:2375&#34;</span>
+</span></span><span style=display:flex><span>  ],
+</span></span><span style=display:flex><span>  &#34;insecure-registries&#34;: [
+</span></span><span style=display:flex><span>    <span style=color:#a31515>&#34;registry.test&#34;</span>
+</span></span><span style=display:flex><span>  ],
+</span></span><span style=display:flex><span>  &#34;ip&#34;: <span style=color:#a31515>&#34;0.0.0.0&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;ip-forward&#34;: <span style=color:#00f>true</span>,
+</span></span><span style=display:flex><span>  &#34;ipv6&#34;: <span style=color:#00f>false</span>,
+</span></span><span style=display:flex><span>  &#34;log-driver&#34;: <span style=color:#a31515>&#34;json-file&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;log-level&#34;: <span style=color:#a31515>&#34;info&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;log-opts&#34;: {
+</span></span><span style=display:flex><span>    &#34;max-file&#34;: <span style=color:#a31515>&#34;5&#34;</span>,
+</span></span><span style=display:flex><span>    &#34;max-size&#34;: <span style=color:#a31515>&#34;32m&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  &#34;max-concurrent-downloads&#34;: 6,
+</span></span><span style=display:flex><span>  &#34;max-concurrent-uploads&#34;: 6,
+</span></span><span style=display:flex><span>  &#34;registry-mirrors&#34;: [
+</span></span><span style=display:flex><span>    <span style=color:#a31515>&#34;http://hub-mirror.c.163.com/&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a31515>&#34;https://docker.mirrors.ustc.edu.cn&#34;</span>
+</span></span><span style=display:flex><span>  ],
+</span></span><span style=display:flex><span>  &#34;storage-driver&#34;: <span style=color:#a31515>&#34;overlay2&#34;</span>,
+</span></span><span style=display:flex><span>  &#34;tls&#34;: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div><h1 id=docker><i id=locator-docker class=header-locator></i>
+<a href=#docker class=article-h-a>2 docker</a></h1><p><a href=https://docs.docker.com/engine/install/binaries/ target=_blank rel="noopener norefferrer">https://docs.docker.com/engine/install/binaries/</a></p><p>Windows : <a href=https://download.docker.com/win/static/stable/x86_64 target=_blank rel="noopener norefferrer">https://download.docker.com/win/static/stable/x86_64</a></p><p>MacOS : <a href=https://download.docker.com/mac/static/stable/x86_64/ target=_blank rel="noopener norefferrer">https://download.docker.com/mac/static/stable/x86_64/</a></p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>xattr -d com.apple.quarantine docker
+</span></span></code></pre></div><p>reference : <a href=https://docs.docker.com/engine/reference/commandline/cli/ target=_blank rel="noopener norefferrer">https://docs.docker.com/engine/reference/commandline/cli/</a></p><h1 id=docker-compose><i id=locator-docker-compose class=header-locator></i>
+<a href=#docker-compose class=article-h-a>3 dokcer-compose</a></h1><p><a href=https://github.com/docker/compose/releases target=_blank rel="noopener norefferrer">https://github.com/docker/compose/releases</a></p><div class="highlight-file highlight-file_opened" id=hf-d5bbb3f83ce86baadbfd515f9a14bab1><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-d5bbb3f83ce86baadbfd515f9a14bab1","highlight-file_opened")'>docker-compose.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/docker/install/docker-compose.sh title="下载 docker-compose.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/docker/install/docker-compose.sh title="源码 docker-compose.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># wget https://linianhui.github.io/docker/install/docker-compose.sh</span>
+</span></span><span style=display:flex><span><span style=color:green># sudo bash install.docker-compose.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>curl -L https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-<span style=color:#00f>$(</span>uname -s<span style=color:#00f>)</span>-<span style=color:#00f>$(</span>uname -m<span style=color:#00f>)</span> <span style=color:#a31515>\
+</span></span></span><span style=display:flex><span><span style=color:#a31515></span>     -o /usr/local/bin/docker-compose
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>chmod +x /usr/local/bin/docker-compose
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker-compose --version
+</span></span></code></pre></div></div></div><p>reference : <a href=https://docs.docker.com/compose/reference/ target=_blank rel="noopener norefferrer">https://docs.docker.com/compose/reference/</a></p><h1 id=docker-machine><i id=locator-docker-machine class=header-locator></i>
+<a href=#docker-machine class=article-h-a>4 dokcer-machine</a></h1><div class="highlight-file highlight-file_opened" id=hf-8d79877990e827012b7e5bde0873ecdc><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-8d79877990e827012b7e5bde0873ecdc","highlight-file_opened")'>docker-machine.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/docker/install/docker-machine.sh title="下载 docker-machine.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/docker/install/docker-machine.sh title="源码 docker-machine.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># wget https://linianhui.github.io/docker/install/docker-machine.sh</span>
+</span></span><span style=display:flex><span><span style=color:green># sudo bash install.docker-machine.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>curl -L https://github.com/docker/machine/releases/download/v0.16.1/docker-machine-<span style=color:#00f>$(</span>uname -s<span style=color:#00f>)</span>-<span style=color:#00f>$(</span>uname -m<span style=color:#00f>)</span> <span style=color:#a31515>\
+</span></span></span><span style=display:flex><span><span style=color:#a31515></span>     -o /usr/local/bin/docker-machine
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>chmod +x /usr/local/bin/docker-machine
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker-machine --version
+</span></span></code></pre></div></div></div><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>5 reference</a></h1><p><a href=https://docs.docker.com/install/linux/docker-ce/ubuntu/ target=_blank rel="noopener norefferrer">https://docs.docker.com/install/linux/docker-ce/ubuntu/</a></p><p><a href=https://docs.docker.com/install/linux/docker-ce/centos/ target=_blank rel="noopener norefferrer">https://docs.docker.com/install/linux/docker-ce/centos/</a></p><p><a href=https://docs.docker.com/compose/install target=_blank rel="noopener norefferrer">https://docs.docker.com/compose/install</a></p><p><a href=https://docs.docker.com/machine target=_blank rel="noopener norefferrer">https://docs.docker.com/machine</a></p><p><a href=https://github.com/docker/compose/releases target=_blank rel="noopener norefferrer">https://github.com/docker/compose/releases</a></p><p><a href=https://github.com/docker/machine/releases/ target=_blank rel="noopener norefferrer">https://github.com/docker/machine/releases/</a></p><p><a href=https://github.com/boot2docker/boot2docker/releases target=_blank rel="noopener norefferrer">https://github.com/boot2docker/boot2docker/releases</a></p></section><section class=article-meta><section class=article-date>2018-01-28 16:53，约330字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/docker/ title=[Docker] target=_blank><i class="fa fa-folder"></i>[Docker]</a></section><section class=article-tags><a class=article-tag href=/tag/docker target=_blank><i class="fa fa-tag"></i>docker</a>
+<a class=article-tag href=/tag/docker-compose target=_blank><i class="fa fa-tag"></i>docker-compose</a>
+<a class=article-tag href=/tag/docker-machine target=_blank><i class="fa fa-tag"></i>docker-machine</a>
+<a class=article-tag href=/tag/install target=_blank><i class="fa fa-tag"></i>Install</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/883faf9d5bc78e2b0b7d36791fc9626249565f15 target=_blank><i class="fa fa-code-fork"></i>883faf9</a>
+<span class=article-git-commit-subject>add debian</span>
+<span class=article-git-commit-time>2023-08-06 02:31</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/docker/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-next><span>下一篇 : </span><a href=/docker/best-practice/ target=_blank>[Docker] Best Practice</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

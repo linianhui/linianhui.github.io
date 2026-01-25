@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Replication on Timetombs</title><link>https://linianhui.github.io/tag/replication/</link><description>Recent content in Replication on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/replication/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] sentinel</title><link>https://linianhui.github.io/redis/sentinel/</link><pubDate>Sat, 20 Mar 2021 09:30:23 +0800</pubDate><guid>https://linianhui.github.io/redis/sentinel/</guid><description>&lt;p>在上一篇博客&lt;code>Replication&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>中我们构建了一个简单的主从复制架构的redis服务，利用Replication我们可以让redis提供读写分离、提供读取能力、数据备份等功能，也支持slave从鼓掌中恢复。但是如果master出现了故障，那么整Replication都会处于一个不可用的状态。这显然无法满足高可用的目标。而整个目标需要借助&lt;code>sentinel&lt;/code>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>来实现。&lt;/p>
+&lt;p>sentinel概述：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>监控&lt;/strong>：sentinel是一个分布式系统，多个实例利用&lt;code>gossip&lt;/code>协议协同工作。sentinel监控master和slave实例，同时sentinel实例之间也互相监控。&lt;/li>
+&lt;li>&lt;strong>通知&lt;/strong>： 当某一个实例出现问题时，sentinel可以通过API通知系统管理员。&lt;/li>
+&lt;li>&lt;strong>自动故障转移&lt;/strong>：如果被监控的master出现问题，sentinel可以启动一个自动故障转移的过程，sentinel实例之间选举出来一个slave提升为master，然后配置其他slave的配置使其成为新的master的slave，并且通知client使用新的连接地址。&lt;/li>
+&lt;li>&lt;strong>配置提供者&lt;/strong>：client不再之间连接到master或者slave，而是连接到sentinel，由sentinel提供redis的master和slave的地址。&lt;/li>
+&lt;/ol>
+&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">1 搭建环境&lt;/a>
+&lt;/h1>
+&lt;p>运行sentinel有两种方式：&lt;/p></description></item><item><title>[Redis] replication</title><link>https://linianhui.github.io/redis/replication/</link><pubDate>Sat, 20 Mar 2021 09:29:23 +0800</pubDate><guid>https://linianhui.github.io/redis/replication/</guid><description>&lt;p>绝大多数的情况下，redis中的数据都是读取远远多于写入。为了提供更高的读取QPS的支持，所以redis提供了&lt;code>Replication&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>的支持。&lt;/p>
+&lt;blockquote>
+&lt;ol>
+&lt;li>单纯的Replication并不能处理redis意外宕机等导致的不可用问题。高可用需要&lt;code>Sentinel&lt;/code>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>来提供支持。&lt;/li>
+&lt;li>单纯的Replication也不能提升redis的存储容量，比如master原本是提供8G的存储上限，那么搭配两个slave则依然是8G。扩容需要&lt;code>Cluster&lt;/code>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>来提供支持。&lt;/li>
+&lt;/ol>&lt;/blockquote>
+&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">1 搭建环境&lt;/a>
+&lt;/h1>
+&lt;p>这里使用&lt;code>docker-compose -f redis.yml up -d&lt;/code>启动一个主从复制的环境，一个&lt;code>master&lt;/code>，两个&lt;code>slave&lt;/code>。&lt;br />
+&lt;div class="highlight-file " id="hf-843006127501372b0e6c9da396e83057">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-843006127501372b0e6c9da396e83057','highlight-file_opened')">redis.yml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/redis/replication/redis.yml" title="下载 redis.yml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/redis/replication/redis.yml" title="源码 redis.yml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.docker.com/compose/compose-file/compose-file-v3/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>version: &lt;span style="color:#a31515">&amp;#39;3&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> master.test:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: redis:6.2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: &lt;span style="color:#00f">on&lt;/span>-failure
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> command: redis-server
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - volume_master:/data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> slave1.test:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: redis:6.2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: &lt;span style="color:#00f">on&lt;/span>-failure
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> command: redis-server --slaveof master.test 6379
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> depends_on:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - master.test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - volume_slave1:/data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> slave2.test:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: redis:6.2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: &lt;span style="color:#00f">on&lt;/span>-failure
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> command: redis-server --slaveof master.test 6379
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> depends_on:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - master.test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - volume_slave2:/data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>volumes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volume_master:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volume_slave1:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volume_slave2:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

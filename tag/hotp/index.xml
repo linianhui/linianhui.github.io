@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HOTP on Timetombs</title><link>https://linianhui.github.io/tag/hotp/</link><description>Recent content in HOTP on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/hotp/index.xml" rel="self" type="application/rss+xml"/><item><title>[信息安全] 04 一次性密码 &amp; 身份认证</title><link>https://linianhui.github.io/information-security/04-one-time-password/</link><pubDate>Sun, 23 Jul 2017 14:24:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/04-one-time-password/</guid><description>&lt;p>在信息安全领域，一般把&lt;strong>Cryptography&lt;/strong>称为&lt;strong>密码&lt;/strong>，而把&lt;strong>Password&lt;/strong>称为&lt;strong>口令&lt;/strong>。日常用户的认知中，以及我们开发人员沟通过程中，绝大多数被称作密码的东西其实都是Password(口令)，而不是真正意义上的密码。本文保持这种语义，采用密码来代指Password，而当密码和口令同时出现时，用英文表示以示区分。&lt;/p>
+&lt;h1 id="one-time-password">
+&lt;i id="locator-one-time-password" class="header-locator">&lt;/i>
+&lt;a href="#one-time-password" class="article-h-a">1 OTP 一次性密码&lt;/a>
+&lt;/h1>
+&lt;p>OTP是One Time Password的简写，即一次性密码。在平时生活中，我们接触一次性密码的场景非常多，比如在登录账号、找回密码，更改密码和转账操作等等这些场景，其中一些常用到的方式有 :&lt;/p></description></item></channel></rss>

@@ -1,0 +1,214 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Java] synchronized - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/java/ target=_blank>[Java]</a></section><section class=toc-page><a class=toc-page-title href=/java/install/ target=_blank>[Java] Install</a></section><section class=toc-page><a class=toc-page-title href=/java/jvm/ target=_blank>[Java] JVM(Java Virtual Machine)</a></section><section class=toc-page><a class=toc-page-title href=/java/tool/ target=_blank>[Java] Tool</a></section><section class=toc-page><a class=toc-page-title href=/java/unsafe/ target=_blank>[Java] Unsafe类</a></section><section class=toc-page><a class=toc-page-title href=/java/jmm/ target=_blank>[Java] JMM(Java Memory Model)</a></section><section class=toc-page><a class=toc-page-title href=/java/gc/ target=_blank>[Java] GC(Garbage Collection)</a></section><section class=toc-page><a class=toc-page-title href=/java/thread/ target=_blank>[Java] Thread</a></section><section class=toc-page><a class=toc-page-title href=/java/cas/ target=_blank>[Java] CAS(Compare And Swap)</a></section><section class="toc-page selected"><span class=toc-page-title>[Java] synchronized</span><nav id=TableOfContents><ul><li><a href=#syntax>1. 语法</a><ul><li><a href=#statement>1.1 修饰代码快</a></li><li><a href=#method>1.2 修饰方法</a></li></ul></li><li><a href=#class-file>2 字节码</a></li><li><a href=#>3 实现原理</a><ul><li><a href=#mark-word>3.1 Mark Word</a></li><li><a href=#monitor>3.2 Monitor</a></li><li><a href=#heavyweight-lock>3.3 Heavyweight Lock</a></li><li><a href=#lightweight-lock>3.4 Lightweight Lock</a></li><li><a href=#biased-lock>3.5 Biased Lock</a></li></ul></li><li><a href=#problem>4 遗留问题</a></li><li><a href=#reference>5 参考资料</a></li></ul></nav></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Java] synchronized</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2020-11-08 19:33，约2562字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/java/ title=[Java] target=_blank><i class="fa fa-folder"></i>[Java]</a></section><section class=article-tags><a class=article-tag href=/tag/aqs target=_blank><i class="fa fa-tag"></i>AQS</a>
+<a class=article-tag href=/tag/cas target=_blank><i class="fa fa-tag"></i>CAS</a>
+<a class=article-tag href=/tag/java target=_blank><i class="fa fa-tag"></i>Java</a>
+<a class=article-tag href=/tag/lock target=_blank><i class="fa fa-tag"></i>Lock</a>
+<a class=article-tag href=/tag/synchronized target=_blank><i class="fa fa-tag"></i>synchronized</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/java/synchronized/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>在Java中，有一个与锁有关的关键字<code>synchronized</code>，它是由JVM层面提供的<code>Monitor</code>来实现。</p><h1 id=syntax><i id=locator-syntax class=header-locator></i>
+<a href=#syntax class=article-h-a>1. 语法</a></h1><p><code>synchronized</code>关键字在语法层面<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>有两种形式。请看如下的示例代码：</p><div class="highlight-file highlight-file_opened" id=hf-ff0b35a82ec431c35007f2c8689d9ed1><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-ff0b35a82ec431c35007f2c8689d9ed1","highlight-file_opened")'>SynchronizedExample.java</a><a class="fa fa-download highlight-file-download" target=_blank href=/java/synchronized/SynchronizedExample.java title="下载 SynchronizedExample.java" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/java/synchronized/SynchronizedExample.java title="源码 SynchronizedExample.java"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#00f>import</span> java.io.File;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00f>public</span> <span style=color:#00f>class</span> <span style=color:#2b91af>SynchronizedExample</span> {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00f>public</span> <span style=color:#2b91af>void</span> instanceSynchronizedStatementMethod(Object syncObject) {
+</span></span><span style=display:flex><span>    <span style=color:#00f>synchronized</span> (syncObject) {
+</span></span><span style=display:flex><span>      instanceMethod();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00f>public</span> <span style=color:#00f>synchronized</span> <span style=color:#2b91af>void</span> synchronizedInstanceMethod() {
+</span></span><span style=display:flex><span>    instanceMethod();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00f>public</span> <span style=color:#2b91af>void</span> instanceMethod() {
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00f>public</span> <span style=color:#00f>static</span> <span style=color:#00f>synchronized</span> <span style=color:#2b91af>void</span> synchronizedStaticMethod() {
+</span></span><span style=display:flex><span>    staticMethod();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00f>public</span> <span style=color:#00f>static</span> <span style=color:#2b91af>void</span> staticMethod() {
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><h2 id=statement><i id=locator-statement class=header-locator></i>
+<a href=#statement class=article-h-a>1.1 修饰代码快</a></h2><p>示例中的<code>instanceSynchronizedStatementMethod</code>方法，这种形式的语法要求<code>synchronized</code>关键字关联一个对象作为同步资源，然后紧跟着是一个代码块。可以保证在一个JVM进程内，多个使用<code>syncObject</code>作为同步资源对象的线程同时访问这个代码块的时候，只能串行的进行访问，也就是同一时刻，只会有一个线程成功的进入这个代码块执行代码。当然这个同步资源对象<code>syncObject</code>也可以是一个字段，实例的或者静态的都可以，包裹这个同步代码块的方法同样的也是实例的或者静态的都可以。</p><p>这种语法形式的关键在于多个线程持有的<code>syncObject</code>是不是同一个，同一个的为同一个阻塞队列。</p><p>由此就可以推导出来，Java中的<code>int</code>、<code>byte</code>和<code>char</code>等等这些基本的原始类型是不能作为<code>syncObject</code>的，因为它们直接存储的是值，而不是引用；其次<code>Integer</code>这种包装类型由于存在装箱拆箱，也是不可以的；再次<code>String</code>由于有字符串驻留池的存在，也无法确保<code>syncObject</code>不会出现错乱。</p><p>故而最好的方式就是<code>new Object()</code>即可，当然你也不能有10个线程，每个线程都<code>new</code>一个自己的<code>syncObject</code>，而是让需要同步的那些个线程使用同一个<code>syncObject</code>即可。</p><p>当你需要在整个JVM内同步所有线程时，选一个JVM内单例的<code>syncObject</code>即可，比如一个静态的字段，或者一个类型的<code>class</code>对象。</p><h2 id=method><i id=locator-method class=header-locator></i>
+<a href=#method class=article-h-a>1.2 修饰方法</a></h2><p>示例中的<code>synchronizedInstanceMethod</code>和<code>synchronizedStaticMethod</code>都是方法级别的语法。其差异在于前者是锁的<code>this</code>对象，后者锁的是<code>SynchronizedExample.class</code>这个对象。由于后者在一个JVM进程内是唯一的，故而相当于会影响所有的访问这个方法的线程。</p><h1 id=class-file><i id=locator-class-file class=header-locator></i>
+<a href=#class-file class=article-h-a>2 字节码</a></h1><p>通过字节码来看一下编译后的代码。</p><div class="highlight-file highlight-file_opened" id=hf-a82a12581340040dbf10570de9a26653><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-a82a12581340040dbf10570de9a26653","highlight-file_opened")'>SynchronizedExample.javap</a><a class="fa fa-download highlight-file-download" target=_blank href=/java/synchronized/SynchronizedExample.javap title="下载 SynchronizedExample.javap" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/java/synchronized/SynchronizedExample.javap title="源码 SynchronizedExample.javap"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span>public class SynchronizedExample
+</span></span><span style=display:flex><span>  minor version: 0
+</span></span><span style=display:flex><span>  major version: 52
+</span></span><span style=display:flex><span>  flags: ACC_PUBLIC, ACC_SUPER
+</span></span><span style=display:flex><span>Constant pool:
+</span></span><span style=display:flex><span>   <span style=color:green>#1 = Methodref          #5.#22         // java/lang/Object.&#34;&lt;init&gt;&#34;:()V</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#2 = Methodref          #4.#23         // SynchronizedExample.instanceMethod:()V</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#3 = Methodref          #4.#24         // SynchronizedExample.staticMethod:()V</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#4 = Class              #25            // SynchronizedExample</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#5 = Class              #26            // java/lang/Object</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#6 = Utf8               &lt;init&gt;</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#7 = Utf8               ()V</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#8 = Utf8               Code</span>
+</span></span><span style=display:flex><span>   <span style=color:green>#9 = Utf8               LineNumberTable</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#10 = Utf8               instanceSynchronizedStatementMethod</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#11 = Utf8               (Ljava/lang/Object;)V</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#12 = Utf8               StackMapTable</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#13 = Class              #25            // SynchronizedExample</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#14 = Class              #26            // java/lang/Object</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#15 = Class              #27            // java/lang/Throwable</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#16 = Utf8               synchronizedInstanceMethod</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#17 = Utf8               instanceMethod</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#18 = Utf8               synchronizedStaticMethod</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#19 = Utf8               staticMethod</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#20 = Utf8               SourceFile</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#21 = Utf8               SynchronizedExample.java</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#22 = NameAndType        #6:#7          // &#34;&lt;init&gt;&#34;:()V</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#23 = NameAndType        #17:#7         // instanceMethod:()V</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#24 = NameAndType        #19:#7         // staticMethod:()V</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#25 = Utf8               SynchronizedExample</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#26 = Utf8               java/lang/Object</span>
+</span></span><span style=display:flex><span>  <span style=color:green>#27 = Utf8               java/lang/Throwable</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  public SynchronizedExample();
+</span></span><span style=display:flex><span>    descriptor: ()V
+</span></span><span style=display:flex><span>    flags: ACC_PUBLIC
+</span></span><span style=display:flex><span>    Code:
+</span></span><span style=display:flex><span>      stack=<span style=color:#a31515>1, locals=1, args_size=1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         0: aload_0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         1: invokespecial #1                  // Method java/lang/Object.&#34;&lt;init&gt;&#34;:()V
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         4: return
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      LineNumberTable:
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 3: 0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  public void instanceSynchronizedStatementMethod(java.lang.Object);
+</span></span><span style=display:flex><span>    descriptor: (Ljava/lang/Object;)V
+</span></span><span style=display:flex><span>    flags: ACC_PUBLIC
+</span></span><span style=display:flex><span>    Code:
+</span></span><span style=display:flex><span>      stack=<span style=color:#a31515>2, locals=4, args_size=2
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         0: aload_1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         1: dup
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         2: astore_2
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         3: monitorenter
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         4: aload_0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         5: invokevirtual #2                  // Method instanceMethod:()V
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         8: aload_2
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         9: monitorexit
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        10: goto          18
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        13: astore_3
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        14: aload_2
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        15: monitorexit
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        16: aload_3
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        17: athrow
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        18: return
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      Exception table:
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         from    to  target type
+</span></span></span><span style=display:flex><span><span style=color:#a31515>             4    10    13   any
+</span></span></span><span style=display:flex><span><span style=color:#a31515>            13    16    13   any
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      LineNumberTable:
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 6: 0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 7: 4
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 8: 8
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 9: 18
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      StackMapTable: number_of_entries = 2
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        frame_type = 255 /* full_frame */
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          offset_delta = 13
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          locals = [ class SynchronizedExample, class java/lang/Object, class java/lang/Object ]
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          stack = [ class java/lang/Throwable ]
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        frame_type = 250 /* chop */
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          offset_delta = 4</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  public synchronized void synchronizedInstanceMethod();
+</span></span><span style=display:flex><span>    descriptor: ()V
+</span></span><span style=display:flex><span>    flags: ACC_PUBLIC, ACC_SYNCHRONIZED
+</span></span><span style=display:flex><span>    Code:
+</span></span><span style=display:flex><span>      stack=<span style=color:#a31515>1, locals=1, args_size=1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         0: aload_0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         1: invokevirtual #2                  // Method instanceMethod:()V
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         4: return
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      LineNumberTable:
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 12: 0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 13: 4</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  public void instanceMethod();
+</span></span><span style=display:flex><span>    descriptor: ()V
+</span></span><span style=display:flex><span>    flags: ACC_PUBLIC
+</span></span><span style=display:flex><span>    Code:
+</span></span><span style=display:flex><span>      stack=<span style=color:#a31515>0, locals=1, args_size=1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         0: return
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      LineNumberTable:
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 16: 0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  public static synchronized void synchronizedStaticMethod();
+</span></span><span style=display:flex><span>    descriptor: ()V
+</span></span><span style=display:flex><span>    flags: ACC_PUBLIC, ACC_STATIC, ACC_SYNCHRONIZED
+</span></span><span style=display:flex><span>    Code:
+</span></span><span style=display:flex><span>      stack=<span style=color:#a31515>0, locals=0, args_size=0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         0: invokestatic  #3                  // Method staticMethod:()V
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         3: return
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      LineNumberTable:
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 19: 0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 20: 3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  public static void staticMethod();
+</span></span><span style=display:flex><span>    descriptor: ()V
+</span></span><span style=display:flex><span>    flags: ACC_PUBLIC, ACC_STATIC
+</span></span><span style=display:flex><span>    Code:
+</span></span><span style=display:flex><span>      stack=<span style=color:#a31515>0, locals=0, args_size=0
+</span></span></span><span style=display:flex><span><span style=color:#a31515>         0: return
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      LineNumberTable:
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        line 23: 0</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>SourceFile: &#34;SynchronizedExample.java&#34;
+</span></span></code></pre></div></div></div><p>可以看出<code>instanceSynchronizedStatementMethod</code>比<code>instanceMethod</code>中多来很多的指令，主要是<code>monitorenter</code>和<code>monitorexit</code>这两个，前者代表加锁，后者代表释放锁，由于不知掉内部会不会抛出异常，故而编译器自动添加来<code>finaly</code>块来保证锁的释放。</p><p>而<code>synchronizedInstanceMethod</code>和<code>synchronizedStaticMethod</code>两个方法就比较简单了，只是增加来一个标记<code>ACC_SYNCHRONIZED</code>。当JVM遇见这个标记的方法时，会使用和上面一样的<code>monitorenter</code>和<code>monitorexit</code>一样的方式来执行加锁和解锁行为。</p><h1><i id=locator- class=header-locator></i>
+<a href=# class=article-h-a>3 实现原理</a></h1><p>JVM底层是依赖Java的对象头中的<code>Mark Word</code>和<code>Monitor</code>来实现的<code>synchronized</code>。</p><h2 id=mark-word><i id=locator-mark-word class=header-locator></i>
+<a href=#mark-word class=article-h-a>3.1 Mark Word</a></h2><p>锁的四种状态体现在下面的表格中。</p><div style=overflow-x:auto><table style=text-align:center><thead><tr><th rowspan=4>State</th><th colspan=32>Mark Word (32 bit)</th></tr><tr><th colspan=8>Octet 1</th><th colspan=8>Octet 2</th><th colspan=8>Octet 3</th><th colspan=8>Octet 4</th></tr><tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr><tr><th colspan=23>23 bit</th><th colspan=2>2 bit</th><th colspan=4>4 bit</th><th colspan=1>Is Biased Lock</th><th colspan=2>Flag</th></tr></thead><tbody><tr><td>unlocked</td><td colspan=25>identity hashcode</td><td colspan=4>age</td><td>0</td><td>0</td><td>1</td></tr><tr><td>biased lock</td><td colspan=23>thread id</td><td colspan=2>epoch</td><td colspan=4>age</td><td>1</td><td>0</td><td>1</td></tr><tr><td>lightweight lock</td><td colspan=30>pointer to stack lock record</td><td>0</td><td>0</td></tr><tr><td>heavyweight lock</td><td colspan=30>pointer to monitor</td><td>1</td><td>0</td></tr><tr><td>marked for gc</td><td colspan=30></td><td>1</td><td>1</td></tr></tbody></table></div><h2 id=monitor><i id=locator-monitor class=header-locator></i>
+<a href=#monitor class=article-h-a>3.2 Monitor</a></h2><p>我们通过上述的字节码已经得知了<code>monitorenter</code>和<code>monitorexit</code>指令以及附加到方法上的<code>ACC_SYNCHRONIZED</code>标记。在文章开头提到<code>synchronized</code>是由JVM层面提供的<code>Monitor</code>来实现，那么这些指令和标记就是为Monitor而准备的，在JVM中通过C++实现的<code>ObjectMonitor</code><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>来提供支持。</p><blockquote><p><code>java.lang.Object</code>的<code>wait</code>、<code>notify</code>和<code>notifyAll</code>这些native方法也是由<code>ObjectMonitor</code>实现的。</p></blockquote><div class="highlight-file highlight-file_opened" id=hf-2450f19124f3d98ba2b2ca68be824573><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-2450f19124f3d98ba2b2ca68be824573","highlight-file_opened")'>ObjectMonitor.hpp</a><a class="fa fa-download highlight-file-download" target=_blank href=/java/synchronized/ObjectMonitor.hpp title="下载 ObjectMonitor.hpp" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/java/synchronized/ObjectMonitor.hpp title="源码 ObjectMonitor.hpp"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>ObjectMonitor() {
+</span></span><span style=display:flex><span>    _header       = NULL;
+</span></span><span style=display:flex><span>    _count        = 0;
+</span></span><span style=display:flex><span>    _waiters      = 0,
+</span></span><span style=display:flex><span>    _recursions   = 0;
+</span></span><span style=display:flex><span>    _object       = NULL;
+</span></span><span style=display:flex><span>    _owner        = NULL;
+</span></span><span style=display:flex><span>    _WaitSet      = NULL;
+</span></span><span style=display:flex><span>    _WaitSetLock  = 0 ;
+</span></span><span style=display:flex><span>    _Responsible  = NULL ;
+</span></span><span style=display:flex><span>    _succ         = NULL ;
+</span></span><span style=display:flex><span>    _cxq          = NULL ;
+</span></span><span style=display:flex><span>    FreeNext      = NULL ;
+</span></span><span style=display:flex><span>    _EntryList    = NULL ;
+</span></span><span style=display:flex><span>    _SpinFreq     = 0 ;
+</span></span><span style=display:flex><span>    _SpinClock    = 0 ;
+</span></span><span style=display:flex><span>    OwnerIsThread = 0 ;
+</span></span><span style=display:flex><span>    _previous_owner_tid = 0;
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div><p>这里由几个重要的字段：</p><ol><li><code>_owner</code>：拥有当前对象的线程地址。</li><li><code>_WaitSet</code>：存放调用wait方法后进入等待状态的线程的队列。</li><li><code>_EntryList</code>：等待锁block状态的线程的队列。</li><li><code>_recursions</code>：锁的重入次数。</li><li><code>_count</code>：线程获取锁的次数。</li></ol><h2 id=heavyweight-lock><i id=locator-heavyweight-lock class=header-locator></i>
+<a href=#heavyweight-lock class=article-h-a>3.3 Heavyweight Lock</a></h2><p>Jdk1.6之前，<code>synchronized</code>在JVM底层就只是传统意义上的依赖OS内核mutex结合<code>Mark Word</code>和<code>Monitor</code>实现的传统意义上的锁，现在称之为重量级锁。</p><p>在上面的<code>Mark Word</code>表格中，当<code>Flag</code>是<code>10</code>时，代表前面的30bit是指向Monitor对象的指针。</p><h2 id=lightweight-lock><i id=locator-lightweight-lock class=header-locator></i>
+<a href=#lightweight-lock class=article-h-a>3.4 Lightweight Lock</a></h2><p>在Jdk1.6时，引入了轻量级锁。自旋锁，自适应锁。</p><h2 id=biased-lock><i id=locator-biased-lock class=header-locator></i>
+<a href=#biased-lock class=article-h-a>3.5 Biased Lock</a></h2><p>在Jdk1.6时，引入了偏向锁。</p><h1 id=problem><i id=locator-problem class=header-locator></i>
+<a href=#problem class=article-h-a>4 遗留问题</a></h1><p>使用<code>synchronized</code>来进行同步是非常方便的，JVM也在进行持续的优化，性能也可以得到满足。但是因为这一切都是JVM内部实现的，有些个别的需求它依然无法满足。</p><ol><li>有些情况下效率达不到要求。</li><li>获取锁的状态。</li><li>不可中断。</li><li>不够灵活。</li></ol><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>5 参考资料</a></h1><p>《Eliminating Synchronization-Related Atomic Operations withBiased Locking and Bulk Rebiasing》 : <a href=https://www.oracle.com/technetwork/java/biasedlocking-oopsla2006-wp-149958.pdf target=_blank rel="noopener norefferrer">https://www.oracle.com/technetwork/java/biasedlocking-oopsla2006-wp-149958.pdf</a></p><p>Synchronization and Object Locking : <a href=https://wiki.openjdk.java.net/display/HotSpot/Synchronization target=_blank rel="noopener norefferrer">https://wiki.openjdk.java.net/display/HotSpot/Synchronization</a></p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>JLS-Synchronization : <a href=https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html#jls-17.1 target=_blank rel="noopener norefferrer">https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html#jls-17.1</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>ObjectMonitor.hpp : <a href=http://hg.openjdk.java.net/jdk8/jdk8/hotspot/file/87ee5ee27509/src/share/vm/runtime/objectMonitor.hpp#l140 target=_blank rel="noopener norefferrer">http://hg.openjdk.java.net/jdk8/jdk8/hotspot/file/87ee5ee27509/src/share/vm/runtime/objectMonitor.hpp#l140</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2020-11-08 19:33，约2562字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/java/ title=[Java] target=_blank><i class="fa fa-folder"></i>[Java]</a></section><section class=article-tags><a class=article-tag href=/tag/aqs target=_blank><i class="fa fa-tag"></i>AQS</a>
+<a class=article-tag href=/tag/cas target=_blank><i class="fa fa-tag"></i>CAS</a>
+<a class=article-tag href=/tag/java target=_blank><i class="fa fa-tag"></i>Java</a>
+<a class=article-tag href=/tag/lock target=_blank><i class="fa fa-tag"></i>Lock</a>
+<a class=article-tag href=/tag/synchronized target=_blank><i class="fa fa-tag"></i>synchronized</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/java/synchronized/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/java/cas/ target=_blank>[Java] CAS(Compare And Swap)</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

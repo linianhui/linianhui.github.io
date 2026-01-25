@@ -1,0 +1,792 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[K8S] Install - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/k8s/ target=_blank>[K8S]</a></section><section class="toc-page selected"><span class=toc-page-title>[K8S] Install</span><nav id=TableOfContents><ul><li><a href=#requirements>1. 前提要求</a><ul><li><a href=#requirements-hardware>1.1 硬件要求</a></li><li><a href=#requirements-hostnam-unique>1.2 软件要求</a></li></ul></li><li><a href=#docker>2. 安装Docker</a></li><li><a href=#kubeadm>3. 安装Kubeadm</a></li><li><a href=#master>4. 初始化Master节点</a></li><li><a href=#worker>5. 初始化Worker节点</a></li><li><a href=#cni>6. 部署网络插件</a></li><li><a href=#dashboard>7. 部署dashboard</a></li><li><a href=#debug>8. Debug</a></li><li><a href=#reference>9. Reference</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/k8s/networking-flannel/ target=_blank>[K8S] Networking - Flannel</a></section><section class=toc-page><a class=toc-page-title href=/k8s/key-concept-pod/ target=_blank>[K8S] 核心概念 02 - Pod</a></section><section class=toc-page><a class=toc-page-title href=/k8s/kubectl/ target=_blank>[K8S] kubectl</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[K8S] Install</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2018-12-13 23:21，约2602字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/k8s/ title=[K8S] target=_blank><i class="fa fa-folder"></i>[K8S]</a></section><section class=article-tags><a class=article-tag href=/tag/dashboard target=_blank><i class="fa fa-tag"></i>dashboard</a>
+<a class=article-tag href=/tag/flannel target=_blank><i class="fa fa-tag"></i>flannel</a>
+<a class=article-tag href=/tag/k8s target=_blank><i class="fa fa-tag"></i>K8S</a>
+<a class=article-tag href=/tag/kubeadm target=_blank><i class="fa fa-tag"></i>kubeadm</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/75915849ccf72755e565d8955845d03e5f5948df target=_blank><i class="fa fa-code-fork"></i>7591584</a>
+<span class=article-git-commit-subject>Rename file param to path</span>
+<span class=article-git-commit-time>2021-03-14 09:27</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/k8s/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>kubeadm是k8s的command-line工具，用来创建和维护k8s集群。</p><h1 id=requirements><i id=locator-requirements class=header-locator></i>
+<a href=#requirements class=article-h-a>1. 前提要求</a></h1><table><thead><tr><th style=text-align:left>role</th><th style=text-align:left>hostname</th><th style=text-align:left>fixed ip</th><th style=text-align:left>os</th><th style=text-align:left>cpu</th><th style=text-align:left>memory</th></tr></thead><tbody><tr><td style=text-align:left>master</td><td style=text-align:left>k8s-master-1</td><td style=text-align:left>192.168.2.211</td><td style=text-align:left>ubuntu server 18.04.4</td><td style=text-align:left>2</td><td style=text-align:left>4G</td></tr><tr><td style=text-align:left>worker</td><td style=text-align:left>k8s-worker-1</td><td style=text-align:left>192.168.2.212</td><td style=text-align:left>ubuntu server 18.04.4</td><td style=text-align:left>2</td><td style=text-align:left>4G</td></tr><tr><td style=text-align:left>worker</td><td style=text-align:left>k8s-worker-2</td><td style=text-align:left>192.168.2.213</td><td style=text-align:left>ubuntu server 18.04.4</td><td style=text-align:left>2</td><td style=text-align:left>4G</td></tr></tbody></table><h2 id=requirements-hardware><i id=locator-requirements-hardware class=header-locator></i>
+<a href=#requirements-hardware class=article-h-a>1.1 硬件要求</a></h2><ol><li>至少2核CPU。</li><li>至少2G的内存。</li><li>每个node都有固定的IP，并且可以直联（无NAT）。</li></ol><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># 查看CPU核心数</span>
+</span></span><span style=display:flex><span>cat /proc/cpuinfo | grep  processor | wc -l
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看内存大小</span>
+</span></span><span style=display:flex><span>free -h
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看ip</span>
+</span></span><span style=display:flex><span>ip a
+</span></span></code></pre></div><h2 id=requirements-hostnam-unique><i id=locator-requirements-hostnam-unique class=header-locator></i>
+<a href=#requirements-hostnam-unique class=article-h-a>1.2 软件要求</a></h2><ol><li>hostname唯一，并且不包含<code>.</code>、<code>_</code>和大写字母。</li><li>为k8s相关的服务配置防火墙，这里图省事，直接关闭防火墙。</li><li>关闭Swap内存（k8s为了性能考虑，不允许开启Swap）。</li></ol><div class="highlight-file highlight-file_opened" id=hf-502deb8eff5b2c67b8436f1cd49a755e><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-502deb8eff5b2c67b8436f1cd49a755e","highlight-file_opened")'>init-node.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/init-node.sh title="下载 init-node.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/init-node.sh title="源码 init-node.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -x
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cat <span style=color:#a31515>&lt;&lt;-EOF &gt;&gt; /etc/hosts
+</span></span></span><span style=display:flex><span><span style=color:#a31515>192.168.2.211 api-server.k8s.test
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 禁用防火墙</span>
+</span></span><span style=display:flex><span><span style=color:green># ubuntu</span>
+</span></span><span style=display:flex><span>ufw disable
+</span></span><span style=display:flex><span><span style=color:green># centos</span>
+</span></span><span style=display:flex><span>systemctl stop firewalld
+</span></span><span style=display:flex><span>systemctl disable firewalld
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 禁用swap</span>
+</span></span><span style=display:flex><span>sudo swapoff -a
+</span></span><span style=display:flex><span><span style=color:green># 永久禁用swap</span>
+</span></span><span style=display:flex><span>cat /etc/fstab
+</span></span><span style=display:flex><span>cat /etc/fstab | grep -v swap &gt; /etc/fstab
+</span></span><span style=display:flex><span>cat /etc/fstab
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 永久禁用SELINUX</span>
+</span></span><span style=display:flex><span>tee <span style=color:#a31515>&lt;&lt;-EOF /etc/selinux/config
+</span></span></span><span style=display:flex><span><span style=color:#a31515>SELINUX=disabled
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 开启overlay和br_netfilter模块</span>
+</span></span><span style=display:flex><span>cat <span style=color:#a31515>&lt;&lt;-EOF &gt; /etc/modules-load.d/k8s.conf
+</span></span></span><span style=display:flex><span><span style=color:#a31515>overlay
+</span></span></span><span style=display:flex><span><span style=color:#a31515>br_netfilter
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>modprobe overlay
+</span></span><span style=display:flex><span>modprobe br_netfilter
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 开启ipv4 forward</span>
+</span></span><span style=display:flex><span>cat <span style=color:#a31515>&lt;&lt;-EOF &gt; /etc/sysctl.d/k8s.conf
+</span></span></span><span style=display:flex><span><span style=color:#a31515>net.bridge.bridge-nf-call-iptables  = 1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>net.ipv4.ip_forward                 = 1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>sysctl --system
+</span></span></code></pre></div></div></div><h1 id=docker><i id=locator-docker class=header-locator></i>
+<a href=#docker class=article-h-a>2. 安装Docker</a></h1><p><a href=/docker/install target=_blank rel="noopener norefferrer">安装Docker</a></p><h1 id=kubeadm><i id=locator-kubeadm class=header-locator></i>
+<a href=#kubeadm class=article-h-a>3. 安装Kubeadm</a></h1><div class="highlight-file highlight-file_opened" id=hf-ca161175359423e5dbcbd07646ffc6b6><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-ca161175359423e5dbcbd07646ffc6b6","highlight-file_opened")'>kubeadm.sh</a><a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/kubeadm.sh title="下载 kubeadm.sh" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/kubeadm.sh title="源码 kubeadm.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span>apt install -y apt-transport-https
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>curl -fsSL https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>tee <span style=color:#a31515>&lt;&lt;-EOF /etc/apt/sources.list.d/kubernetes.list
+</span></span></span><span style=display:flex><span><span style=color:#a31515>deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span><span style=color:green># 安装kubeadm kubelet kubectl</span>
+</span></span><span style=display:flex><span>apt install -y kubeadm-1.18.3 kubelet-1.18.3 kubectl-1.18.3
+</span></span></code></pre></div></div></div><h1 id=master><i id=locator-master class=header-locator></i>
+<a href=#master class=article-h-a>4. 初始化Master节点</a></h1><p>上述步骤需要在每个node上都执行。本步骤只需在master上执行即可。集群配置文件</p><div class="highlight-file highlight-file_opened" id=hf-69c5e4143a3a46b269a18efe6b45e84c><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-69c5e4143a3a46b269a18efe6b45e84c","highlight-file_opened")'>kubeadm.init-config.yml</a><a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/kubeadm.init-config.yml title="下载 kubeadm.init-config.yml" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/kubeadm.init-config.yml title="源码 kubeadm.init-config.yml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:green># 文档 : https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file</span>
+</span></span><span style=display:flex><span><span style=color:green># 查看默认配置 : kubeadm config print init-defaults</span>
+</span></span><span style=display:flex><span><span style=color:green># 安装 : kubeadm init --config kubeadm.init-config.yml --upload-certs -v=5</span>
+</span></span><span style=display:flex><span>apiVersion: kubeadm.k8s.io/v1beta2
+</span></span><span style=display:flex><span>kind: ClusterConfiguration
+</span></span><span style=display:flex><span><span style=color:green># 版本</span>
+</span></span><span style=display:flex><span>kubernetesVersion: v1.18.3
+</span></span><span style=display:flex><span><span style=color:green># 集群名称</span>
+</span></span><span style=display:flex><span>clusterName: k8s
+</span></span><span style=display:flex><span><span style=color:green># 内部组件的镜像仓库</span>
+</span></span><span style=display:flex><span>imageRepository: registry.aliyuncs.com/google_containers
+</span></span><span style=display:flex><span><span style=color:green># 使用CoreDNS</span>
+</span></span><span style=display:flex><span>dns:
+</span></span><span style=display:flex><span>  type: CoreDNS
+</span></span><span style=display:flex><span><span style=color:green># API SERVER组件的服务地址，worker节点通过这个地址和master通信</span>
+</span></span><span style=display:flex><span>controlPlaneEndpoint: api-server.k8s.test:6443
+</span></span><span style=display:flex><span><span style=color:green># 笔者的环境 : k8s的node节点使用C类私有IP=192.168.0.0/16; Service使用B类私有IP=172.16.0.0/12; Pod使用A类私有IP=10.0.0.0/8</span>
+</span></span><span style=display:flex><span>networking:
+</span></span><span style=display:flex><span>  <span style=color:green># Pod的网络地址范围，/16最多可以给65536个Pod分配IP。</span>
+</span></span><span style=display:flex><span>  podSubnet: 10.1.0.1/16
+</span></span><span style=display:flex><span>  <span style=color:green># Service的网络地址范围，/24最多可以给256个Service分配IP。</span>
+</span></span><span style=display:flex><span>  serviceSubnet: 172.16.1.0/24
+</span></span><span style=display:flex><span>  <span style=color:green># 默认的顶级域名</span>
+</span></span><span style=display:flex><span>  dnsDomain: cluster.local
+</span></span></code></pre></div></div></div><p>初始化命令:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>wget https://linianhui.github.io/k8s/install/kubeadm.init-config.yml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>kubeadm init --config kubeadm.init-config.yml --upload-certs -v=5
+</span></span></code></pre></div><p>成功后会查看node:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubectl get nodes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 输出</span>
+</span></span><span style=display:flex><span>NAME           STATUS     ROLES    AGE   VERSION
+</span></span><span style=display:flex><span>k8s-master-1   Ready      master   2m    v1.18.1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 获取kubeadm join命令</span>
+</span></span><span style=display:flex><span>kubeadm token create --print-join-command
+</span></span></code></pre></div><h1 id=worker><i id=locator-worker class=header-locator></i>
+<a href=#worker class=article-h-a>5. 初始化Worker节点</a></h1><p>本步骤只需分别在worker上执行即可。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># 示例kubeadm join命令</span>
+</span></span><span style=display:flex><span>kubeadm join api-server.k8s.test:6443 --token opomfo.nd0dkto8ye006hda --discovery-token-ca-cert-hash sha256:da3764c85a4727de39d674f93a976c617f15f49ca11b2a68bc850c5789
+</span></span></code></pre></div><p>成功后会查看node:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubectl get nodes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 输出</span>
+</span></span><span style=display:flex><span>NAME           STATUS   ROLES    AGE     VERSION
+</span></span><span style=display:flex><span>k8s-master-1   Ready    master   3m21s   v1.18.3
+</span></span><span style=display:flex><span>k8s-worker-1   Ready    &lt;none&gt;   112s    v1.18.3
+</span></span><span style=display:flex><span>k8s-worker-2   Ready    &lt;none&gt;   108s    v1.18.3
+</span></span></code></pre></div><h1 id=cni><i id=locator-cni class=header-locator></i>
+<a href=#cni class=article-h-a>6. 部署网络插件</a></h1><p>部署<code>flannel</code>网络插件。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubectl apply -f https://linianhui.github.io/k8s/install/flannel.yml
+</span></span></code></pre></div><p>参考 :</p><ol><li><a href=https://github.com/coreos/flannel target=_blank rel="noopener norefferrer">https://github.com/coreos/flannel</a></li></ol><h1 id=dashboard><i id=locator-dashboard class=header-locator></i>
+<a href=#dashboard class=article-h-a>7. 部署dashboard</a></h1><p>部署<code>metrics-server</code>和<code>dashboard</code>。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># 检查flannel是否部署完成，部署完成后再部署dashboard。 </span>
+</span></span><span style=display:flex><span>kubectl get pods -A
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 部署监控服务</span>
+</span></span><span style=display:flex><span>kubectl apply -f https://linianhui.github.io/k8s/install/metrics-server.yml
+</span></span><span style=display:flex><span><span style=color:green># 部署dashboard</span>
+</span></span><span style=display:flex><span>kubectl apply -f https://linianhui.github.io/k8s/install/dashboard.yml
+</span></span></code></pre></div><p>部署完成后dashboard的端口号为<code>30080</code>。笔者的地址为 : <a href=http://192.168.2.211:30080 target=_blank rel="noopener norefferrer">http://192.168.2.211:30080</a></p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># 获取访问dashboard的token</span>
+</span></span><span style=display:flex><span>kubectl -n kube-dashboard describe secret kube-dashboard-admin-token
+</span></span></code></pre></div><p>参考 :</p><ol><li><a href=https://github.com/kubernetes-sigs/metrics-server target=_blank rel="noopener norefferrer">https://github.com/kubernetes-sigs/metrics-server</a></li><li><a href=https://github.com/kubernetes/dashboard target=_blank rel="noopener norefferrer">https://github.com/kubernetes/dashboard</a></li></ol><h1 id=debug><i id=locator-debug class=header-locator></i>
+<a href=#debug class=article-h-a>8. Debug</a></h1><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>kubectl run -it --image=lnhcode/tool --restart=Never --command --rm -- sh
+</span></span></code></pre></div><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>9. Reference</a></h1><div class=highlight-files><div class=highlight-files-header>sh文件列表</div><div class=highlight-files-list><div class=highlight-file id=hfs-502deb8eff5b2c67b8436f1cd49a755e><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-502deb8eff5b2c67b8436f1cd49a755e","highlight-file_opened")'>init-node.sh</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/init-node.sh title="下载 init-node.sh" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/init-node.sh title="源码 init-node.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set -x
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cat <span style=color:#a31515>&lt;&lt;-EOF &gt;&gt; /etc/hosts
+</span></span></span><span style=display:flex><span><span style=color:#a31515>192.168.2.211 api-server.k8s.test
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 禁用防火墙</span>
+</span></span><span style=display:flex><span><span style=color:green># ubuntu</span>
+</span></span><span style=display:flex><span>ufw disable
+</span></span><span style=display:flex><span><span style=color:green># centos</span>
+</span></span><span style=display:flex><span>systemctl stop firewalld
+</span></span><span style=display:flex><span>systemctl disable firewalld
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 禁用swap</span>
+</span></span><span style=display:flex><span>sudo swapoff -a
+</span></span><span style=display:flex><span><span style=color:green># 永久禁用swap</span>
+</span></span><span style=display:flex><span>cat /etc/fstab
+</span></span><span style=display:flex><span>cat /etc/fstab | grep -v swap &gt; /etc/fstab
+</span></span><span style=display:flex><span>cat /etc/fstab
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 永久禁用SELINUX</span>
+</span></span><span style=display:flex><span>tee <span style=color:#a31515>&lt;&lt;-EOF /etc/selinux/config
+</span></span></span><span style=display:flex><span><span style=color:#a31515>SELINUX=disabled
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 开启overlay和br_netfilter模块</span>
+</span></span><span style=display:flex><span>cat <span style=color:#a31515>&lt;&lt;-EOF &gt; /etc/modules-load.d/k8s.conf
+</span></span></span><span style=display:flex><span><span style=color:#a31515>overlay
+</span></span></span><span style=display:flex><span><span style=color:#a31515>br_netfilter
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>modprobe overlay
+</span></span><span style=display:flex><span>modprobe br_netfilter
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 开启ipv4 forward</span>
+</span></span><span style=display:flex><span>cat <span style=color:#a31515>&lt;&lt;-EOF &gt; /etc/sysctl.d/k8s.conf
+</span></span></span><span style=display:flex><span><span style=color:#a31515>net.bridge.bridge-nf-call-iptables  = 1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>net.ipv4.ip_forward                 = 1
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>sysctl --system
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-ca161175359423e5dbcbd07646ffc6b6><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-ca161175359423e5dbcbd07646ffc6b6","highlight-file_opened")'>kubeadm.sh</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/kubeadm.sh title="下载 kubeadm.sh" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/kubeadm.sh title="源码 kubeadm.sh"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>set -eux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span>apt install -y apt-transport-https
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>curl -fsSL https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>tee <span style=color:#a31515>&lt;&lt;-EOF /etc/apt/sources.list.d/kubernetes.list
+</span></span></span><span style=display:flex><span><span style=color:#a31515>deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+</span></span></span><span style=display:flex><span><span style=color:#a31515>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apt update -y
+</span></span><span style=display:flex><span><span style=color:green># 安装kubeadm kubelet kubectl</span>
+</span></span><span style=display:flex><span>apt install -y kubeadm-1.18.3 kubelet-1.18.3 kubectl-1.18.3
+</span></span></code></pre></div></div></div></div></div><div class=highlight-files><div class=highlight-files-header>yml文件列表</div><div class=highlight-files-list><div class=highlight-file id=hfs-d82b49cdc28a772c899c65fe68c1e627><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-d82b49cdc28a772c899c65fe68c1e627","highlight-file_opened")'>dashboard.yml</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/dashboard.yml title="下载 dashboard.yml" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/dashboard.yml title="源码 dashboard.yml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:green># https://github.com/kubernetes/dashboard/blob/master/aio/deploy/recommended.yaml</span>
+</span></span><span style=display:flex><span><span style=color:green># kubectl apply -f metrics-server.yml</span>
+</span></span><span style=display:flex><span><span style=color:green># kubectl apply -f dashboard.yml</span>
+</span></span><span style=display:flex><span><span style=color:green># kubectl -n kube-dashboard describe secret kube-dashboard-admin-token</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: Namespace
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: kube-dashboard
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: ServiceAccount
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: kube-dashboard-admin
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: rbac.authorization.k8s.io/v1beta1
+</span></span><span style=display:flex><span>kind: ClusterRoleBinding
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: kube-dashboard
+</span></span><span style=display:flex><span>roleRef:
+</span></span><span style=display:flex><span>  apiGroup: rbac.authorization.k8s.io
+</span></span><span style=display:flex><span>  kind: ClusterRole
+</span></span><span style=display:flex><span>  name: cluster-admin
+</span></span><span style=display:flex><span>subjects:
+</span></span><span style=display:flex><span>  - kind: ServiceAccount
+</span></span><span style=display:flex><span>    name: kube-dashboard-admin
+</span></span><span style=display:flex><span>    namespace: kube-dashboard
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: Secret
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    app: kube-dashboard
+</span></span><span style=display:flex><span>  <span style=color:green># hard code : https://github.com/kubernetes/dashboard/blob/master/src/app/backend/auth/api/types.go#L28</span>
+</span></span><span style=display:flex><span>  name: kubernetes-dashboard-certs
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>type: Opaque
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: Secret
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    app: kube-dashboard
+</span></span><span style=display:flex><span>  <span style=color:green># hard code : https://github.com/kubernetes/dashboard/blob/master/src/app/backend/client/api/types.go#L33</span>
+</span></span><span style=display:flex><span>  name: kubernetes-dashboard-csrf
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>type: Opaque
+</span></span><span style=display:flex><span>data:
+</span></span><span style=display:flex><span>  csrf: <span style=color:#a31515>&#39;&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: Secret
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    app: kube-dashboard
+</span></span><span style=display:flex><span>  <span style=color:green># hard code : https://github.com/kubernetes/dashboard/blob/master/src/app/backend/auth/api/types.go#L25</span>
+</span></span><span style=display:flex><span>  name: kubernetes-dashboard-key-holder
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>type: Opaque
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>kind: Deployment
+</span></span><span style=display:flex><span>apiVersion: apps/v1
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    app: dashboard-ui
+</span></span><span style=display:flex><span>  name: dashboard-ui
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  replicas: 1
+</span></span><span style=display:flex><span>  revisionHistoryLimit: 10
+</span></span><span style=display:flex><span>  selector:
+</span></span><span style=display:flex><span>    matchLabels:
+</span></span><span style=display:flex><span>      app: dashboard-ui
+</span></span><span style=display:flex><span>  template:
+</span></span><span style=display:flex><span>    metadata:
+</span></span><span style=display:flex><span>      labels:
+</span></span><span style=display:flex><span>        app: dashboard-ui
+</span></span><span style=display:flex><span>    spec:
+</span></span><span style=display:flex><span>      containers:
+</span></span><span style=display:flex><span>        - name: dashboard-ui
+</span></span><span style=display:flex><span>          <span style=color:green># https://hub.docker.com/r/kubernetesui/dashboard</span>
+</span></span><span style=display:flex><span>          image: kubernetesui/dashboard:v2.3.1
+</span></span><span style=display:flex><span>          imagePullPolicy: Always
+</span></span><span style=display:flex><span>          ports:
+</span></span><span style=display:flex><span>            - containerPort: 8443
+</span></span><span style=display:flex><span>              protocol: TCP
+</span></span><span style=display:flex><span>          <span style=color:green># https://github.com/kubernetes/dashboard/blob/master/docs/common/dashboard-arguments.md</span>
+</span></span><span style=display:flex><span>          args:
+</span></span><span style=display:flex><span>            - --auto-generate-certificates
+</span></span><span style=display:flex><span>            - --namespace=kube-dashboard
+</span></span><span style=display:flex><span>          volumeMounts:
+</span></span><span style=display:flex><span>            - name: kubernetes-dashboard-certs
+</span></span><span style=display:flex><span>              mountPath: /certs
+</span></span><span style=display:flex><span>            - name: tmp
+</span></span><span style=display:flex><span>              mountPath: /tmp
+</span></span><span style=display:flex><span>          livenessProbe:
+</span></span><span style=display:flex><span>            httpGet:
+</span></span><span style=display:flex><span>              scheme: HTTPS
+</span></span><span style=display:flex><span>              path: /
+</span></span><span style=display:flex><span>              port: 8443
+</span></span><span style=display:flex><span>            initialDelaySeconds: 30
+</span></span><span style=display:flex><span>            timeoutSeconds: 30
+</span></span><span style=display:flex><span>      volumes:
+</span></span><span style=display:flex><span>        - name: kubernetes-dashboard-certs
+</span></span><span style=display:flex><span>          secret:
+</span></span><span style=display:flex><span>            secretName: kubernetes-dashboard-certs
+</span></span><span style=display:flex><span>        - name: tmp
+</span></span><span style=display:flex><span>          emptyDir: {}
+</span></span><span style=display:flex><span>      serviceAccountName: kube-dashboard-admin
+</span></span><span style=display:flex><span>      tolerations:
+</span></span><span style=display:flex><span>        - key: node-role.kubernetes.io/master
+</span></span><span style=display:flex><span>          effect: NoSchedule
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>kind: Service
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    app: dashboard-ui
+</span></span><span style=display:flex><span>  name: dashboard-ui
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  type: NodePort
+</span></span><span style=display:flex><span>  ports:
+</span></span><span style=display:flex><span>    - port: 443
+</span></span><span style=display:flex><span>      targetPort: 8443
+</span></span><span style=display:flex><span>      nodePort: 30080
+</span></span><span style=display:flex><span>  selector:
+</span></span><span style=display:flex><span>    app: dashboard-ui
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>kind: Deployment
+</span></span><span style=display:flex><span>apiVersion: apps/v1
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    app: dashboard-metrics-scraper
+</span></span><span style=display:flex><span>  name: dashboard-metrics-scraper
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  replicas: 1
+</span></span><span style=display:flex><span>  revisionHistoryLimit: 10
+</span></span><span style=display:flex><span>  selector:
+</span></span><span style=display:flex><span>    matchLabels:
+</span></span><span style=display:flex><span>      app: dashboard-metrics-scraper
+</span></span><span style=display:flex><span>  template:
+</span></span><span style=display:flex><span>    metadata:
+</span></span><span style=display:flex><span>      labels:
+</span></span><span style=display:flex><span>        app: dashboard-metrics-scraper
+</span></span><span style=display:flex><span>      annotations:
+</span></span><span style=display:flex><span>        seccomp.security.alpha.kubernetes.io/pod: <span style=color:#a31515>&#39;runtime/default&#39;</span>
+</span></span><span style=display:flex><span>    spec:
+</span></span><span style=display:flex><span>      containers:
+</span></span><span style=display:flex><span>        - name: dashboard-metrics-scraper
+</span></span><span style=display:flex><span>          image: kubernetesui/metrics-scraper:v1.0.4
+</span></span><span style=display:flex><span>          ports:
+</span></span><span style=display:flex><span>            - containerPort: 8000
+</span></span><span style=display:flex><span>              protocol: TCP
+</span></span><span style=display:flex><span>          livenessProbe:
+</span></span><span style=display:flex><span>            httpGet:
+</span></span><span style=display:flex><span>              scheme: HTTP
+</span></span><span style=display:flex><span>              path: /
+</span></span><span style=display:flex><span>              port: 8000
+</span></span><span style=display:flex><span>            initialDelaySeconds: 30
+</span></span><span style=display:flex><span>            timeoutSeconds: 30
+</span></span><span style=display:flex><span>          volumeMounts:
+</span></span><span style=display:flex><span>            - mountPath: /tmp
+</span></span><span style=display:flex><span>              name: tmp-volume
+</span></span><span style=display:flex><span>          securityContext:
+</span></span><span style=display:flex><span>            allowPrivilegeEscalation: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>            readOnlyRootFilesystem: <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>            runAsUser: 1001
+</span></span><span style=display:flex><span>            runAsGroup: 2001
+</span></span><span style=display:flex><span>      serviceAccountName: kube-dashboard-admin
+</span></span><span style=display:flex><span>      nodeSelector:
+</span></span><span style=display:flex><span>        &#39;beta.kubernetes.io/os&#39;: linux
+</span></span><span style=display:flex><span>      <span style=color:green># Comment the following tolerations if Dashboard must not be deployed on master</span>
+</span></span><span style=display:flex><span>      tolerations:
+</span></span><span style=display:flex><span>        - key: node-role.kubernetes.io/master
+</span></span><span style=display:flex><span>          effect: NoSchedule
+</span></span><span style=display:flex><span>      volumes:
+</span></span><span style=display:flex><span>        - name: tmp-volume
+</span></span><span style=display:flex><span>          emptyDir: {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>kind: Service
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    app: dashboard-metrics-scraper
+</span></span><span style=display:flex><span>  name: dashboard-metrics-scraper
+</span></span><span style=display:flex><span>  namespace: kube-dashboard
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  ports:
+</span></span><span style=display:flex><span>    - port: 8000
+</span></span><span style=display:flex><span>      targetPort: 8000
+</span></span><span style=display:flex><span>  selector:
+</span></span><span style=display:flex><span>    app: dashboard-metrics-scraper
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-1f00c06cd91221cc11ad0770c22a9aaa><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-1f00c06cd91221cc11ad0770c22a9aaa","highlight-file_opened")'>flannel.yml</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/flannel.yml title="下载 flannel.yml" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/flannel.yml title="源码 flannel.yml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:green># https://github.com/coreos/flannel</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: policy/v1beta1
+</span></span><span style=display:flex><span>kind: PodSecurityPolicy
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: psp.flannel.unprivileged
+</span></span><span style=display:flex><span>  annotations:
+</span></span><span style=display:flex><span>    seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default
+</span></span><span style=display:flex><span>    seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default
+</span></span><span style=display:flex><span>    apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default
+</span></span><span style=display:flex><span>    apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  privileged: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  volumes:
+</span></span><span style=display:flex><span>    - configMap
+</span></span><span style=display:flex><span>    - secret
+</span></span><span style=display:flex><span>    - emptyDir
+</span></span><span style=display:flex><span>    - hostPath
+</span></span><span style=display:flex><span>  allowedHostPaths:
+</span></span><span style=display:flex><span>    - pathPrefix: <span style=color:#a31515>&#39;/etc/cni/net.d&#39;</span>
+</span></span><span style=display:flex><span>    - pathPrefix: <span style=color:#a31515>&#39;/etc/kube-flannel&#39;</span>
+</span></span><span style=display:flex><span>    - pathPrefix: <span style=color:#a31515>&#39;/run/flannel&#39;</span>
+</span></span><span style=display:flex><span>  readOnlyRootFilesystem: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  <span style=color:green># Users and groups</span>
+</span></span><span style=display:flex><span>  runAsUser:
+</span></span><span style=display:flex><span>    rule: RunAsAny
+</span></span><span style=display:flex><span>  supplementalGroups:
+</span></span><span style=display:flex><span>    rule: RunAsAny
+</span></span><span style=display:flex><span>  fsGroup:
+</span></span><span style=display:flex><span>    rule: RunAsAny
+</span></span><span style=display:flex><span>  <span style=color:green># Privilege Escalation</span>
+</span></span><span style=display:flex><span>  allowPrivilegeEscalation: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  defaultAllowPrivilegeEscalation: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  <span style=color:green># Capabilities</span>
+</span></span><span style=display:flex><span>  allowedCapabilities: [<span style=color:#a31515>&#39;NET_ADMIN&#39;</span>]
+</span></span><span style=display:flex><span>  defaultAddCapabilities: []
+</span></span><span style=display:flex><span>  requiredDropCapabilities: []
+</span></span><span style=display:flex><span>  <span style=color:green># Host namespaces</span>
+</span></span><span style=display:flex><span>  hostPID: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  hostIPC: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>  hostNetwork: <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>  hostPorts:
+</span></span><span style=display:flex><span>    - min: 0
+</span></span><span style=display:flex><span>      max: 65535
+</span></span><span style=display:flex><span>  <span style=color:green># SELinux</span>
+</span></span><span style=display:flex><span>  seLinux:
+</span></span><span style=display:flex><span>    <span style=color:green># SELinux is unused in CaaSP</span>
+</span></span><span style=display:flex><span>    rule: <span style=color:#a31515>&#39;RunAsAny&#39;</span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>kind: ClusterRole
+</span></span><span style=display:flex><span>apiVersion: rbac.authorization.k8s.io/v1beta1
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: flannel
+</span></span><span style=display:flex><span>rules:
+</span></span><span style=display:flex><span>  - apiGroups: [<span style=color:#a31515>&#39;extensions&#39;</span>]
+</span></span><span style=display:flex><span>    resources: [<span style=color:#a31515>&#39;podsecuritypolicies&#39;</span>]
+</span></span><span style=display:flex><span>    verbs: [<span style=color:#a31515>&#39;use&#39;</span>]
+</span></span><span style=display:flex><span>    resourceNames: [<span style=color:#a31515>&#39;psp.flannel.unprivileged&#39;</span>]
+</span></span><span style=display:flex><span>  - apiGroups:
+</span></span><span style=display:flex><span>      - <span style=color:#a31515>&#39;&#39;</span>
+</span></span><span style=display:flex><span>    resources:
+</span></span><span style=display:flex><span>      - pods
+</span></span><span style=display:flex><span>    verbs:
+</span></span><span style=display:flex><span>      - get
+</span></span><span style=display:flex><span>  - apiGroups:
+</span></span><span style=display:flex><span>      - <span style=color:#a31515>&#39;&#39;</span>
+</span></span><span style=display:flex><span>    resources:
+</span></span><span style=display:flex><span>      - nodes
+</span></span><span style=display:flex><span>    verbs:
+</span></span><span style=display:flex><span>      - list
+</span></span><span style=display:flex><span>      - watch
+</span></span><span style=display:flex><span>  - apiGroups:
+</span></span><span style=display:flex><span>      - <span style=color:#a31515>&#39;&#39;</span>
+</span></span><span style=display:flex><span>    resources:
+</span></span><span style=display:flex><span>      - nodes/status
+</span></span><span style=display:flex><span>    verbs:
+</span></span><span style=display:flex><span>      - patch
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>kind: ClusterRoleBinding
+</span></span><span style=display:flex><span>apiVersion: rbac.authorization.k8s.io/v1beta1
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: flannel
+</span></span><span style=display:flex><span>roleRef:
+</span></span><span style=display:flex><span>  apiGroup: rbac.authorization.k8s.io
+</span></span><span style=display:flex><span>  kind: ClusterRole
+</span></span><span style=display:flex><span>  name: flannel
+</span></span><span style=display:flex><span>subjects:
+</span></span><span style=display:flex><span>  - kind: ServiceAccount
+</span></span><span style=display:flex><span>    name: flannel
+</span></span><span style=display:flex><span>    namespace: kube-system
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: ServiceAccount
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: flannel
+</span></span><span style=display:flex><span>  namespace: kube-system
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>kind: ConfigMap
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: kube-flannel-cfg
+</span></span><span style=display:flex><span>  namespace: kube-system
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    tier: node
+</span></span><span style=display:flex><span>    app: flannel
+</span></span><span style=display:flex><span>data:
+</span></span><span style=display:flex><span>  cni-conf.json: |<span style=color:#a31515>
+</span></span></span><span style=display:flex><span><span style=color:#a31515>    {
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      &#34;name&#34;: &#34;cbr0&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      &#34;cniVersion&#34;: &#34;0.3.1&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      &#34;plugins&#34;: [
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        {
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          &#34;type&#34;: &#34;flannel&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          &#34;delegate&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#a31515>            &#34;hairpinMode&#34;: true,
+</span></span></span><span style=display:flex><span><span style=color:#a31515>            &#34;isDefaultGateway&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          }
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        },
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        {
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          &#34;type&#34;: &#34;portmap&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          &#34;capabilities&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#a31515>            &#34;portMappings&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#a31515>          }
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        }
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      ]
+</span></span></span><span style=display:flex><span><span style=color:#a31515>    }</span>
+</span></span><span style=display:flex><span>  net-conf.json: |<span style=color:#a31515>
+</span></span></span><span style=display:flex><span><span style=color:#a31515>    {
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      &#34;Network&#34;: &#34;10.1.0.0/16&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      &#34;Backend&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#a31515>        &#34;Type&#34;: &#34;vxlan&#34;
+</span></span></span><span style=display:flex><span><span style=color:#a31515>      }
+</span></span></span><span style=display:flex><span><span style=color:#a31515>    }</span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: apps/v1
+</span></span><span style=display:flex><span>kind: DaemonSet
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: kube-flannel-ds-amd64
+</span></span><span style=display:flex><span>  namespace: kube-system
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    tier: node
+</span></span><span style=display:flex><span>    app: flannel
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  selector:
+</span></span><span style=display:flex><span>    matchLabels:
+</span></span><span style=display:flex><span>      app: flannel
+</span></span><span style=display:flex><span>  template:
+</span></span><span style=display:flex><span>    metadata:
+</span></span><span style=display:flex><span>      labels:
+</span></span><span style=display:flex><span>        tier: node
+</span></span><span style=display:flex><span>        app: flannel
+</span></span><span style=display:flex><span>    spec:
+</span></span><span style=display:flex><span>      affinity:
+</span></span><span style=display:flex><span>        nodeAffinity:
+</span></span><span style=display:flex><span>          requiredDuringSchedulingIgnoredDuringExecution:
+</span></span><span style=display:flex><span>            nodeSelectorTerms:
+</span></span><span style=display:flex><span>              - matchExpressions:
+</span></span><span style=display:flex><span>                  - key: kubernetes.io/os
+</span></span><span style=display:flex><span>                    operator: In
+</span></span><span style=display:flex><span>                    values:
+</span></span><span style=display:flex><span>                      - linux
+</span></span><span style=display:flex><span>                  - key: kubernetes.io/arch
+</span></span><span style=display:flex><span>                    operator: In
+</span></span><span style=display:flex><span>                    values:
+</span></span><span style=display:flex><span>                      - amd64
+</span></span><span style=display:flex><span>      hostNetwork: <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>      tolerations:
+</span></span><span style=display:flex><span>        - operator: Exists
+</span></span><span style=display:flex><span>          effect: NoSchedule
+</span></span><span style=display:flex><span>      serviceAccountName: flannel
+</span></span><span style=display:flex><span>      initContainers:
+</span></span><span style=display:flex><span>        - name: install-cni
+</span></span><span style=display:flex><span>          image: quay-mirror.qiniu.com/coreos/flannel:v0.12.0-amd64
+</span></span><span style=display:flex><span>          command:
+</span></span><span style=display:flex><span>            - cp
+</span></span><span style=display:flex><span>          args:
+</span></span><span style=display:flex><span>            - -f
+</span></span><span style=display:flex><span>            - /etc/kube-flannel/cni-conf.json
+</span></span><span style=display:flex><span>            - /etc/cni/net.d/10-flannel.conflist
+</span></span><span style=display:flex><span>          volumeMounts:
+</span></span><span style=display:flex><span>            - name: cni
+</span></span><span style=display:flex><span>              mountPath: /etc/cni/net.d
+</span></span><span style=display:flex><span>            - name: flannel-cfg
+</span></span><span style=display:flex><span>              mountPath: /etc/kube-flannel/
+</span></span><span style=display:flex><span>      containers:
+</span></span><span style=display:flex><span>        - name: kube-flannel
+</span></span><span style=display:flex><span>          image: quay-mirror.qiniu.com/coreos/flannel:v0.12.0-amd64
+</span></span><span style=display:flex><span>          command:
+</span></span><span style=display:flex><span>            - /opt/bin/flanneld
+</span></span><span style=display:flex><span>          args:
+</span></span><span style=display:flex><span>            - --ip-masq
+</span></span><span style=display:flex><span>            - --kube-subnet-mgr
+</span></span><span style=display:flex><span>          resources:
+</span></span><span style=display:flex><span>            requests:
+</span></span><span style=display:flex><span>              cpu: <span style=color:#a31515>&#39;100m&#39;</span>
+</span></span><span style=display:flex><span>              memory: <span style=color:#a31515>&#39;50Mi&#39;</span>
+</span></span><span style=display:flex><span>            limits:
+</span></span><span style=display:flex><span>              cpu: <span style=color:#a31515>&#39;100m&#39;</span>
+</span></span><span style=display:flex><span>              memory: <span style=color:#a31515>&#39;50Mi&#39;</span>
+</span></span><span style=display:flex><span>          securityContext:
+</span></span><span style=display:flex><span>            privileged: <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>            capabilities:
+</span></span><span style=display:flex><span>              add: [<span style=color:#a31515>&#39;NET_ADMIN&#39;</span>]
+</span></span><span style=display:flex><span>          env:
+</span></span><span style=display:flex><span>            - name: POD_NAME
+</span></span><span style=display:flex><span>              valueFrom:
+</span></span><span style=display:flex><span>                fieldRef:
+</span></span><span style=display:flex><span>                  fieldPath: metadata.name
+</span></span><span style=display:flex><span>            - name: POD_NAMESPACE
+</span></span><span style=display:flex><span>              valueFrom:
+</span></span><span style=display:flex><span>                fieldRef:
+</span></span><span style=display:flex><span>                  fieldPath: metadata.namespace
+</span></span><span style=display:flex><span>          volumeMounts:
+</span></span><span style=display:flex><span>            - name: run
+</span></span><span style=display:flex><span>              mountPath: /run/flannel
+</span></span><span style=display:flex><span>            - name: flannel-cfg
+</span></span><span style=display:flex><span>              mountPath: /etc/kube-flannel/
+</span></span><span style=display:flex><span>      volumes:
+</span></span><span style=display:flex><span>        - name: run
+</span></span><span style=display:flex><span>          hostPath:
+</span></span><span style=display:flex><span>            path: /run/flannel
+</span></span><span style=display:flex><span>        - name: cni
+</span></span><span style=display:flex><span>          hostPath:
+</span></span><span style=display:flex><span>            path: /etc/cni/net.d
+</span></span><span style=display:flex><span>        - name: flannel-cfg
+</span></span><span style=display:flex><span>          configMap:
+</span></span><span style=display:flex><span>            name: kube-flannel-cfg</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-69c5e4143a3a46b269a18efe6b45e84c><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-69c5e4143a3a46b269a18efe6b45e84c","highlight-file_opened")'>kubeadm.init-config.yml</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/kubeadm.init-config.yml title="下载 kubeadm.init-config.yml" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/kubeadm.init-config.yml title="源码 kubeadm.init-config.yml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:green># 文档 : https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file</span>
+</span></span><span style=display:flex><span><span style=color:green># 查看默认配置 : kubeadm config print init-defaults</span>
+</span></span><span style=display:flex><span><span style=color:green># 安装 : kubeadm init --config kubeadm.init-config.yml --upload-certs -v=5</span>
+</span></span><span style=display:flex><span>apiVersion: kubeadm.k8s.io/v1beta2
+</span></span><span style=display:flex><span>kind: ClusterConfiguration
+</span></span><span style=display:flex><span><span style=color:green># 版本</span>
+</span></span><span style=display:flex><span>kubernetesVersion: v1.18.3
+</span></span><span style=display:flex><span><span style=color:green># 集群名称</span>
+</span></span><span style=display:flex><span>clusterName: k8s
+</span></span><span style=display:flex><span><span style=color:green># 内部组件的镜像仓库</span>
+</span></span><span style=display:flex><span>imageRepository: registry.aliyuncs.com/google_containers
+</span></span><span style=display:flex><span><span style=color:green># 使用CoreDNS</span>
+</span></span><span style=display:flex><span>dns:
+</span></span><span style=display:flex><span>  type: CoreDNS
+</span></span><span style=display:flex><span><span style=color:green># API SERVER组件的服务地址，worker节点通过这个地址和master通信</span>
+</span></span><span style=display:flex><span>controlPlaneEndpoint: api-server.k8s.test:6443
+</span></span><span style=display:flex><span><span style=color:green># 笔者的环境 : k8s的node节点使用C类私有IP=192.168.0.0/16; Service使用B类私有IP=172.16.0.0/12; Pod使用A类私有IP=10.0.0.0/8</span>
+</span></span><span style=display:flex><span>networking:
+</span></span><span style=display:flex><span>  <span style=color:green># Pod的网络地址范围，/16最多可以给65536个Pod分配IP。</span>
+</span></span><span style=display:flex><span>  podSubnet: 10.1.0.1/16
+</span></span><span style=display:flex><span>  <span style=color:green># Service的网络地址范围，/24最多可以给256个Service分配IP。</span>
+</span></span><span style=display:flex><span>  serviceSubnet: 172.16.1.0/24
+</span></span><span style=display:flex><span>  <span style=color:green># 默认的顶级域名</span>
+</span></span><span style=display:flex><span>  dnsDomain: cluster.local
+</span></span></code></pre></div></div></div><div class=highlight-file id=hfs-17b4771911bf968e9ea0cbe4decc91a0><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hfs-17b4771911bf968e9ea0cbe4decc91a0","highlight-file_opened")'>metrics-server.yml</a>
+<a class="fa fa-download highlight-file-download" target=_blank href=/k8s/install/metrics-server.yml title="下载 metrics-server.yml" download></a><a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/k8s/install/metrics-server.yml title="源码 metrics-server.yml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:green># https://github.com/kubernetes-sigs/metrics-server/tree/master/deploy/1.8%2B</span>
+</span></span><span style=display:flex><span><span style=color:green># kubectl apply -f metrics-server.yml</span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: ServiceAccount
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: metrics-server-admin
+</span></span><span style=display:flex><span>  namespace: kube-system
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: rbac.authorization.k8s.io/v1beta1
+</span></span><span style=display:flex><span>kind: ClusterRoleBinding
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: metrics-server-admin-role
+</span></span><span style=display:flex><span>roleRef:
+</span></span><span style=display:flex><span>  apiGroup: rbac.authorization.k8s.io
+</span></span><span style=display:flex><span>  kind: ClusterRole
+</span></span><span style=display:flex><span>  name: cluster-admin
+</span></span><span style=display:flex><span>subjects:
+</span></span><span style=display:flex><span>  - kind: ServiceAccount
+</span></span><span style=display:flex><span>    name: metrics-server-admin
+</span></span><span style=display:flex><span>    namespace: kube-system
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: apps/v1
+</span></span><span style=display:flex><span>kind: Deployment
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: metrics-server
+</span></span><span style=display:flex><span>  namespace: kube-system
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    k8s-app: metrics-server
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  selector:
+</span></span><span style=display:flex><span>    matchLabels:
+</span></span><span style=display:flex><span>      k8s-app: metrics-server
+</span></span><span style=display:flex><span>  template:
+</span></span><span style=display:flex><span>    metadata:
+</span></span><span style=display:flex><span>      name: metrics-server
+</span></span><span style=display:flex><span>      labels:
+</span></span><span style=display:flex><span>        k8s-app: metrics-server
+</span></span><span style=display:flex><span>    spec:
+</span></span><span style=display:flex><span>      serviceAccountName: metrics-server-admin
+</span></span><span style=display:flex><span>      volumes:
+</span></span><span style=display:flex><span>        <span style=color:green># mount in tmp so we can safely use from-scratch images and/or read-only containers</span>
+</span></span><span style=display:flex><span>        - name: tmp-dir
+</span></span><span style=display:flex><span>          emptyDir: {}
+</span></span><span style=display:flex><span>      containers:
+</span></span><span style=display:flex><span>        - name: metrics-server
+</span></span><span style=display:flex><span>          image: registry.aliyuncs.com/google_containers/metrics-server-amd64:v0.3.6
+</span></span><span style=display:flex><span>          args:
+</span></span><span style=display:flex><span>            - --cert-dir=/tmp
+</span></span><span style=display:flex><span>            - --secure-port=4443
+</span></span><span style=display:flex><span>            - --kubelet-preferred-address-types=InternalIP
+</span></span><span style=display:flex><span>            - --kubelet-insecure-tls
+</span></span><span style=display:flex><span>          ports:
+</span></span><span style=display:flex><span>            - name: main-port
+</span></span><span style=display:flex><span>              containerPort: 4443
+</span></span><span style=display:flex><span>              protocol: TCP
+</span></span><span style=display:flex><span>          securityContext:
+</span></span><span style=display:flex><span>            readOnlyRootFilesystem: <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>            runAsNonRoot: <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>            runAsUser: 1000
+</span></span><span style=display:flex><span>          imagePullPolicy: Always
+</span></span><span style=display:flex><span>          volumeMounts:
+</span></span><span style=display:flex><span>            - name: tmp-dir
+</span></span><span style=display:flex><span>              mountPath: /tmp
+</span></span><span style=display:flex><span>      nodeSelector:
+</span></span><span style=display:flex><span>        beta.kubernetes.io/os: linux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: v1
+</span></span><span style=display:flex><span>kind: Service
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: metrics-server
+</span></span><span style=display:flex><span>  namespace: kube-system
+</span></span><span style=display:flex><span>  labels:
+</span></span><span style=display:flex><span>    kubernetes.io/name: <span style=color:#a31515>&#39;Metrics-server&#39;</span>
+</span></span><span style=display:flex><span>    kubernetes.io/cluster-service: <span style=color:#a31515>&#39;true&#39;</span>
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  selector:
+</span></span><span style=display:flex><span>    k8s-app: metrics-server
+</span></span><span style=display:flex><span>  ports:
+</span></span><span style=display:flex><span>    - port: 443
+</span></span><span style=display:flex><span>      protocol: TCP
+</span></span><span style=display:flex><span>      targetPort: main-port
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>apiVersion: apiregistration.k8s.io/v1beta1
+</span></span><span style=display:flex><span>kind: APIService
+</span></span><span style=display:flex><span>metadata:
+</span></span><span style=display:flex><span>  name: v1beta1.metrics.k8s.io
+</span></span><span style=display:flex><span>spec:
+</span></span><span style=display:flex><span>  service:
+</span></span><span style=display:flex><span>    name: metrics-server
+</span></span><span style=display:flex><span>    namespace: kube-system
+</span></span><span style=display:flex><span>  group: metrics.k8s.io
+</span></span><span style=display:flex><span>  version: v1beta1
+</span></span><span style=display:flex><span>  insecureSkipTLSVerify: <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>  groupPriorityMinimum: 100
+</span></span><span style=display:flex><span>  versionPriority: 100
+</span></span></code></pre></div></div></div></div></div><p><a href=https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init target=_blank rel="noopener norefferrer">https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init</a></p><p><a href=https://kuboard.cn/install/install-k8s.html target=_blank rel="noopener norefferrer">https://kuboard.cn/install/install-k8s.html</a></p></section><section class=article-meta><section class=article-date>2018-12-13 23:21，约2602字，阅读约6分钟</section><section class=article-topics><a class=article-topic href=/k8s/ title=[K8S] target=_blank><i class="fa fa-folder"></i>[K8S]</a></section><section class=article-tags><a class=article-tag href=/tag/dashboard target=_blank><i class="fa fa-tag"></i>dashboard</a>
+<a class=article-tag href=/tag/flannel target=_blank><i class="fa fa-tag"></i>flannel</a>
+<a class=article-tag href=/tag/k8s target=_blank><i class="fa fa-tag"></i>K8S</a>
+<a class=article-tag href=/tag/kubeadm target=_blank><i class="fa fa-tag"></i>kubeadm</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/75915849ccf72755e565d8955845d03e5f5948df target=_blank><i class="fa fa-code-fork"></i>7591584</a>
+<span class=article-git-commit-subject>Rename file param to path</span>
+<span class=article-git-commit-time>2021-03-14 09:27</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/k8s/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-next><span>下一篇 : </span><a href=/k8s/networking-flannel/ target=_blank>[K8S] Networking - Flannel</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

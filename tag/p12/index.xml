@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>P12 on Timetombs</title><link>https://linianhui.github.io/tag/p12/</link><description>Recent content in P12 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 08 Dec 2023 07:09:10 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/p12/index.xml" rel="self" type="application/rss+xml"/><item><title>[信息安全] 02 密码工具箱 第2部分</title><link>https://linianhui.github.io/information-security/02-cryptography-toolbox-2/</link><pubDate>Sun, 02 Jul 2017 15:08:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/02-cryptography-toolbox-2/</guid><description>&lt;p>在上一篇&lt;a href="../01-cryptography-toolbox-1/"
+
+ target="_blank" rel="noopener norefferrer">[信息安全] 01 密码工具箱 第1部分&lt;/a>中介绍了一些密码技术相关的一些基本工具，同时遗留了&lt;strong>一个鸡生蛋蛋生鸡的问题&lt;/strong>和&lt;strong>公钥的认证问题&lt;/strong>(￣▽￣)&amp;quot;，这里再补充几个常用的工具先。&lt;/p>
+&lt;h1 id="pseudo-random-number">
+&lt;i id="locator-pseudo-random-number" class="header-locator">&lt;/i>
+&lt;a href="#pseudo-random-number" class="article-h-a">1 伪随机数(Pseudo-Random Number)&lt;/a>
+&lt;/h1>
+&lt;p>随机数大家不陌生，但是随机数怎么就和信息安全扯上关系了呢?其实想一想我们在给自己的账号设置密码的时候，是不是都会尽量的让其他人不会轻易的猜到我们的密码，虽然并不是随机，但是它就像是满足了随机数的一个特征 : &lt;strong>不可预测性&lt;/strong>。那么对于信息安全来说来说，也是用到了这个特定，当然还有随机数的&lt;strong>随机性&lt;/strong>，&lt;strong>不可重复性&lt;/strong>这两点特征。&lt;/p></description></item></channel></rss>

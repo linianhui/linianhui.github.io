@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go on Timetombs</title><link>https://linianhui.github.io/tag/go/</link><description>Recent content in Go on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 25 Jan 2026 19:11:16 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/go/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] caddy</title><link>https://linianhui.github.io/tool/caddy/</link><pubDate>Fri, 12 Mar 2021 17:07:03 +0800</pubDate><guid>https://linianhui.github.io/tool/caddy/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>go语言开发的开源的Http Server。可以作为反向代理服务器和Http静态文件文件服务器。&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-2865793e43e3c03973b191d6472037ee">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-2865793e43e3c03973b191d6472037ee','highlight-file_opened')">Caddyfile&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/caddy/Caddyfile" title="下载 Caddyfile" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/caddy/Caddyfile" title="源码 Caddyfile">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> auto_https off
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>:2015
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>file_server browse
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>templates&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/caddyserver/caddy"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/caddyserver/caddy&lt;/a>&lt;/p></description></item><item><title>[工具] goproxy</title><link>https://linianhui.github.io/tool/goproxy/</link><pubDate>Thu, 28 May 2020 13:12:00 +0800</pubDate><guid>https://linianhui.github.io/tool/goproxy/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://github.com/snail007/goproxy"
+
+ target="_blank" rel="noopener norefferrer">goproxy&lt;/a>是一个基于Go语言编写的开源的网络代理工具。&lt;/p>
+&lt;p>下载: &lt;a href="https://github.com/snail007/goproxy/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/snail007/goproxy/releases&lt;/a>&lt;/p>
+&lt;p>使用示例:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 配置(转发本地的2375和9000端口到182.168.2.201的对应端口)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>proxy @config.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-e312957c4d10f2872d11640dc58ebe5e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e312957c4d10f2872d11640dc58ebe5e','highlight-file_opened')">config.txt&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/goproxy/config.txt" title="下载 config.txt" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/goproxy/config.txt" title="源码 config.txt">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>tcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-p &lt;span style="color:#a31515">&amp;#34;:2375,:9000&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-T tcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-P &lt;span style="color:#a31515">&amp;#34;192.168.2.201:0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--log proxy.log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--daemon&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://snail007.github.io/goproxy/"
+
+ target="_blank" rel="noopener norefferrer">https://snail007.github.io/goproxy/&lt;/a>&lt;/p></description></item><item><title>[工具] v2ray</title><link>https://linianhui.github.io/tool/v2ray/</link><pubDate>Thu, 13 Feb 2020 08:01:00 +0800</pubDate><guid>https://linianhui.github.io/tool/v2ray/</guid><description>&lt;h1 id="server-install">
+&lt;i id="locator-server-install" class="header-locator">&lt;/i>
+&lt;a href="#server-install" class="article-h-a">1 服务器安装&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-b2f0fa3e9bdb6cb2d567ca18cf22aeef">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-b2f0fa3e9bdb6cb2d567ca18cf22aeef','highlight-file_opened')">init.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/v2ray/init.sh" title="下载 init.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/v2ray/init.sh" title="源码 init.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">#!/bin/bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># sudo bash install.sh 127.0.0.1 127.0.0.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/v2fly/v2ray-core&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/gfwlist/gfwlist&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>V2RAY_VERSION=5.14.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export V2RAY_SERVER_IP=&lt;span style="color:#a31515">${&lt;/span>1&lt;span style="color:#00f">:-&lt;/span>127.0.0.1&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export V2RAY_CLIENT_IP=&lt;span style="color:#a31515">${&lt;/span>2&lt;span style="color:#00f">:-&lt;/span>127.0.0.1&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt update -y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt install -y wget gettext lsof net-tools
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bash &amp;lt;(wget -q -O - https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) --version $V2RAY_VERSION
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/usr/local/bin/v2ray version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>UUID=&lt;span style="color:#00f">$(&lt;/span>/usr/local/bin/v2ray uuid&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CRET_NAME=&lt;span style="color:#a31515">${&lt;/span>UUID:0:8&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CRET_ORG=&lt;span style="color:#a31515">${&lt;/span>UUID:9:4&lt;span style="color:#a31515">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export TEMPLATE_SERVER_DOMAIN_NAME=&lt;span style="color:#a31515">&amp;#34;&lt;/span>&lt;span style="color:#a31515">${&lt;/span>UUID:14:4&lt;span style="color:#a31515">}&lt;/span>&lt;span style="color:#a31515">.test&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export TEMPLATE_CLIENT_ID=$UUID
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export TEMPLATE_CERTIFICATE_JSON=&lt;span style="color:#00f">$(&lt;/span>/usr/local/bin/v2ray tls cert --ca --json --domain=$TEMPLATE_SERVER_DOMAIN_NAME --expire=720 --name=$CRET_NAME --org=$CRET_ORG&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SERVER_JSON_TEMPLATE=&lt;span style="color:#00f">$(&lt;/span>cat &lt;span style="color:#a31515">&amp;lt;&amp;lt;&amp;#39;SERVER_JSON&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">{
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;log&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;logLevel&amp;#34;: &amp;#34;None&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;inbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;listen&amp;#34;: &amp;#34;${V2RAY_SERVER_IP}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;port&amp;#34;: 443,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;vless&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;decryption&amp;#34;: &amp;#34;none&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;clients&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;id&amp;#34;: &amp;#34;${TEMPLATE_CLIENT_ID}&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;streamSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;network&amp;#34;: &amp;#34;tcp&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;security&amp;#34;: &amp;#34;tls&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;tlsSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;serverName&amp;#34;: &amp;#34;${TEMPLATE_SERVER_DOMAIN_NAME}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecure&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecureCiphers&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;disableSystemRoot&amp;#34;: true,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;certificates&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ${TEMPLATE_CERTIFICATE_JSON}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ],
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;outbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">SERVER_JSON&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#a31515">&amp;#34;&lt;/span>&lt;span style="color:#a31515">${&lt;/span>SERVER_JSON_TEMPLATE&lt;span style="color:#a31515">}&lt;/span>&lt;span style="color:#a31515">&amp;#34;&lt;/span> | envsubst &amp;gt; /usr/local/etc/v2ray/config.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/usr/local/bin/v2ray test -c /usr/local/etc/v2ray/config.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CLIENT_JSON_TEMPLATE=&lt;span style="color:#00f">$(&lt;/span>cat &lt;span style="color:#a31515">&amp;lt;&amp;lt;&amp;#39;CLIENT_JSON&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">{
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;log&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;logLevel&amp;#34;: &amp;#34;None&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;inbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;listen&amp;#34;: &amp;#34;$V2RAY_CLIENT_IP&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;port&amp;#34;: 1080,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;socks&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;auth&amp;#34;: &amp;#34;noauth&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;udp&amp;#34;: true
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ],
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;outbounds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;vless&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;vnext&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;address&amp;#34;: &amp;#34;${V2RAY_SERVER_IP}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;port&amp;#34;: 443,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;users&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;id&amp;#34;: &amp;#34;${TEMPLATE_CLIENT_ID}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;encryption&amp;#34;: &amp;#34;none&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;streamSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;network&amp;#34;: &amp;#34;tcp&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;security&amp;#34;: &amp;#34;tls&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;tlsSettings&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;serverName&amp;#34;: &amp;#34;${TEMPLATE_SERVER_DOMAIN_NAME}&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecure&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;allowInsecureCiphers&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;disableSystemRoot&amp;#34;: true,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;certificates&amp;#34;: [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ${TEMPLATE_CERTIFICATE_JSON}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;mux&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;enabled&amp;#34;: false
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> },
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;settings&amp;#34;: {},
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;mux&amp;#34;: {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> &amp;#34;enabled&amp;#34;: false
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">CLIENT_JSON&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#a31515">&amp;#34;&lt;/span>&lt;span style="color:#a31515">${&lt;/span>CLIENT_JSON_TEMPLATE&lt;span style="color:#a31515">}&lt;/span>&lt;span style="color:#a31515">&amp;#34;&lt;/span> | envsubst &amp;gt; v2ray-client-config.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>setcap cap_net_bind_service=+ep /usr/local/bin/v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl daemon-reload
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl enable v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl restart v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl status v2ray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>lsof -i:443
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -an | grep 443&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="client-install">
+&lt;i id="locator-client-install" class="header-locator">&lt;/i>
+&lt;a href="#client-install" class="article-h-a">2 客户端安装&lt;/a>
+&lt;/h1>
+&lt;h2 id="client-install-windows">
+&lt;i id="locator-client-install-windows" class="header-locator">&lt;/i>
+&lt;a href="#client-install-windows" class="article-h-a">2.1 Windows&lt;/a>
+&lt;/h2>
+&lt;p>下载客户端&lt;a href="https://github.com/v2fly/v2ray-core/releases/download/v5.14.1/v2ray-windows-64.zip"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/v2fly/v2ray-core/releases/download/v5.14.1/v2ray-windows-64.zip&lt;/a>。&lt;/p></description></item><item><title>[工具] traefik</title><link>https://linianhui.github.io/tool/traefik/</link><pubDate>Fri, 20 Apr 2018 11:21:00 +0800</pubDate><guid>https://linianhui.github.io/tool/traefik/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://docs.traefik.io/"
+
+ target="_blank" rel="noopener norefferrer">Traefik&lt;/a>是一个基于Go语言编写的开源的云原生的边界路由器。&lt;/p>
+&lt;p>下载: &lt;a href="https://github.com/containous/traefik/releases"
+
+ target="_blank" rel="noopener norefferrer">https://github.com/containous/traefik/releases&lt;/a>&lt;/p>
+&lt;p>配置:&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-e7de9b8c326edfb3ece61b71b1a46240">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e7de9b8c326edfb3ece61b71b1a46240','highlight-file_opened')">traefik.yml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/traefik/traefik.yml" title="下载 traefik.yml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/traefik/traefik.yml" title="源码 traefik.yml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/reference/static-configuration/file/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>global:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> checkNewVersion: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sendAnonymousUsage: &lt;span style="color:#00f">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> level: DEBUG
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/operations/api&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>api:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dashboard: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> insecure: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> debug: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://docs.traefik.io/v2.2/routing/entrypoints&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>entryPoints:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address: :80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address: :3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>providers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> providersThrottleDuration: 2s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#008000"># https://docs.traefik.io/v2.2/providers/file/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> file:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> watch: &lt;span style="color:#00f">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> filename: dynamic.yml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p>
+&lt;div class="highlight-file highlight-file_opened" id="hf-58855b4b5686f79e33e84b30f0b842d7">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-58855b4b5686f79e33e84b30f0b842d7','highlight-file_opened')">dynamic.yml&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/traefik/dynamic.yml" title="下载 dynamic.yml" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/traefik/dynamic.yml" title="源码 dynamic.yml">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> routers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> example.test.router:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rule: Host(`example.test`)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service: example.test.service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> example.test.service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> loadBalancer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> servers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - url: http://192.168.2.201:5000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> healthCheck:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> scheme: http
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> path: /
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> interval: 10s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timeout: 3s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcp:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> routers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql.router:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> entryPoints:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - mysql
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rule: HostSNI(`mysql`)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service: mysql.service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mysql.service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> loadBalancer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> servers:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - address: 192.168.2.201:3306
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div></description></item></channel></rss>

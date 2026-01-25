@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Time on Timetombs</title><link>https://linianhui.github.io/tag/time/</link><description>Recent content in Time on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 24 Nov 2022 21:01:10 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/time/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] etc</title><link>https://linianhui.github.io/tool/etc/</link><pubDate>Wed, 16 Nov 2022 23:09:01 +0800</pubDate><guid>https://linianhui.github.io/tool/etc/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;script src="https://unpkg.com/moment@2.29.4/min/moment-with-locales.min.js">&lt;/script>
+&lt;script src="https://unpkg.com/md5@2.3.0/dist/md5.min.js">&lt;/script>
+&lt;script src="https://unpkg.com/numeral@2.0.6/min/numeral.min.js">&lt;/script>
+&lt;script src="https://unpkg.com/js-base64@3.7.3/base64.js">&lt;/script>
+&lt;script src="func.js">&lt;/script>
+
+&lt;div id="app">
+ &lt;el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="input" @input="onInputChange">&lt;/el-input>
+ &lt;fieldset v-for="item in items" style="border-width: 1px;border-color:#ddd;border-style: dashed;">
+ &lt;legend>{{item.name}}&lt;/legend>
+ &lt;a :href="'?'+encodeURIComponent(item.value)" target="_blank">{{item.value}}&lt;/a>
+ &lt;/fieldset>
+&lt;/div>
+
+&lt;script type="text/javascript">
+ function handleValue(value) {
+ var result = [];
+ for (var key in functionList) {
+ try {
+ var item = {
+ name: key,
+ value: functionList[key](value)
+ };
+ if (item.value) {
+ result.push(item);
+ }
+ } catch (e) {
+ console.error(key, value, e);
+ }
+ }
+ return result.sort(function (a, b) {
+ return a.name.localeCompare(b.name);
+ });
+ }
+
+ function getInitInput() {
+ if (window.location.search) {
+ return decodeURIComponent(window.location.search.substring(1));
+ }
+ return new Date().getTime();
+ }
+
+ var initInput = getInitInput();
+ var initItems = handleValue(initInput);
+ new Vue({
+ el: "#app",
+ data: {
+ input: initInput,
+ items: initItems
+ },
+ methods: {
+ onInputChange(value) {
+ this.items = handleValue(value);
+ console.log(handleValue(value));
+ }
+ }
+ });
+&lt;/script>&lt;/p></description></item></channel></rss>

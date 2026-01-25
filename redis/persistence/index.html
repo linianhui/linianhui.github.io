@@ -1,0 +1,94 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Redis] persistence - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A02Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/redis/ target=_blank>[Redis]</a></section><section class=toc-page><a class=toc-page-title href=/redis/install/ target=_blank>[Redis] install</a></section><section class=toc-page><a class=toc-page-title href=/redis/resp/ target=_blank>[Redis] resp</a></section><section class=toc-page><a class=toc-page-title href=/redis/data-type/ target=_blank>[Redis] data type</a></section><section class=toc-page><a class=toc-page-title href=/redis/pipelining/ target=_blank>[Redis] pipelining</a></section><section class=toc-page><a class=toc-page-title href=/redis/expire/ target=_blank>[Redis] expire</a></section><section class=toc-page><a class=toc-page-title href=/redis/lua/ target=_blank>[Redis] lua script</a></section><section class="toc-page selected"><span class=toc-page-title>[Redis] persistence</span><nav id=TableOfContents><ul><li><a href=#rdb>1 RDB</a><ul><li><a href=#rdb-config>1.1 配置</a></li><li><a href=#rdb-command>1.2 命令</a></li></ul></li><li><a href=#aof>2 AOF</a><ul><li><a href=#aof-config>2.1 配置</a></li><li><a href=#aof-command>2.2 命令</a></li></ul></li><li><a href=#sumamry>3 总结</a></li><li><a href=#reference>4 参考</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/redis/benchmark/ target=_blank>[Redis] benchmark</a></section><section class=toc-page><a class=toc-page-title href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></section><section class=toc-page><a class=toc-page-title href=/redis/replication/ target=_blank>[Redis] replication</a></section><section class=toc-page><a class=toc-page-title href=/redis/sentinel/ target=_blank>[Redis] sentinel</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:02Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Redis] persistence</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2021-03-19 20:11，约1725字，阅读约4分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/aof target=_blank><i class="fa fa-tag"></i>aof</a>
+<a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/persistence target=_blank><i class="fa fa-tag"></i>persistence</a>
+<a class=article-tag href=/tag/rdb target=_blank><i class="fa fa-tag"></i>rdb</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/persistence/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>redis是基于内存存储数据的，当server意外宕机或者重启时，内存中的数据就会丢失掉。redis提供了如下几种选项来应对不同场景下的需求。</p><ol><li>RDB(Redis DataBase) ：按照配置的时间周期来定时保存内存中的数据快照到disk上。</li><li>AOF (Append Only File) ：通过记录server接收到的每一个write命令，在下次启动时重放这些指令，以此达到恢复数据的目的。</li><li>No persistence ：完全禁用持久化。</li><li>RDB + AOF ：同时启用RDB和AOF。这种情况下AOF优先被使用。</li></ol><h1 id=rdb><i id=locator-rdb class=header-locator></i>
+<a href=#rdb class=article-h-a>1 RDB</a></h1><p><code>RDB</code><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>是一个非常紧凑的二进制格式的文件。它的工作方式是fork一个子进程，然后按照配置定时的把内存快照到disk上的一个单一的文件中。它的工作方式决定了它具备一下特点：</p><ol><li>备份文件方便传输。</li><li>二进制数据恢复起来比较快。</li><li>时间间隔使得可以按照时间节点来恢复指定的数据。但是同时也会丢失间隔内的数据。</li><li>fork出来的子进程可以隔离对主进程带来影响。但是当配置的时间间隔过小或者数据量较大时，会消耗过多的资源，从而挤压主进程的资源配额。</li></ol><h2 id=rdb-config><i id=locator-rdb-config class=header-locator></i>
+<a href=#rdb-config class=article-h-a>1.1 配置</a></h2><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/redis.conf#L350-L445 target=_blank>https://github.com/redis/redis/blob/6.2/redis.conf#L350-L445</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># save &lt;seconds&gt; &lt;changes&gt;</span>
+</span></span><span style=display:flex><span><span style=color:green># 配置保存快照的时间间隔，以下配置是在300s内超过100次写操作就执行保存。</span>
+</span></span><span style=display:flex><span>save 300 100
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 在background进程保存失败时禁用主进程的写操作（尽快提醒用户发现备份失败）</span>
+</span></span><span style=display:flex><span><span style=color:green># 在background进程再次开启保存时会自动允许写操作。</span>
+</span></span><span style=display:flex><span>stop-writes-on-bgsave-error yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 是否开启LZF压缩string对象，如果你想节省一些CPU资源，那么可以设置为no，但是可能会造成文件过大。</span>
+</span></span><span style=display:flex><span>rdbcompression yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># rdb文件CRC校验，10%的性能消耗。关闭以提升性能。</span>
+</span></span><span style=display:flex><span>rdbchecksum no
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 删除没有持久化的复制实例中使用的RDB文件</span>
+</span></span><span style=display:flex><span>rdb-del-sync-files no
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 保存的文件名</span>
+</span></span><span style=display:flex><span>dbfilename dump.rdb
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 保存的目录，AOF也使用此目录</span>
+</span></span><span style=display:flex><span>dir ./</span></span></code></pre></div></div></div><h2 id=rdb-command><i id=locator-rdb-command class=header-locator></i>
+<a href=#rdb-command class=article-h-a>1.2 命令</a></h2><ol><li><code>SAVE</code><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>：手动触发保存RDB，工作中主进程，会阻碍所有客户端的写操作请求。生产环境中千万不要使用。</li><li><code>BGSAVE</code><sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>：手动触发保存RDB，工作中子进程（fork）。</li></ol><h1 id=aof><i id=locator-aof class=header-locator></i>
+<a href=#aof class=article-h-a>2 AOF</a></h1><p>AOF(Append Only File)通过记录server接收到的每一个write命令，在下次启动时重放这些指令，以此达到恢复数据的目的。它具备一下特点：</p><ol><li>于RDB工作在子进程中不同，AOF是工作在主进程中的，也就意味着它可能会阻塞正常的业务调用。</li><li>更小的保存时间间隔，比如1s。大大的减少丢失数据的可能性。</li><li>更快的保存速度（相比RDB）。但是重建数据时不如RDB。</li><li>可以针对保存的命令进行重写来减小文件大小。比如<code>SET name lnh</code>被调用来10次，其实保存最后一个命令即可。</li><li>采用<code>RESP</code><sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup>协议保存，具备可读性。可以便于人工修复意外受损的数据。</li></ol><h2 id=aof-config><i id=locator-aof-config class=header-locator></i>
+<a href=#aof-config class=article-h-a>2.1 配置</a></h2><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/redis.conf#L1210-L1338 target=_blank>https://github.com/redis/redis/blob/6.2/redis.conf#L1210-L1338</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># 开启AOF</span>
+</span></span><span style=display:flex><span>appendonly yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 文件名</span>
+</span></span><span style=display:flex><span>appendfilename &#34;appendonly.aof&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 配置何时调用fsync()，有如下3个选项：</span>
+</span></span><span style=display:flex><span><span style=color:green># no        让OS决定，最快最不安全。</span>
+</span></span><span style=display:flex><span><span style=color:green># always    每秒，最慢最安全。</span>
+</span></span><span style=display:flex><span><span style=color:green># everysec  每次都调用，均衡的做法，也是官方推荐的默认配置</span>
+</span></span><span style=display:flex><span>appendfsync everysec
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 开启自动AOF重写</span>
+</span></span><span style=display:flex><span><span style=color:green># 当AOF文件的大小大于64mb时，才会触发AOF重写。</span>
+</span></span><span style=display:flex><span>auto-aof-rewrite-min-size 64mb
+</span></span><span style=display:flex><span><span style=color:green># 当前AOF文件比上次重写后的增长的比例，超过此比例后触发下次重写。</span>
+</span></span><span style=display:flex><span>auto-aof-rewrite-percentage 100
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 在redis自动启动一个子进程来进行AOF重写时，会涉及到频繁的disk fsync() I/O操作，这可能会造成主进程中的AOF操作被长时间阻塞。</span>
+</span></span><span style=display:flex><span><span style=color:green># 那么此时，如果设置为yes，就相当于appendfsync=no的效果，交由OS来处理何时fsync()，从而避免阻塞主进程的append操作。但是如果期间出现意外宕机，在linux上则会丢失30s左后的数据操作。</span>
+</span></span><span style=display:flex><span><span style=color:green># 如果设置为no，则是阻塞主进程的操作，但是保证数据的安全性。</span>
+</span></span><span style=display:flex><span>no-appendfsync-on-rewrite yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 在载入AOF恢复数据时，忽略最后一条有可能出问题的指令（可能因为意外导致命令没有写入完整）。</span>
+</span></span><span style=display:flex><span><span style=color:green># 如果完整则不会忽略的。可以使用redis-check-aof –fix来修复。</span>
+</span></span><span style=display:flex><span>aof-load-truncated yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 同时开启RDB和AOF</span>
+</span></span><span style=display:flex><span><span style=color:green># 开启后AOF文件前半段可能是RDB格式的全量数据，而后半段是AOF格式的增量数据。</span>
+</span></span><span style=display:flex><span>aof-use-rdb-preamble yes</span></span></code></pre></div></div></div><h2 id=aof-command><i id=locator-aof-command class=header-locator></i>
+<a href=#aof-command class=article-h-a>2.2 命令</a></h2><ol><li><code>BGREWRITEAOF</code><sup id=fnref:5><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup>：手动触发AOF重写（也可以通过上面的配置让redis-server自动执行）。</li><li><code>redis-check-aof –fix</code>：安装redis时带的一个程序，修复错误的AOF文件。</li></ol><h1 id=sumamry><i id=locator-sumamry class=header-locator></i>
+<a href=#sumamry class=article-h-a>3 总结</a></h1><p>RDB和AOF是redis提供的两种持久化数据的方式，都是对COW(copy-on-write)技术的巧妙使用。<br>二者有不同的特点，可以按照不同的场景选择不同的方案或者同时使用它们。</p><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>4 参考</a></h1><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://github.com/sripathikrishnan/redis-rdb-tools/wiki/Redis-RDB-Dump-File-Format target=_blank rel="noopener norefferrer">https://github.com/sripathikrishnan/redis-rdb-tools/wiki/Redis-RDB-Dump-File-Format</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://redis.io/commands/save target=_blank rel="noopener norefferrer">https://redis.io/commands/save</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><a href=https://redis.io/commands/bgsave target=_blank rel="noopener norefferrer">https://redis.io/commands/bgsave</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4><p><a href=https://linianhui.github.io/redis/resp target=_blank rel="noopener norefferrer">https://linianhui.github.io/redis/resp</a>&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:5><p><a href=https://redis.io/commands/bgrewriteaof target=_blank rel="noopener norefferrer">https://redis.io/commands/bgrewriteaof</a>&#160;<a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2021-03-19 20:11，约1725字，阅读约4分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/aof target=_blank><i class="fa fa-tag"></i>aof</a>
+<a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/persistence target=_blank><i class="fa fa-tag"></i>persistence</a>
+<a class=article-tag href=/tag/rdb target=_blank><i class="fa fa-tag"></i>rdb</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/persistence/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/redis/lua/ target=_blank>[Redis] lua script</a></div><div class=article-page-next><span>下一篇 : </span><a href=/redis/benchmark/ target=_blank>[Redis] benchmark</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

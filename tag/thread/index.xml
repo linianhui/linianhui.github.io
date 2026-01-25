@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Thread on Timetombs</title><link>https://linianhui.github.io/tag/thread/</link><description>Recent content in Thread on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/thread/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] 运行时架构</title><link>https://linianhui.github.io/redis/runtime-architecture/</link><pubDate>Fri, 19 Mar 2021 20:12:24 +0800</pubDate><guid>https://linianhui.github.io/redis/runtime-architecture/</guid><description>&lt;p>redis自从诞生之处就被称之为单线程的方式实现的，这里的单线程指的是&lt;code>socket read&lt;/code>、&lt;code>解析&lt;/code>、&lt;code>执行&lt;/code>和&lt;code>socket write&lt;/code>这四个阶段都是由主线程独自完成的。当然一个redis-server实例并不是只有这一个线程，比如还有执行RDB、AOF、LRU、AOFREWRITE等等后台线程，只是它们的运行不会参与到server的主线程处理client的request这个流程中。&lt;/p></description></item><item><title>[Java] Thread</title><link>https://linianhui.github.io/java/thread/</link><pubDate>Sat, 07 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/thread/</guid><description>&lt;h1 id="1-os内核态进程">
+&lt;i id="locator-1-os内核态进程" class="header-locator">&lt;/i>
+&lt;a href="#1-os%e5%86%85%e6%a0%b8%e6%80%81%e8%bf%9b%e7%a8%8b" class="article-h-a">1 OS内核态进程&lt;/a>
+&lt;/h1>
+&lt;p>&lt;strong>进程&lt;/strong>是OS进行资源分配和调度的最小单元，进程之间互相隔离，这样使得OS可以&lt;strong>并行&lt;/strong>运行多个应用程序。&lt;code>OS:进程=1:N&lt;/code>&lt;/p>
+&lt;p>遗留问题：这时OS可以并行多个应用程序了，但是应用程序内部则只能串行的运行。&lt;/p>
+&lt;h1 id="2-os内核态线程">
+&lt;i id="locator-2-os内核态线程" class="header-locator">&lt;/i>
+&lt;a href="#2-os%e5%86%85%e6%a0%b8%e6%80%81%e7%ba%bf%e7%a8%8b" class="article-h-a">2 OS内核态线程&lt;/a>
+&lt;/h1>
+&lt;p>为了解决进程遗留的问题，OS就创造了&lt;strong>线程&lt;/strong>，使得一个应用程序内部也可以&lt;strong>并行&lt;/strong>，&lt;code>进程:线程=1:N&lt;/code>。Linux在默认情况下，创建一个线程需要分配8MB的栈内存空间。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OP on Timetombs</title><link>https://linianhui.github.io/tag/op/</link><description>Recent content in OP on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/op/index.xml" rel="self" type="application/rss+xml"/><item><title>[认证&amp;授权] 04 OIDC(OpenId Connect)身份认证(核心部分)</title><link>https://linianhui.github.io/authentication-and-authorization/04-openid-connect-core/</link><pubDate>Tue, 30 May 2017 09:18:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/04-openid-connect-core/</guid><description>&lt;h1 id="what-is-oidc">
+&lt;i id="locator-what-is-oidc" class="header-locator">&lt;/i>
+&lt;a href="#what-is-oidc" class="article-h-a">1 什么是OIDC？&lt;/a>
+&lt;/h1>
+&lt;p>看一下官方的介绍(&lt;a href="http://openid.net/connect/"
+
+ target="_blank" rel="noopener norefferrer">http://openid.net/connect/&lt;/a>) :&lt;/p>
+&lt;blockquote>
+&lt;p>OpenID Connect 1.0 is a simple identity layer on top of the OAuth 2.0 protocol. It allows Clients to verify the identity of the End-User based on the authentication performed by an Authorization Server, as well as to obtain basic profile information about the End-User in an interoperable and REST-like manner.&lt;/p>
+&lt;p>OpenID Connect allows clients of all types, including Web-based, mobile, and JavaScript clients, to request and receive information about authenticated sessions and end-users. The specification suite is extensible, allowing participants to use optional features such as encryption of identity data, discovery of OpenID Providers, and session management, when it makes sense for them.&lt;/p>&lt;/blockquote>
+&lt;p>简单来说 : OIDC是OpenID Connect的简称，&lt;code>OIDC=(Identity, Authentication) + OAuth 2.0&lt;/code>。它在OAuth2上构建了一个身份层，是一个基于OAuth2协议的身份认证标准协议。我们都知道OAuth2是一个授权协议，它无法提供完善的身份认证功能(关于这一点请参考&lt;a href="../03-user-authentication-with-oauth2/"
+
+ target="_blank" rel="noopener norefferrer">[认证&amp;amp;授权] 03 使用OAuth2进行用户认证(译)&lt;/a>)，OIDC使用OAuth2的授权服务器来为第三方客户端提供用户的身份认证，并把对应的身份认证信息传递给客户端，且可以适用于各种类型的客户端(比如服务端应用，移动APP，JS应用)，且完全兼容OAuth2，也就是说你搭建了一个OIDC的服务后，也可以当作一个OAuth2的服务来用。应用场景如图 :&lt;br />
+&lt;img src="oidc-use-for.png" loading="lazy" decoding="auto" alt="OIDC 应用场景" title="OIDC 应用场景"/>&lt;/p></description></item><item><title>[OIDC in Action] 03 基于OIDC的SSO - GitHub OP</title><link>https://linianhui.github.io/oidc-in-action/03-oidc-sso-github-op/</link><pubDate>Sat, 01 Dec 2018 10:41:00 +0800</pubDate><guid>https://linianhui.github.io/oidc-in-action/03-oidc-sso-github-op/</guid><description>&lt;p>在上上一篇&lt;a href="../01-oidc-sso/"
+
+ target="_blank" rel="noopener norefferrer">[OIDC in Action] 01 基于OIDC的SSO&lt;/a>的登录页面的截图中有出现QQ登录的地方。这个其实是通过扩展OIDC的OpenID Provider来实现的，OpenID Provider简称OP，OP是OIDC的一个很重要的角色，OIDC用它来实现兼容众多的用户认证方式的，比如基于OAuth2，SAML和WS-Federation等等的用户认证方式。关于OP在&lt;a href="https://linianhui.github.io/authentication-and-authorization/04-openid-connect-core/"
+
+ target="_blank" rel="noopener norefferrer">[认证&amp;amp;授权] 04 OIDC(OpenId Connect)身份认证(核心部分)&lt;/a>中有提到过，但是并未详细解释。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>房贷计算器 on Timetombs</title><link>https://linianhui.github.io/tag/%E6%88%BF%E8%B4%B7%E8%AE%A1%E7%AE%97%E5%99%A8/</link><description>Recent content in 房贷计算器 on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 15 Mar 2025 06:16:22 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/%E6%88%BF%E8%B4%B7%E8%AE%A1%E7%AE%97%E5%99%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] 房贷计算器</title><link>https://linianhui.github.io/tool/loan/</link><pubDate>Sun, 28 Jan 2024 15:28:01 +0800</pubDate><guid>https://linianhui.github.io/tool/loan/</guid><description>&lt;p>&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;script src="https://s4.zstatic.net/ajax/libs/echarts/6.0.0/echarts.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">&lt;/script>&lt;br />
+&lt;style>
+ th {
+ text-align: right;
+ }
+
+ td {
+ text-align: right;
+ vertical-align: top;
+ padding: 6px 4px;
+ }
+
+ .cell {
+ padding: 0 !important;
+ }
+
+ .input-fieldset section {
+ margin: 6px 0;
+ }
+
+ .form-name,
+ .form-input {
+ position: relative;
+ display: inline-block;
+ vertical-align: middle;
+ }
+
+ .form-input-weight {
+ width: 13em !important;
+ }
+
+ .form-input-weight input {
+ text-align: center;
+ }
+
+ .form-name {
+ width: 4.5em;
+ text-align: right;
+ }
+
+ .form-input {
+ margin-left: 6px;
+ }
+
+ .el-collapse {
+ border: unset;
+ }
+
+ .el-collapse-item__wrap,
+ .el-collapse-item__header {
+ border: unset;
+ }
+
+ .el-input-group__prepend {
+ padding: 0;
+ }
+
+ fieldset {
+ border: unset;
+ box-shadow: 0 0 2px #ccc;
+ max-width: 100%;
+ min-width: 100%;
+ margin-top: 1em;
+ box-sizing: border-box;
+ padding: 6px;
+ }
+
+ legend {
+ background-color: #FFF;
+ color: #909399;
+ }
+
+ .result-wrapper {
+ overflow-x: auto;
+ max-width: 100%;
+ }
+
+ .result-pre {
+ font-family: unset;
+ font-size: 0;
+ margin: 0;
+ }
+
+ .result-table {
+ width: 100%;
+ margin: 0;
+ font-size: 14px;
+ }
+
+ .result-summary sub {
+ font-size: 10px;
+ padding-left: 2px;
+ color: #bbb;
+ }
+
+ .row-data {
+ color: #666;
+ font-family: monospace, Courier, 'Courier New'
+ }
+
+ .row-data:hover {
+ background-color: #eee;
+ cursor: pointer;
+ }
+
+ .row-data-year-first-month {
+ background-color: #eee;
+ }
+
+ .row-data-action-prepayment {
+ color: rgb(103, 194, 58);
+ }
+
+ .row-data-action-reset-rate {
+ color: rgb(64, 158, 255);
+ }
+
+ .insurance-table input {
+ min-width: 2em;
+ max-width: 4em;
+ text-align: right;
+ }
+
+ .month-detail {
+ display: none;
+ background-color: #efe;
+ }
+
+ .month-detail_opened+tr {
+ display: table-row;
+ }
+
+ .month-detail_opened .month-action-icon::before {
+ content: "\e6df";
+ }
+
+ .ahead {
+ display: inline-block;
+ color: #093;
+ margin-left: 2px;
+ font-family: monospace, Courier, 'Courier New'
+ }
+
+ .e-input-ahead input {
+ color: #093;
+ }
+
+ .area-hidden {
+ display: none;
+ }
+
+ .area-show {
+ display: block;
+ }
+
+ sub {
+ margin-left: 1em;
+ color: #093;
+ }
+&lt;/style>
+&lt;div id="app">
+ &lt;fieldset class="input-fieldset">
+ &lt;legend>参数区域&lt;/legend>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="ePrincipal">
+ 贷款总额
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="ePrincipal" v-model="loan.totalPrincipal" step="10000" :min="0">
+ &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eMonth">
+ 月数
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="eMonth" v-model="loan.totalNumberOfRepayment" step="12"> &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eYearRate">
+ 利率
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="eYearRate" v-model="loan.yearRate" :min="0" step="0.01">&lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eBeginDate">
+ 贷款时间
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-date-picker id="eBeginDate" v-model="loan.beginDate" type="date" placeholder="贷款时间"
+ value-format="yyyy-MM-dd" format="yyyy-MM-dd" class="form-input-weight">
+ &lt;/el-date-picker>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eRepaymentDayOfMonth">
+ 还款日期
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-input-number id="eRepaymentDayOfMonth" v-model="loan.repaymentDayOfMonth" step="1" :min="1" :max="31">
+ &lt;/el-input-number>
+ &lt;/div>
+ &lt;/section>
+ &lt;section>
+ &lt;div class="form-name">
+ &lt;label for="eRepaymentDayOfMonth">
+ 下载
+ &lt;/label>
+ &lt;/div>
+ &lt;div colspan="2" class="form-input">
+ &lt;el-link icon="el-icon-download" @click="downloadCsv()" :underline="false">CSV-UTF8&lt;/el-link>
+ &lt;el-link icon="el-icon-download" @click="downloadCsvUtf8Bom()" :underline="false">CSV-UTF8-BOM&lt;/el-link>
+ &lt;/div>
+ &lt;/section>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend @click="showActionArea()" style="cursor:pointer;">操作区域 &lt;i class="el"
+ :class="{'el-icon-arrow-down':showAction,'el-icon-arrow-right':!showAction}">&lt;/i>&lt;/legend>
+ &lt;div class="result-wrapper" :class="{'area-show':showAction,'area-hidden':!showAction}">
+ &lt;pre class="result-pre">
+ &lt;table class="result-table">
+ &lt;tr>
+ &lt;td>{{prepaymentAction.type}}&lt;/td>
+ &lt;td>&lt;el-date-picker v-model="prepaymentAction.date" type="date" placeholder="提前还款的扣款日期"
+ value-format="yyyy-MM-dd" format="yyyy-MM-dd" class="form-input-weight">&lt;/el-date-picker>&lt;/td>
+ &lt;td>&lt;el-input-number v-model="prepaymentAction.principal" :min="10000" step="10000">&lt;/el-input-number>&lt;/td>
+ &lt;td>&lt;el-select v-model="prepaymentAction.afterAction">&lt;el-option v-for="item in afterActionTypes" :key="item"
+ :label="item" :value="item">&lt;/el-option>&lt;/el-select>&lt;/td>
+ &lt;td>&lt;el-button v-on:click="addPrepaymentAction" type="success" icon="el-icon-circle-plus-outline" size="small" plain>&lt;/el-button>
+ &lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>{{resetRateAction.type}}&lt;/td>
+ &lt;td>&lt;el-date-picker v-model="resetRateAction.date" type="date" placeholder="利率变更日期" value-format="yyyy-MM-dd"
+ format="yyyy-MM-dd" class="form-input-weight">&lt;/el-date-picker>&lt;/td>
+ &lt;td>&lt;el-input-number v-model="resetRateAction.yearRate" :min="0" step="0.01">&lt;/el-input-number>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;el-button v-on:click="addResetRateAction" type="primary" icon="el-icon-circle-plus-outline" size="small" plain>&lt;/el-button>
+ &lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>{{changePrincipalAction.type}}&lt;/td>
+ &lt;td>&lt;el-date-picker v-model="changePrincipalAction.date" type="date" placeholder="提前还款的扣款日期"
+ value-format="yyyy-MM-dd" format="yyyy-MM-dd" class="form-input-weight">&lt;/el-date-picker>&lt;/td>
+ &lt;td>&lt;el-input-number v-model="changePrincipalAction.principal">&lt;/el-input-number>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;el-button v-on:click="addChangePrincipalAction" type="success" icon="el-icon-circle-plus-outline" size="small" plain>&lt;/el-button>
+ &lt;/td>
+ &lt;/tr>
+ &lt;template v-for="(action,i) in actions">
+ &lt;tr class="row-data" :class="{'row-data-action-reset-rate': action.type=='调整利率','row-data-action-prepayment':action.type=='提前还款'}">
+ &lt;td>{{action.type}}&lt;/td>
+ &lt;td>{{action.date}}&lt;/td>
+ &lt;td>{{action.yearRate}}{{action.principal}}&lt;/td>
+ &lt;td>{{action.afterAction}}&lt;/td>
+ &lt;td>&lt;el-button @click="deleteAction(i)" type="danger" icon="el-icon-delete" size="small" plain>&lt;/el-button>&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-合计&lt;/legend>
+ &lt;div class="result-wrapper">
+ &lt;div ref="sumChartDiv" style="width: 100%;height: 300px;">&lt;/div>
+ &lt;pre class="result-pre">
+ &lt;table class="result-table">
+ &lt;tr class="row-header">
+ &lt;th>类型&lt;/th>
+ &lt;th>本金&lt;/th>
+ &lt;th>利息&lt;/th>
+ &lt;th>总金额&lt;/th>
+ &lt;th>开始时间&lt;/th>
+ &lt;th>结束时间&lt;/th>
+ &lt;th>最后还款&lt;/th>
+ &lt;th>期数&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="sum in result.sumItems">
+ &lt;tr class="row-data">
+ &lt;td>{{sum.type}}&lt;/td>
+ &lt;td>{{sum.principal | CNY}}&lt;sub v-show="sum.principalPercent">{{sum.principalPercent}}%&lt;/sub>&lt;/td>
+ &lt;td>{{sum.interest | CNY}}&lt;sub v-show="sum.interestPercent">{{sum.interestPercent}}%&lt;/sub>&lt;/td>
+ &lt;td>{{sum.amount | CNY}}&lt;sub v-show="sum.amountPercent">{{sum.amountPercent}}%&lt;/sub>&lt;/td>
+ &lt;td>{{sum.beginInterestDate}}&lt;/td>
+ &lt;td>{{sum.endInterestDate}}&lt;/td>
+ &lt;td>{{sum.repaymentDate}}&lt;/td>
+ &lt;td>{{sum.totalNumberOfRepayment}}期 {{sum.daysText}}&lt;sub v-show="sum.totalNumberOfRepaymentPercent">{{sum.totalNumberOfRepaymentPercent}}%&lt;/sub>&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend @click="showRepairedArea()" style="cursor:pointer;">结果区域-明细-已还-{{result.repairedItems.length}}期 &lt;i
+ class="el" :class="{'el-icon-arrow-down':showRepaired,'el-icon-arrow-right':!showRepaired}">&lt;/i>&lt;/legend>
+ &lt;div class="result-wrapper" :class="{'area-show':showRepaired,'area-hidden':!showRepaired}">
+ &lt;div ref="repairedChartDiv" style="width: 100%;height: 300px;">&lt;/div>
+ &lt;pre class="result-pre">
+ &lt;table class="result-table">
+ &lt;tr class="row-header">
+ &lt;th style="cursor:pointer;width: 8em;" @click="sortTable()">月份 &lt;i :class="{'el-icon-caret-top':asc,'el-icon-caret-bottom':!asc}">&lt;/i>&lt;/th>
+ &lt;th style="width: 8em;">计息本金&lt;/th>
+ &lt;th>利率&lt;/th>
+ &lt;th>还款利息&lt;/th>
+ &lt;th>还款本金&lt;/th>
+ &lt;th>还款金额&lt;/th>
+ &lt;th>剩余本金&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="item in result.repairedItems">
+ &lt;tr :id="'month-'+item.plan.repaymentDate+'-detail'" class="row-data" :class="{'row-data-action-reset-rate': item.hasAdditionalRateTextList,'row-data-action-prepayment':item.hasAdditionalActionTextList}" :onclick="'blog.toggleClassName(\'month-'+item.plan.repaymentDate+'-detail\',\'month-detail_opened\')'">
+ &lt;td>{{item.plan.repaymentDate}}&lt;i class="el el-icon-arrow-right month-action-icon">&lt;/i>&lt;span v-for="action in item.additionalActionTextList">&lt;br/>{{action}}&lt;/span>&lt;/td>
+ &lt;td>{{item.plan.balancePrincipal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.yearRate}}&lt;span v-for="rate in item.additionalRateTextList">&lt;br/>{{rate}}&lt;/span>&lt;/td>
+ &lt;td>{{item.repayment.interest | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.principal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.amount | CNY}}&lt;/td>
+ &lt;td>{{item.balance.principal | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data month-detail" :class="{'row-data-action-reset-rate': item.hasRate,'row-data-action-prepayment':item.hasAction}" >
+ &lt;td>{{item.plan.beginInterestDate}}&lt;br/>{{item.plan.endInterestDate}}&lt;br/>{{item.repayment.rateTimesText}}&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;span v-for="rateFormula in item.repayment.yearRateFormulaList">{{rateFormula.endDate}} - {{rateFormula.beginDate}} = {{rateFormula.days}} 天&lt;br/>{{rateFormula.weightRateFormula}} = {{rateFormula.weightRate}}&lt;br/>{{rateFormula.yearRateFormula}} = {{rateFormula.yearRate}}&lt;br/>&lt;/span>{{item.repayment.rateFormula}} = {{item.repayment.rate}}&lt;/td>
+ &lt;td>{{item.repayment.interestFormula}}&lt;/td>
+ &lt;td>{{item.plan.repaymentPrincipalFormula}}&lt;/td>
+ &lt;td>{{item.repayment.amountFormula}}&lt;/td>
+ &lt;td>{{item.balance.principalFormula}}&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+
+ &lt;fieldset>
+ &lt;legend>结果区域-明细-待还-{{result.balanceItems.length}}期&lt;/legend>
+ &lt;div class="result-wrapper">
+ &lt;pre class="result-pre">
+ &lt;div ref="balanceChartDiv" style="width: 100%;height: 300px;">&lt;/div>
+ &lt;table class="result-table">
+ &lt;tr class="row-header">
+ &lt;th style="cursor:pointer;width: 8em;" @click="sortTable()">月份 &lt;i :class="{'el-icon-caret-top':asc,'el-icon-caret-bottom':!asc}">&lt;/i>&lt;/th>
+ &lt;th style="width: 8em;">计息本金&lt;/th>
+ &lt;th>利率&lt;/th>
+ &lt;th>还款利息&lt;/th>
+ &lt;th>还款本金&lt;/th>
+ &lt;th>还款金额&lt;/th>
+ &lt;th>剩余本金&lt;/th>
+ &lt;/tr>
+ &lt;template v-for="item in result.balanceItems">
+ &lt;tr :id="'month-'+item.plan.repaymentDate+'-detail'" class="row-data" :class="{'row-data-action-reset-rate': item.hasAdditionalRateTextList,'row-data-action-prepayment':item.hasAdditionalActionTextList}" :onclick="'blog.toggleClassName(\'month-'+item.plan.repaymentDate+'-detail\',\'month-detail_opened\')'">
+ &lt;td>{{item.plan.repaymentDate}}&lt;i class="el el-icon-arrow-right month-action-icon">&lt;/i>&lt;span v-for="action in item.additionalActionTextList">&lt;br/>{{action}}&lt;/span>&lt;/td>
+ &lt;td>{{item.plan.balancePrincipal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.yearRate}}&lt;span v-for="rate in item.additionalRateTextList">&lt;br/>{{rate}}&lt;/span>&lt;/td>
+ &lt;td>{{item.repayment.interest | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.principal | CNY}}&lt;/td>
+ &lt;td>{{item.repayment.amount | CNY}}&lt;/td>
+ &lt;td>{{item.balance.principal | CNY}}&lt;/td>
+ &lt;/tr>
+ &lt;tr class="row-data month-detail" :class="{'row-data-action-reset-rate': item.hasRate,'row-data-action-prepayment':item.hasAction}" >
+ &lt;td>{{item.plan.beginInterestDate}}&lt;br/>{{item.plan.endInterestDate}}&lt;br/>{{item.repayment.rateTimesText}}&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;span v-for="rateFormula in item.repayment.yearRateFormulaList">{{rateFormula.endDate}} - {{rateFormula.beginDate}} = {{rateFormula.days}} 天&lt;br/>{{rateFormula.weightRateFormula}} = {{rateFormula.weightRate}}&lt;br/>{{rateFormula.yearRateFormula}} = {{rateFormula.yearRate}}&lt;br/>&lt;/span>{{item.repayment.rateFormula}} = {{item.repayment.rate}}&lt;/td>
+ &lt;td>{{item.repayment.interestFormula}}&lt;/td>
+ &lt;td>{{item.plan.repaymentPrincipalFormula}}&lt;/td>
+ &lt;td>{{item.repayment.amountFormula}}&lt;/td>
+ &lt;td>{{item.balance.principalFormula}}&lt;/td>
+ &lt;/tr>
+ &lt;/template>
+ &lt;/table>
+ &lt;/pre>
+ &lt;/div>
+ &lt;/fieldset>
+&lt;/div>
+&lt;script src="calculator2.js">&lt;/script>
+&lt;script src="app.js">&lt;/script>&lt;/p></description></item></channel></rss>

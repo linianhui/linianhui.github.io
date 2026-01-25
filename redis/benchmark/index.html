@@ -1,0 +1,221 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Redis] benchmark - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/redis/ target=_blank>[Redis]</a></section><section class=toc-page><a class=toc-page-title href=/redis/install/ target=_blank>[Redis] install</a></section><section class=toc-page><a class=toc-page-title href=/redis/resp/ target=_blank>[Redis] resp</a></section><section class=toc-page><a class=toc-page-title href=/redis/data-type/ target=_blank>[Redis] data type</a></section><section class=toc-page><a class=toc-page-title href=/redis/pipelining/ target=_blank>[Redis] pipelining</a></section><section class=toc-page><a class=toc-page-title href=/redis/expire/ target=_blank>[Redis] expire</a></section><section class=toc-page><a class=toc-page-title href=/redis/lua/ target=_blank>[Redis] lua script</a></section><section class=toc-page><a class=toc-page-title href=/redis/persistence/ target=_blank>[Redis] persistence</a></section><section class="toc-page selected"><span class=toc-page-title>[Redis] benchmark</span><nav id=TableOfContents><ul><li><a href=#concept>1 基本概念</a></li><li><a href=#tool>2 测试工具</a></li><li><a href=#test-case>3 测试用例</a></li><li><a href=#reference>4 参考</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></section><section class=toc-page><a class=toc-page-title href=/redis/replication/ target=_blank>[Redis] replication</a></section><section class=toc-page><a class=toc-page-title href=/redis/sentinel/ target=_blank>[Redis] sentinel</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Redis] benchmark</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2021-03-19 20:12，约2207字，阅读约5分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/benchmark target=_blank><i class="fa fa-tag"></i>benchmark</a>
+<a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/benchmark/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=concept><i id=locator-concept class=header-locator></i>
+<a href=#concept class=article-h-a>1 基本概念</a></h1><p>redis速度非常快，但是有多块呢？首先我们需要分析一下当client发起对server的调用到获得结果这段时间内都经历了那些主要的步骤，比如如下代码：</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Jedis jedis = <span style=color:#00f>new</span> Jedis(<span style=color:#a31515>&#34;localhost&#34;</span>);
+</span></span><span style=display:flex><span>String result = jedis.set(<span style=color:#a31515>&#34;name&#34;</span>, <span style=color:#a31515>&#34;lnh&#34;</span>);
+</span></span></code></pre></div><p>详细分解一下其中经历的主要步骤：</p><ol><li>client发起调用；<ol><li>初始化网络连接（或者从client端维护的连接池中获取连接）；</li><li>把java方法调用和数据对象序列化成<code>RESP</code><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>协议格式；</li><li>写入网络I/O。</li></ol></li><li>网络传输；<ol><li>把上一步的转换成resp协议后的数据通过网络发送给server。</li></ol></li><li>server端处理调用；<ol><li>接收请求数据，解析resp协议格式的数据；</li><li>执行解析后的command；如果开启AOF，则也会处理AOF的事情。</li><li>把执行结果序列化为resp协议格式。</li></ol></li><li>网络传输；<ol><li>把上一步的转换成resp协议后的数据通过网络发送给client。</li></ol></li><li>client接收响应；<ol><li>读取网络IO数据，解析resp协议格式的数据。</li><li>反序列化为Java对象。</li></ol></li></ol><p>总结来说主要是3大块：client、网络传输、server。那么从使用者的角度来看，重点需要关注的在于client端的序列化以及网络连接消耗。比如采用了不合适的数据结构，导致每次需要传输的数据量过大；以及连接池的过大或过小，或者根本没，从而增大每次建立底层TCP连接的消耗；再有就是server端的配置导致一些额外的操作（aof的appendfsync配置<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>）、或者会导致长时间阻塞操作的命令导致的server端处理能力的下降。</p><blockquote><p>有了对以上的基本概念的认知和理解后，就会发现有时候我们简单的写一个for循环重复取执行某一个操作的这种测试，其实是没有任何参考意义的，最终只是沦为对网络传输效率的测试。</p></blockquote><h1 id=tool><i id=locator-tool class=header-locator></i>
+<a href=#tool class=article-h-a>2 测试工具</a></h1><p><code>redis-benchmark</code><sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>是redis提供的一个基准测试工具，可以模拟N个客户端同时发出M个请求。当然我们的基准性能测试并不能完全模拟出实际的业务调用，不过至少可以根据以上的基础概念，来组织出来近似的测试用例来检查我们所需的配置。</p><p>查看帮助<code>redis-benchmark --help</code>：<br><div class="highlight-file highlight-file_opened" id=hf-44e5476a37cc3a712c98938a924748fb><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-44e5476a37cc3a712c98938a924748fb","highlight-file_opened")'>redis-benchmark.help</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/benchmark/redis-benchmark.help title="下载 redis-benchmark.help" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/benchmark/redis-benchmark.help title="源码 redis-benchmark.help"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>Usage: redis-benchmark [-h &lt;host&gt;] [-p &lt;port&gt;] [-c &lt;clients&gt;] [-n &lt;requests&gt;] [-k &lt;boolean&gt;]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> -h &lt;hostname&gt;      Server hostname (default 127.0.0.1)
+</span></span><span style=display:flex><span> -p &lt;port&gt;          Server port (default 6379)
+</span></span><span style=display:flex><span> -s &lt;socket&gt;        Server socket (overrides host and port)
+</span></span><span style=display:flex><span> -a &lt;password&gt;      Password <span style=color:#00f>for</span> Redis Auth
+</span></span><span style=display:flex><span> --user &lt;username&gt;  Used to send ACL style <span style=color:#a31515>&#39;AUTH username pass&#39;</span>. Needs -a.
+</span></span><span style=display:flex><span> -c &lt;clients&gt;       Number of parallel connections (default 50)
+</span></span><span style=display:flex><span> -n &lt;requests&gt;      Total number of requests (default 100000)
+</span></span><span style=display:flex><span> -d &lt;size&gt;          Data size of SET/GET value in bytes (default 3)
+</span></span><span style=display:flex><span> --dbnum &lt;db&gt;       SELECT the specified db number (default 0)
+</span></span><span style=display:flex><span> --threads &lt;num&gt;    Enable multi-thread mode.
+</span></span><span style=display:flex><span> --cluster          Enable cluster mode.
+</span></span><span style=display:flex><span> --enable-tracking  Send CLIENT TRACKING on before starting benchmark.
+</span></span><span style=display:flex><span> -k &lt;boolean&gt;       1=keep alive 0=reconnect (default 1)
+</span></span><span style=display:flex><span> -r &lt;keyspacelen&gt;   Use random keys <span style=color:#00f>for</span> SET/GET/INCR, random values <span style=color:#00f>for</span> SADD,
+</span></span><span style=display:flex><span>                    random members and scores <span style=color:#00f>for</span> ZADD.
+</span></span><span style=display:flex><span>  Using this option the benchmark will expand the string __rand_int__
+</span></span><span style=display:flex><span>  inside an argument with a 12 digits number in the specified range
+</span></span><span style=display:flex><span>  from 0 to keyspacelen-1. The substitution changes every time a command
+</span></span><span style=display:flex><span>  is executed. Default tests use this to hit random keys in the
+</span></span><span style=display:flex><span>  specified range.
+</span></span><span style=display:flex><span> -P &lt;numreq&gt;        Pipeline &lt;numreq&gt; requests. Default 1 (no pipeline).
+</span></span><span style=display:flex><span> -e                 If server replies with errors, show them on stdout.
+</span></span><span style=display:flex><span>                    (no more than 1 error per second is displayed)
+</span></span><span style=display:flex><span> -q                 Quiet. Just show query/sec values
+</span></span><span style=display:flex><span> --precision        Number of decimal places to display in latency output (default 0)
+</span></span><span style=display:flex><span> --csv              Output in CSV format
+</span></span><span style=display:flex><span> -l                 Loop. Run the tests forever
+</span></span><span style=display:flex><span> -t &lt;tests&gt;         Only run the comma separated list of tests. The test
+</span></span><span style=display:flex><span>                    names are the same as the ones produced as output.
+</span></span><span style=display:flex><span> -I                 Idle mode. Just open N idle connections and wait.
+</span></span><span style=display:flex><span> --help             Output this help and exit.
+</span></span><span style=display:flex><span> --version          Output version and exit.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Examples:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> Run the benchmark with the default configuration against 127.0.0.1:6379:
+</span></span><span style=display:flex><span>   $ redis-benchmark
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> Use 20 parallel clients, <span style=color:#00f>for</span> a total of 100k requests, against 192.168.1.1:
+</span></span><span style=display:flex><span>   $ redis-benchmark -h 192.168.1.1 -p 6379 -n 100000 -c 20
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> Fill 127.0.0.1:6379 with about 1 million keys only using the SET test:
+</span></span><span style=display:flex><span>   $ redis-benchmark -t set -n 1000000 -r 100000000
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> Benchmark 127.0.0.1:6379 <span style=color:#00f>for</span> a few commands producing CSV output:
+</span></span><span style=display:flex><span>   $ redis-benchmark -t ping,set,get -n 100000 --csv
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> Benchmark a specific command line:
+</span></span><span style=display:flex><span>   $ redis-benchmark -r 10000 -n 10000 eval <span style=color:#a31515>&#39;return redis.call(&#34;ping&#34;)&#39;</span> 0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> Fill a list with 10000 random elements:
+</span></span><span style=display:flex><span>   $ redis-benchmark -r 10000 -n 10000 lpush mylist __rand_int__
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> On user specified command lines __rand_int__ is replaced with a random integer
+</span></span><span style=display:flex><span> with a range of values selected by the -r option.</span></span></code></pre></div></div></div></p><p>从上述的帮助文档中可以看出它提供有如下几点功能：</p><ol><li><code>-c</code>：并行的client的数量。</li><li><code>-n</code>：总的请求数量。</li><li><code>-k</code>：是否使用长连接。</li><li><code>-r</code>：value的数据块的大小。</li><li><code>-d</code>：key的随机大小。</li><li><code>-P</code>：pipline中的命令条数。</li><li><code>-t</code>：特定的命令。</li></ol><h1 id=test-case><i id=locator-test-case class=header-locator></i>
+<a href=#test-case class=article-h-a>3 测试用例</a></h1><p>比如执行以下命令测试1000个随机key的<code>set</code>和<code>lpush</code>结果：<br><div class="highlight-file highlight-file_opened" id=hf-dce5902f23507b0aa3522a5af03f4f23><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-dce5902f23507b0aa3522a5af03f4f23","highlight-file_opened")'>1.test</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/benchmark/1.test title="下载 1.test" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/benchmark/1.test title="源码 1.test"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ redis-benchmark -t set,lpush -n 100000 -r 1000
+</span></span><span style=display:flex><span>====== SET ======
+</span></span><span style=display:flex><span>  100000 requests completed in 2.09 seconds
+</span></span><span style=display:flex><span>  50 parallel clients
+</span></span><span style=display:flex><span>  3 bytes payload
+</span></span><span style=display:flex><span>  keep alive: 1
+</span></span><span style=display:flex><span>  host configuration <span style=color:#a31515>&#34;save&#34;</span>: 300 10
+</span></span><span style=display:flex><span>  host configuration <span style=color:#a31515>&#34;appendonly&#34;</span>: yes
+</span></span><span style=display:flex><span>  multi-thread: no
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Latency by percentile distribution:
+</span></span><span style=display:flex><span>0.000% &lt;= 0.191 milliseconds (cumulative count 1)
+</span></span><span style=display:flex><span>50.000% &lt;= 0.671 milliseconds (cumulative count 50901)
+</span></span><span style=display:flex><span>75.000% &lt;= 0.887 milliseconds (cumulative count 75431)
+</span></span><span style=display:flex><span>87.500% &lt;= 1.063 milliseconds (cumulative count 87642)
+</span></span><span style=display:flex><span>93.750% &lt;= 1.215 milliseconds (cumulative count 93930)
+</span></span><span style=display:flex><span>96.875% &lt;= 1.351 milliseconds (cumulative count 96973)
+</span></span><span style=display:flex><span>98.438% &lt;= 1.479 milliseconds (cumulative count 98461)
+</span></span><span style=display:flex><span>99.219% &lt;= 1.623 milliseconds (cumulative count 99234)
+</span></span><span style=display:flex><span>99.609% &lt;= 1.823 milliseconds (cumulative count 99611)
+</span></span><span style=display:flex><span>99.805% &lt;= 2.175 milliseconds (cumulative count 99807)
+</span></span><span style=display:flex><span>99.902% &lt;= 2.559 milliseconds (cumulative count 99904)
+</span></span><span style=display:flex><span>99.951% &lt;= 3.367 milliseconds (cumulative count 99952)
+</span></span><span style=display:flex><span>99.976% &lt;= 4.991 milliseconds (cumulative count 99976)
+</span></span><span style=display:flex><span>99.988% &lt;= 5.407 milliseconds (cumulative count 99988)
+</span></span><span style=display:flex><span>99.994% &lt;= 5.647 milliseconds (cumulative count 99994)
+</span></span><span style=display:flex><span>99.997% &lt;= 5.783 milliseconds (cumulative count 99997)
+</span></span><span style=display:flex><span>99.998% &lt;= 5.831 milliseconds (cumulative count 99999)
+</span></span><span style=display:flex><span>99.999% &lt;= 5.895 milliseconds (cumulative count 100000)
+</span></span><span style=display:flex><span>100.000% &lt;= 5.895 milliseconds (cumulative count 100000)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Cumulative distribution of latencies:
+</span></span><span style=display:flex><span>0.000% &lt;= 0.103 milliseconds (cumulative count 0)
+</span></span><span style=display:flex><span>0.002% &lt;= 0.207 milliseconds (cumulative count 2)
+</span></span><span style=display:flex><span>1.928% &lt;= 0.303 milliseconds (cumulative count 1928)
+</span></span><span style=display:flex><span>9.816% &lt;= 0.407 milliseconds (cumulative count 9816)
+</span></span><span style=display:flex><span>24.073% &lt;= 0.503 milliseconds (cumulative count 24073)
+</span></span><span style=display:flex><span>41.608% &lt;= 0.607 milliseconds (cumulative count 41608)
+</span></span><span style=display:flex><span>55.195% &lt;= 0.703 milliseconds (cumulative count 55195)
+</span></span><span style=display:flex><span>67.451% &lt;= 0.807 milliseconds (cumulative count 67451)
+</span></span><span style=display:flex><span>76.876% &lt;= 0.903 milliseconds (cumulative count 76876)
+</span></span><span style=display:flex><span>84.431% &lt;= 1.007 milliseconds (cumulative count 84431)
+</span></span><span style=display:flex><span>89.594% &lt;= 1.103 milliseconds (cumulative count 89594)
+</span></span><span style=display:flex><span>93.678% &lt;= 1.207 milliseconds (cumulative count 93678)
+</span></span><span style=display:flex><span>96.161% &lt;= 1.303 milliseconds (cumulative count 96161)
+</span></span><span style=display:flex><span>97.743% &lt;= 1.407 milliseconds (cumulative count 97743)
+</span></span><span style=display:flex><span>98.650% &lt;= 1.503 milliseconds (cumulative count 98650)
+</span></span><span style=display:flex><span>99.186% &lt;= 1.607 milliseconds (cumulative count 99186)
+</span></span><span style=display:flex><span>99.424% &lt;= 1.703 milliseconds (cumulative count 99424)
+</span></span><span style=display:flex><span>99.591% &lt;= 1.807 milliseconds (cumulative count 99591)
+</span></span><span style=display:flex><span>99.672% &lt;= 1.903 milliseconds (cumulative count 99672)
+</span></span><span style=display:flex><span>99.737% &lt;= 2.007 milliseconds (cumulative count 99737)
+</span></span><span style=display:flex><span>99.773% &lt;= 2.103 milliseconds (cumulative count 99773)
+</span></span><span style=display:flex><span>99.936% &lt;= 3.103 milliseconds (cumulative count 99936)
+</span></span><span style=display:flex><span>99.957% &lt;= 4.103 milliseconds (cumulative count 99957)
+</span></span><span style=display:flex><span>99.979% &lt;= 5.103 milliseconds (cumulative count 99979)
+</span></span><span style=display:flex><span>100.000% &lt;= 6.103 milliseconds (cumulative count 100000)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Summary:
+</span></span><span style=display:flex><span>  throughput summary: 47801.15 requests per second
+</span></span><span style=display:flex><span>  latency summary (msec):
+</span></span><span style=display:flex><span>          avg       min       p50       p95       p99       max
+</span></span><span style=display:flex><span>        0.723     0.184     0.671     1.255     1.567     5.895
+</span></span><span style=display:flex><span>====== LPUSH ======
+</span></span><span style=display:flex><span>  100000 requests completed in 2.09 seconds
+</span></span><span style=display:flex><span>  50 parallel clients
+</span></span><span style=display:flex><span>  3 bytes payload
+</span></span><span style=display:flex><span>  keep alive: 1
+</span></span><span style=display:flex><span>  host configuration <span style=color:#a31515>&#34;save&#34;</span>: 300 10
+</span></span><span style=display:flex><span>  host configuration <span style=color:#a31515>&#34;appendonly&#34;</span>: yes
+</span></span><span style=display:flex><span>  multi-thread: no
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Latency by percentile distribution:
+</span></span><span style=display:flex><span>0.000% &lt;= 0.215 milliseconds (cumulative count 3)
+</span></span><span style=display:flex><span>50.000% &lt;= 0.687 milliseconds (cumulative count 51059)
+</span></span><span style=display:flex><span>75.000% &lt;= 0.903 milliseconds (cumulative count 75163)
+</span></span><span style=display:flex><span>87.500% &lt;= 1.087 milliseconds (cumulative count 87758)
+</span></span><span style=display:flex><span>93.750% &lt;= 1.247 milliseconds (cumulative count 93851)
+</span></span><span style=display:flex><span>96.875% &lt;= 1.399 milliseconds (cumulative count 96899)
+</span></span><span style=display:flex><span>98.438% &lt;= 1.567 milliseconds (cumulative count 98484)
+</span></span><span style=display:flex><span>99.219% &lt;= 1.767 milliseconds (cumulative count 99225)
+</span></span><span style=display:flex><span>99.609% &lt;= 1.991 milliseconds (cumulative count 99610)
+</span></span><span style=display:flex><span>99.805% &lt;= 2.167 milliseconds (cumulative count 99806)
+</span></span><span style=display:flex><span>99.902% &lt;= 2.351 milliseconds (cumulative count 99903)
+</span></span><span style=display:flex><span>99.951% &lt;= 2.503 milliseconds (cumulative count 99953)
+</span></span><span style=display:flex><span>99.976% &lt;= 2.615 milliseconds (cumulative count 99976)
+</span></span><span style=display:flex><span>99.988% &lt;= 2.687 milliseconds (cumulative count 99988)
+</span></span><span style=display:flex><span>99.994% &lt;= 2.775 milliseconds (cumulative count 99994)
+</span></span><span style=display:flex><span>99.997% &lt;= 2.831 milliseconds (cumulative count 99997)
+</span></span><span style=display:flex><span>99.998% &lt;= 2.919 milliseconds (cumulative count 99999)
+</span></span><span style=display:flex><span>99.999% &lt;= 2.975 milliseconds (cumulative count 100000)
+</span></span><span style=display:flex><span>100.000% &lt;= 2.975 milliseconds (cumulative count 100000)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Cumulative distribution of latencies:
+</span></span><span style=display:flex><span>0.000% &lt;= 0.103 milliseconds (cumulative count 0)
+</span></span><span style=display:flex><span>2.009% &lt;= 0.303 milliseconds (cumulative count 2009)
+</span></span><span style=display:flex><span>10.383% &lt;= 0.407 milliseconds (cumulative count 10383)
+</span></span><span style=display:flex><span>23.762% &lt;= 0.503 milliseconds (cumulative count 23762)
+</span></span><span style=display:flex><span>39.616% &lt;= 0.607 milliseconds (cumulative count 39616)
+</span></span><span style=display:flex><span>53.245% &lt;= 0.703 milliseconds (cumulative count 53245)
+</span></span><span style=display:flex><span>65.687% &lt;= 0.807 milliseconds (cumulative count 65687)
+</span></span><span style=display:flex><span>75.163% &lt;= 0.903 milliseconds (cumulative count 75163)
+</span></span><span style=display:flex><span>83.127% &lt;= 1.007 milliseconds (cumulative count 83127)
+</span></span><span style=display:flex><span>88.543% &lt;= 1.103 milliseconds (cumulative count 88543)
+</span></span><span style=display:flex><span>92.636% &lt;= 1.207 milliseconds (cumulative count 92636)
+</span></span><span style=display:flex><span>95.196% &lt;= 1.303 milliseconds (cumulative count 95196)
+</span></span><span style=display:flex><span>97.006% &lt;= 1.407 milliseconds (cumulative count 97006)
+</span></span><span style=display:flex><span>98.021% &lt;= 1.503 milliseconds (cumulative count 98021)
+</span></span><span style=display:flex><span>98.705% &lt;= 1.607 milliseconds (cumulative count 98705)
+</span></span><span style=display:flex><span>99.069% &lt;= 1.703 milliseconds (cumulative count 99069)
+</span></span><span style=display:flex><span>99.314% &lt;= 1.807 milliseconds (cumulative count 99314)
+</span></span><span style=display:flex><span>99.477% &lt;= 1.903 milliseconds (cumulative count 99477)
+</span></span><span style=display:flex><span>99.629% &lt;= 2.007 milliseconds (cumulative count 99629)
+</span></span><span style=display:flex><span>99.739% &lt;= 2.103 milliseconds (cumulative count 99739)
+</span></span><span style=display:flex><span>100.000% &lt;= 3.103 milliseconds (cumulative count 100000)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Summary:
+</span></span><span style=display:flex><span>  throughput summary: 47938.64 requests per second
+</span></span><span style=display:flex><span>  latency summary (msec):
+</span></span><span style=display:flex><span>          avg       min       p50       p95       p99       max
+</span></span><span style=display:flex><span>        0.736     0.208     0.687     1.295     1.687     2.975</span></span></code></pre></div></div></div></p><p>piplining的测试对比，可以明显看出一次piplining中设置为10条命令时，性能翻了5倍！</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ redis-benchmark -t set,lpush -n 100000 -r 1000 -q 
+</span></span><span style=display:flex><span>SET: 47984.64 requests per second, p50=0.615 msec
+</span></span><span style=display:flex><span>LPUSH: 49875.31 requests per second, p50=0.615 msec
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ redis-benchmark -t set,lpush -n 100000 -r 1000 -q -P 10
+</span></span><span style=display:flex><span>SET: 248756.22 requests per second, p50=1.695 msec
+</span></span><span style=display:flex><span>LPUSH: 253164.55 requests per second, p50=1.639 msec
+</span></span></code></pre></div><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>4 参考</a></h1><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://linianhui.github.io/redis/resp target=_blank rel="noopener norefferrer">https://linianhui.github.io/redis/resp</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://linianhui.github.io/redis/persistence target=_blank rel="noopener norefferrer">https://linianhui.github.io/redis/persistence</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><a href=https://redis.io/topics/benchmarks target=_blank rel="noopener norefferrer">https://redis.io/topics/benchmarks</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2021-03-19 20:12，约2207字，阅读约5分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/benchmark target=_blank><i class="fa fa-tag"></i>benchmark</a>
+<a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/benchmark/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/redis/persistence/ target=_blank>[Redis] persistence</a></div><div class=article-page-next><span>下一篇 : </span><a href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

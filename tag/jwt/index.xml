@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JWT on Timetombs</title><link>https://linianhui.github.io/tag/jwt/</link><description>Recent content in JWT on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/jwt/index.xml" rel="self" type="application/rss+xml"/><item><title>[认证&amp;授权] 04 OIDC(OpenId Connect)身份认证(核心部分)</title><link>https://linianhui.github.io/authentication-and-authorization/04-openid-connect-core/</link><pubDate>Tue, 30 May 2017 09:18:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/04-openid-connect-core/</guid><description>&lt;h1 id="what-is-oidc">
+&lt;i id="locator-what-is-oidc" class="header-locator">&lt;/i>
+&lt;a href="#what-is-oidc" class="article-h-a">1 什么是OIDC？&lt;/a>
+&lt;/h1>
+&lt;p>看一下官方的介绍(&lt;a href="http://openid.net/connect/"
+
+ target="_blank" rel="noopener norefferrer">http://openid.net/connect/&lt;/a>) :&lt;/p>
+&lt;blockquote>
+&lt;p>OpenID Connect 1.0 is a simple identity layer on top of the OAuth 2.0 protocol. It allows Clients to verify the identity of the End-User based on the authentication performed by an Authorization Server, as well as to obtain basic profile information about the End-User in an interoperable and REST-like manner.&lt;/p>
+&lt;p>OpenID Connect allows clients of all types, including Web-based, mobile, and JavaScript clients, to request and receive information about authenticated sessions and end-users. The specification suite is extensible, allowing participants to use optional features such as encryption of identity data, discovery of OpenID Providers, and session management, when it makes sense for them.&lt;/p>&lt;/blockquote>
+&lt;p>简单来说 : OIDC是OpenID Connect的简称，&lt;code>OIDC=(Identity, Authentication) + OAuth 2.0&lt;/code>。它在OAuth2上构建了一个身份层，是一个基于OAuth2协议的身份认证标准协议。我们都知道OAuth2是一个授权协议，它无法提供完善的身份认证功能(关于这一点请参考&lt;a href="../03-user-authentication-with-oauth2/"
+
+ target="_blank" rel="noopener norefferrer">[认证&amp;amp;授权] 03 使用OAuth2进行用户认证(译)&lt;/a>)，OIDC使用OAuth2的授权服务器来为第三方客户端提供用户的身份认证，并把对应的身份认证信息传递给客户端，且可以适用于各种类型的客户端(比如服务端应用，移动APP，JS应用)，且完全兼容OAuth2，也就是说你搭建了一个OIDC的服务后，也可以当作一个OAuth2的服务来用。应用场景如图 :&lt;br />
+&lt;img src="oidc-use-for.png" loading="lazy" decoding="auto" alt="OIDC 应用场景" title="OIDC 应用场景"/>&lt;/p></description></item><item><title>[认证&amp;授权] 02 OAuth2授权(续) &amp; JWT(JSON Web Token)</title><link>https://linianhui.github.io/authentication-and-authorization/02-oauth2-extensions-protocol-and-json-web-token/</link><pubDate>Mon, 03 Apr 2017 03:56:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/02-oauth2-extensions-protocol-and-json-web-token/</guid><description>&lt;h1 id="rfc6749-defects">
+&lt;i id="locator-rfc6749-defects" class="header-locator">&lt;/i>
+&lt;a href="#rfc6749-defects" class="article-h-a">1 RFC6749还有哪些可以完善的？&lt;/a>
+&lt;/h1>
+&lt;h2 id="token-revocation">
+&lt;i id="locator-token-revocation" class="header-locator">&lt;/i>
+&lt;a href="#token-revocation" class="article-h-a">1.1 撤销Token&lt;/a>
+&lt;/h2>
+&lt;p>在上篇&lt;a href="../01-oauth2-authorization/"
+
+ target="_blank" rel="noopener norefferrer">[认证&amp;amp;授权] 01 OAuth2授权&lt;/a>中介绍到了OAuth2可以帮我们解决第三方Client访问受保护资源的问题，但是只提供了如何获得access_token，并未说明怎么来撤销一个access_token。关于这部分OAuth2单独定义了一个&lt;a href="https://tools.ietf.org/html/rfc7009"
+
+ target="_blank" rel="noopener norefferrer">RFC7009 - OAuth 2.0 Token Revocation&lt;/a>来解决撤销Token问题。&lt;/p></description></item></channel></rss>

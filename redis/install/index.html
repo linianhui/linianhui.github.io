@@ -1,0 +1,103 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Redis] install - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A02Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/redis/ target=_blank>[Redis]</a></section><section class="toc-page selected"><span class=toc-page-title>[Redis] install</span><nav id=TableOfContents><ul><li><a href=#source>1 源码安装</a></li><li><a href=#docker>2 docker安装</a></li><li><a href=#run>3 本地运行</a><ul><li><a href=#run-server>3.1 运行服务端</a></li><li><a href=#run-client>3.2 运行客户端</a></li></ul></li><li><a href=#online>4 online运行</a></li><li><a href=#reference>5 参考</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/redis/resp/ target=_blank>[Redis] resp</a></section><section class=toc-page><a class=toc-page-title href=/redis/data-type/ target=_blank>[Redis] data type</a></section><section class=toc-page><a class=toc-page-title href=/redis/pipelining/ target=_blank>[Redis] pipelining</a></section><section class=toc-page><a class=toc-page-title href=/redis/expire/ target=_blank>[Redis] expire</a></section><section class=toc-page><a class=toc-page-title href=/redis/lua/ target=_blank>[Redis] lua script</a></section><section class=toc-page><a class=toc-page-title href=/redis/persistence/ target=_blank>[Redis] persistence</a></section><section class=toc-page><a class=toc-page-title href=/redis/benchmark/ target=_blank>[Redis] benchmark</a></section><section class=toc-page><a class=toc-page-title href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></section><section class=toc-page><a class=toc-page-title href=/redis/replication/ target=_blank>[Redis] replication</a></section><section class=toc-page><a class=toc-page-title href=/redis/sentinel/ target=_blank>[Redis] sentinel</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:02Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Redis] install</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2021-03-19 03:24，约439字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/install target=_blank><i class="fa fa-tag"></i>install</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/9408e3af1e0dda7973cb1529669faf53e35d261c target=_blank><i class="fa fa-code-fork"></i>9408e3a</a>
+<span class=article-git-commit-subject>rename blackheart to Timetombs</span>
+<span class=article-git-commit-time>2022-07-22 23:52</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=source><i id=locator-source class=header-locator></i>
+<a href=#source class=article-h-a>1 源码安装</a></h1><p>适用于Linux和macOS<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>。</p><p>下载地址：<a href=https://download.redis.io/releases/redis-6.2.1.tar.gz target=_blank rel="noopener norefferrer">https://download.redis.io/releases/redis-6.2.1.tar.gz</a>。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>wget https://download.redis.io/releases/redis-6.2.1.tar.gz
+</span></span><span style=display:flex><span>tar xzf redis-6.2.1.tar.gz
+</span></span><span style=display:flex><span>cd redis-6.2.1
+</span></span><span style=display:flex><span>make
+</span></span></code></pre></div><p>编译完成后的二进制文件(<code>redis-server</code>,<code>redis-cli</code>等等)位于<code>src</code>目录中。</p><h1 id=docker><i id=locator-docker class=header-locator></i>
+<a href=#docker class=article-h-a>2 docker安装</a></h1><p><a href=https://hub.docker.com/_/redis target=_blank rel="noopener norefferrer">https://hub.docker.com/_/redis</a></p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>docker run --name redis -d redis:6.2
+</span></span></code></pre></div><div class="highlight-file highlight-file_opened" id=hf-32fd287cfe1e0c45ffc41a0bebc4104d><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-32fd287cfe1e0c45ffc41a0bebc4104d","highlight-file_opened")'>Dockerfile</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/install/Dockerfile title="下载 Dockerfile" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/install/Dockerfile title="源码 Dockerfile"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Dockerfile data-lang=Dockerfile><span style=display:flex><span><span style=color:green># https://hub.docker.com/_/redis/</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=color:green># https://github.com/docker-library/redis/blob/master/6.2/Dockerfile</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=color:#00f>FROM</span><span style=color:#a31515> redis:6.2</span><span>
+</span></span></span><span style=display:flex><span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=color:#00f>EXPOSE</span><span style=color:#a31515> 6379</span></span></span></code></pre></div></div></div><h1 id=run><i id=locator-run class=header-locator></i>
+<a href=#run class=article-h-a>3 本地运行</a></h1><div class="highlight-file highlight-file_opened" id=hf-9ab373a6a2363d0c402d40e4d5c9c6bf><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-9ab373a6a2363d0c402d40e4d5c9c6bf","highlight-file_opened")'>redis.conf</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/install/redis.conf title="下载 redis.conf" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/install/redis.conf title="源码 redis.conf"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span>bind 127.0.0.1
+</span></span><span style=display:flex><span>port 6379
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># RDB</span>
+</span></span><span style=display:flex><span>save 300 10
+</span></span><span style=display:flex><span>stop-writes-on-bgsave-error yes
+</span></span><span style=display:flex><span>dir /lnh/_data/_redis/
+</span></span><span style=display:flex><span>dbfilename dump.rdb
+</span></span><span style=display:flex><span>rdbcompression yes
+</span></span><span style=display:flex><span>rdbchecksum no
+</span></span><span style=display:flex><span>rdb-del-sync-files no
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># AOF</span>
+</span></span><span style=display:flex><span>appendonly yes
+</span></span><span style=display:flex><span>appendfsync everysec
+</span></span><span style=display:flex><span>appendfilename appendonly.aof
+</span></span><span style=display:flex><span>auto-aof-rewrite-min-size 64mb
+</span></span><span style=display:flex><span>auto-aof-rewrite-percentage 100
+</span></span><span style=display:flex><span>no-appendfsync-on-rewrite yes
+</span></span><span style=display:flex><span>aof-load-truncated yes
+</span></span><span style=display:flex><span>aof-use-rdb-preamble yes
+</span></span></code></pre></div></div></div><h2 id=run-server><i id=locator-run-server class=header-locator></i>
+<a href=#run-server class=article-h-a>3.1 运行服务端</a></h2><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ redis-server
+</span></span><span style=display:flex><span>5177:C 19 Mar 2021 04:08:38.090 <span style=color:green># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
+</span></span><span style=display:flex><span>5177:C 19 Mar 2021 04:08:38.090 <span style=color:green># Redis version=6.2.1, bits=64, commit=00000000, modified=0, pid=5177, just started</span>
+</span></span><span style=display:flex><span>5177:C 19 Mar 2021 04:08:38.090 <span style=color:green># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span>
+</span></span><span style=display:flex><span>5177:M 19 Mar 2021 04:08:38.091 * monotonic clock: POSIX clock_gettime
+</span></span><span style=display:flex><span>                _._                                                  
+</span></span><span style=display:flex><span>           _.-<span style=color:#a31515>``</span>__ <span style=color:#a31515>&#39;&#39;</span>-._                                             
+</span></span><span style=display:flex><span>      _.-<span style=color:#a31515>``</span>    <span style=color:#a31515>`</span>.  <span style=color:#a31515>`</span>_.  <span style=color:#a31515>&#39;&#39;</span>-._           Redis 6.2.1 (00000000/0) 64 bit
+</span></span><span style=display:flex><span>  .-<span style=color:#a31515>``</span> .-<span style=color:#a31515>```</span>.  <span style=color:#a31515>```</span><span style=color:#a31515>\/</span>    _.,_ <span style=color:#a31515>&#39;&#39;</span>-._                                   
+</span></span><span style=display:flex><span> (    <span style=color:#a31515>&#39;      ,       .-`  | `,    )     Running in standalone mode
+</span></span></span><span style=display:flex><span><span style=color:#a31515> |`-._`-...-` __...-.``-._|&#39;</span><span style=color:#a31515>`</span> _.-<span style=color:#a31515>&#39;|     Port: 6379
+</span></span></span><span style=display:flex><span><span style=color:#a31515> |    `-._   `._    /     _.-&#39;</span>    |     PID: 5177
+</span></span><span style=display:flex><span>  <span style=color:#a31515>`</span>-._    <span style=color:#a31515>`</span>-._  <span style=color:#a31515>`</span>-./  _.-<span style=color:#a31515>&#39;    _.-&#39;</span>                                   
+</span></span><span style=display:flex><span> |<span style=color:#a31515>`</span>-._<span style=color:#a31515>`</span>-._    <span style=color:#a31515>`</span>-.__.-<span style=color:#a31515>&#39;    _.-&#39;</span>_.-<span style=color:#a31515>&#39;|                                  
+</span></span></span><span style=display:flex><span><span style=color:#a31515> |    `-._`-._        _.-&#39;</span>_.-<span style=color:#a31515>&#39;    |           http://redis.io        
+</span></span></span><span style=display:flex><span><span style=color:#a31515>  `-._    `-._`-.__.-&#39;</span>_.-<span style=color:#a31515>&#39;    _.-&#39;</span>                                   
+</span></span><span style=display:flex><span> |<span style=color:#a31515>`</span>-._<span style=color:#a31515>`</span>-._    <span style=color:#a31515>`</span>-.__.-<span style=color:#a31515>&#39;    _.-&#39;</span>_.-<span style=color:#a31515>&#39;|                                  
+</span></span></span><span style=display:flex><span><span style=color:#a31515> |    `-._`-._        _.-&#39;</span>_.-<span style=color:#a31515>&#39;    |                                  
+</span></span></span><span style=display:flex><span><span style=color:#a31515>  `-._    `-._`-.__.-&#39;</span>_.-<span style=color:#a31515>&#39;    _.-&#39;</span>                                   
+</span></span><span style=display:flex><span>      <span style=color:#a31515>`</span>-._    <span style=color:#a31515>`</span>-.__.-<span style=color:#a31515>&#39;    _.-&#39;</span>                                       
+</span></span><span style=display:flex><span>          <span style=color:#a31515>`</span>-._        _.-<span style=color:#a31515>&#39;                                           
+</span></span></span><span style=display:flex><span><span style=color:#a31515>              `-.__.-&#39;</span>                                               
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>5177:M 19 Mar 2021 04:08:38.095 <span style=color:green># Server initialized</span>
+</span></span><span style=display:flex><span>5177:M 19 Mar 2021 04:08:38.096 * Ready to accept connections
+</span></span></code></pre></div><h2 id=run-client><i id=locator-run-client class=header-locator></i>
+<a href=#run-client class=article-h-a>3.2 运行客户端</a></h2><p>使用<code>redis-cli</code>简单测试一下设置和获取一个名为<code>test</code>的string类型的缓存。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ redis-cli
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; set test Timetombs
+</span></span><span style=display:flex><span>OK
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; get test
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;Timetombs&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; 
+</span></span></code></pre></div><h1 id=online><i id=locator-online class=header-locator></i>
+<a href=#online class=article-h-a>4 online运行</a></h1><p><a href=http://try.redis.io target=_blank rel="noopener norefferrer">http://try.redis.io</a></p><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>5 参考</a></h1><p><a href=https://redis.io/download target=_blank rel="noopener norefferrer">https://redis.io/download</a></p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://redis.io/download#from-source-code target=_blank rel="noopener norefferrer">https://redis.io/download#from-source-code</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2021-03-19 03:24，约439字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/install target=_blank><i class="fa fa-tag"></i>install</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/9408e3af1e0dda7973cb1529669faf53e35d261c target=_blank><i class="fa fa-code-fork"></i>9408e3a</a>
+<span class=article-git-commit-subject>rename blackheart to Timetombs</span>
+<span class=article-git-commit-time>2022-07-22 23:52</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-next><span>下一篇 : </span><a href=/redis/resp/ target=_blank>[Redis] resp</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

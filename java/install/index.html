@@ -1,0 +1,192 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Java] Install - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/java/ target=_blank>[Java]</a></section><section class="toc-page selected"><span class=toc-page-title>[Java] Install</span><nav id=TableOfContents><ul><li><a href=#openjdk>1 OpenJdk</a></li><li><a href=#maven>2 Maven</a><ul><li><a href=#settings-xml>2.1 settings.xml</a></li></ul></li><li><a href=#3.gradle>3 Gradle</a><ul><li><a href=#gradle-properties>3.1 gradle.properties</a></li><li><a href=#init-gradle>3.2 init.gradle</a></li><li><a href=#settings.gradle>3.3 settings.gradle</a></li></ul></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/java/jvm/ target=_blank>[Java] JVM(Java Virtual Machine)</a></section><section class=toc-page><a class=toc-page-title href=/java/tool/ target=_blank>[Java] Tool</a></section><section class=toc-page><a class=toc-page-title href=/java/unsafe/ target=_blank>[Java] Unsafe类</a></section><section class=toc-page><a class=toc-page-title href=/java/jmm/ target=_blank>[Java] JMM(Java Memory Model)</a></section><section class=toc-page><a class=toc-page-title href=/java/gc/ target=_blank>[Java] GC(Garbage Collection)</a></section><section class=toc-page><a class=toc-page-title href=/java/thread/ target=_blank>[Java] Thread</a></section><section class=toc-page><a class=toc-page-title href=/java/cas/ target=_blank>[Java] CAS(Compare And Swap)</a></section><section class=toc-page><a class=toc-page-title href=/java/synchronized/ target=_blank>[Java] synchronized</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Java] Install</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2017-08-06 16:34，约595字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/java/ title=[Java] target=_blank><i class="fa fa-folder"></i>[Java]</a></section><section class=article-tags><a class=article-tag href=/tag/gradle target=_blank><i class="fa fa-tag"></i>Gradle</a>
+<a class=article-tag href=/tag/install target=_blank><i class="fa fa-tag"></i>Install</a>
+<a class=article-tag href=/tag/java target=_blank><i class="fa fa-tag"></i>Java</a>
+<a class=article-tag href=/tag/maven target=_blank><i class="fa fa-tag"></i>Maven</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/65b17b14ed89157b4ac20842fba94fd4c0895ac6 target=_blank><i class="fa fa-code-fork"></i>65b17b1</a>
+<span class=article-git-commit-subject>fix java powershell</span>
+<span class=article-git-commit-time>2023-08-05 07:53</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/java/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=openjdk><i id=locator-openjdk class=header-locator></i>
+<a href=#openjdk class=article-h-a>1 OpenJdk</a></h1><p>下载地址 :</p><ol><li><a href=https://adoptium.net/ target=_blank rel="noopener norefferrer">https://adoptium.net/</a></li><li><a href=https://www.microsoft.com/openjdk target=_blank rel="noopener norefferrer">https://www.microsoft.com/openjdk</a></li><li><a href=https://developers.redhat.com/products/openjdk/download target=_blank rel="noopener norefferrer">https://developers.redhat.com/products/openjdk/download</a></li></ol><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span><span style=color:green># 设置环境变量 </span>
+</span></span><span style=display:flex><span>Env-SetJavaEnvironmentVariable
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看版本信息 </span>
+</span></span><span style=display:flex><span>java -version
+</span></span></code></pre></div><h1 id=maven><i id=locator-maven class=header-locator></i>
+<a href=#maven class=article-h-a>2 Maven</a></h1><p>下载地址 : <a href=https://maven.apache.org/download.cgi target=_blank rel="noopener norefferrer">https://maven.apache.org/download.cgi</a></p><p>下载二进制包 : <code>apache-maven-3.8.1-bin.zip</code>解压至<code>d:\_app\_maven\</code>目录下。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span><span style=color:green># 设置环境变量</span>
+</span></span><span style=display:flex><span>Env-SetMavenEnvironmentVariable
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看版本信息</span>
+</span></span><span style=display:flex><span>mvn -v
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># wrapper</span>
+</span></span><span style=display:flex><span><span style=color:green># https://github.com/takari/maven-wrapper</span>
+</span></span><span style=display:flex><span>mvn --non-recursive --debug io.takari<span>:</span>maven<span>:</span>wrapper -Dmaven=<span style=color:#a31515>&#39;3.8.1&#39;</span>
+</span></span></code></pre></div><h2 id=settings-xml><i id=locator-settings-xml class=header-locator></i>
+<a href=#settings-xml class=article-h-a>2.1 settings.xml</a></h2><p>复制<code>settings.xml</code>配置文件到<code>HOME/.m2/</code>目录。</p><div class="highlight-file highlight-file_opened" id=hf-add90aa826c2c258970f3e077b40a1b5><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-add90aa826c2c258970f3e077b40a1b5","highlight-file_opened")'>~/.m2/setting.xml</a><a class="fa fa-download highlight-file-download" target=_blank href=/java/install/settings.xml title="下载 ~/.m2/setting.xml" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/java/install/settings.xml title="源码 ~/.m2/setting.xml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#00f>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style=display:flex><span><span style=color:green>&lt;!-- https://maven.apache.org/settings.html --&gt;</span>
+</span></span><span style=display:flex><span><span style=color:green>&lt;!--
+</span></span></span><span style=display:flex><span><span style=color:green>  加载顺序
+</span></span></span><span style=display:flex><span><span style=color:green>  1. 全局设置 M2_HOME/conf/settiing.xml
+</span></span></span><span style=display:flex><span><span style=color:green>  2. 用户设置 HOME/.m2/settiing.xml
+</span></span></span><span style=display:flex><span><span style=color:green>--&gt;</span>
+</span></span><span style=display:flex><span>&lt;settings xmlns=<span style=color:#a31515>&#34;http://maven.apache.org/SETTINGS/1.0.0&#34;</span>
+</span></span><span style=display:flex><span>  xmlns:xsi=<span style=color:#a31515>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span style=display:flex><span>  xsi:schemaLocation=<span style=color:#a31515>&#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&#34;</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  &lt;profiles&gt;
+</span></span><span style=display:flex><span>    &lt;profile&gt;
+</span></span><span style=display:flex><span>      <span style=color:green>&lt;!-- https://maven.aliyun.com/mvn/guide --&gt;</span>
+</span></span><span style=display:flex><span>      &lt;id&gt;aliyun&lt;/id&gt;
+</span></span><span style=display:flex><span>      &lt;repositories&gt;
+</span></span><span style=display:flex><span>        &lt;repository&gt;
+</span></span><span style=display:flex><span>          &lt;id&gt;central&lt;/id&gt;
+</span></span><span style=display:flex><span>          &lt;url&gt;https://maven.aliyun.com/repository/central&lt;/url&gt;
+</span></span><span style=display:flex><span>        &lt;/repository&gt;
+</span></span><span style=display:flex><span>        <span style=color:green>&lt;!-- &lt;repository&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;id&gt;public&lt;/id&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>        &lt;/repository&gt;--&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:green>&lt;!--&lt;repository&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;id&gt;gradle-plugin&lt;/id&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;url&gt;https://maven.aliyun.com/repository/gradle-plugin&lt;/url&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>        &lt;/repository&gt;--&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:green>&lt;!-- &lt;repository&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;id&gt;apache snapshots&lt;/id&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;url&gt;https://maven.aliyun.com/repository/apache-snapshots&lt;/url&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>        &lt;/repository&gt;--&gt;</span>
+</span></span><span style=display:flex><span>      &lt;/repositories&gt;
+</span></span><span style=display:flex><span>      &lt;pluginRepositories&gt;
+</span></span><span style=display:flex><span>        &lt;pluginRepository&gt;
+</span></span><span style=display:flex><span>          &lt;id&gt;central&lt;/id&gt;
+</span></span><span style=display:flex><span>          &lt;url&gt;https://maven.aliyun.com/repository/central&lt;/url&gt;
+</span></span><span style=display:flex><span>        &lt;/pluginRepository&gt;
+</span></span><span style=display:flex><span>        <span style=color:green>&lt;!-- &lt;pluginRepository&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;id&gt;public&lt;/id&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>        &lt;/pluginRepository&gt;--&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:green>&lt;!-- &lt;pluginRepository&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;id&gt;gradle-plugin&lt;/id&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;url&gt;https://maven.aliyun.com/repository/gradle-plugin&lt;/url&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>        &lt;/pluginRepository&gt;--&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:green>&lt;!-- &lt;pluginRepository&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;id&gt;apache snapshots&lt;/id&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>          &lt;url&gt;https://maven.aliyun.com/repository/apache-snapshots&lt;/url&gt;
+</span></span></span><span style=display:flex><span><span style=color:green>        &lt;/pluginRepository&gt;--&gt;</span>
+</span></span><span style=display:flex><span>      &lt;/pluginRepositories&gt;
+</span></span><span style=display:flex><span>    &lt;/profile&gt;
+</span></span><span style=display:flex><span>  &lt;/profiles&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  &lt;activeProfiles&gt;
+</span></span><span style=display:flex><span>    &lt;activeProfile&gt;aliyun&lt;/activeProfile&gt;
+</span></span><span style=display:flex><span>  &lt;/activeProfiles&gt;
+</span></span><span style=display:flex><span>&lt;/settings&gt;</span></span></code></pre></div></div></div><h1 id=3.gradle><i id=locator-3.gradle class=header-locator></i>
+<a href=#3.gradle class=article-h-a>3 Gradle</a></h1><p>下载地址 : <a href=https://gradle.org/releases/ target=_blank rel="noopener norefferrer">https://gradle.org/releases/</a></p><p>下载二进制包 : <code>gradle-6.7-bin.zip</code>解压至<code>d:\_app\_gradle\</code>目录下。<br>设置环境变量 :</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span><span style=color:green># 设置环境变量</span>
+</span></span><span style=display:flex><span>Env-SetGradleEnvironmentVariable
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 查看版本信息</span>
+</span></span><span style=display:flex><span>gradle -v
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># wrapper</span>
+</span></span><span style=display:flex><span><span style=color:green># https://docs.gradle.org/current/userguide/gradle_wrapper.html</span>
+</span></span><span style=display:flex><span>gradle wrapper --gradle-version 6.7 --distribution-type all
+</span></span></code></pre></div><h2 id=gradle-properties><i id=locator-gradle-properties class=header-locator></i>
+<a href=#gradle-properties class=article-h-a>3.1 gradle.properties</a></h2><p>复制<code>gradle.properties</code>配置文件到<code>GRADLE_USER_HOME</code>目录。</p><div class="highlight-file highlight-file_opened" id=hf-681a5dd34a91325c2fd911f14b6f6cbe><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-681a5dd34a91325c2fd911f14b6f6cbe","highlight-file_opened")'>$GRADLE_USER_HOME/gradle.properties</a><a class="fa fa-download highlight-file-download" target=_blank href=/java/install/gradle.properties title="下载 $GRADLE_USER_HOME/gradle.properties" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/java/install/gradle.properties title="源码 $GRADLE_USER_HOME/gradle.properties"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># https://docs.gradle.org/current/userguide/build_environment.html</span>
+</span></span><span style=display:flex><span><span style=color:green># GRADLE_USER_HOME/gradle.properties</span>
+</span></span><span style=display:flex><span>org.gradle.warning.mode=<span style=color:#a31515>all</span>
+</span></span><span style=display:flex><span>org.gradle.caching=<span style=color:#a31515>true</span>
+</span></span><span style=display:flex><span>org.gradle.daemon=<span style=color:#a31515>true</span>
+</span></span><span style=display:flex><span><span style=color:green># milliseconds 1 hours</span>
+</span></span><span style=display:flex><span>org.gradle.daemon.idletimeout=<span style=color:#a31515>3600000</span>
+</span></span><span style=display:flex><span>org.gradle.parallel=<span style=color:#a31515>true</span>
+</span></span><span style=display:flex><span>org.gradle.jvmargs=<span style=color:#a31515>-XX:+HeapDumpOnOutOfMemoryError -Xmx1024m -Dfile.encoding=UTF-8 -Duser.country=CN -Duser.language=en -Duser.variant</span>
+</span></span></code></pre></div></div></div><h2 id=init-gradle><i id=locator-init-gradle class=header-locator></i>
+<a href=#init-gradle class=article-h-a>3.2 init.gradle</a></h2><p>复制<code>init.gradle</code>配置文件到<code>GRADLE_USER_HOME</code>目录。</p><div class="highlight-file highlight-file_opened" id=hf-e127cade166d1cc854b367a46da99714><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-e127cade166d1cc854b367a46da99714","highlight-file_opened")'>$GRADLE_USER_HOME/init.gradle</a><a class="fa fa-download highlight-file-download" target=_blank href=/java/install/init.gradle title="下载 $GRADLE_USER_HOME/init.gradle" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/java/install/init.gradle title="源码 $GRADLE_USER_HOME/init.gradle"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-groovy data-lang=groovy><span style=display:flex><span><span style=color:green>// GRADLE_USER_HOME/init.gradle
+</span></span></span><span style=display:flex><span><span style=color:green></span>gradle.allprojects {
+</span></span><span style=display:flex><span>  ext {
+</span></span><span style=display:flex><span>    <span style=color:green>// https://help.aliyun.com/document_detail/102512.html
+</span></span></span><span style=display:flex><span><span style=color:green></span>    MAVEN_REPOSITORY_MIRROR_URL_MAP = [
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//repo1.maven.org/maven2&#39;</span>         : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/central&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//repo.maven.apache.org/maven2&#39;</span>   : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/central&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//jcenter.bintray.com&#39;</span>            : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/jcenter&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//maven.google.com&#39;</span>               : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/google&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//plugins.gradle.org/m2&#39;</span>          : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/gradle-plugin&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//repo.spring.io/release&#39;</span>         : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/spring&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//repo.spring.io/milestone&#39;</span>       : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/spring&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//repo.spring.io/libs-milestone&#39;</span>  : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/spring&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//repo.spring.io/plugins-release&#39;</span> : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/spring-plugin&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a31515>&#39;//repo.grails.org/grails/core&#39;</span>    : <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/grails-core&#39;</span>
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    findMavenRepositoryMirrorUrl = {
+</span></span><span style=display:flex><span>      <span style=color:#00f>for</span>(item <span style=color:#00f>in</span> MAVEN_REPOSITORY_MIRROR_URL_MAP){
+</span></span><span style=display:flex><span>        <span style=color:#00f>if</span>(it.contains(item.key)){
+</span></span><span style=display:flex><span>          <span style=color:#00f>return</span> item.value
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    tryReplaceWithMavenRepositoryMirrorUrl = { type, repository -&gt;
+</span></span><span style=display:flex><span>      <span style=color:#00f>if</span>(repository <span style=color:#00f>instanceof</span> MavenArtifactRepository){
+</span></span><span style=display:flex><span>        originalUrl = repository.url.toString()
+</span></span><span style=display:flex><span>        mirrorUrl = findMavenRepositoryMirrorUrl(originalUrl)
+</span></span><span style=display:flex><span>        <span style=color:#00f>if</span>(mirrorUrl){
+</span></span><span style=display:flex><span>          repository.setUrl(mirrorUrl)
+</span></span><span style=display:flex><span>          logger.info(<span style=color:#a31515>&#34;${type} : use ${repository.url} replace ${originalUrl}&#34;</span>)
+</span></span><span style=display:flex><span>        }<span style=color:#00f>else</span>{
+</span></span><span style=display:flex><span>          logger.info(<span style=color:#a31515>&#34;${type} : use ${repository.url}&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  buildscript {
+</span></span><span style=display:flex><span>    repositories {
+</span></span><span style=display:flex><span>      all { repository -&gt; 
+</span></span><span style=display:flex><span>        tryReplaceWithMavenRepositoryMirrorUrl(<span style=color:#a31515>&#39;buildscript.repositories&#39;</span>, repository)
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  repositories {
+</span></span><span style=display:flex><span>    all { repository -&gt; 
+</span></span><span style=display:flex><span>      tryReplaceWithMavenRepositoryMirrorUrl(<span style=color:#a31515>&#39;repositories&#39;</span>, repository)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><h2 id=settings.gradle><i id=locator-settings.gradle class=header-locator></i>
+<a href=#settings.gradle class=article-h-a>3.3 settings.gradle</a></h2><p>复制<code>settings.gradle</code>配置文件到<code>GRADLE_USER_HOME</code>目录。</p><div class="highlight-file highlight-file_opened" id=hf-60120b4749b28eba5aee177d2555604f><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-60120b4749b28eba5aee177d2555604f","highlight-file_opened")'>$GRADLE_USER_HOME/settings.gradle</a><a class="fa fa-download highlight-file-download" target=_blank href=/java/install/settings.gradle title="下载 $GRADLE_USER_HOME/settings.gradle" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/java/install/settings.gradle title="源码 $GRADLE_USER_HOME/settings.gradle"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-groovy data-lang=groovy><span style=display:flex><span>pluginManagement {
+</span></span><span style=display:flex><span>  repositories {
+</span></span><span style=display:flex><span>    maven {
+</span></span><span style=display:flex><span>      url <span style=color:#a31515>&#39;https://maven.aliyun.com/repository/gradle-plugin&#39;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    gradlePluginPortal()
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></div></section><section class=article-meta><section class=article-date>2017-08-06 16:34，约595字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/java/ title=[Java] target=_blank><i class="fa fa-folder"></i>[Java]</a></section><section class=article-tags><a class=article-tag href=/tag/gradle target=_blank><i class="fa fa-tag"></i>Gradle</a>
+<a class=article-tag href=/tag/install target=_blank><i class="fa fa-tag"></i>Install</a>
+<a class=article-tag href=/tag/java target=_blank><i class="fa fa-tag"></i>Java</a>
+<a class=article-tag href=/tag/maven target=_blank><i class="fa fa-tag"></i>Maven</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/65b17b14ed89157b4ac20842fba94fd4c0895ac6 target=_blank><i class="fa fa-code-fork"></i>65b17b1</a>
+<span class=article-git-commit-subject>fix java powershell</span>
+<span class=article-git-commit-time>2023-08-05 07:53</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/java/install/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-next><span>下一篇 : </span><a href=/java/tool/ target=_blank>[Java] Tool</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

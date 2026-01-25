@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[MongoDB] on Timetombs</title><link>https://linianhui.github.io/mongodb/</link><description>Recent content in [MongoDB] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/mongodb/index.xml" rel="self" type="application/rss+xml"/><item><title>[MongoDB] Best Practice</title><link>https://linianhui.github.io/mongodb/best-practice/</link><pubDate>Sun, 10 May 2020 09:27:01 +0800</pubDate><guid>https://linianhui.github.io/mongodb/best-practice/</guid><description>&lt;h1 id="connection-string">
+&lt;i id="locator-connection-string" class="header-locator">&lt;/i>
+&lt;a href="#connection-string" class="article-h-a">1 Connection String&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">mongodb://mongodb-server-1:27017,mongodb-server-2:27017/admin
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">?replicaSet=test-replica-set
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;ssl=false
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;w=3
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;j=true
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;wtimeoutMS=5000
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;readPreference=secondaryPreferred
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">&amp;amp;readConcernLevel=local
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="read-write-config">
+&lt;i id="locator-read-write-config" class="header-locator">&lt;/i>
+&lt;a href="#read-write-config" class="article-h-a">2 Read Write Config &lt;/a>
+&lt;/h1>
+&lt;h2 id="write-concern">
+&lt;i id="locator-write-concern" class="header-locator">&lt;/i>
+&lt;a href="#write-concern" class="article-h-a">2.1 Write Concern&lt;/a>
+&lt;/h2>
+&lt;p>&lt;strong>写操作配置，作用于&lt;code>MongoDB Server&lt;/code>, 用于指示&lt;code>MongoDB Server&lt;/code>写入多少个成员后才会返回给&lt;code>MongoDB Client&lt;/code>&lt;/strong>。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>{ w: &amp;lt;value&amp;gt;, j: &amp;lt;&lt;span style="color:#00f">boolean&lt;/span>&amp;gt;, wtimeout: &amp;lt;number&amp;gt; }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;img src="write-concern-w-majority.svg" loading="lazy" decoding="auto" alt="Write Concern : w=majority" title="Write Concern : w=majority"/>&lt;h3 id="write-concern-w">
+&lt;i id="locator-write-concern-w" class="header-locator">&lt;/i>
+&lt;a href="#write-concern-w" class="article-h-a">2.1.1 w&lt;/a>
+&lt;/h3>
+&lt;p>&lt;code>w&lt;/code>可用的选项如下:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">选项&lt;/th>
+ &lt;th style="text-align: left">描述说明&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;a href="https://docs.mongodb.com/manual/reference/write-concern/#writeconcern.%3Cnumber%3E"
+
+ target="_blank" rel="noopener norefferrer">number&lt;/a>&lt;/td>
+ &lt;td style="text-align: left">指定固定的成员数（注意必须是数字，不让会被当做tag）。当成员数不够时，&lt;code>MongoDB Server&lt;/code>会返回&lt;code>CannotSatisfyWriteConcern&lt;/code>错误&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;a href="https://docs.mongodb.com/manual/reference/write-concern/#writeconcern._dq_majority_dq_"
+
+ target="_blank" rel="noopener norefferrer">majority&lt;/a>&lt;/td>
+ &lt;td style="text-align: left">写入大多数成员，&lt;code>MongoDB Server&lt;/code>自动决定写入的成员数数量&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;a href="https://docs.mongodb.com/manual/reference/write-concern/#writeconcern.%3Ccustom-write-concern-name%3E"
+
+ target="_blank" rel="noopener norefferrer">custom-write-concern-name&lt;/a>&lt;/td>
+ &lt;td style="text-align: left">写入到具有指定tag的成员中&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>成员数不够指定的&lt;code>w&lt;/code>的数量时的错误信息:&lt;/p></description></item></channel></rss>

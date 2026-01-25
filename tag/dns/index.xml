@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dns on Timetombs</title><link>https://linianhui.github.io/tag/dns/</link><description>Recent content in Dns on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 26 Nov 2022 21:13:14 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/dns/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] DoH(DNS over HTTPS)</title><link>https://linianhui.github.io/computer-networking/doh/</link><pubDate>Sat, 01 Jan 2022 13:55:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/doh/</guid><description>&lt;p>&lt;strong>RFC8484 DNS Queries over HTTPS (DoH)&lt;/strong>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;/p>
+&lt;h1 id="mime">
+&lt;i id="locator-mime" class="header-locator">&lt;/i>
+&lt;a href="#mime" class="article-h-a">MIME&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>application/dns-message&lt;/code>。&lt;/p>
+&lt;ol>
+&lt;li>Type : &lt;code>application&lt;/code>。&lt;/li>
+&lt;li>SubType : &lt;code>dns-message&lt;/code>。&lt;/li>
+&lt;li>编码格式 : 二进制格式，定义在RFC1035&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>。&lt;/li>
+&lt;/ol>
+&lt;h1 id="example">
+&lt;i id="locator-example" class="header-locator">&lt;/i>
+&lt;a href="#example" class="article-h-a">Example&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">:method = GET
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:scheme = https
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:authority = dnsserver.example.net
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:path = /dns-query?dns=AAABAAABAAAAAAAAA3d3dwdleGFtcGxlA2NvbQAAAQAB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">accept = application/dns-message
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">:status = 200
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">content-type = application/dns-message
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">content-length = 61
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">cache-control = max-age=3709
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">00 00 81 80 00 01 00 01 00 00 00 00 03 77 77 77
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 1c 00
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">01 c0 0c 00 1c 00 01 00 00 0e 7d 00 10 20 01 0d
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">b8 ab cd 00 12 00 01 00 02 00 03 00 04
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>待补充...&lt;/p>
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">Reference&lt;/a>
+&lt;/h1>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr />
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>RFC8484 DNS over HTTPS (DoH) : &lt;a href="https://datatracker.ietf.org/doc/html/rfc8484"
+
+ target="_blank" rel="noopener norefferrer">https://datatracker.ietf.org/doc/html/rfc8484&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p></description></item><item><title>[计算机网络] DNS(Domain Name System)</title><link>https://linianhui.github.io/computer-networking/dns/</link><pubDate>Sat, 01 Jan 2022 13:54:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/dns/</guid><description>&lt;h1 id="dnsmasq">
+&lt;i id="locator-dnsmasq" class="header-locator">&lt;/i>
+&lt;a href="#dnsmasq" class="article-h-a">dnsmasq&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html"
+
+ target="_blank" rel="noopener norefferrer">https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/a>&lt;/p>
+&lt;p>&lt;div class="highlight-file highlight-file_opened" id="hf-4ac609d99afb8c6615d4989bf5342a0e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-4ac609d99afb8c6615d4989bf5342a0e','highlight-file_opened')">/etc/dnsmasq.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.conf" title="下载 /etc/dnsmasq.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.conf" title="源码 /etc/dnsmasq.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/dnsmasq.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 文件变化自动加载，无需重启&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-queries=&lt;span style="color:#a31515">extra&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-dhcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-facility=&lt;span style="color:#a31515">/log/dnsmasq.log&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DNS - 上游DNS服务器配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>strict-order
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>resolv-file=&lt;span style="color:#a31515">/etc/dnsmasq.dns.upstream.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DNS - 本地DNS配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>addn-hosts=&lt;span style="color:#a31515">/etc/dnsmasq.dns.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 防止将没有域部分的本地名称转发到上游DNS服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>domain-needed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 防止将DNS反向查找查询转发到上游DNS服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bogus-priv
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP -&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-option=&lt;span style="color:#a31515">option:router,192.168.2.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-option=&lt;span style="color:#a31515">option:netmask,255.255.255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP - DHCP静态分配&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>read-ethers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-hostsfile=&lt;span style="color:#a31515">/etc/dnsmasq.dhcp.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP - DHCP动态分配&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [tag:&amp;lt;tag&amp;gt;[,tag:&amp;lt;tag&amp;gt;],][set:&amp;lt;tag&amp;gt;,]&amp;lt;start-addr&amp;gt;[,&amp;lt;end-addr&amp;gt;|&amp;lt;mode&amp;gt;[,&amp;lt;netmask&amp;gt;[,&amp;lt;broadcast&amp;gt;]]][,&amp;lt;lease time&amp;gt;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-range=&lt;span style="color:#a31515">192.168.2.240,192.168.2.254,255.255.255.0,12h&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-d5aaab98731a55f06c80fc35a8391a77">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-d5aaab98731a55f06c80fc35a8391a77','highlight-file_opened')">/etc/dnsmasq.dhcp.hosts&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.dhcp.hosts" title="下载 /etc/dnsmasq.dhcp.hosts" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.dhcp.hosts" title="源码 /etc/dnsmasq.dhcp.hosts">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># dhcp-hostsfile=/etc/dnsmasq.dhcp.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [&amp;lt;hwaddr&amp;gt;][,id:&amp;lt;client_id&amp;gt;|*][,set:&amp;lt;tag&amp;gt;][,tag:&amp;lt;tag&amp;gt;][,&amp;lt;ipaddr&amp;gt;][,&amp;lt;hostname&amp;gt;][,&amp;lt;lease_time&amp;gt;][,ignore]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># MAC地址需小写&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>00:15:5d:02:02:0b,192.168.2.22,deb1.vm.lan&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-dd61df059a8e824503d22f5d18fd0352">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-dd61df059a8e824503d22f5d18fd0352','highlight-file_opened')">/etc/dnsmasq.dns.hosts&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.dns.hosts" title="下载 /etc/dnsmasq.dns.hosts" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.dns.hosts" title="源码 /etc/dnsmasq.dns.hosts">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># addn-hosts=/etc/dnsmasq.dns.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># www.baidu.lan 解析到 192.168.1.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>192.168.2.201 www.baidu.lan&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p></description></item><item><title>[计算机网络] Tool</title><link>https://linianhui.github.io/computer-networking/tool/</link><pubDate>Thu, 20 Feb 2020 21:52:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/tool/</guid><description>&lt;h1 id="dns">
+&lt;i id="locator-dns" class="header-locator">&lt;/i>
+&lt;a href="#dns" class="article-h-a">1 dns&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>dig bing.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>nslookup bing.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="netsh">
+&lt;i id="locator-netsh" class="header-locator">&lt;/i>
+&lt;a href="#netsh" class="article-h-a">2 netsh&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># port forward 127.0.0.1:12345 to http://www.nghttp2.org&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy add v4tov4 listenport=12345 connectaddress=139.162.123.134 connectport=80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># show all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy show all
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># delete all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy reset
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># delete one&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy delete v4tov4 listenport=12345
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># help&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="net-tools">
+&lt;i id="locator-net-tools" class="header-locator">&lt;/i>
+&lt;a href="#net-tools" class="article-h-a">3 net-tools&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y net-tools
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="netstat">
+&lt;i id="locator-netstat" class="header-locator">&lt;/i>
+&lt;a href="#netstat" class="article-h-a">3.1 netstat&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>short option&lt;/th>
+ &lt;th>full option&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h&lt;/td>
+ &lt;td>--help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-V&lt;/td>
+ &lt;td>--version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-n&lt;/td>
+ &lt;td>--numeric &lt;br/> --numeric-hosts &lt;br/> --numeric-ports &lt;br/> --numeric-users&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-t&lt;/td>
+ &lt;td>--tcp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-u&lt;/td>
+ &lt;td>--udp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-x&lt;/td>
+ &lt;td>--unix&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>状态统计&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#a31515">&amp;#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>TIME_WAIT状态统计&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#a31515">&amp;#39;/TIME_WAIT/ {++S[$4]} END {for(a in S) print a, S[a]}&amp;#39;&lt;/span> | sort -r -n -k2 -t&lt;span style="color:#a31515">&amp;#39; &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="iproute2">
+&lt;i id="locator-iproute2" class="header-locator">&lt;/i>
+&lt;a href="#iproute2" class="article-h-a">4 iproute2&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y iproute2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="41-ss">
+&lt;i id="locator-41-ss" class="header-locator">&lt;/i>
+&lt;a href="#41-ss" class="article-h-a">4.1 ss&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>short option&lt;/th>
+ &lt;th>full option&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h&lt;/td>
+ &lt;td>--help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-V&lt;/td>
+ &lt;td>--version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-a&lt;/td>
+ &lt;td>--all&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-n&lt;/td>
+ &lt;td>--numeric&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-t&lt;/td>
+ &lt;td>--tcp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-u&lt;/td>
+ &lt;td>--udp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-x&lt;/td>
+ &lt;td>--unix&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-4&lt;/td>
+ &lt;td>--ipv4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-6&lt;/td>
+ &lt;td>--ipv6&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-H&lt;/td>
+ &lt;td>--no-header&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>ss -tan | awk &lt;span style="color:#a31515">&amp;#39;NR&amp;gt;1 {++S[$1]} END {for (a in S) print a,S[a]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="tcpdump">
+&lt;i id="locator-tcpdump" class="header-locator">&lt;/i>
+&lt;a href="#tcpdump" class="article-h-a">5 tcpdump&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y tcpdump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>option&lt;/th>
+ &lt;th>description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h, --help&lt;/td>
+ &lt;td>show help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>--version&lt;/td>
+ &lt;td>show version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-A&lt;/td>
+ &lt;td>Print each packet (minus its link level header) in ASCII. Handy for capturing web pages.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-c&lt;/td>
+ &lt;td>Exit after receiving count packets.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-s,--snapshot-length&lt;/td>
+ &lt;td>Snarf snaplen bytes of data from each packet&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-S,--absolute-tcp-sequence-numbers&lt;/td>
+ &lt;td>Print absolute, rather than relative, TCP sequence numbers.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 抓包到文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcpdump port 80 -w http-80.pcap
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 解析80端口的100个包&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcpdump port 80 -A -c 100
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>参考 : &lt;a href="https://www.tcpdump.org/manpages/tcpdump.1.html"
+
+ target="_blank" rel="noopener norefferrer">https://www.tcpdump.org/manpages/tcpdump.1.html&lt;/a>&lt;/p></description></item></channel></rss>

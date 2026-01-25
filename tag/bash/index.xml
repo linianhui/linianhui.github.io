@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bash on Timetombs</title><link>https://linianhui.github.io/tag/bash/</link><description>Recent content in Bash on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/bash/index.xml" rel="self" type="application/rss+xml"/><item><title>[Docker] Best Practice</title><link>https://linianhui.github.io/docker/best-practice/</link><pubDate>Sun, 12 Apr 2020 17:13:01 +0800</pubDate><guid>https://linianhui.github.io/docker/best-practice/</guid><description>&lt;h1 id="entrypoint">
+&lt;i id="locator-entrypoint" class="header-locator">&lt;/i>
+&lt;a href="#entrypoint" class="article-h-a">1 ENTRYPOINT&lt;/a>
+&lt;/h1>
+&lt;p>推荐使用ENTRYPOINT(不要和CMD同时使用) : 当ENTRYPOINT存在时，CMD会作为它的参数存在，增加复杂性。ENTRYPOINT指令&lt;a href="#entrypoint-exec"
+
+>ENTRYPOINT EXEC&lt;/a>和&lt;a href="#entrypoint-shell"
+
+>ENTRYPOINT SHELL&lt;/a>两种语法形式。但是不管是那种形式，都只是dockerfile中的语法形式，实际build后的结果都是统一的JSON数组格式。&lt;/p>
+&lt;h2 id="entrypoint-exec">
+&lt;i id="locator-entrypoint-exec" class="header-locator">&lt;/i>
+&lt;a href="#entrypoint-exec" class="article-h-a">1.1 EXEC&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#00f">ENTRYPOINT&lt;/span> [&lt;span style="color:#a31515">&amp;#34;executable&amp;#34;&lt;/span>, &lt;span style="color:#a31515">&amp;#34;param1&amp;#34;&lt;/span>, &lt;span style="color:#a31515">&amp;#34;param2&amp;#34;&lt;/span>]&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ENTRYPOINT指令后面是JSON数组, 由于是JSON数组，那么则只能使用双引号&lt;code>&amp;quot;&lt;/code>而不是单引号&lt;code>'&lt;/code>。&lt;strong>官方推荐使用EXEC方式，推荐理由是默认&lt;a href="#pid"
+
+>PID&lt;/a>=1，但是默认的写法无法解析ENV&lt;/strong>。&lt;strong>这里也推荐使用EXEC的方式，理由是保持和build后的结果是完全一致的清晰性&lt;/strong>。比如一下示例：&lt;/p></description></item></channel></rss>

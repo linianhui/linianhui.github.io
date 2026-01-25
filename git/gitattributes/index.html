@@ -1,0 +1,87 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Git] .gitattributes - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a01Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A01Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/git/ target=_blank>[Git]</a></section><section class=toc-page><a class=toc-page-title href=/git/config/ target=_blank>[Git] config</a></section><section class="toc-page selected"><span class=toc-page-title>[Git] .gitattributes</span><nav id=TableOfContents><ul><li><a href=#effects>1 <code>.gitattributes</code> 的作用</a><ul><li><a href=#syntax>1.1 语法</a></li><li><a href=#text-attribute>1.2 <code>text</code> 属性</a></li><li><a href=#eol-attribute>1.3 eol 属性</a></li></ul></li><li><a href=#macro-attribute>2 MACRO 属性</a></li><li><a href=#best-practice>3 最佳实践</a></li><li><a href=#reference>4 参考</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/git/content-addressable-filesystem/ target=_blank>[Git] 内容寻址文件系统</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:01Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Git] .gitattributes</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2020-01-16 20:52，约837字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/git/ title=[Git] target=_blank><i class="fa fa-folder"></i>[Git]</a></section><section class=article-tags><a class=article-tag href=/tag/git target=_blank><i class="fa fa-tag"></i>Git</a>
+<a class=article-tag href=/tag/gitattributes target=_blank><i class="fa fa-tag"></i>gitattributes</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/git/gitattributes/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=effects><i id=locator-effects class=header-locator></i>
+<a href=#effects class=article-h-a>1 <code>.gitattributes</code> 的作用</a></h1><p>位于Git Repo根目录的<code>.gitattributes</code>文件，用来为Git管理的文件配置一些属性。这些属性控制着Git管理的如下三个区域的文件。</p><img src=git-areas.png loading=lazy decoding=auto alt="Git 三个工作区域" title="Git 三个工作区域"><p>通常主要用来统一<code>EOL=end of line</code>（在Windows上默认是<code>crlf</code>, 在Linux和macOS上则是<code>lf</code>）。</p><h2 id=syntax><i id=locator-syntax class=header-locator></i>
+<a href=#syntax class=article-h-a>1.1 语法</a></h2><p><code>.gitattributes</code>是一个文本文件，每一行使用<code>pattern</code>匹配一些文件，然后设置对应的属性:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span>pattern attr1 attr2 ...
+</span></span></code></pre></div><p>每一个属性都遵循如下4种规则进行配置:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># 设置attr1，表示true</span>
+</span></span><span style=display:flex><span>pattern attr1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 未设置attr1，表示false</span>
+</span></span><span style=display:flex><span>pattern -attr1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 设置attr1的值为1</span>
+</span></span><span style=display:flex><span>pattern attr1=<span style=color:#a31515>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 未指定任何值</span>
+</span></span><span style=display:flex><span>pattern 
+</span></span></code></pre></div><h2 id=text-attribute><i id=locator-text-attribute class=header-locator></i>
+<a href=#text-attribute class=article-h-a>1.2 <code>text</code> 属性</a></h2><p><code>text</code>属性指示Git如何处理 <strong>.git directory</strong> 区域中的文本文件的EOL。比如:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># 使用lf存储*.sh文件。</span>
+</span></span><span style=display:flex><span>*.sh text
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 不控制*.sh文件的EOL。</span>
+</span></span><span style=display:flex><span>*.sh -text
+</span></span></code></pre></div><h2 id=eol-attribute><i id=locator-eol-attribute class=header-locator></i>
+<a href=#eol-attribute class=article-h-a>1.3 eol 属性</a></h2><p><code>eol</code>属性指示Git如何处理 <strong>working directory</strong> 区域中的文本文件的EOL。比如:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># 使用lf存储*.sh文件, 在working directory则继续使用lf。</span>
+</span></span><span style=display:flex><span>*.sh  text eol=<span style=color:#a31515>lf</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 使用lf存储*.cs文件, 在working directory则自动转换为crlf。</span>
+</span></span><span style=display:flex><span>*.cs  text eol=<span style=color:#a31515>crlf</span>
+</span></span></code></pre></div><h1 id=macro-attribute><i id=locator-macro-attribute class=header-locator></i>
+<a href=#macro-attribute class=article-h-a>2 MACRO 属性</a></h1><p>内置的宏属性<code>binary</code>等价于<code>-diff -merge -text</code></p><h1 id=best-practice><i id=locator-best-practice class=header-locator></i>
+<a href=#best-practice class=article-h-a>3 最佳实践</a></h1><p>当前站点项目所使用的配置如下:</p><div class="highlight-file highlight-file_opened" id=hf-244d7f3e0f7f008c27c4cb39698f2db2><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-244d7f3e0f7f008c27c4cb39698f2db2","highlight-file_opened")'>/.gitattributes</a><span title=/.gitattributes>/.gitattributes</span>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/.gitattributes title=源码></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># text   : 使用 lf 换行符进行存储.</span>
+</span></span><span style=display:flex><span><span style=color:green># binary : 原样存储.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 自动识别文件是否为text</span>
+</span></span><span style=display:flex><span>*               text=<span style=color:#a31515>auto eol=lf</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 使用 lf 存储, checkout 时替换为 crlf.</span>
+</span></span><span style=display:flex><span>*.bat           text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.cmd           text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.ps1           text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.cs            text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.cake          text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.xaml          text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.csproj        text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.cshtml        text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>*.sln           text eol=<span style=color:#a31515>crlf</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 原样存储</span>
+</span></span><span style=display:flex><span>*.reg           binary
+</span></span><span style=display:flex><span>*.XRM-MS        binary
+</span></span><span style=display:flex><span>*.cer           binary
+</span></span><span style=display:flex><span>*.crt           binary
+</span></span></code></pre></div></div></div><p>这样以来存储到Git中的文本文件都统一采用<code>lf</code>，而针对个别文件在工作区中采用<code>crlf</code>(亦可灵活的调整工作区中的EOL,而无需改动存储区已经存在的文件)，需同时进行如下设置</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:green># 阻止Git进行自动转换</span>
+</span></span><span style=display:flex><span>git config --global core.autocrlf false
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 当提交的文件不符合.gitattributes的配置时，阻止git add命令</span>
+</span></span><span style=display:flex><span>git config --global core.safecrlf true
+</span></span></code></pre></div><p><code>.gitattributes</code>文件加入git仓库中后，需要执行一下如下命令:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>git add --renormalize .
+</span></span></code></pre></div><p>上述命令会检查git仓库中不符合配置的一些文件，然后再把这些文件commit到仓库中即可。</p><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>4 参考</a></h1><p><a href=https://git-scm.com/docs/gitattributes target=_blank rel="noopener norefferrer">https://git-scm.com/docs/gitattributes</a></p><p><a href=https://help.github.com/en/github/using-git/configuring-git-to-handle-line-endings target=_blank rel="noopener norefferrer">https://help.github.com/en/github/using-git/configuring-git-to-handle-line-endings</a></p></section><section class=article-meta><section class=article-date>2020-01-16 20:52，约837字，阅读约2分钟</section><section class=article-topics><a class=article-topic href=/git/ title=[Git] target=_blank><i class="fa fa-folder"></i>[Git]</a></section><section class=article-tags><a class=article-tag href=/tag/git target=_blank><i class="fa fa-tag"></i>Git</a>
+<a class=article-tag href=/tag/gitattributes target=_blank><i class="fa fa-tag"></i>gitattributes</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/git/gitattributes/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/git/config/ target=_blank>[Git] config</a></div><div class=article-page-next><span>下一篇 : </span><a href=/git/content-addressable-filesystem/ target=_blank>[Git] 内容寻址文件系统</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

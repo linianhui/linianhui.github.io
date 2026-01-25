@@ -1,0 +1,399 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[工具] Rio Terminal - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A02Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/tool/ target=_blank>[工具]</a></section><section class=toc-page><a class=toc-page-title href=/tool/openwrt/ target=_blank>[工具] openwrt</a></section><section class=toc-page><a class=toc-page-title href=/tool/traefik/ target=_blank>[工具] traefik</a></section><section class=toc-page><a class=toc-page-title href=/tool/android/ target=_blank>[工具] android</a></section><section class=toc-page><a class=toc-page-title href=/tool/tax/ target=_blank>[工具] 个税计算器</a></section><section class=toc-page><a class=toc-page-title href=/tool/app/ target=_blank>[工具] app</a></section><section class=toc-page><a class=toc-page-title href=/tool/v2ray/ target=_blank>[工具] v2ray</a></section><section class=toc-page><a class=toc-page-title href=/tool/goproxy/ target=_blank>[工具] goproxy</a></section><section class=toc-page><a class=toc-page-title href=/tool/caddy/ target=_blank>[工具] caddy</a></section><section class=toc-page><a class=toc-page-title href=/tool/miniserve/ target=_blank>[工具] miniserve</a></section><section class=toc-page><a class=toc-page-title href=/tool/rinetd/ target=_blank>[工具] rinetd</a></section><section class=toc-page><a class=toc-page-title href=/tool/etc/ target=_blank>[工具] etc</a></section><section class=toc-page><a class=toc-page-title href=/tool/pc/ target=_blank>[工具] pc</a></section><section class=toc-page><a class=toc-page-title href=/tool/loan/ target=_blank>[工具] 房贷计算器</a></section><section class=toc-page><a class=toc-page-title href=/tool/vlmcsd/ target=_blank>[工具] vlmcsd</a></section><section class="toc-page selected"><span class=toc-page-title>[工具] Rio Terminal</span><nav id=TableOfContents><ul><li><a href=#home>Home</a></li><li><a href=#config>Config</a></li></ul></nav></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:02Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[工具] Rio Terminal</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2025-09-21 15:09，约1562字，阅读约4分钟</section><section class=article-topics><a class=article-topic href=/tool/ title=[工具] target=_blank><i class="fa fa-folder"></i>[工具]</a></section><section class=article-tags><a class=article-tag href=/tag/pc target=_blank><i class="fa fa-tag"></i>pc</a>
+<a class=article-tag href=/tag/terminal target=_blank><i class="fa fa-tag"></i>Terminal</a>
+<a class=article-tag href=/tag/tool target=_blank><i class="fa fa-tag"></i>tool</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/2ea0665741fada7c68198399dd62a2c4d17510c1 target=_blank><i class="fa fa-code-fork"></i>2ea0665</a>
+<span class=article-git-commit-subject>add rio</span>
+<span class=article-git-commit-time>2025-09-21 15:54</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/tool/rio/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><h1 id=home><i id=locator-home class=header-locator></i>
+<a href=#home class=article-h-a>Home</a></h1><p><a href=https://rioterm.com/ target=_blank rel="noopener norefferrer">https://rioterm.com/</a></p><h1 id=config><i id=locator-config class=header-locator></i>
+<a href=#config class=article-h-a>Config</a></h1><div class="highlight-file highlight-file_opened" id=hf-125a7c640aada8d3446781af0606205c><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-125a7c640aada8d3446781af0606205c","highlight-file_opened")'>config.toml</a><a class="fa fa-download highlight-file-download" target=_blank href=/tool/rio/config.toml title="下载 config.toml" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/tool/rio/config.toml title="源码 config.toml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Hide the cursor while typing</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Default is `false`</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># hide-cursor-when-typing = false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Ignore theme selection foreground color</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Default is false</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># ignore-selection-foreground-color = false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Theme</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># It makes Rio look for the specified theme in the themes folder</span>
+</span></span><span style=display:flex><span><span style=color:green># (macos: ~/.config/rio/themes/dracula.toml)</span>
+</span></span><span style=display:flex><span><span style=color:green># (linux: $XDG_HOME_CONFIG/rio/themes/dracula.toml or ~/.config/rio/themes/dracula.toml)</span>
+</span></span><span style=display:flex><span><span style=color:green># (windows: C:\Users\USER\AppData\Local\rio\themes\dracula.toml)</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># theme = &#34;dracula&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Padding-x</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># define x axis padding (default is 0)</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span>padding-x = 10
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Padding-y</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># define y axis padding based on a format [top, bottom]</span>
+</span></span><span style=display:flex><span><span style=color:green># (default is [0, 0])</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span>padding-y = [0, 10]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Option as Alt</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># This config only works on MacOS.</span>
+</span></span><span style=display:flex><span><span style=color:green># Possible choices: &#39;both&#39;, &#39;left&#39; and &#39;right&#39;.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># option-as-alt = &#39;left&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Line height</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># This option will apply an modifier to line-height</span>
+</span></span><span style=display:flex><span><span style=color:green># Default is `1.0`</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># line-height = 1.2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Startup directory</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Directory the shell is started in. If this is unset the working</span>
+</span></span><span style=display:flex><span><span style=color:green># directory of the parent process will be used.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># This configuration only has effect if use-fork is disabled.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># working-dir = &#34;/Users/raphael/Documents/&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Environment variables</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># env-vars = []</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Use fork</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Defaults for POSIX-based systems (Windows is not configurable):</span>
+</span></span><span style=display:flex><span><span style=color:green># MacOS: spawn processes</span>
+</span></span><span style=display:flex><span><span style=color:green># Linux/BSD: fork processes</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># use-fork = false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Confirm before exiting Rio</span>
+</span></span><span style=display:flex><span><span style=color:green># Default is `true`</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span>confirm-before-quit = <span style=color:#00f>false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Cursor</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># shape - Default cursor shape is &#39;block&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># Other available options are: &#39;underline&#39;, &#39;beam&#39; or &#39;hidden&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># blinking - Whether the cursor blinks. The default is false</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># blinking-interval - Cursor update on milliseconds interval</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span>[cursor]
+</span></span><span style=display:flex><span>shape = <span style=color:#a31515>&#39;underline&#39;</span>
+</span></span><span style=display:flex><span>blinking = <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>blinking-interval = 1000
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Editor</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Default editor on Linux and MacOS is &#34;vi&#34;,</span>
+</span></span><span style=display:flex><span><span style=color:green># on Windows it is &#34;notepad&#34;.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Whenever the key binding `OpenConfigEditor` is triggered it will</span>
+</span></span><span style=display:flex><span><span style=color:green># use the value of the editor along with the rio configuration path.</span>
+</span></span><span style=display:flex><span>[editor]
+</span></span><span style=display:flex><span>program = <span style=color:#a31515>&#34;/usr/local/bin/code&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># args = []</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Window configuration</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • width - define the initial window width.</span>
+</span></span><span style=display:flex><span><span style=color:green>#   Default: 600</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • height - define the initial window height.</span>
+</span></span><span style=display:flex><span><span style=color:green>#   Default: 400</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • mode - define how the window will be created</span>
+</span></span><span style=display:flex><span><span style=color:green>#     - &#34;Windowed&#34; (default) is based on width and height</span>
+</span></span><span style=display:flex><span><span style=color:green>#     - &#34;Maximized&#34; window is created with maximized</span>
+</span></span><span style=display:flex><span><span style=color:green>#     - &#34;Fullscreen&#34; window is created with fullscreen</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • opacity - Set window opacity</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • blur - Set blur on the window background. Changing this config requires restarting Rio to take effect.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • decorations - Set window decorations, options: &#34;Enabled&#34;, &#34;Disabled&#34;, &#34;Transparent&#34;, &#34;Buttonless&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span>[window]
+</span></span><span style=display:flex><span>width = 1000
+</span></span><span style=display:flex><span>height = 600
+</span></span><span style=display:flex><span>mode = <span style=color:#a31515>&#34;windowed&#34;</span>
+</span></span><span style=display:flex><span>opacity = 0.8
+</span></span><span style=display:flex><span>blur = <span style=color:#00f>true</span>
+</span></span><span style=display:flex><span>decorations = <span style=color:#a31515>&#34;Transparent&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Renderer</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • Performance: Set WGPU rendering performance</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - High: Adapter that has the highest performance. This is often a discrete GPU.</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - Low: Adapter that uses the least possible power. This is often an integrated GPU.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • Backend: Set WGPU rendering backend</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - Automatic: Leave Sugarloaf/WGPU to decide</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - GL: Supported on Linux/Android, and Windows and macOS/iOS via ANGLE</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - Vulkan: Supported on Windows, Linux/Android</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - DX12: Supported on Windows 10</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - Metal: Supported on macOS/iOS</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • disable-unfocused-render: This property disable renderer processes while Rio is unfocused.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • level: Configure renderer level</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - Available options: 0 and 1.</span>
+</span></span><span style=display:flex><span><span style=color:green>#       Higher the level more rendering features and computations</span>
+</span></span><span style=display:flex><span><span style=color:green>#       will be done like enable font ligatures or emoji support.</span>
+</span></span><span style=display:flex><span><span style=color:green>#       For more information please check the docs.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># • filters: A list of paths to RetroArch slang shaders. Might not work with OpenGL.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [renderer]</span>
+</span></span><span style=display:flex><span><span style=color:green># performance = &#34;high&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># backend = &#34;automatic&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># disable-unfocused-render = false</span>
+</span></span><span style=display:flex><span><span style=color:green># level = 1</span>
+</span></span><span style=display:flex><span><span style=color:green># filters = []</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Keyboard</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># use-kitty-keyboard-protocol - Enable Kitty Keyboard protocol</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># disable-ctlseqs-alt - Disable ctlseqs with ALT keys</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - For example: Terminal.app does not deal with ctlseqs with ALT keys</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [keyboard]</span>
+</span></span><span style=display:flex><span><span style=color:green># use-kitty-keyboard-protocol = false</span>
+</span></span><span style=display:flex><span><span style=color:green># disable-ctlseqs-alt = false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Fonts</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Configure fonts used by the terminal</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Note: You can set different font families but Rio terminal</span>
+</span></span><span style=display:flex><span><span style=color:green># will always look for regular font bounds whene</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># You can also set family on root to overwrite all fonts.</span>
+</span></span><span style=display:flex><span>[fonts]
+</span></span><span style=display:flex><span>family = <span style=color:#a31515>&#34;Source Code Pro&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># You can also specify extra fonts to load</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts]</span>
+</span></span><span style=display:flex><span><span style=color:green># extras = [{ family = &#34;Microsoft JhengHei&#34; }]</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># In case you want to specify any font feature:</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts]</span>
+</span></span><span style=display:flex><span><span style=color:green># features = [&#34;ss02&#34;, &#34;ss03&#34;, &#34;ss05&#34;, &#34;ss19&#34;]</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Note: Font features do not have support to live reload on configuration,</span>
+</span></span><span style=display:flex><span><span style=color:green># so to reflect your changes, you will need to close and reopen Rio.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># You can also disable font hinting. Font hinting is enabled by default.</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts]</span>
+</span></span><span style=display:flex><span><span style=color:green># hinting = false</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># You can also map the specified Unicode codepoints to a particular font.</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts]</span>
+</span></span><span style=display:flex><span><span style=color:green># symbol-map = [</span>
+</span></span><span style=display:flex><span><span style=color:green>#   { start = &#34;2297&#34;, end = &#34;2299&#34;, font-family = &#34;Cascadia Code NF&#34; }</span>
+</span></span><span style=display:flex><span><span style=color:green># ]</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Simple example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts]</span>
+</span></span><span style=display:flex><span>size = 18
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts.regular]</span>
+</span></span><span style=display:flex><span><span style=color:green># family = &#34;cascadiamono&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># style = &#34;Normal&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># weight = 400</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts.bold]</span>
+</span></span><span style=display:flex><span><span style=color:green># family = &#34;cascadiamono&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># style = &#34;Normal&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># weight = 800</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts.italic]</span>
+</span></span><span style=display:flex><span><span style=color:green># family = &#34;cascadiamono&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># style = &#34;Italic&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># weight = 400</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [fonts.bold-italic]</span>
+</span></span><span style=display:flex><span><span style=color:green># family = &#34;cascadiamono&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># style = &#34;Italic&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># weight = 800</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Scroll</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># You can change how many lines are scrolled each time by setting this option.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Scroll calculation for canonical mode will be based on `lines = (accumulated scroll * multiplier / divider)`,</span>
+</span></span><span style=display:flex><span><span style=color:green># If you want a quicker scroll, keep increasing the multiplier.</span>
+</span></span><span style=display:flex><span><span style=color:green># If you want to reduce scroll speed you will need to increase the divider.</span>
+</span></span><span style=display:flex><span><span style=color:green># You can use both properties also to find the best scroll for you.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Multiplier default is 3.0.</span>
+</span></span><span style=display:flex><span><span style=color:green># Divider default is 1.0.</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [scroll]</span>
+</span></span><span style=display:flex><span><span style=color:green># multiplier = 3.0</span>
+</span></span><span style=display:flex><span><span style=color:green># divider = 1.0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Navigation</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># &#34;mode&#34; - Define navigation mode</span>
+</span></span><span style=display:flex><span><span style=color:green>#   • NativeTab (MacOS only)</span>
+</span></span><span style=display:flex><span><span style=color:green>#   • Bookmark</span>
+</span></span><span style=display:flex><span><span style=color:green>#   • BottomTab</span>
+</span></span><span style=display:flex><span><span style=color:green>#   • TopTab</span>
+</span></span><span style=display:flex><span><span style=color:green>#   • Plain</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># &#34;hide-if-single&#34; - Hide navigation UI if is single.</span>
+</span></span><span style=display:flex><span><span style=color:green># &#34;clickable&#34; - Enable click on tabs to switch.</span>
+</span></span><span style=display:flex><span><span style=color:green># &#34;use-current-path&#34; - Use same path whenever a new tab is created (Note: requires `use-fork` to be set to false).</span>
+</span></span><span style=display:flex><span><span style=color:green># &#34;color-automation&#34; - Set a specific color for the tab whenever a specific program is running, or in a specific directory.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [navigation]</span>
+</span></span><span style=display:flex><span><span style=color:green># mode = &#34;NativeTab&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># clickable = false</span>
+</span></span><span style=display:flex><span><span style=color:green># hide-if-single = true</span>
+</span></span><span style=display:flex><span><span style=color:green># use-current-path = false</span>
+</span></span><span style=display:flex><span><span style=color:green># color-automation = []</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Shell</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.</span>
+</span></span><span style=display:flex><span><span style=color:green># Entries in `shell.args` are passed unmodified as arguments to the shell.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Default:</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - (macOS) user login shell</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - (Linux/BSD) user login shell</span>
+</span></span><span style=display:flex><span><span style=color:green>#   - (Windows) powershell</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example 1 using fish shell from bin path:</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [shell]</span>
+</span></span><span style=display:flex><span><span style=color:green># program = &#34;/bin/fish&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># args = [&#34;--login&#34;]</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example 2 for Windows using powershell</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [shell]</span>
+</span></span><span style=display:flex><span><span style=color:green># program = &#34;pwsh&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># args = []</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example 3 for Windows using powershell with login</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [shell]</span>
+</span></span><span style=display:flex><span><span style=color:green># program = &#34;pwsh&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># args = [&#34;-l&#34;]</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example 4 for MacOS with tmux installed by homebrew</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [shell]</span>
+</span></span><span style=display:flex><span><span style=color:green># program = &#34;/opt/homebrew/bin/tmux&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># args = [&#34;new-session&#34;, &#34;-c&#34;, &#34;/var/www&#34;]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Colors</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Colors definition will overwrite any property in theme</span>
+</span></span><span style=display:flex><span><span style=color:green># (considering if theme folder does exists and is being used)</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span>[colors]
+</span></span><span style=display:flex><span><span style=color:green># background = &#39;#0F0D0E&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># foreground = &#39;#F9F4DA&#39;</span>
+</span></span><span style=display:flex><span>cursor = <span style=color:#a31515>&#39;#00FF00&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># tabs = &#39;#443d40&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># tabs-active = &#39;#F38BA3&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># green = &#39;#0BA95B&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># red = &#39;#ED203D&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># blue = &#39;#12B5E5&#39;</span>
+</span></span><span style=display:flex><span><span style=color:green># yellow = &#39;#FCBA28&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Bindings</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Create custom Key bindings for Rio terminal</span>
+</span></span><span style=display:flex><span><span style=color:green># More information in: https://raphamorim.io/rio/docs/key-bindings</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [bindings]</span>
+</span></span><span style=display:flex><span><span style=color:green># keys = [</span>
+</span></span><span style=display:flex><span><span style=color:green>#   { key = &#34;q&#34;, with = &#34;super&#34;, action = &#34;Quit&#34; },</span>
+</span></span><span style=display:flex><span><span style=color:green>#   # Bytes[27, 91, 53, 126] is equivalent to &#34;\x1b[5~&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green>#   { key = &#34;home&#34;, with = &#34;super | shift&#34;, bytes = [27, 91, 53, 126] }</span>
+</span></span><span style=display:flex><span><span style=color:green># ]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Platform</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Rio now allows you to have different configurations per OS</span>
+</span></span><span style=display:flex><span><span style=color:green># You can write ovewrite properties like `Shell`, `Navigation`</span>
+</span></span><span style=display:flex><span><span style=color:green># and `Window`.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [shell]</span>
+</span></span><span style=display:flex><span><span style=color:green># # default (in this case will be used only on MacOS)</span>
+</span></span><span style=display:flex><span><span style=color:green># program = &#34;/bin/fish&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># args = [&#34;--login&#34;]</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># [platform]</span>
+</span></span><span style=display:flex><span><span style=color:green># # Microsoft Windows overwrite</span>
+</span></span><span style=display:flex><span><span style=color:green># windows.shell.program = &#34;pwsh&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># windows.shell.args = [&#34;-l&#34;]</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># # Linux overwrite</span>
+</span></span><span style=display:flex><span><span style=color:green># linux.shell.program = &#34;tmux&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># linux.shell.args = [&#34;new-session&#34;, &#34;-c&#34;, &#34;/var/www&#34;]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># Log level</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># This property enables log level filter and file. The default level is &#34;OFF&#34; and the logs are not logged to a file as default.</span>
+</span></span><span style=display:flex><span><span style=color:green>#</span>
+</span></span><span style=display:flex><span><span style=color:green># Example:</span>
+</span></span><span style=display:flex><span><span style=color:green># [developer]</span>
+</span></span><span style=display:flex><span><span style=color:green># log-level = &#34;OFF&#34;</span>
+</span></span><span style=display:flex><span><span style=color:green># enable-log-file = false</span></span></span></code></pre></div></div></div></section><section class=article-meta><section class=article-date>2025-09-21 15:09，约1562字，阅读约4分钟</section><section class=article-topics><a class=article-topic href=/tool/ title=[工具] target=_blank><i class="fa fa-folder"></i>[工具]</a></section><section class=article-tags><a class=article-tag href=/tag/pc target=_blank><i class="fa fa-tag"></i>pc</a>
+<a class=article-tag href=/tag/terminal target=_blank><i class="fa fa-tag"></i>Terminal</a>
+<a class=article-tag href=/tag/tool target=_blank><i class="fa fa-tag"></i>tool</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/2ea0665741fada7c68198399dd62a2c4d17510c1 target=_blank><i class="fa fa-code-fork"></i>2ea0665</a>
+<span class=article-git-commit-subject>add rio</span>
+<span class=article-git-commit-time>2025-09-21 15:54</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/tool/rio/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/tool/vlmcsd/ target=_blank>[工具] vlmcsd</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

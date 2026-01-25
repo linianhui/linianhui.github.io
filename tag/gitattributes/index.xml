@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gitattributes on Timetombs</title><link>https://linianhui.github.io/tag/gitattributes/</link><description>Recent content in Gitattributes on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/gitattributes/index.xml" rel="self" type="application/rss+xml"/><item><title>[Git] .gitattributes</title><link>https://linianhui.github.io/git/gitattributes/</link><pubDate>Thu, 16 Jan 2020 20:52:01 +0800</pubDate><guid>https://linianhui.github.io/git/gitattributes/</guid><description>&lt;h1 id="effects">
+&lt;i id="locator-effects" class="header-locator">&lt;/i>
+&lt;a href="#effects" class="article-h-a">1 &lt;code>.gitattributes&lt;/code> 的作用&lt;/a>
+&lt;/h1>
+&lt;p>位于Git Repo根目录的&lt;code>.gitattributes&lt;/code>文件，用来为Git管理的文件配置一些属性。这些属性控制着Git管理的如下三个区域的文件。&lt;/p>
+&lt;img src="git-areas.png" loading="lazy" decoding="auto" alt="Git 三个工作区域" title="Git 三个工作区域"/>&lt;p>通常主要用来统一&lt;code>EOL=end of line&lt;/code>（在Windows上默认是&lt;code>crlf&lt;/code>, 在Linux和macOS上则是&lt;code>lf&lt;/code>）。&lt;/p>
+&lt;h2 id="syntax">
+&lt;i id="locator-syntax" class="header-locator">&lt;/i>
+&lt;a href="#syntax" class="article-h-a">1.1 语法&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>.gitattributes&lt;/code>是一个文本文件，每一行使用&lt;code>pattern&lt;/code>匹配一些文件，然后设置对应的属性:&lt;/p></description></item></channel></rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rinetd on Timetombs</title><link>https://linianhui.github.io/tag/rinetd/</link><description>Recent content in Rinetd on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/rinetd/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] rinetd</title><link>https://linianhui.github.io/tool/rinetd/</link><pubDate>Tue, 23 Mar 2021 23:01:03 +0800</pubDate><guid>https://linianhui.github.io/tool/rinetd/</guid><description>&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>c语言开发的一个端口转发转发工具，非常小巧方便，比&lt;code>iptables&lt;/code>方便使用。或者像是在&lt;code>macOS&lt;/code>这种不支持转发到&lt;code>remote ip&lt;/code>的系统下。&lt;/p>
+&lt;blockquote>
+&lt;p>windows 下有内置的&lt;code>netsh interface portproxy add v4tov4 listenport=80 connectaddress=192.168.2.201 connectport=80&lt;/code>可以使用。&lt;/p>&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看帮助&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rinetd -h
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 前台运行(默认运行在background)，并且指定配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rinetd --foreground --conf-file rinetd.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight-file highlight-file_opened" id="hf-e49e3a4af7b2803d2d3c2186ece347ac">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e49e3a4af7b2803d2d3c2186ece347ac','highlight-file_opened')">rinetd.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/rinetd/rinetd.conf" title="下载 rinetd.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/rinetd/rinetd.conf" title="源码 rinetd.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>logfile /lnh/_cache/_rinetd/rinetd.log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000">#127.0.0.1 80 192.168.2.201 80&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>127.0.0.1 2375 192.168.2.201 2375
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>127.0.0.1 3306 192.168.2.201 3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>127.0.0.1 6379 192.168.2.201 6379&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h2 id="macos-install">
+&lt;i id="locator-macos-install" class="header-locator">&lt;/i>
+&lt;a href="#macos-install" class="article-h-a">1.1 macOS 安装&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>brew install rinetd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或者源码自己编译安装。&lt;/p></description></item></channel></rss>

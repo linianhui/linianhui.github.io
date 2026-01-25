@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>K8S on Timetombs</title><link>https://linianhui.github.io/tag/k8s/</link><description>Recent content in K8S on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/k8s/index.xml" rel="self" type="application/rss+xml"/><item><title>[K8S] kubectl</title><link>https://linianhui.github.io/k8s/kubectl/</link><pubDate>Mon, 13 Apr 2020 22:20:01 +0800</pubDate><guid>https://linianhui.github.io/k8s/kubectl/</guid><description>&lt;p>kubectl是k8s的command-line工具，用来管理k8s中的各种资源。kubectl是一个go编写的单文件可执行程序，支持Windows、Linux、macOS。kubectl通过HTTPS APIs和k8s的集群的API Service进行通信，使用这些APIs来提供管理功能。&lt;/p>
+&lt;h1 id="install">
+&lt;i id="locator-install" class="header-locator">&lt;/i>
+&lt;a href="#install" class="article-h-a">1 kubectl的安装和配置&lt;/a>
+&lt;/h1>
+&lt;p>因为kubectl是一个单文件可执行程序，安装非常简单，直接下载即可（或者通过yum、apt、brew、choco等包管理器来安装）。&lt;/p></description></item><item><title>[K8S] 核心概念 02 - Pod</title><link>https://linianhui.github.io/k8s/key-concept-pod/</link><pubDate>Tue, 31 Mar 2020 12:15:01 +0800</pubDate><guid>https://linianhui.github.io/k8s/key-concept-pod/</guid><description>&lt;p>抽象层面 : &lt;code>Pod = random-ip:fixed-port&lt;/code>&lt;/p>
+&lt;h1 id="overview">
+&lt;i id="locator-overview" class="header-locator">&lt;/i>
+&lt;a href="#overview" class="article-h-a">1 概述&lt;/a>
+&lt;/h1>
+&lt;p>K8S中调度的最小单元。可以简单的类比:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">平台&lt;/th>
+ &lt;th style="text-align: left">最小调度单元&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">KVM&lt;/td>
+ &lt;td style="text-align: left">VM&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">Docker&lt;/td>
+ &lt;td style="text-align: left">Container&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">K8s&lt;/td>
+ &lt;td style="text-align: left">Pod&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="container-resources">
+&lt;i id="locator-container-resources" class="header-locator">&lt;/i>
+&lt;a href="#container-resources" class="article-h-a">2 容器的资源限制&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>resources: &lt;span style="color:#008000"># 资源限制&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> requests: # 请求的资源: k8s根据requests来进行pod的调度; HPA进行伸缩时也是根据requests来计算的。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cpu: &lt;span style="color:#a31515">&amp;#39;500m&amp;#39;&lt;/span> &lt;span style="color:#008000"># 单位=milli(千分之一)。50%vCPU。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> memory: &lt;span style="color:#a31515">&amp;#39;1024Mi&amp;#39;&lt;/span> &lt;span style="color:#008000"># 单位=[M,Mi,G,Gi]。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> limits: # 被允许使用的资源上限: 超过时Pod被kill。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cpu: &lt;span style="color:#a31515">&amp;#39;1&amp;#39;&lt;/span> &lt;span style="color:#008000"># 1vCPU&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> memory: &lt;span style="color:#a31515">&amp;#39;2Gi&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes"
+
+ target="_blank" rel="noopener norefferrer">https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes&lt;/a>&lt;/p></description></item><item><title>[K8S] Networking - Flannel</title><link>https://linianhui.github.io/k8s/networking-flannel/</link><pubDate>Thu, 20 Feb 2020 22:03:01 +0800</pubDate><guid>https://linianhui.github.io/k8s/networking-flannel/</guid><description>&lt;h1 id="flannel-packet-diagram">
+&lt;i id="locator-flannel-packet-diagram" class="header-locator">&lt;/i>
+&lt;a href="#flannel-packet-diagram" class="article-h-a">Flannel Packet Diagram&lt;/a>
+&lt;/h1>
+&lt;img src="flannel.packet.png" loading="lazy" decoding="auto" alt="Flannel Packet Diagram" title="Flannel Packet Diagram"/></description></item><item><title>[K8S] Install</title><link>https://linianhui.github.io/k8s/install/</link><pubDate>Thu, 13 Dec 2018 23:21:01 +0800</pubDate><guid>https://linianhui.github.io/k8s/install/</guid><description>&lt;p>kubeadm是k8s的command-line工具，用来创建和维护k8s集群。&lt;/p>
+&lt;h1 id="requirements">
+&lt;i id="locator-requirements" class="header-locator">&lt;/i>
+&lt;a href="#requirements" class="article-h-a">1. 前提要求&lt;/a>
+&lt;/h1>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">role&lt;/th>
+ &lt;th style="text-align: left">hostname&lt;/th>
+ &lt;th style="text-align: left">fixed ip&lt;/th>
+ &lt;th style="text-align: left">os&lt;/th>
+ &lt;th style="text-align: left">cpu&lt;/th>
+ &lt;th style="text-align: left">memory&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">master&lt;/td>
+ &lt;td style="text-align: left">k8s-master-1&lt;/td>
+ &lt;td style="text-align: left">192.168.2.211&lt;/td>
+ &lt;td style="text-align: left">ubuntu server 18.04.4&lt;/td>
+ &lt;td style="text-align: left">2&lt;/td>
+ &lt;td style="text-align: left">4G&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">worker&lt;/td>
+ &lt;td style="text-align: left">k8s-worker-1&lt;/td>
+ &lt;td style="text-align: left">192.168.2.212&lt;/td>
+ &lt;td style="text-align: left">ubuntu server 18.04.4&lt;/td>
+ &lt;td style="text-align: left">2&lt;/td>
+ &lt;td style="text-align: left">4G&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">worker&lt;/td>
+ &lt;td style="text-align: left">k8s-worker-2&lt;/td>
+ &lt;td style="text-align: left">192.168.2.213&lt;/td>
+ &lt;td style="text-align: left">ubuntu server 18.04.4&lt;/td>
+ &lt;td style="text-align: left">2&lt;/td>
+ &lt;td style="text-align: left">4G&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="requirements-hardware">
+&lt;i id="locator-requirements-hardware" class="header-locator">&lt;/i>
+&lt;a href="#requirements-hardware" class="article-h-a">1.1 硬件要求&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>至少2核CPU。&lt;/li>
+&lt;li>至少2G的内存。&lt;/li>
+&lt;li>每个node都有固定的IP，并且可以直联（无NAT）。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看CPU核心数&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /proc/cpuinfo | grep processor | wc -l
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看内存大小&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>free -h
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 查看ip&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ip a
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="requirements-hostnam-unique">
+&lt;i id="locator-requirements-hostnam-unique" class="header-locator">&lt;/i>
+&lt;a href="#requirements-hostnam-unique" class="article-h-a">1.2 软件要求&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>hostname唯一，并且不包含&lt;code>.&lt;/code>、&lt;code>_&lt;/code>和大写字母。&lt;/li>
+&lt;li>为k8s相关的服务配置防火墙，这里图省事，直接关闭防火墙。&lt;/li>
+&lt;li>关闭Swap内存（k8s为了性能考虑，不允许开启Swap）。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight-file highlight-file_opened" id="hf-502deb8eff5b2c67b8436f1cd49a755e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-502deb8eff5b2c67b8436f1cd49a755e','highlight-file_opened')">init-node.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/k8s/install/init-node.sh" title="下载 init-node.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/k8s/install/init-node.sh" title="源码 init-node.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -x
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat &lt;span style="color:#a31515">&amp;lt;&amp;lt;-EOF &amp;gt;&amp;gt; /etc/hosts
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">192.168.2.211 api-server.k8s.test
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 禁用防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ufw disable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># centos&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl stop firewalld
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl disable firewalld
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 禁用swap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo swapoff -a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 永久禁用swap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab | grep -v swap &amp;gt; /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /etc/fstab
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 永久禁用SELINUX&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tee &lt;span style="color:#a31515">&amp;lt;&amp;lt;-EOF /etc/selinux/config
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">SELINUX=disabled
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 开启overlay和br_netfilter模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat &lt;span style="color:#a31515">&amp;lt;&amp;lt;-EOF &amp;gt; /etc/modules-load.d/k8s.conf
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">overlay
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">br_netfilter
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>modprobe overlay
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>modprobe br_netfilter
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 开启ipv4 forward&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat &lt;span style="color:#a31515">&amp;lt;&amp;lt;-EOF &amp;gt; /etc/sysctl.d/k8s.conf
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">net.bridge.bridge-nf-call-iptables = 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">net.ipv4.ip_forward = 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a31515">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sysctl --system
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="docker">
+&lt;i id="locator-docker" class="header-locator">&lt;/i>
+&lt;a href="#docker" class="article-h-a">2. 安装Docker&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://linianhui.github.io/docker/install"
+
+ target="_blank" rel="noopener norefferrer">安装Docker&lt;/a>&lt;/p></description></item></channel></rss>

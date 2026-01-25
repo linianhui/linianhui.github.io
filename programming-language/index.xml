@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[程序设计语言] on Timetombs</title><link>https://linianhui.github.io/programming-language/</link><description>Recent content in [程序设计语言] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/programming-language/index.xml" rel="self" type="application/rss+xml"/><item><title>[程序设计语言] 04 [核心概念] 数据类型</title><link>https://linianhui.github.io/programming-language/04-data-type/</link><pubDate>Sat, 09 May 2015 16:01:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/04-data-type/</guid><description>&lt;h1 id="0.overview">
+&lt;i id="locator-0.overview" class="header-locator">&lt;/i>
+&lt;a href="#0.overview" class="article-h-a">0 概述&lt;/a>
+&lt;/h1>
+&lt;p>为何高级语言需要类型系统这个概念？在汇编时代是没有完整的数据类型系统的，结构化编程引入了结构化的控制流、为结构化设计的子程序，随之这种结构化的代码所操作的数据也进一步的&lt;strong>抽象化&lt;/strong>、&lt;strong>特化&lt;/strong>，故而有了数据类型这种概念，类型系统主要用于两个用途 :&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>为许多操作提供了隐含的上下文信息，使程序员可以在许多情况下不必显示的描述这种上下文&lt;/strong>。比如int类型的两个对象相加就是整数相加、两个字符串类型的对象相加就是拼接字符串、C#中new object()隐含在背后的就是要分配内存返回对象的引用等等。&lt;/li>
+&lt;li>&lt;strong>类型描述了其对象上一些合法的可以执行的操作集合&lt;/strong>。比如一个整数类型的对象你就不能给它一个跑步的操作、一个人的对象你就不能对它进行求sin值。编译器可以使用这个合法的集合进行错误检查，如在编译阶段强制检查的语言大部分都是强类型语言、在运行时检查的大都是弱类型语言。&lt;/li>
+&lt;/ol>
+&lt;p>一个类型系统包含&lt;strong>一些内部类型&lt;/strong>，一种&lt;strong>定义新类型的机制&lt;/strong>，一组有关&lt;strong>类型等价&lt;/strong>、&lt;strong>类型相容&lt;/strong>、&lt;strong>类型推理&lt;/strong>的规则。&lt;/p></description></item><item><title>[程序设计语言] 03 [核心概念] 控制流</title><link>https://linianhui.github.io/programming-language/03-control-flow/</link><pubDate>Wed, 27 Aug 2014 09:30:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/03-control-flow/</guid><description>&lt;h1 id="0.overview">
+&lt;i id="locator-0.overview" class="header-locator">&lt;/i>
+&lt;a href="#0.overview" class="article-h-a">0 概述&lt;/a>
+&lt;/h1>
+&lt;p>前面介绍了语言的演进以及一些基础概念后，从本篇开始进入了语言的核心问题中。这一篇讨论的是语言计算模型(大致可以用控制流来表述)，大致如下7种 :&lt;/p>
+&lt;ol>
+&lt;li>顺序执行 : 最基本的流程控制，按部就班的一条一条按顺序执行；&lt;/li>
+&lt;li>选择 : 根据运行时的某些条件来决定执行那些，如&lt;code>if else&lt;/code>等；&lt;/li>
+&lt;li>迭代 : 反复(或特定次数)的执行一段代码，如&lt;code>for&lt;/code>循环；&lt;/li>
+&lt;li>过程抽象 : 把一段代码抽象成一个简单的过程单元，用来完成某项特定的代码逻辑；&lt;/li>
+&lt;li>递归 : 一个表达式直接或者间接的调用自身；&lt;/li>
+&lt;li>并发 : 两个或更多程序片段同时(或伪同时)的执行或求值；&lt;/li>
+&lt;li>有意识地不去描述语句或表达式之间的次序或选择情况，意味着任何一种选择都能得到正确的结果。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>以上7个基本类别囊括了大部分语言中出现的控制流程和结构，如果我们能以此思考问题(而非特定语言的特定语法)，那么学习一门新语言就会是一件很轻松的事情，也可以使得我们站在各各语言之外来评判它们的优点或者缺点，更可以让我们独立于具体的语言来思考算法问题&lt;/strong>。以上这些好处，不正是我们梦寐以求的吗。&lt;/p></description></item><item><title>[程序设计语言] 02 [核心概念] 名字、作用域和约束(Bindings)</title><link>https://linianhui.github.io/programming-language/02-names-scopes-and-bindings/</link><pubDate>Sun, 03 Aug 2014 09:09:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/02-names-scopes-and-bindings/</guid><description>&lt;h1 id="names-and-binding-time">
+&lt;i id="locator-names-and-binding-time" class="header-locator">&lt;/i>
+&lt;a href="#names-and-binding-time" class="article-h-a">1 名字、约束时间(Binding Time)&lt;/a>
+&lt;/h1>
+&lt;p>在本篇博文开始前先介绍两个约定：第一个是&lt;strong>对象&lt;/strong>，除非在介绍面向对象语言时，本系列中出现的对象均是指任何可以有名字的东西，比如变量、常量、类型、子程序、模块等等。第二个是&lt;strong>抽象的&lt;/strong>，因为我们讨论的是语言的核心概念，所以&lt;strong>抽象的&lt;/strong>具体指代的是语言特征与任何计算机体系结构分离的程度。&lt;/p>
+&lt;p>如果可以给名字下个定义，那么它是代表某东西的一些助记字符序列。就好比张三、李四，对应到大部分语言中一般可以等价为&lt;strong>标识符&lt;/strong>。名字可以让我们用一个符号来表示变量、子程序、类型等等，其实名字就是一种抽象，比如一个变量名就帮助我们隐藏了背后的一些存储相关的复杂细节、子程序是控制抽象(帮助我们隐藏一个复杂的代码逻辑处理过程)、面向对象中的类属于数据抽象(把对数据的复杂操作逻辑隐藏到一系列方法背后)等等。&lt;/p></description></item><item><title>[程序设计语言] 01 基础</title><link>https://linianhui.github.io/programming-language/01-foundations/</link><pubDate>Sun, 20 Jul 2014 19:58:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/01-foundations/</guid><description>&lt;h1 id="machine-assembly-high-level-language">
+&lt;i id="locator-machine-assembly-high-level-language" class="header-locator">&lt;/i>
+&lt;a href="#machine-assembly-high-level-language" class="article-h-a">1 机器语言 &amp;gt; 汇编语言 &amp;gt; 高级语言&lt;/a>
+&lt;/h1>
+&lt;p>语言是人与人的一种交流工具，就比如我现在用汉语来写这篇博文来交流探讨技术问题；程序设计语言也是如此，只是交流对象不是人而是机器。我可以用汉语来写博文，也可以用英语来写（假如我英语熟练）；我可以用PHP来写一个网站，也可以用ASP.NET来写。这就说明&lt;strong>语言的本质就是一种交流工具&lt;/strong>，而我选择哪种语言来交流并不会影响我要的结果。然而在实际中到底要选用那个语言确要根据具体情况而定，这是个成本问题，比如我如果今天脑子抽筋要用日语，那我写着也累（关键是也不会）、读者或许也会骂娘了。&lt;/p></description></item><item><title>[程序设计语言] 00 前言</title><link>https://linianhui.github.io/programming-language/00-foreword/</link><pubDate>Sun, 13 Jul 2014 09:04:00 +0800</pubDate><guid>https://linianhui.github.io/programming-language/00-foreword/</guid><description>&lt;h2 id="why-read-this-book">
+&lt;i id="locator-why-read-this-book" class="header-locator">&lt;/i>
+&lt;a href="#why-read-this-book" class="article-h-a">1 为何要读这本书？&lt;/a>
+&lt;/h2>
+&lt;p>首先这是一本介绍语言的入门书籍（笔者阅读是裘宗燕老先生翻译的第二版），如果你想从中学到一些独门绝技，那么抱歉，木有；其次它介绍的是&lt;strong>程序设计语言的一些重要基础概念、各种概念之间的关系；并解释了语言中诸多结构的形成和发展过程，以及他们演化到今天这种形式的根源&lt;/strong>。&lt;/p>
+&lt;p>那么或许你该问了，了解这些有甚好处，不知道我照样写出漂亮的代码、架构等。的确，你可以的，现在的程序员在工作中都不止要用到一两种语言，然而我们通常对这门语言最直接的感触就是它的语法层面；我猜测你或多或少都有被语法的糖衣炮弹（语法糖）给打晕、蒙蔽过的经历吧。那么如果可以让你从语言设计者的角度来看待语言，则非常有助于你了解一门语言的特性，理解其中的优势以及弱势、以及它们为何发展进化为今天的形式，从而能更好的使用它们；从而能有效的避免身陷众多语言的糖衣炮弹中。&lt;/p></description></item></channel></rss>

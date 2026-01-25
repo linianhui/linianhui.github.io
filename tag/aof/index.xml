@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aof on Timetombs</title><link>https://linianhui.github.io/tag/aof/</link><description>Recent content in Aof on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/aof/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] persistence</title><link>https://linianhui.github.io/redis/persistence/</link><pubDate>Fri, 19 Mar 2021 20:11:23 +0800</pubDate><guid>https://linianhui.github.io/redis/persistence/</guid><description>&lt;p>redis是基于内存存储数据的，当server意外宕机或者重启时，内存中的数据就会丢失掉。redis提供了如下几种选项来应对不同场景下的需求。&lt;/p>
+&lt;ol>
+&lt;li>RDB(Redis DataBase) ：按照配置的时间周期来定时保存内存中的数据快照到disk上。&lt;/li>
+&lt;li>AOF (Append Only File) ：通过记录server接收到的每一个write命令，在下次启动时重放这些指令，以此达到恢复数据的目的。&lt;/li>
+&lt;li>No persistence ：完全禁用持久化。&lt;/li>
+&lt;li>RDB + AOF ：同时启用RDB和AOF。这种情况下AOF优先被使用。&lt;/li>
+&lt;/ol>
+&lt;h1 id="rdb">
+&lt;i id="locator-rdb" class="header-locator">&lt;/i>
+&lt;a href="#rdb" class="article-h-a">1 RDB&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>RDB&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>是一个非常紧凑的二进制格式的文件。它的工作方式是fork一个子进程，然后按照配置定时的把内存快照到disk上的一个单一的文件中。它的工作方式决定了它具备一下特点：&lt;/p></description></item></channel></rss>

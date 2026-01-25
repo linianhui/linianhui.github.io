@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pipelining on Timetombs</title><link>https://linianhui.github.io/tag/pipelining/</link><description>Recent content in Pipelining on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/pipelining/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] pipelining</title><link>https://linianhui.github.io/redis/pipelining/</link><pubDate>Fri, 19 Mar 2021 19:51:12 +0800</pubDate><guid>https://linianhui.github.io/redis/pipelining/</guid><description>&lt;h1 id="issue">
+&lt;i id="locator-issue" class="header-locator">&lt;/i>
+&lt;a href="#issue" class="article-h-a">1 问题分析&lt;/a>
+&lt;/h1>
+&lt;p>设想一下有这样一个场景。在一个&lt;code>RTT&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>为10ms的网络环境下，循环执行一个&lt;code>INCR xxkey&lt;/code>的操作，假定redis-server每次耗时1ms。&lt;/p>
+&lt;p>当cleint发出&lt;code>INCR xxkey&lt;/code>的命令后，要等11ms后才能收到响应。如果循环100次，则总共就需要&lt;code>1100ms&lt;/code>。显然redis-server执行100次仅需要&lt;code>1ms*100=100ms&lt;/code>，而消耗在&lt;code>RTT&lt;/code>&lt;sup id="fnref1:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>上所需的时间为&lt;code>10ms*100=1000ms&lt;/code>。网络延迟消耗了太多的时间。&lt;/p>
+&lt;blockquote>
+&lt;p>redis的基本通信模型是request/response。即client1发送一个request1，然后等待server处理完后的response1。在这个期间，server也是处于阻塞状态的，也就是说这时你又来另外一个client2的request2，那么这个request2也需要等待server1处理完response1后才能继续处理。&lt;/p></description></item></channel></rss>

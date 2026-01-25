@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dnsmasq on Timetombs</title><link>https://linianhui.github.io/tag/dnsmasq/</link><description>Recent content in Dnsmasq on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 26 Nov 2022 21:13:14 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/dnsmasq/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] DNS(Domain Name System)</title><link>https://linianhui.github.io/computer-networking/dns/</link><pubDate>Sat, 01 Jan 2022 13:54:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/dns/</guid><description>&lt;h1 id="dnsmasq">
+&lt;i id="locator-dnsmasq" class="header-locator">&lt;/i>
+&lt;a href="#dnsmasq" class="article-h-a">dnsmasq&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html"
+
+ target="_blank" rel="noopener norefferrer">https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/a>&lt;/p>
+&lt;p>&lt;div class="highlight-file highlight-file_opened" id="hf-4ac609d99afb8c6615d4989bf5342a0e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-4ac609d99afb8c6615d4989bf5342a0e','highlight-file_opened')">/etc/dnsmasq.conf&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.conf" title="下载 /etc/dnsmasq.conf" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.conf" title="源码 /etc/dnsmasq.conf">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># /etc/dnsmasq.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 文件变化自动加载，无需重启&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-queries=&lt;span style="color:#a31515">extra&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-dhcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>log-facility=&lt;span style="color:#a31515">/log/dnsmasq.log&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DNS - 上游DNS服务器配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>strict-order
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>resolv-file=&lt;span style="color:#a31515">/etc/dnsmasq.dns.upstream.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DNS - 本地DNS配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>addn-hosts=&lt;span style="color:#a31515">/etc/dnsmasq.dns.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 防止将没有域部分的本地名称转发到上游DNS服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>domain-needed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 防止将DNS反向查找查询转发到上游DNS服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bogus-priv
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP -&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-option=&lt;span style="color:#a31515">option:router,192.168.2.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-option=&lt;span style="color:#a31515">option:netmask,255.255.255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP - DHCP静态分配&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>read-ethers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-hostsfile=&lt;span style="color:#a31515">/etc/dnsmasq.dhcp.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># DHCP - DHCP动态分配&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [tag:&amp;lt;tag&amp;gt;[,tag:&amp;lt;tag&amp;gt;],][set:&amp;lt;tag&amp;gt;,]&amp;lt;start-addr&amp;gt;[,&amp;lt;end-addr&amp;gt;|&amp;lt;mode&amp;gt;[,&amp;lt;netmask&amp;gt;[,&amp;lt;broadcast&amp;gt;]]][,&amp;lt;lease time&amp;gt;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dhcp-range=&lt;span style="color:#a31515">192.168.2.240,192.168.2.254,255.255.255.0,12h&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-d5aaab98731a55f06c80fc35a8391a77">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-d5aaab98731a55f06c80fc35a8391a77','highlight-file_opened')">/etc/dnsmasq.dhcp.hosts&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.dhcp.hosts" title="下载 /etc/dnsmasq.dhcp.hosts" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.dhcp.hosts" title="源码 /etc/dnsmasq.dhcp.hosts">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># dhcp-hostsfile=/etc/dnsmasq.dhcp.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># [&amp;lt;hwaddr&amp;gt;][,id:&amp;lt;client_id&amp;gt;|*][,set:&amp;lt;tag&amp;gt;][,tag:&amp;lt;tag&amp;gt;][,&amp;lt;ipaddr&amp;gt;][,&amp;lt;hostname&amp;gt;][,&amp;lt;lease_time&amp;gt;][,ignore]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># MAC地址需小写&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>00:15:5d:02:02:0b,192.168.2.22,deb1.vm.lan&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;br />
+&lt;div class="highlight-file highlight-file_opened" id="hf-dd61df059a8e824503d22f5d18fd0352">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-dd61df059a8e824503d22f5d18fd0352','highlight-file_opened')">/etc/dnsmasq.dns.hosts&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/computer-networking/dns/dnsmasq.dns.hosts" title="下载 /etc/dnsmasq.dns.hosts" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/computer-networking/dns/dnsmasq.dns.hosts" title="源码 /etc/dnsmasq.dns.hosts">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># addn-hosts=/etc/dnsmasq.dns.hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># www.baidu.lan 解析到 192.168.1.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>192.168.2.201 www.baidu.lan&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

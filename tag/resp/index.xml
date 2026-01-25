@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Resp on Timetombs</title><link>https://linianhui.github.io/tag/resp/</link><description>Recent content in Resp on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/resp/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] resp</title><link>https://linianhui.github.io/redis/resp/</link><pubDate>Fri, 19 Mar 2021 13:07:23 +0800</pubDate><guid>https://linianhui.github.io/redis/resp/</guid><description>&lt;p>因为Redis是基于网络的分布式缓存服务，所以其隶属于&lt;code>客户端-服务器架构风格&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>。这就使得它必须通过网络进行通信，那么其客户端和服务端所采取的&lt;code>应用层协议&lt;/code>为&lt;code>RESP(REdis Serialization Protocol)&lt;/code>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>。底层的传输协议为&lt;code>TCP&lt;/code>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>，端口号6379。&lt;/p>
+&lt;h1 id="request-response-model">
+&lt;i id="locator-request-response-model" class="header-locator">&lt;/i>
+&lt;a href="#request-response-model" class="article-h-a">1 请求/响应模型&lt;/a>
+&lt;/h1>
+&lt;p>Client发送各种命令给Server，Server接收命令并处理后把响应消息发回Client。有两种例外的情况：&lt;/p>
+&lt;ol>
+&lt;li>pipelining : Client一次性的发送多个命令。&lt;/li>
+&lt;li>Pub/Sub：Server会改成推送方式，即无需Client发送请求，而是Server主动推送。&lt;/li>
+&lt;/ol>
+&lt;h1 id="application-protocal">
+&lt;i id="locator-application-protocal" class="header-locator">&lt;/i>
+&lt;a href="#application-protocal" class="article-h-a">2 应用层协议&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>RESP&lt;/code>&lt;sup id="fnref1:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>致力于一下三个目标：&lt;/p></description></item></channel></rss>

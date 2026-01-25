@@ -1,0 +1,148 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[工具] 个税计算器 - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A02Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/tool/ target=_blank>[工具]</a></section><section class=toc-page><a class=toc-page-title href=/tool/openwrt/ target=_blank>[工具] openwrt</a></section><section class=toc-page><a class=toc-page-title href=/tool/traefik/ target=_blank>[工具] traefik</a></section><section class=toc-page><a class=toc-page-title href=/tool/android/ target=_blank>[工具] android</a></section><section class="toc-page selected"><span class=toc-page-title>[工具] 个税计算器</span><nav id=TableOfContents><ul><li><a href=#reference>参考</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/tool/app/ target=_blank>[工具] app</a></section><section class=toc-page><a class=toc-page-title href=/tool/v2ray/ target=_blank>[工具] v2ray</a></section><section class=toc-page><a class=toc-page-title href=/tool/goproxy/ target=_blank>[工具] goproxy</a></section><section class=toc-page><a class=toc-page-title href=/tool/caddy/ target=_blank>[工具] caddy</a></section><section class=toc-page><a class=toc-page-title href=/tool/miniserve/ target=_blank>[工具] miniserve</a></section><section class=toc-page><a class=toc-page-title href=/tool/rinetd/ target=_blank>[工具] rinetd</a></section><section class=toc-page><a class=toc-page-title href=/tool/etc/ target=_blank>[工具] etc</a></section><section class=toc-page><a class=toc-page-title href=/tool/pc/ target=_blank>[工具] pc</a></section><section class=toc-page><a class=toc-page-title href=/tool/loan/ target=_blank>[工具] 房贷计算器</a></section><section class=toc-page><a class=toc-page-title href=/tool/vlmcsd/ target=_blank>[工具] vlmcsd</a></section><section class=toc-page><a class=toc-page-title href=/tool/rio/ target=_blank>[工具] Rio Terminal</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:02Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[工具] 个税计算器</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2019-01-01 01:01，约500字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/tool/ title=[工具] target=_blank><i class="fa fa-folder"></i>[工具]</a></section><section class=article-tags><a class=article-tag href=/tag/tool target=_blank><i class="fa fa-tag"></i>tool</a>
+<a class=article-tag href=/tag/%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8 target=_blank><i class="fa fa-tag"></i>个税计算器</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/dc90eb543e60fc68bcea90a4a9ee62666c6804c2 target=_blank><i class="fa fa-code-fork"></i>dc90eb5</a>
+<span class=article-git-commit-subject>refactor</span>
+<span class=article-git-commit-time>2024-04-27 18:56</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/tool/tax/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css crossorigin=anonymous referrerpolicy=no-referrer><script src=https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><br><style>th{text-align:right}td{text-align:right;vertical-align:baseline;padding:6px 4px}.cell{padding:0!important}.input-fieldset section{margin:6px 0}.form-name,.form-input{position:relative;display:inline-block;vertical-align:middle}.form-name{width:5em;text-align:right}.form-input{margin-left:1em}.el-collapse{border:unset}.el-collapse-item__wrap,.el-collapse-item__header{border:unset}.el-input-group__prepend{padding:0}fieldset{border:unset;box-shadow:0 0 2px #ccc;max-width:100%;min-width:100%;margin-top:1em;box-sizing:border-box}legend{background-color:#fff;color:#909399}.salary-wrapper{overflow-x:auto;max-width:100%}.salary-pre{font-family:unset;font-size:0;margin:0}.salary-table{width:100%;margin:0;font-size:14px}.salary-summary sub{font-size:10px;padding-left:2px;color:#bbb}.row-data{color:#666;font-family:monospace,Courier,courier new}.row-data:hover{background-color:#eee;cursor:pointer}.insurance-table input{min-width:2em;max-width:4em;text-align:right}.month-detail{display:none}.month-detail_opened+tr{display:table-row}.month-detail_opened .month-action-icon::before{content:"\e6df"}.form-input-weight{width:14em!important}</style><div id=app><fieldset class=input-fieldset><legend>参数区域</legend><section><div class=form-name><label for=salary>税前月工资</label></div><div colspan=2 class=form-input><el-input-number id=salary v-model=amount step=1000 :min=0></el-input-number></div></section><section><div class=form-name><label for=month>月数</label></div><div colspan=2 class=form-input><el-input-number id=month v-model=month :min=1 @input=onMonthChange></el-input-number></div></section><section><div class=form-name><label for=insurance>社保基数</label></div><div class=form-input><el-collapse><el-collapse-item><template slot=title><el-select id=insurance v-model=insuranceName :popper-append-to-body=false class=form-input-weight @change=onInsuranceNameChange><el-option v-for="item in insuranceNameList" :key=item :label=item :value=item></el-option></el-select><span>&nbsp;&nbsp;{{insurance.min | CNY}}~{{insurance.max | CNY}}</span></template><table class=insurance-table><tr class=row-header><th>社保类型</th><th>最低基数</th><th>最高基数</th><th>个人%</th><th>公司%</th></tr><tr><td></td><td><input v-model=insurance.min @input=onInsuranceMinChange type=number min=0 placeholder=最低基数></td><td><input v-model=insurance.max @input=onInsuranceMaxChange type=number min=0 placeholder=最高基数></td><td></td><td></td></tr><tr v-for="item in insurance.items" class=row-data><td>{{item.name}}</td><td><input v-model=item.min type=number min=0 placeholder=最低基数></td><td><input v-model=item.max type=number min=0 placeholder=最高基数></td><td><input v-model=item.personalPercentage type=number min=0 max=100 placeholder=个人比例></td><td><input v-model=item.corporationPercentage type=number min=0 max=100 placeholder=公司比例></td></tr></table></el-collapse-item></el-collapse></div></section><section><div class=form-name><label for=rate>税率表</label></div><div class=form-input><el-collapse><el-collapse-item><template slot=title><el-select id=rate v-model=rateName :popper-append-to-body=false class=form-input-weight><el-option v-for="item in rateNameList" :key=item :label=item :value=item></el-option></el-select><span>&nbsp;&nbsp;免征额 {{rate.exempted | CNY}}</span></template><table><tr class=row-header><th>范围</th><th>税率</th><th>速算扣除数</th></tr><tr v-for="item in rate.items" class=row-data><td><span>{{item.min | CNY}} ~
+<span v-if=item.max>{{item.max | CNY}}</span>
+<span v-else>￥∞</span></span></td><td>{{item.rate}}%</td><td>{{item.quickDeduction | CNY}}</td></tr></table></el-collapse-item></el-collapse></div></section><section><div class=form-name><label for=bonus>奖金</label></div><div class=form-input><el-collapse><el-collapse-item><template slot=title><el-input-number id=ebonus v-model=bonus step=1000></el-input-number>&nbsp;&nbsp;
+<el-checkbox v-model=bonusSingleTax>单独计税</el-checkbox>
+&nbsp;&nbsp; 税率表(月)</template><table><tr class=row-header><th>范围</th><th>税率</th><th>速算扣除数</th></tr><tr v-for="item in bonusRates.items" class=row-data><td><span>{{item.min | CNY}} ~
+<span v-if=item.max>{{item.max | CNY}}</span>
+<span v-else>￥∞</span></span></td><td>{{item.rate}}%</td><td>{{item.quickDeduction | CNY}}</td></tr></table></el-collapse-item></el-collapse></div></section><section style=min-height:47px><div class=form-name><label for=precision>小数位</label></div><div colspan=2 class=form-input><el-input-number id=precision v-model=precision :min=0 :max=2 @change=onPrecisionChange></el-input-number></div></section><section></fieldset><fieldset><legend>结果区域-年合计</legend><table class=salary-summary><tr class=row-data><td>税前</td><td>{{amount | CNY}}<sub>工资</sub></td><td>*</td><td>{{month}}<sub>月</sub></td><td>=</td><td>{{salarys.summary.last.baseYTD | CNY}}</td><td>+</td><td>{{salarys.summary.last.insurances.corporationYTD | CNY}}<sub>公司社保</sub></td><td>=</td><td>{{salarys.summary.last.corporationYTD | CNY}}<sub>公司支出</sub></td></tr><tr class=row-data><td colspan=6>-</td><td colspan=4>-</td></tr><tr class=row-data><td>税后</td><td>{{salarys.summary.last.actualYTD | CNY}}<sub>税后YTD</sub></td><td>+</td><td>{{salarys.summary.公积金SumYTD| CNY}}<sub>公积金YTD</sub></td><td>=</td><td colspan=5>{{salarys.summary.totalActualYTD | CNY}}</td></tr><tr class=row-data><td colspan=6>=</td><td colspan=4>=</td></tr><tr class=row-data><td>差额</td><td colspan=5>{{salarys.summary.personalDiffYTD | CNY}}</td><td colspan=4>{{salarys.summary.corporationDiffYTD | CNY}}</td></tr></table></fieldset><fieldset><legend>结果区域-月列表</legend><div class=salary-wrapper><pre class=salary-pre>
+        <table class=salary-table>
+          <tr class=row-header>
+            <th style=width:5em>月份</th>
+            <th>税前YTD</th>
+            <th style=width:6em>免征额YTD</th>
+            <th style=width:7em>社保个人YTD</th>
+            <th>税基YTD</th>
+            <th style=width:3em>税率</th>
+            <th>个税</th>
+            <th>个税YTD</th>
+            <th>税后</th>
+            <th>税后YTD</th>
+          </tr>
+          <template v-for="salary in salarys.items">
+            <tr :id="'month-'+salary.month+'-detail'" class=row-data :onclick="'blog.toggleClassName(\'month-'+salary.month+'-detail\',\'month-detail_opened\')'">
+              <td v-if="salary.bonus > 0">奖金 <i class="el-icon-arrow-right month-action-icon"></i></td>
+              <td v-else>{{salary.month}}月 <i class="el-icon-arrow-right month-action-icon"></i></td>
+              <td>{{salary.baseYTD | CNY}}</td>
+              <td>{{salary.exemptedYTD | CNY}}</td>
+              <td>{{salary.insurances.personalYTD | CNY}}</td>
+              <td>{{salary.taxableYTD | CNY}}</td>
+              <td>{{salary.rate.rate}}%</td>
+              <td>{{salary.tax | CNY}}</td>
+              <td>{{salary.taxYTD | CNY}}</td>
+              <td>{{salary.actual | CNY}}</td>
+              <td>{{salary.actualYTD | CNY}}</td>
+            </tr>
+            <tr class=month-detail>
+              <td style=padding:0;font-size:0> </td>
+              <td colspan=10 style=padding:0;font-size:0>
+                <table style=padding:0;margin:0;font-size:14px;width:100%;border-width:0;background-color:#efe>
+                  <tr>
+                    <td v-if="salary.bonus > 0" colspan=3>奖金</td>
+                    <td colspan=3 v-else>{{salary.month}}月</td>
+                    <td>社保基数</td>
+                    <td>税率/费率</td>
+                    <td>本月</td>
+                    <td>YTD(年累计)</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td rowspan=12>个人</td>
+                    <td>税前</td>
+                    <td colspan=3></td>
+                    <td>{{salary.base | CNY}}</td>
+                    <td>{{salary.baseYTD | CNY}}</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td rowspan=7>社保</td>
+                    <td>合计</td>
+                    <td colspan=2></td>
+                    <td>{{salary.insurances.personal | CNY}}</td>
+                    <td>{{salary.insurances.personalYTD | CNY}}</td>
+                  </tr>
+                  <tr v-for="insurance in salary.insurances.items" class=row-data>
+                    <td>{{insurance.name}}</td>
+                    <td>{{insurance.base}}</td>
+                    <td>{{insurance.personalPercentage}}%</td>
+                    <td>{{insurance.personal | CNY}}</td>
+                    <td>{{insurance.personalYTD | CNY}}</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td rowspan=3>个税</td>
+                    <td>应纳税所得额</td>
+                    <td></td>
+                    <td>{{salary.rate.rate | CNY}}%</td>
+                    <td>{{salary.taxable | CNY}}</td>
+                    <td>{{salary.taxableYTD | CNY}}</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td>免征额</td>
+                    <td colspan=2></td>
+                    <td>{{salary.exempted | CNY}}</td>
+                    <td>{{salary.exemptedYTD | CNY}}</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td>应纳税</td>
+                    <td colspan=2></td>
+                    <td>{{salary.tax | CNY}}</td>
+                    <td>{{salary.taxYTD | CNY}}</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td>税后</td>
+                    <td colspan=3></td>
+                    <td>{{salary.actual | CNY}}</td>
+                    <td>{{salary.actualYTD | CNY}}</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td rowspan=8>公司</td>
+                    <td>支出</td>
+                    <td colspan=3></td>
+                    <td>{{salary.corporation | CNY}}</td>
+                    <td>{{salary.corporationYTD | CNY}}</td>
+                  </tr>
+                  <tr class=row-data>
+                    <td rowspan=7>社保</td>
+                    <td>合计</td>
+                    <td colspan=2></td>
+                    <td>{{salary.insurances.corporation | CNY}}</td>
+                    <td>{{salary.insurances.corporationYTD | CNY}}</td>
+                  </tr>
+                  <tr v-for="insurance in salary.insurances.items" class=row-data>
+                    <td>{{insurance.name}}</td>
+                    <td>{{insurance.base}}</td>
+                    <td>{{insurance.corporationPercentage}}%</td>
+                    <td>{{insurance.corporation | CNY}}</td>
+                    <td>{{insurance.corporationYTD | CNY}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </template>
+        </table>
+      </pre></div></fieldset></div><script src=rates.js></script><script src=insurances.js></script><script src=calculator.js></script><script src=app.js></script></p><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>参考</a></h1><p>YTD = Year to Date，代表当年累计值。</p></section><section class=article-meta><section class=article-date>2019-01-01 01:01，约500字，阅读约1分钟</section><section class=article-topics><a class=article-topic href=/tool/ title=[工具] target=_blank><i class="fa fa-folder"></i>[工具]</a></section><section class=article-tags><a class=article-tag href=/tag/tool target=_blank><i class="fa fa-tag"></i>tool</a>
+<a class=article-tag href=/tag/%E4%B8%AA%E7%A8%8E%E8%AE%A1%E7%AE%97%E5%99%A8 target=_blank><i class="fa fa-tag"></i>个税计算器</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/dc90eb543e60fc68bcea90a4a9ee62666c6804c2 target=_blank><i class="fa fa-code-fork"></i>dc90eb5</a>
+<span class=article-git-commit-subject>refactor</span>
+<span class=article-git-commit-time>2024-04-27 18:56</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/tool/tax/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/tool/android/ target=_blank>[工具] android</a></div><div class=article-page-next><span>下一篇 : </span><a href=/tool/app/ target=_blank>[工具] app</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

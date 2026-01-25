@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mtd on Timetombs</title><link>https://linianhui.github.io/tag/mtd/</link><description>Recent content in Mtd on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 29 Jun 2025 00:08:05 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/mtd/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] openwrt</title><link>https://linianhui.github.io/tool/openwrt/</link><pubDate>Thu, 23 Mar 2017 23:01:03 +0800</pubDate><guid>https://linianhui.github.io/tool/openwrt/</guid><description>&lt;h1 id="1-flush">
+&lt;i id="locator-1-flush" class="header-locator">&lt;/i>
+&lt;a href="#1-flush" class="article-h-a">1 flush&lt;/a>
+&lt;/h1>
+&lt;h2 id="breed">
+&lt;i id="locator-breed" class="header-locator">&lt;/i>
+&lt;a href="#breed" class="article-h-a">1.1 breed&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>breed&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>是一个bootloader，类似与电脑中的BIOS以及安卓手机中的recovery，用来刷机用的。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 登陆到路由器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ssh root@192.168.199.1 -v -o hostKeyalgorithms=ssh-rsa
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 复制breed.bin到路由器&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>scp breed.bin root@192.168.199.1:/root/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 刷入breed&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mtd -r write breed.bin u-boot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>成功刷入后路由器会自动重启，启动后长按重置键3～6秒松开即可进入breed模式。breed的默认ip为&lt;code>192.168.1.1&lt;/code>，故而需要网线连接路由器的LAN口到电脑网口，电脑设置IP如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>ip 192.168.1.2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dns 192.168.1.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后访问&lt;a href="http://192.168.1.1"
+
+ target="_blank" rel="noopener norefferrer">http://192.168.1.1&lt;/a>即可。&lt;/p></description></item></channel></rss>

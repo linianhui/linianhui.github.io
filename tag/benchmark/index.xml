@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Benchmark on Timetombs</title><link>https://linianhui.github.io/tag/benchmark/</link><description>Recent content in Benchmark on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/benchmark/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] 运行时架构</title><link>https://linianhui.github.io/redis/runtime-architecture/</link><pubDate>Fri, 19 Mar 2021 20:12:24 +0800</pubDate><guid>https://linianhui.github.io/redis/runtime-architecture/</guid><description>&lt;p>redis自从诞生之处就被称之为单线程的方式实现的，这里的单线程指的是&lt;code>socket read&lt;/code>、&lt;code>解析&lt;/code>、&lt;code>执行&lt;/code>和&lt;code>socket write&lt;/code>这四个阶段都是由主线程独自完成的。当然一个redis-server实例并不是只有这一个线程，比如还有执行RDB、AOF、LRU、AOFREWRITE等等后台线程，只是它们的运行不会参与到server的主线程处理client的request这个流程中。&lt;/p></description></item><item><title>[Redis] benchmark</title><link>https://linianhui.github.io/redis/benchmark/</link><pubDate>Fri, 19 Mar 2021 20:12:23 +0800</pubDate><guid>https://linianhui.github.io/redis/benchmark/</guid><description>&lt;h1 id="concept">
+&lt;i id="locator-concept" class="header-locator">&lt;/i>
+&lt;a href="#concept" class="article-h-a">1 基本概念&lt;/a>
+&lt;/h1>
+&lt;p>redis速度非常快，但是有多块呢？首先我们需要分析一下当client发起对server的调用到获得结果这段时间内都经历了那些主要的步骤，比如如下代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>Jedis jedis = &lt;span style="color:#00f">new&lt;/span> Jedis(&lt;span style="color:#a31515">&amp;#34;localhost&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>String result = jedis.set(&lt;span style="color:#a31515">&amp;#34;name&amp;#34;&lt;/span>, &lt;span style="color:#a31515">&amp;#34;lnh&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>详细分解一下其中经历的主要步骤：&lt;/p>
+&lt;ol>
+&lt;li>client发起调用；
+&lt;ol>
+&lt;li>初始化网络连接（或者从client端维护的连接池中获取连接）；&lt;/li>
+&lt;li>把java方法调用和数据对象序列化成&lt;code>RESP&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>协议格式；&lt;/li>
+&lt;li>写入网络I/O。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>网络传输；
+&lt;ol>
+&lt;li>把上一步的转换成resp协议后的数据通过网络发送给server。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>server端处理调用；
+&lt;ol>
+&lt;li>接收请求数据，解析resp协议格式的数据；&lt;/li>
+&lt;li>执行解析后的command；如果开启AOF，则也会处理AOF的事情。&lt;/li>
+&lt;li>把执行结果序列化为resp协议格式。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>网络传输；
+&lt;ol>
+&lt;li>把上一步的转换成resp协议后的数据通过网络发送给client。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>client接收响应；
+&lt;ol>
+&lt;li>读取网络IO数据，解析resp协议格式的数据。&lt;/li>
+&lt;li>反序列化为Java对象。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>总结来说主要是3大块：client、网络传输、server。那么从使用者的角度来看，重点需要关注的在于client端的序列化以及网络连接消耗。比如采用了不合适的数据结构，导致每次需要传输的数据量过大；以及连接池的过大或过小，或者根本没，从而增大每次建立底层TCP连接的消耗；再有就是server端的配置导致一些额外的操作（aof的appendfsync配置&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>）、或者会导致长时间阻塞操作的命令导致的server端处理能力的下降。&lt;/p></description></item></channel></rss>

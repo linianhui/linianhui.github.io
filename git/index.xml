@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[Git] on Timetombs</title><link>https://linianhui.github.io/git/</link><description>Recent content in [Git] on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linianhui.github.io/git/index.xml" rel="self" type="application/rss+xml"/><item><title>[Git] 内容寻址文件系统</title><link>https://linianhui.github.io/git/content-addressable-filesystem/</link><pubDate>Tue, 27 Apr 2021 00:55:01 +0800</pubDate><guid>https://linianhui.github.io/git/content-addressable-filesystem/</guid><description>&lt;p>不要感觉奇怪，为什么介绍Git的文章里面怎么会出现一个&lt;strong>文件系统&lt;/strong>，还&lt;strong>内容寻址&lt;/strong>，这都是什么啊？其实&lt;code>内容寻址文件系统(content-addressable filesystem)&lt;/code>才是git的底层核心，而我们平时使用的&lt;code>commit&lt;/code>，&lt;code>branch&lt;/code>和&lt;code>checkout&lt;/code>等等命令仅仅只是在上层包装成了VCS(version control system)的样子。&lt;/p>
+&lt;p>&lt;strong>文件系统&lt;/strong>是用来在物理存储设备上为上层应用提供抽象的文件管理功能的。比如常见的fat、fat32、ntfs、ext4等等。&lt;/p></description></item><item><title>[Git] .gitattributes</title><link>https://linianhui.github.io/git/gitattributes/</link><pubDate>Thu, 16 Jan 2020 20:52:01 +0800</pubDate><guid>https://linianhui.github.io/git/gitattributes/</guid><description>&lt;h1 id="effects">
+&lt;i id="locator-effects" class="header-locator">&lt;/i>
+&lt;a href="#effects" class="article-h-a">1 &lt;code>.gitattributes&lt;/code> 的作用&lt;/a>
+&lt;/h1>
+&lt;p>位于Git Repo根目录的&lt;code>.gitattributes&lt;/code>文件，用来为Git管理的文件配置一些属性。这些属性控制着Git管理的如下三个区域的文件。&lt;/p>
+&lt;img src="git-areas.png" loading="lazy" decoding="auto" alt="Git 三个工作区域" title="Git 三个工作区域"/>&lt;p>通常主要用来统一&lt;code>EOL=end of line&lt;/code>（在Windows上默认是&lt;code>crlf&lt;/code>, 在Linux和macOS上则是&lt;code>lf&lt;/code>）。&lt;/p>
+&lt;h2 id="syntax">
+&lt;i id="locator-syntax" class="header-locator">&lt;/i>
+&lt;a href="#syntax" class="article-h-a">1.1 语法&lt;/a>
+&lt;/h2>
+&lt;p>&lt;code>.gitattributes&lt;/code>是一个文本文件，每一行使用&lt;code>pattern&lt;/code>匹配一些文件，然后设置对应的属性:&lt;/p></description></item><item><title>[Git] config</title><link>https://linianhui.github.io/git/config/</link><pubDate>Wed, 15 Jan 2020 20:52:01 +0800</pubDate><guid>https://linianhui.github.io/git/config/</guid><description>&lt;h1 id="config">
+&lt;i id="locator-config" class="header-locator">&lt;/i>
+&lt;a href="#config" class="article-h-a">1 配置&lt;/a>
+&lt;/h1>
+&lt;div class="highlight-file highlight-file_opened" id="hf-3932f9879703d2671327ccdcb48db08e">
+ &lt;div class="highlight-file-header">
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-3932f9879703d2671327ccdcb48db08e','highlight-file_opened')">config.sh&lt;/a>&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/git/config/config.sh" title="下载 config.sh" download>&lt;/a>
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/git/config/config.sh" title="源码 config.sh">&lt;/a>&lt;/div>
+ &lt;div class="highlight-file-content">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>set -eux
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># checkout&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.co checkout
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># commit&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.ci commit
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.alc &lt;span style="color:#a31515">&amp;#39;commit --amend --no-edit&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># status&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.st &lt;span style="color:#a31515">&amp;#39;status --short --branch&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># branch&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.br branch
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># pull&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.pr &lt;span style="color:#a31515">&amp;#39;pull --rebase&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># merge&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.mnf &lt;span style="color:#a31515">&amp;#39;merge --no-ff&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># diff&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.d diff
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.dt difftool
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># cherry-pick&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.cp cherry-pick
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># log&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.last &lt;span style="color:#a31515">&amp;#39;log -1&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.lg &lt;span style="color:#a31515">&amp;#34;log --color --graph --pretty=format:&amp;#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39; --abbrev-commit&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># count-objects&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.size &lt;span style="color:#a31515">&amp;#39;count-objects -v -H&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># reflog&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.rl &lt;span style="color:#a31515">&amp;#34;reflog --format=&amp;#39;%cd %h %gs&amp;#39; --date=format:&amp;#39;%Y-%m-%d %H:%M:%S&amp;#39;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># gc&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.warn-expire-reflog &lt;span style="color:#a31515">&amp;#34;reflog expire --expire=now --all&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.warn-gc-now &lt;span style="color:#a31515">&amp;#34;gc --prune=now --aggressive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># chmod +/- x&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.chmod644 &lt;span style="color:#a31515">&amp;#34;update-index --chmod=-x&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.chmod755 &lt;span style="color:#a31515">&amp;#34;update-index --chmod=+x&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># head&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global alias.head &lt;span style="color:#a31515">&amp;#39;symbolic-ref HEAD&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># default branch&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global init.defaultBranch main
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># gui&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global gui.encoding &lt;span style="color:#a31515">&amp;#39;utf-8&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># i18n&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global i18n.commitencoding &lt;span style="color:#a31515">&amp;#39;utf-8&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global core.quotepath false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># editor&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global core.editor &lt;span style="color:#a31515">&amp;#34;code -w&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global core.autocrlf false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global core.safecrlf true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global core.filemode false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># color&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global color.ui true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># branch pager&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global pager.branch false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># https://github.com/microsoft/Git-Credential-Manager-Core&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git config --global credential.helper manager-core&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">2 参考&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://git-scm.com/docs/git-config"
+
+ target="_blank" rel="noopener norefferrer">https://git-scm.com/docs/git-config&lt;/a>&lt;/p></description></item></channel></rss>

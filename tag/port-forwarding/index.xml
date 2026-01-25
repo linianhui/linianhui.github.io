@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Port Forwarding on Timetombs</title><link>https://linianhui.github.io/tag/port-forwarding/</link><description>Recent content in Port Forwarding on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 28 May 2020 13:11:07 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/port-forwarding/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] Tool</title><link>https://linianhui.github.io/computer-networking/tool/</link><pubDate>Thu, 20 Feb 2020 21:52:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/tool/</guid><description>&lt;h1 id="dns">
+&lt;i id="locator-dns" class="header-locator">&lt;/i>
+&lt;a href="#dns" class="article-h-a">1 dns&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>dig bing.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>nslookup bing.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="netsh">
+&lt;i id="locator-netsh" class="header-locator">&lt;/i>
+&lt;a href="#netsh" class="article-h-a">2 netsh&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># port forward 127.0.0.1:12345 to http://www.nghttp2.org&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy add v4tov4 listenport=12345 connectaddress=139.162.123.134 connectport=80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># show all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy show all
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># delete all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy reset
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># delete one&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy delete v4tov4 listenport=12345
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># help&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netsh interface portproxy help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="net-tools">
+&lt;i id="locator-net-tools" class="header-locator">&lt;/i>
+&lt;a href="#net-tools" class="article-h-a">3 net-tools&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y net-tools
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="netstat">
+&lt;i id="locator-netstat" class="header-locator">&lt;/i>
+&lt;a href="#netstat" class="article-h-a">3.1 netstat&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>short option&lt;/th>
+ &lt;th>full option&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h&lt;/td>
+ &lt;td>--help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-V&lt;/td>
+ &lt;td>--version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-n&lt;/td>
+ &lt;td>--numeric &lt;br/> --numeric-hosts &lt;br/> --numeric-ports &lt;br/> --numeric-users&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-t&lt;/td>
+ &lt;td>--tcp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-u&lt;/td>
+ &lt;td>--udp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-x&lt;/td>
+ &lt;td>--unix&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>状态统计&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#a31515">&amp;#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>TIME_WAIT状态统计&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#a31515">&amp;#39;/TIME_WAIT/ {++S[$4]} END {for(a in S) print a, S[a]}&amp;#39;&lt;/span> | sort -r -n -k2 -t&lt;span style="color:#a31515">&amp;#39; &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="iproute2">
+&lt;i id="locator-iproute2" class="header-locator">&lt;/i>
+&lt;a href="#iproute2" class="article-h-a">4 iproute2&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y iproute2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="41-ss">
+&lt;i id="locator-41-ss" class="header-locator">&lt;/i>
+&lt;a href="#41-ss" class="article-h-a">4.1 ss&lt;/a>
+&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>short option&lt;/th>
+ &lt;th>full option&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h&lt;/td>
+ &lt;td>--help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-V&lt;/td>
+ &lt;td>--version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-a&lt;/td>
+ &lt;td>--all&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-n&lt;/td>
+ &lt;td>--numeric&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-t&lt;/td>
+ &lt;td>--tcp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-u&lt;/td>
+ &lt;td>--udp&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-x&lt;/td>
+ &lt;td>--unix&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-4&lt;/td>
+ &lt;td>--ipv4&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-6&lt;/td>
+ &lt;td>--ipv6&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-H&lt;/td>
+ &lt;td>--no-header&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>ss -tan | awk &lt;span style="color:#a31515">&amp;#39;NR&amp;gt;1 {++S[$1]} END {for (a in S) print a,S[a]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="tcpdump">
+&lt;i id="locator-tcpdump" class="header-locator">&lt;/i>
+&lt;a href="#tcpdump" class="article-h-a">5 tcpdump&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>apt install -y tcpdump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>option&lt;/th>
+ &lt;th>description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-h, --help&lt;/td>
+ &lt;td>show help&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>--version&lt;/td>
+ &lt;td>show version&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-A&lt;/td>
+ &lt;td>Print each packet (minus its link level header) in ASCII. Handy for capturing web pages.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-c&lt;/td>
+ &lt;td>Exit after receiving count packets.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-s,--snapshot-length&lt;/td>
+ &lt;td>Snarf snaplen bytes of data from each packet&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-S,--absolute-tcp-sequence-numbers&lt;/td>
+ &lt;td>Print absolute, rather than relative, TCP sequence numbers.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 抓包到文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcpdump port 80 -w http-80.pcap
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#008000"># 解析80端口的100个包&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tcpdump port 80 -A -c 100
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>参考 : &lt;a href="https://www.tcpdump.org/manpages/tcpdump.1.html"
+
+ target="_blank" rel="noopener norefferrer">https://www.tcpdump.org/manpages/tcpdump.1.html&lt;/a>&lt;/p></description></item></channel></rss>

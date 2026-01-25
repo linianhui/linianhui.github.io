@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HTTPS on Timetombs</title><link>https://linianhui.github.io/tag/https/</link><description>Recent content in HTTPS on Timetombs</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/https/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] DoH(DNS over HTTPS)</title><link>https://linianhui.github.io/computer-networking/doh/</link><pubDate>Sat, 01 Jan 2022 13:55:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/doh/</guid><description>&lt;p>&lt;strong>RFC8484 DNS Queries over HTTPS (DoH)&lt;/strong>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;/p>
+&lt;h1 id="mime">
+&lt;i id="locator-mime" class="header-locator">&lt;/i>
+&lt;a href="#mime" class="article-h-a">MIME&lt;/a>
+&lt;/h1>
+&lt;p>&lt;code>application/dns-message&lt;/code>。&lt;/p>
+&lt;ol>
+&lt;li>Type : &lt;code>application&lt;/code>。&lt;/li>
+&lt;li>SubType : &lt;code>dns-message&lt;/code>。&lt;/li>
+&lt;li>编码格式 : 二进制格式，定义在RFC1035&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>。&lt;/li>
+&lt;/ol>
+&lt;h1 id="example">
+&lt;i id="locator-example" class="header-locator">&lt;/i>
+&lt;a href="#example" class="article-h-a">Example&lt;/a>
+&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">:method = GET
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:scheme = https
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:authority = dnsserver.example.net
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">:path = /dns-query?dns=AAABAAABAAAAAAAAA3d3dwdleGFtcGxlA2NvbQAAAQAB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">accept = application/dns-message
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="">:status = 200
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">content-type = application/dns-message
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">content-length = 61
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">cache-control = max-age=3709
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">00 00 81 80 00 01 00 01 00 00 00 00 03 77 77 77
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 1c 00
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">01 c0 0c 00 1c 00 01 00 00 0e 7d 00 10 20 01 0d
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="">b8 ab cd 00 12 00 01 00 02 00 03 00 04
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>待补充...&lt;/p>
+&lt;h1 id="reference">
+&lt;i id="locator-reference" class="header-locator">&lt;/i>
+&lt;a href="#reference" class="article-h-a">Reference&lt;/a>
+&lt;/h1>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr />
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>RFC8484 DNS over HTTPS (DoH) : &lt;a href="https://datatracker.ietf.org/doc/html/rfc8484"
+
+ target="_blank" rel="noopener norefferrer">https://datatracker.ietf.org/doc/html/rfc8484&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p></description></item><item><title>[信息安全] 03 HTTPS工作流程</title><link>https://linianhui.github.io/information-security/03-https/</link><pubDate>Tue, 04 Jul 2017 22:25:00 +0800</pubDate><guid>https://linianhui.github.io/information-security/03-https/</guid><description>&lt;h1 id="review">
+&lt;i id="locator-review" class="header-locator">&lt;/i>
+&lt;a href="#review" class="article-h-a">1 简单回顾&lt;/a>
+&lt;/h1>
+&lt;p>在前面两篇博客中介绍了密码相关的一些基本工具，包括(&lt;a href="../01-cryptography-toolbox-1/#symmetric-cryptography"
+
+ target="_blank" rel="noopener norefferrer">对称密码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#asymmetric-cryptography"
+
+ target="_blank" rel="noopener norefferrer">公钥密码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#cryptographic-hash-function"
+
+ target="_blank" rel="noopener norefferrer">密码散列函数&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#hybrid-cryptosystem"
+
+ target="_blank" rel="noopener norefferrer">混合密码系统&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#message-authentication-code"
+
+ target="_blank" rel="noopener norefferrer">消息认证码&lt;/a>，&lt;a href="../01-cryptography-toolbox-1/#digital-signature"
+
+ target="_blank" rel="noopener norefferrer">数字签名&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#pseudo-random-number"
+
+ target="_blank" rel="noopener norefferrer">伪随机数&lt;/a>，&lt;a href="../02-cryptography-toolbox-2/#certificate"
+
+ target="_blank" rel="noopener norefferrer">数字证书&lt;/a>)这几个。其中它们之间也是互相依赖的，我们来简单的梳理一下它们的依赖关系。&lt;/p></description></item></channel></rss>

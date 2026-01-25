@@ -1,0 +1,431 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>专题 - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=alternate type=application/rss+xml href=https://linianhui.github.io/topic/index.xml title=Timetombs><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A02Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-page><a class=toc-page-title href=#bash><i class="fa fa-folder"></i>
+[Bash]</a></section><section class=toc-page><a class=toc-page-title href=#docker><i class="fa fa-folder"></i>
+[Docker]</a></section><section class=toc-page><a class=toc-page-title href=#git><i class="fa fa-folder"></i>
+[Git]</a></section><section class=toc-page><a class=toc-page-title href=#hbase><i class="fa fa-folder"></i>
+[HBase]</a></section><section class=toc-page><a class=toc-page-title href=#java><i class="fa fa-folder"></i>
+[Java]</a></section><section class=toc-page><a class=toc-page-title href=#k8s><i class="fa fa-folder"></i>
+[K8S]</a></section><section class=toc-page><a class=toc-page-title href=#kindle><i class="fa fa-folder"></i>
+[Kindle]</a></section><section class=toc-page><a class=toc-page-title href=#linux><i class="fa fa-folder"></i>
+[Linux]</a></section><section class=toc-page><a class=toc-page-title href=#macos><i class="fa fa-folder"></i>
+[macOS]</a></section><section class=toc-page><a class=toc-page-title href=#mongodb><i class="fa fa-folder"></i>
+[MongoDB]</a></section><section class=toc-page><a class=toc-page-title href=#oidc-in-action><i class="fa fa-folder"></i>
+[OIDC in Action]</a></section><section class=toc-page><a class=toc-page-title href=#powershell><i class="fa fa-folder"></i>
+[PowerShell]</a></section><section class=toc-page><a class=toc-page-title href=#redis><i class="fa fa-folder"></i>
+[Redis]</a></section><section class=toc-page><a class=toc-page-title href=#rust><i class="fa fa-folder"></i>
+[Rust]</a></section><section class=toc-page><a class=toc-page-title href=#windows><i class="fa fa-folder"></i>
+[Windows]</a></section><section class=toc-page><a class=toc-page-title href=#code-guide><i class="fa fa-folder"></i>
+[代码规范]</a></section><section class=toc-page><a class=toc-page-title href=#information-security><i class="fa fa-folder"></i>
+[信息安全]</a></section><section class=toc-page><a class=toc-page-title href=#tool><i class="fa fa-folder"></i>
+[工具]</a></section><section class=toc-page><a class=toc-page-title href=#talk><i class="fa fa-folder"></i>
+[漫谈]</a></section><section class=toc-page><a class=toc-page-title href=#copyright><i class="fa fa-folder"></i>
+[版权信息]</a></section><section class=toc-page><a class=toc-page-title href=#understand-rest><i class="fa fa-folder"></i>
+[理解REST]</a></section><section class=toc-page><a class=toc-page-title href=#programming-language><i class="fa fa-folder"></i>
+[程序设计语言]</a></section><section class=toc-page><a class=toc-page-title href=#computer-networking><i class="fa fa-folder"></i>
+[计算机网络]</a></section><section class=toc-page><a class=toc-page-title href=#computer-networking-programming><i class="fa fa-folder"></i>
+[计算机网络编程]</a></section><section class=toc-page><a class=toc-page-title href=#authentication-and-authorization><i class="fa fa-folder"></i>
+[认证&授权]</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:02Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><section class=topics><section class=topic><h1 class=topic-title id=bash><i id=locator-bash class=header-locator></i>
+<a href=/bash/ title=[Bash] target=_blank><i class="fa fa-folder"></i>
+[Bash]
+</a><span class=topic-articles-count>（2篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/ac883b9bd64c1e7ff76bd1eb56614f98af653ba7 target=_blank><i class="fa fa-code-fork"></i>ac883b9</a>
+<span class=article-git-commit-subject>update bash</span>
+<span class=article-git-commit-time>2022-12-11 14:03</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/bash/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><ol><li>home : <a href=https://www.gnu.org/software/bash target=_blank rel="noopener norefferrer">https://www.gnu.org/software/bash</a></li><li>manual : <a href=https://www.gnu.org/software/bash/manual/ target=_blank rel="noopener norefferrer">https://www.gnu.org/software/bash/manual/</a><ol><li>html : <a href=https://www.gnu.org/software/bash/manual/bash.html target=_blank rel="noopener norefferrer">https://www.gnu.org/software/bash/manual/bash.html</a></li><li>pdf : <a href=https://www.gnu.org/software/bash/manual/bash.pdf target=_blank rel="noopener norefferrer">https://www.gnu.org/software/bash/manual/bash.pdf</a></li></ol></li><li>docker :<ol><li><code>docker run -it --rm ghcr.io/linianhui/bash:4.2</code></li><li><code>docker run -it --rm ghcr.io/linianhui/bash:5.2</code></li></ol></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=bash-expansion><i id=locator-bash-expansion class=header-locator></i>
+<time class=topic-article-time>2017-02-06</time>
+<a class=topic-article-title href=/bash/expansion/ target=_blank title="[Bash] Expansion">[Bash] Expansion</a></li><li class=topic-article id=bash-syntax><i id=locator-bash-syntax class=header-locator></i>
+<time class=topic-article-time>2017-01-06</time>
+<a class=topic-article-title href=/bash/syntax/ target=_blank title="[Bash] Syntax">[Bash] Syntax</a></li></ol></section><section class=topic><h1 class=topic-title id=docker><i id=locator-docker class=header-locator></i>
+<a href=/docker/ title=[Docker] target=_blank><i class="fa fa-folder"></i>
+[Docker]
+</a><span class=topic-articles-count>（3篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/270c65746d3970a63ebf201a679fe2d5dc287c8e target=_blank><i class="fa fa-code-fork"></i>270c657</a>
+<span class=article-git-commit-subject>Update _index.md</span>
+<span class=article-git-commit-time>2021-09-21 12:52</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/docker/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><ol><li>doc : <a href=https://docs.docker.com/reference/ target=_blank rel="noopener norefferrer">https://docs.docker.com/reference/</a></li><li>hub : <a href=https://hub.docker.com target=_blank rel="noopener norefferrer">https://hub.docker.com</a></li><li>my docker image : <a href=https://hub.docker.com/u/lnhcode target=_blank rel="noopener norefferrer">https://hub.docker.com/u/lnhcode</a></li><li><a href="https://github.com/linianhui?tab=packages&amp;repo_name=docker" target=_blank rel="noopener norefferrer">https://github.com/linianhui?tab=packages&repo_name=docker</a></li><li>my dockerfile : <a href=https://github.com/linianhui/docker target=_blank rel="noopener norefferrer">https://github.com/linianhui/docker</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=docker-file><i id=locator-docker-file class=header-locator></i>
+<time class=topic-article-time>2022-02-06</time>
+<a class=topic-article-title href=/docker/file/ target=_blank title="[Docker] File">[Docker] File</a></li><li class=topic-article id=docker-best-practice><i id=locator-docker-best-practice class=header-locator></i>
+<time class=topic-article-time>2020-04-12</time>
+<a class=topic-article-title href=/docker/best-practice/ target=_blank title="[Docker] Best Practice">[Docker] Best Practice</a></li><li class=topic-article id=docker-install><i id=locator-docker-install class=header-locator></i>
+<time class=topic-article-time>2018-01-28</time>
+<a class=topic-article-title href=/docker/install/ target=_blank title="[Docker] Install">[Docker] Install</a></li></ol></section><section class=topic><h1 class=topic-title id=git><i id=locator-git class=header-locator></i>
+<a href=/git/ title=[Git] target=_blank><i class="fa fa-folder"></i>
+[Git]
+</a><span class=topic-articles-count>（3篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/1d7b99ccbe91d1fc11741bf4cff05fddc91a5d52 target=_blank><i class="fa fa-code-fork"></i>1d7b99c</a>
+<span class=article-git-commit-subject>Update _index.md</span>
+<span class=article-git-commit-time>2021-04-27 01:14</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/git/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>Git是一个免费且开源的分布式的版本控制系统。</p><ol><li>home : <a href=https://git-scm.com/ target=_blank rel="noopener norefferrer">https://git-scm.com/</a></li><li>docs : <a href=https://git-scm.com/docs target=_blank rel="noopener norefferrer">https://git-scm.com/docs</a></li><li>book : <a href=https://git-scm.com/book/en/v2 target=_blank rel="noopener norefferrer">https://git-scm.com/book/en/v2</a></li><li>Git internal object web explore api : <a href=https://github.com/linianhui/git.web target=_blank rel="noopener norefferrer">https://github.com/linianhui/git.web</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=git-content-addressable-filesystem><i id=locator-git-content-addressable-filesystem class=header-locator></i>
+<time class=topic-article-time>2021-04-27</time>
+<a class=topic-article-title href=/git/content-addressable-filesystem/ target=_blank title="[Git] 内容寻址文件系统">[Git] 内容寻址文件系统</a></li><li class=topic-article id=git-gitattributes><i id=locator-git-gitattributes class=header-locator></i>
+<time class=topic-article-time>2020-01-16</time>
+<a class=topic-article-title href=/git/gitattributes/ target=_blank title="[Git] .gitattributes">[Git] .gitattributes</a></li><li class=topic-article id=git-config><i id=locator-git-config class=header-locator></i>
+<time class=topic-article-time>2020-01-15</time>
+<a class=topic-article-title href=/git/config/ target=_blank title="[Git] config">[Git] config</a></li></ol></section><section class=topic><h1 class=topic-title id=hbase><i id=locator-hbase class=header-locator></i>
+<a href=/hbase/ title=[HBase] target=_blank><i class="fa fa-folder"></i>
+[HBase]
+</a><span class=topic-articles-count>（3篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/7ed673098055011b01ceaefc044915603abd7b82 target=_blank><i class="fa fa-code-fork"></i>7ed6730</a>
+<span class=article-git-commit-subject>add hbase papers</span>
+<span class=article-git-commit-time>2021-10-17 21:04</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/hbase/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><ol><li>git: <a href=https://github.com/apache/hbase target=_blank rel="noopener norefferrer">https://github.com/apache/hbase</a></li><li>book: <a href=https://hbase.apache.org/2.3/book.html target=_blank rel="noopener norefferrer">https://hbase.apache.org/2.3/book.html</a></li><li>papers:<ol><li><a href=https://research.google/pubs/pub51/ target=_blank rel="noopener norefferrer">[2003] The Google File System</a>, <a href=https://research.google/pubs/pub51.pdf target=_blank rel="noopener norefferrer">PDF</a></li><li><a href=https://research.google/pubs/pub62/ target=_blank rel="noopener norefferrer">[2004] MapReduce: Simplified Data Processing on Large Clusters</a>, <a href=https://research.google/pubs/pub62.pdf target=_blank rel="noopener norefferrer">PDF</a></li><li><a href=https://research.google/pubs/pub27898/ target=_blank rel="noopener norefferrer">[2006] Bigtable: A Distributed Storage System for Structured Data </a>, <a href=https://research.google/pubs/pub27898.pdf target=_blank rel="noopener norefferrer">PDF</a>.</li></ol></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=hbase-best-practice><i id=locator-hbase-best-practice class=header-locator></i>
+<time class=topic-article-time>2022-09-03</time>
+<a class=topic-article-title href=/hbase/best-practice/ target=_blank title="[HBase] Best Practice">[HBase] Best Practice</a></li><li class=topic-article id=hbase-split-policy><i id=locator-hbase-split-policy class=header-locator></i>
+<time class=topic-article-time>2022-05-15</time>
+<a class=topic-article-title href=/hbase/split-policy/ target=_blank title="[HBase] Region Split Policy">[HBase] Region Split Policy</a></li><li class=topic-article id=hbase-key-value><i id=locator-hbase-key-value class=header-locator></i>
+<time class=topic-article-time>2022-01-16</time>
+<a class=topic-article-title href=/hbase/key-value/ target=_blank title="[HBase] KeyValue">[HBase] KeyValue</a></li></ol></section><section class=topic><h1 class=topic-title id=java><i id=locator-java class=header-locator></i>
+<a href=/java/ title=[Java] target=_blank><i class="fa fa-folder"></i>
+[Java]
+</a><span class=topic-articles-count>（9篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/7b7c865bbeae5d2259e499154b791318553a559e target=_blank><i class="fa fa-code-fork"></i>7b7c865</a>
+<span class=article-git-commit-subject>Add Java</span>
+<span class=article-git-commit-time>2020-01-11 19:47</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/java/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=java-synchronized><i id=locator-java-synchronized class=header-locator></i>
+<time class=topic-article-time>2020-11-08</time>
+<a class=topic-article-title href=/java/synchronized/ target=_blank title="[Java] synchronized">[Java] synchronized</a></li><li class=topic-article id=java-cas><i id=locator-java-cas class=header-locator></i>
+<time class=topic-article-time>2020-11-08</time>
+<a class=topic-article-title href=/java/cas/ target=_blank title="[Java] CAS(Compare And Swap)">[Java] CAS(Compare And Swap)</a></li><li class=topic-article id=java-thread><i id=locator-java-thread class=header-locator></i>
+<time class=topic-article-time>2020-11-07</time>
+<a class=topic-article-title href=/java/thread/ target=_blank title="[Java] Thread">[Java] Thread</a></li><li class=topic-article id=java-gc><i id=locator-java-gc class=header-locator></i>
+<time class=topic-article-time>2020-11-06</time>
+<a class=topic-article-title href=/java/gc/ target=_blank title="[Java] GC(Garbage Collection)">[Java] GC(Garbage Collection)</a></li><li class=topic-article id=java-jmm><i id=locator-java-jmm class=header-locator></i>
+<time class=topic-article-time>2020-11-05</time>
+<a class=topic-article-title href=/java/jmm/ target=_blank title="[Java] JMM(Java Memory Model)">[Java] JMM(Java Memory Model)</a></li><li class=topic-article id=java-unsafe><i id=locator-java-unsafe class=header-locator></i>
+<time class=topic-article-time>2020-11-04</time>
+<a class=topic-article-title href=/java/unsafe/ target=_blank title="[Java] Unsafe类">[Java] Unsafe类</a></li><li class=topic-article id=java-tool><i id=locator-java-tool class=header-locator></i>
+<time class=topic-article-time>2020-03-04</time>
+<a class=topic-article-title href=/java/tool/ target=_blank title="[Java] Tool">[Java] Tool</a></li><li class=topic-article id=java-jvm><i id=locator-java-jvm class=header-locator></i>
+<time class=topic-article-time>2020-03-04</time>
+<a class=topic-article-title href=/java/jvm/ target=_blank title="[Java] JVM(Java Virtual Machine)">[Java] JVM(Java Virtual Machine)</a></li><li class=topic-article id=java-install><i id=locator-java-install class=header-locator></i>
+<time class=topic-article-time>2017-08-06</time>
+<a class=topic-article-title href=/java/install/ target=_blank title="[Java] Install">[Java] Install</a></li></ol></section><section class=topic><h1 class=topic-title id=k8s><i id=locator-k8s class=header-locator></i>
+<a href=/k8s/ title=[K8S] target=_blank><i class="fa fa-folder"></i>
+[K8S]
+</a><span class=topic-articles-count>（4篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/97da02d049593df89bd908b87dffc12fd0799c5c target=_blank><i class="fa fa-code-fork"></i>97da02d</a>
+<span class=article-git-commit-subject>Update _index.md</span>
+<span class=article-git-commit-time>2020-03-31 17:42</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/k8s/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>官网 : <a href=https://kubernetes.io target=_blank rel="noopener norefferrer">https://kubernetes.io</a></p><p>dashboard : <a href=https://github.com/linianhui/docker/tree/master/k8s target=_blank rel="noopener norefferrer">https://github.com/linianhui/docker/tree/master/k8s</a></p><p>spring boot with k8s example : <a href=https://github.com/linianhui/spring.example/tree/master/k8s target=_blank rel="noopener norefferrer">https://github.com/linianhui/spring.example/tree/master/k8s</a></p></div><ol class=topic-articles reversed><li class=topic-article id=k8s-kubectl><i id=locator-k8s-kubectl class=header-locator></i>
+<time class=topic-article-time>2020-04-13</time>
+<a class=topic-article-title href=/k8s/kubectl/ target=_blank title="[K8S] kubectl">[K8S] kubectl</a></li><li class=topic-article id=k8s-key-concept-pod><i id=locator-k8s-key-concept-pod class=header-locator></i>
+<time class=topic-article-time>2020-03-31</time>
+<a class=topic-article-title href=/k8s/key-concept-pod/ target=_blank title="[K8S] 核心概念 02 - Pod">[K8S] 核心概念 02 - Pod</a></li><li class=topic-article id=k8s-networking-flannel><i id=locator-k8s-networking-flannel class=header-locator></i>
+<time class=topic-article-time>2020-02-20</time>
+<a class=topic-article-title href=/k8s/networking-flannel/ target=_blank title="[K8S] Networking - Flannel">[K8S] Networking - Flannel</a></li><li class=topic-article id=k8s-install><i id=locator-k8s-install class=header-locator></i>
+<time class=topic-article-time>2018-12-13</time>
+<a class=topic-article-title href=/k8s/install/ target=_blank title="[K8S] Install">[K8S] Install</a></li></ol></section><section class=topic><h1 class=topic-title id=kindle><i id=locator-kindle class=header-locator></i>
+<a href=/kindle/ title=[Kindle] target=_blank><i class="fa fa-folder"></i>
+[Kindle]
+</a><span class=topic-articles-count>（1篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/53b3a7ec8d2563471ab6c5d9d16d33fbed21daaf target=_blank><i class="fa fa-code-fork"></i>53b3a7e</a>
+<span class=article-git-commit-subject>Rename folder blog to src</span>
+<span class=article-git-commit-time>2020-01-11 11:51</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/kindle/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=kindle-kindlegen><i id=locator-kindle-kindlegen class=header-locator></i>
+<time class=topic-article-time>2017-08-06</time>
+<a class=topic-article-title href=/kindle/kindlegen/ target=_blank title="[Kindle] kindlegen">[Kindle] kindlegen</a></li></ol></section><section class=topic><h1 class=topic-title id=linux><i id=locator-linux class=header-locator></i>
+<a href=/linux/ title=[Linux] target=_blank><i class="fa fa-folder"></i>
+[Linux]
+</a><span class=topic-articles-count>（7篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/6999b1a31f50e23fe87023f113b6e4321b58263e target=_blank><i class="fa fa-code-fork"></i>6999b1a</a>
+<span class=article-git-commit-subject>Add Linux</span>
+<span class=article-git-commit-time>2020-01-11 22:11</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/linux/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=linux-debian><i id=locator-linux-debian class=header-locator></i>
+<time class=topic-article-time>2023-08-06</time>
+<a class=topic-article-title href=/linux/debian/ target=_blank title="[Linux] Debian">[Linux] Debian</a></li><li class=topic-article id=linux-top><i id=locator-linux-top class=header-locator></i>
+<time class=topic-article-time>2020-04-23</time>
+<a class=topic-article-title href=/linux/top/ target=_blank title="[Linux] top">[Linux] top</a></li><li class=topic-article id=linux-centos><i id=locator-linux-centos class=header-locator></i>
+<time class=topic-article-time>2018-12-12</time>
+<a class=topic-article-title href=/linux/centos/ target=_blank title="[Linux] CentOS">[Linux] CentOS</a></li><li class=topic-article id=linux-ubuntu><i id=locator-linux-ubuntu class=header-locator></i>
+<time class=topic-article-time>2018-12-12</time>
+<a class=topic-article-title href=/linux/ubuntu/ target=_blank title="[Linux] Ubuntu">[Linux] Ubuntu</a></li><li class=topic-article id=linux-systemd><i id=locator-linux-systemd class=header-locator></i>
+<time class=topic-article-time>2017-04-29</time>
+<a class=topic-article-title href=/linux/systemd/ target=_blank title="[Linux] systemd">[Linux] systemd</a></li><li class=topic-article id=linux-ssh><i id=locator-linux-ssh class=header-locator></i>
+<time class=topic-article-time>2017-03-29</time>
+<a class=topic-article-title href=/linux/ssh/ target=_blank title="[Linux] SSH">[Linux] SSH</a></li><li class=topic-article id=linux-script><i id=locator-linux-script class=header-locator></i>
+<time class=topic-article-time>2017-01-01</time>
+<a class=topic-article-title href=/linux/script/ target=_blank title="[Linux] Script">[Linux] Script</a></li></ol></section><section class=topic><h1 class=topic-title id=macos><i id=locator-macos class=header-locator></i>
+<a href=/macos/ title=[macOS] target=_blank><i class="fa fa-folder"></i>
+[macOS]
+</a><span class=topic-articles-count>（1篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/67dab2dc39d5280930f01f486b7dd8452b23e18b target=_blank><i class="fa fa-code-fork"></i>67dab2d</a>
+<span class=article-git-commit-subject>Update _index.md</span>
+<span class=article-git-commit-time>2021-03-10 10:09</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/macos/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=macos-tip><i id=locator-macos-tip class=header-locator></i>
+<time class=topic-article-time>2021-03-10</time>
+<a class=topic-article-title href=/macos/tip/ target=_blank title="[macOS] Tip">[macOS] Tip</a></li></ol></section><section class=topic><h1 class=topic-title id=mongodb><i id=locator-mongodb class=header-locator></i>
+<a href=/mongodb/ title=[MongoDB] target=_blank><i class="fa fa-folder"></i>
+[MongoDB]
+</a><span class=topic-articles-count>（1篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/2838f4b91348bc8cbd044a4440b4d878af6d2f69 target=_blank><i class="fa fa-code-fork"></i>2838f4b</a>
+<span class=article-git-commit-subject>Add mongodb</span>
+<span class=article-git-commit-time>2020-05-10 09:43</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/mongodb/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><ol><li><a href=https://docs.mongodb.com/manual/reference target=_blank rel="noopener norefferrer">https://docs.mongodb.com/manual/reference</a></li><li><a href=https://github.com/linianhui/mongodb.example target=_blank rel="noopener norefferrer">https://github.com/linianhui/mongodb.example</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=mongodb-best-practice><i id=locator-mongodb-best-practice class=header-locator></i>
+<time class=topic-article-time>2020-05-10</time>
+<a class=topic-article-title href=/mongodb/best-practice/ target=_blank title="[MongoDB] Best Practice">[MongoDB] Best Practice</a></li></ol></section><section class=topic><h1 class=topic-title id=oidc-in-action><i id=locator-oidc-in-action class=header-locator></i>
+<a href=/oidc-in-action/ title="[OIDC in Action]" target=_blank><i class="fa fa-folder"></i>
+[OIDC in Action]
+</a><span class=topic-articles-count>（3篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/53b3a7ec8d2563471ab6c5d9d16d33fbed21daaf target=_blank><i class="fa fa-code-fork"></i>53b3a7e</a>
+<span class=article-git-commit-subject>Rename folder blog to src</span>
+<span class=article-git-commit-time>2020-01-11 11:51</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/oidc-in-action/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>OIDC(OpenID Connect)实践 : SSO，扩展登录，OAuth2授权，UWP客户端，纯静态网站客户端。</p><p>源码 : <a href=https://github.com/linianhui/oidc.example target=_blank rel="noopener norefferrer">https://github.com/linianhui/oidc.example</a></p></div><ol class=topic-articles reversed><li class=topic-article id=oidc-in-action-03-oidc-sso-github-op><i id=locator-oidc-in-action-03-oidc-sso-github-op class=header-locator></i>
+<time class=topic-article-time>2018-12-01</time>
+<a class=topic-article-title href=/oidc-in-action/03-oidc-sso-github-op/ target=_blank title="[OIDC in Action] 03 基于OIDC的SSO - GitHub OP">[OIDC in Action] 03 基于OIDC的SSO - GitHub OP</a></li><li class=topic-article id=oidc-in-action-02-oidc-sso-js-client><i id=locator-oidc-in-action-02-oidc-sso-js-client class=header-locator></i>
+<time class=topic-article-time>2017-11-27</time>
+<a class=topic-article-title href=/oidc-in-action/02-oidc-sso-js-client/ target=_blank title="[OIDC in Action] 02 基于OIDC的SSO - JS Client">[OIDC in Action] 02 基于OIDC的SSO - JS Client</a></li><li class=topic-article id=oidc-in-action-01-oidc-sso><i id=locator-oidc-in-action-01-oidc-sso class=header-locator></i>
+<time class=topic-article-time>2017-11-26</time>
+<a class=topic-article-title href=/oidc-in-action/01-oidc-sso/ target=_blank title="[OIDC in Action] 01 基于OIDC的SSO">[OIDC in Action] 01 基于OIDC的SSO</a></li></ol></section><section class=topic><h1 class=topic-title id=powershell><i id=locator-powershell class=header-locator></i>
+<a href=/powershell/ title=[PowerShell] target=_blank><i class="fa fa-folder"></i>
+[PowerShell]
+</a><span class=topic-articles-count>（3篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/53b3a7ec8d2563471ab6c5d9d16d33fbed21daaf target=_blank><i class="fa fa-code-fork"></i>53b3a7e</a>
+<span class=article-git-commit-subject>Rename folder blog to src</span>
+<span class=article-git-commit-time>2020-01-11 11:51</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/powershell/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=powershell-script><i id=locator-powershell-script class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/powershell/script/ target=_blank title="[PowerShell] Script">[PowerShell] Script</a></li><li class=topic-article id=powershell-hyper-v><i id=locator-powershell-hyper-v class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/powershell/hyper-v/ target=_blank title="[PowerShell] Hyper-V">[PowerShell] Hyper-V</a></li><li class=topic-article id=powershell-help><i id=locator-powershell-help class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/powershell/help/ target=_blank title="[PowerShell] Help">[PowerShell] Help</a></li></ol></section><section class=topic><h1 class=topic-title id=redis><i id=locator-redis class=header-locator></i>
+<a href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>
+[Redis]
+</a><span class=topic-articles-count>（11篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/00413f1841cadef9d4bdcd3a61bb4ec737875717 target=_blank><i class="fa fa-code-fork"></i>00413f1</a>
+<span class=article-git-commit-subject>rename redis to Redis</span>
+<span class=article-git-commit-time>2021-06-30 21:43</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>基于网络的分布式K/V存储服务组件。具备一下特点：</p><ol><li>数据位于内存中：读写速度非常快。</li><li>单线程模型：server和client实现简单稳定可靠。</li><li>丰富的数据类型：支持不同的业务环境需求。</li><li>存储之外的其他功能支持：pub/sub、lua script、piplining、transaction。</li><li>支持持久化。</li><li>支持高可用的集群部署以及水平扩展。</li></ol><p>参考资料：</p><ol><li><a href=https://redis.io/ target=_blank rel="noopener norefferrer">https://redis.io/</a></li><li><a href=https://github.com/redis/redis target=_blank rel="noopener norefferrer">https://github.com/redis/redis</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=redis-sentinel><i id=locator-redis-sentinel class=header-locator></i>
+<time class=topic-article-time>2021-03-20</time>
+<a class=topic-article-title href=/redis/sentinel/ target=_blank title="[Redis] sentinel">[Redis] sentinel</a></li><li class=topic-article id=redis-replication><i id=locator-redis-replication class=header-locator></i>
+<time class=topic-article-time>2021-03-20</time>
+<a class=topic-article-title href=/redis/replication/ target=_blank title="[Redis] replication">[Redis] replication</a></li><li class=topic-article id=redis-runtime-architecture><i id=locator-redis-runtime-architecture class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/runtime-architecture/ target=_blank title="[Redis] 运行时架构">[Redis] 运行时架构</a></li><li class=topic-article id=redis-benchmark><i id=locator-redis-benchmark class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/benchmark/ target=_blank title="[Redis] benchmark">[Redis] benchmark</a></li><li class=topic-article id=redis-persistence><i id=locator-redis-persistence class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/persistence/ target=_blank title="[Redis] persistence">[Redis] persistence</a></li><li class=topic-article id=redis-lua><i id=locator-redis-lua class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/lua/ target=_blank title="[Redis] lua script">[Redis] lua script</a></li><li class=topic-article id=redis-expire><i id=locator-redis-expire class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/expire/ target=_blank title="[Redis] expire">[Redis] expire</a></li><li class=topic-article id=redis-pipelining><i id=locator-redis-pipelining class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/pipelining/ target=_blank title="[Redis] pipelining">[Redis] pipelining</a></li><li class=topic-article id=redis-data-type><i id=locator-redis-data-type class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/data-type/ target=_blank title="[Redis] data type">[Redis] data type</a></li><li class=topic-article id=redis-resp><i id=locator-redis-resp class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/resp/ target=_blank title="[Redis] resp">[Redis] resp</a></li><li class=topic-article id=redis-install><i id=locator-redis-install class=header-locator></i>
+<time class=topic-article-time>2021-03-19</time>
+<a class=topic-article-title href=/redis/install/ target=_blank title="[Redis] install">[Redis] install</a></li></ol></section><section class=topic><h1 class=topic-title id=rust><i id=locator-rust class=header-locator></i>
+<a href=/rust/ title=[Rust] target=_blank><i class="fa fa-folder"></i>
+[Rust]
+</a><span class=topic-articles-count>（1篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/fbe4ec243fb076bc208062491d51993a05173df5 target=_blank><i class="fa fa-code-fork"></i>fbe4ec2</a>
+<span class=article-git-commit-subject>Add Rust</span>
+<span class=article-git-commit-time>2020-02-02 14:53</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/rust/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><ol><li>home page : <a href=https://www.rust-lang.org target=_blank rel="noopener norefferrer">https://www.rust-lang.org</a></li><li>my rust project : <a href=https://github.com/linianhui/div target=_blank rel="noopener norefferrer">https://github.com/linianhui/div</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=rust-install><i id=locator-rust-install class=header-locator></i>
+<time class=topic-article-time>2020-01-05</time>
+<a class=topic-article-title href=/rust/install/ target=_blank title="[Rust] Install">[Rust] Install</a></li></ol></section><section class=topic><h1 class=topic-title id=windows><i id=locator-windows class=header-locator></i>
+<a href=/windows/ title=[Windows] target=_blank><i class="fa fa-folder"></i>
+[Windows]
+</a><span class=topic-articles-count>（10篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/67f327c2e6d260ccb9b4c0eb2ee593c45c7df627 target=_blank><i class="fa fa-code-fork"></i>67f327c</a>
+<span class=article-git-commit-subject>fix path</span>
+<span class=article-git-commit-time>2023-08-13 07:59</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/windows/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>官方 Windows iso下载</p><ol><li><a href=/windows/download-windows11-iso.png target=_blank rel="noopener norefferrer">Windows11</a> : <a href=https://www.microsoft.com/zh-cn/software-download/windows11/ target=_blank rel="noopener norefferrer">https://www.microsoft.com/zh-cn/software-download/windows11/</a></li><li><a href=/windows/download-windows10-iso.png target=_blank rel="noopener norefferrer">Windows10</a> : <a href=https://www.microsoft.com/zh-cn/software-download/windows10ISO/ target=_blank rel="noopener norefferrer">https://www.microsoft.com/zh-cn/software-download/windows10ISO/</a></li></ol><blockquote><p>需要用浏览器打开开发者工具（F12），设备选择iPad才能看到iso下载按钮。</p></blockquote></div><ol class=topic-articles reversed><li class=topic-article id=windows-kms><i id=locator-windows-kms class=header-locator></i>
+<time class=topic-article-time>2023-08-13</time>
+<a class=topic-article-title href=/windows/kms/ target=_blank title="[Windows] kms">[Windows] kms</a></li><li class=topic-article id=windows-winpe><i id=locator-windows-winpe class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/winpe/ target=_blank title="[Windows] winpe">[Windows] winpe</a></li><li class=topic-article id=windows-wim><i id=locator-windows-wim class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/wim/ target=_blank title="[Windows] wim">[Windows] wim</a></li><li class=topic-article id=windows-terminal><i id=locator-windows-terminal class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/terminal/ target=_blank title="[Windows] terminal">[Windows] terminal</a></li><li class=topic-article id=windows-slmgr><i id=locator-windows-slmgr class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/slmgr/ target=_blank title="[Windows] slmgr">[Windows] slmgr</a></li><li class=topic-article id=windows-regedit><i id=locator-windows-regedit class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/regedit/ target=_blank title="[Windows] regedit">[Windows] regedit</a></li><li class=topic-article id=windows-oscdimg><i id=locator-windows-oscdimg class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/oscdimg/ target=_blank title="[Windows] oscdimg">[Windows] oscdimg</a></li><li class=topic-article id=windows-dism><i id=locator-windows-dism class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/dism/ target=_blank title="[Windows] dism">[Windows] dism</a></li><li class=topic-article id=windows-diskpart><i id=locator-windows-diskpart class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/diskpart/ target=_blank title="[Windows] diskpart">[Windows] diskpart</a></li><li class=topic-article id=windows-bcd><i id=locator-windows-bcd class=header-locator></i>
+<time class=topic-article-time>2017-07-29</time>
+<a class=topic-article-title href=/windows/bcd/ target=_blank title="[Windows] bcd">[Windows] bcd</a></li></ol></section><section class=topic><h1 class=topic-title id=code-guide><i id=locator-code-guide class=header-locator></i>
+<a href=/code-guide/ title=[代码规范] target=_blank><i class="fa fa-folder"></i>
+[代码规范]
+</a><span class=topic-articles-count>（2篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/53b3a7ec8d2563471ab6c5d9d16d33fbed21daaf target=_blank><i class="fa fa-code-fork"></i>53b3a7e</a>
+<span class=article-git-commit-subject>Rename folder blog to src</span>
+<span class=article-git-commit-time>2020-01-11 11:51</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/code-guide/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>旧版本仓库地址 : <a href=https://github.com/linianhui/code.guide/ target=_blank rel="noopener norefferrer">https://github.com/linianhui/code.guide/</a></p></div><ol class=topic-articles reversed><li class=topic-article id=code-guide-csharp><i id=locator-code-guide-csharp class=header-locator></i>
+<time class=topic-article-time>2018-03-31</time>
+<a class=topic-article-title href=/code-guide/csharp/ target=_blank title="[代码规范] C#规范指南">[代码规范] C#规范指南</a></li><li class=topic-article id=code-guide-http-api><i id=locator-code-guide-http-api class=header-locator></i>
+<time class=topic-article-time>2018-03-31</time>
+<a class=topic-article-title href=/code-guide/http-api/ target=_blank title="[代码规范] HTTP APIs 设计/规范指南">[代码规范] HTTP APIs 设计/规范指南<i class="fa fa-fire article-title-weight" aria-hidden=true title=顶置></i></a></li></ol></section><section class=topic><h1 class=topic-title id=information-security><i id=locator-information-security class=header-locator></i>
+<a href=/information-security/ title=[信息安全] target=_blank><i class="fa fa-folder"></i>
+[信息安全]
+</a><span class=topic-articles-count>（5篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/53b3a7ec8d2563471ab6c5d9d16d33fbed21daaf target=_blank><i class="fa fa-code-fork"></i>53b3a7e</a>
+<span class=article-git-commit-subject>Rename folder blog to src</span>
+<span class=article-git-commit-time>2020-01-11 11:51</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/information-security/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>信息安全，密码学相关知识。</p></div><ol class=topic-articles reversed><li class=topic-article id=information-security-05-x.509><i id=locator-information-security-05-x.509 class=header-locator></i>
+<time class=topic-article-time>2020-02-15</time>
+<a class=topic-article-title href=/information-security/05-x.509/ target=_blank title="[信息安全] 05 X.509 公钥证书的格式标准">[信息安全] 05 X.509 公钥证书的格式标准</a></li><li class=topic-article id=information-security-04-one-time-password><i id=locator-information-security-04-one-time-password class=header-locator></i>
+<time class=topic-article-time>2017-07-23</time>
+<a class=topic-article-title href=/information-security/04-one-time-password/ target=_blank title="[信息安全] 04 一次性密码 & 身份认证">[信息安全] 04 一次性密码 & 身份认证</a></li><li class=topic-article id=information-security-03-https><i id=locator-information-security-03-https class=header-locator></i>
+<time class=topic-article-time>2017-07-04</time>
+<a class=topic-article-title href=/information-security/03-https/ target=_blank title="[信息安全] 03 HTTPS工作流程">[信息安全] 03 HTTPS工作流程</a></li><li class=topic-article id=information-security-02-cryptography-toolbox-2><i id=locator-information-security-02-cryptography-toolbox-2 class=header-locator></i>
+<time class=topic-article-time>2017-07-02</time>
+<a class=topic-article-title href=/information-security/02-cryptography-toolbox-2/ target=_blank title="[信息安全] 02 密码工具箱 第2部分">[信息安全] 02 密码工具箱 第2部分</a></li><li class=topic-article id=information-security-01-cryptography-toolbox-1><i id=locator-information-security-01-cryptography-toolbox-1 class=header-locator></i>
+<time class=topic-article-time>2017-06-26</time>
+<a class=topic-article-title href=/information-security/01-cryptography-toolbox-1/ target=_blank title="[信息安全] 01 密码工具箱 第1部分">[信息安全] 01 密码工具箱 第1部分</a></li></ol></section><section class=topic><h1 class=topic-title id=tool><i id=locator-tool class=header-locator></i>
+<a href=/tool/ title=[工具] target=_blank><i class="fa fa-folder"></i>
+[工具]
+</a><span class=topic-articles-count>（15篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/389323c12a00818a481326f6b1388f1afd3e61f5 target=_blank><i class="fa fa-code-fork"></i>389323c</a>
+<span class=article-git-commit-subject>Add tool folder</span>
+<span class=article-git-commit-time>2020-08-06 19:47</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/tool/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=tool-rio><i id=locator-tool-rio class=header-locator></i>
+<time class=topic-article-time>2025-09-21</time>
+<a class=topic-article-title href=/tool/rio/ target=_blank title="[工具] Rio Terminal">[工具] Rio Terminal</a></li><li class=topic-article id=tool-vlmcsd><i id=locator-tool-vlmcsd class=header-locator></i>
+<time class=topic-article-time>2024-11-10</time>
+<a class=topic-article-title href=/tool/vlmcsd/ target=_blank title="[工具] vlmcsd">[工具] vlmcsd</a></li><li class=topic-article id=tool-loan><i id=locator-tool-loan class=header-locator></i>
+<time class=topic-article-time>2024-01-28</time>
+<a class=topic-article-title href=/tool/loan/ target=_blank title="[工具] 房贷计算器">[工具] 房贷计算器</a></li><li class=topic-article id=tool-pc><i id=locator-tool-pc class=header-locator></i>
+<time class=topic-article-time>2022-11-16</time>
+<a class=topic-article-title href=/tool/pc/ target=_blank title="[工具] pc">[工具] pc</a></li><li class=topic-article id=tool-etc><i id=locator-tool-etc class=header-locator></i>
+<time class=topic-article-time>2022-11-16</time>
+<a class=topic-article-title href=/tool/etc/ target=_blank title="[工具] etc">[工具] etc</a></li><li class=topic-article id=tool-rinetd><i id=locator-tool-rinetd class=header-locator></i>
+<time class=topic-article-time>2021-03-23</time>
+<a class=topic-article-title href=/tool/rinetd/ target=_blank title="[工具] rinetd">[工具] rinetd</a></li><li class=topic-article id=tool-miniserve><i id=locator-tool-miniserve class=header-locator></i>
+<time class=topic-article-time>2021-03-12</time>
+<a class=topic-article-title href=/tool/miniserve/ target=_blank title="[工具] miniserve">[工具] miniserve</a></li><li class=topic-article id=tool-caddy><i id=locator-tool-caddy class=header-locator></i>
+<time class=topic-article-time>2021-03-12</time>
+<a class=topic-article-title href=/tool/caddy/ target=_blank title="[工具] caddy">[工具] caddy</a></li><li class=topic-article id=tool-goproxy><i id=locator-tool-goproxy class=header-locator></i>
+<time class=topic-article-time>2020-05-28</time>
+<a class=topic-article-title href=/tool/goproxy/ target=_blank title="[工具] goproxy">[工具] goproxy</a></li><li class=topic-article id=tool-v2ray><i id=locator-tool-v2ray class=header-locator></i>
+<time class=topic-article-time>2020-02-13</time>
+<a class=topic-article-title href=/tool/v2ray/ target=_blank title="[工具] v2ray">[工具] v2ray</a></li><li class=topic-article id=tool-app><i id=locator-tool-app class=header-locator></i>
+<time class=topic-article-time>2019-10-22</time>
+<a class=topic-article-title href=/tool/app/ target=_blank title="[工具] app">[工具] app</a></li><li class=topic-article id=tool-tax><i id=locator-tool-tax class=header-locator></i>
+<time class=topic-article-time>2019-01-01</time>
+<a class=topic-article-title href=/tool/tax/ target=_blank title="[工具] 个税计算器">[工具] 个税计算器</a></li><li class=topic-article id=tool-android><i id=locator-tool-android class=header-locator></i>
+<time class=topic-article-time>2018-05-17</time>
+<a class=topic-article-title href=/tool/android/ target=_blank title="[工具] android">[工具] android</a></li><li class=topic-article id=tool-traefik><i id=locator-tool-traefik class=header-locator></i>
+<time class=topic-article-time>2018-04-20</time>
+<a class=topic-article-title href=/tool/traefik/ target=_blank title="[工具] traefik">[工具] traefik</a></li><li class=topic-article id=tool-openwrt><i id=locator-tool-openwrt class=header-locator></i>
+<time class=topic-article-time>2017-03-23</time>
+<a class=topic-article-title href=/tool/openwrt/ target=_blank title="[工具] openwrt">[工具] openwrt</a></li></ol></section><section class=topic><h1 class=topic-title id=talk><i id=locator-talk class=header-locator></i>
+<a href=/talk/ title=[漫谈] target=_blank><i class="fa fa-folder"></i>
+[漫谈]
+</a><span class=topic-articles-count>（2篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/c09e73d24fd3ce067e8ff9af7e18fcc4ca560036 target=_blank><i class="fa fa-code-fork"></i>c09e73d</a>
+<span class=article-git-commit-subject>Add talk</span>
+<span class=article-git-commit-time>2020-07-30 18:19</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/talk/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=talk-state><i id=locator-talk-state class=header-locator></i>
+<time class=topic-article-time>2020-09-03</time>
+<a class=topic-article-title href=/talk/state/ target=_blank title="[漫谈] 状态">[漫谈] 状态</a></li><li class=topic-article id=talk-objective-and-approach-of-software-design><i id=locator-talk-objective-and-approach-of-software-design class=header-locator></i>
+<time class=topic-article-time>2020-07-30</time>
+<a class=topic-article-title href=/talk/objective-and-approach-of-software-design/ target=_blank title="[漫谈] 软件设计的目标和途径">[漫谈] 软件设计的目标和途径<i class="fa fa-fire article-title-weight" aria-hidden=true title=顶置></i></a></li></ol></section><section class=topic><h1 class=topic-title id=copyright><i id=locator-copyright class=header-locator></i>
+<a href=/copyright/ title=[版权信息] target=_blank><i class="fa fa-folder"></i>
+[版权信息]
+</a><span class=topic-articles-count>（1篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/a89706c3b7cad1e799ed890a859121218dc7d8f2 target=_blank><i class="fa fa-code-fork"></i>a89706c</a>
+<span class=article-git-commit-subject>add copyright</span>
+<span class=article-git-commit-time>2021-04-26 13:52</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/copyright/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content></div><ol class=topic-articles reversed><li class=topic-article id=copyright-cc><i id=locator-copyright-cc class=header-locator></i>
+<time class=topic-article-time>2018-01-28</time>
+<a class=topic-article-title href=/copyright/cc/ target=_blank title="[版权信息] CC BY-NC-SA 4.0">[版权信息] CC BY-NC-SA 4.0</a></li></ol></section><section class=topic><h1 class=topic-title id=understand-rest><i id=locator-understand-rest class=header-locator></i>
+<a href=/understand-rest/ title=[理解REST] target=_blank><i class="fa fa-folder"></i>
+[理解REST]
+</a><span class=topic-articles-count>（7篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/ffbafb3bdf2ecec11007fa7f9248aadb1801cc82 target=_blank><i class="fa fa-code-fork"></i>ffbafb3</a>
+<span class=article-git-commit-subject>Update _index.md</span>
+<span class=article-git-commit-time>2020-04-28 14:34</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/understand-rest/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><ol><li>解读Fileding博士的REST论文(架构风格与基于网络的软件架构设计)，以及为什么<code>HATEOAS</code>(Hypermedia as the Engine of Application State)是REST的核心诉求。</li><li>HTTP APIs规范 : <a href=https://linianhui.github.io/code-guide/http-api/ target=_blank rel="noopener norefferrer">https://linianhui.github.io/code-guide/http-api/</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=understand-rest-06-experience><i id=locator-understand-rest-06-experience class=header-locator></i>
+<time class=topic-article-time>2017-10-21</time>
+<a class=topic-article-title href=/understand-rest/06-experience/ target=_blank title="[理解REST] 06 REST的应用经验以及教训">[理解REST] 06 REST的应用经验以及教训</a></li><li class=topic-article id=understand-rest-05-web-and-rest><i id=locator-understand-rest-05-web-and-rest class=header-locator></i>
+<time class=topic-article-time>2017-10-15</time>
+<a class=topic-article-title href=/understand-rest/05-web-and-rest/ target=_blank title="[理解REST] 05 Web的需求 & 推导REST">[理解REST] 05 Web的需求 & 推导REST<i class="fa fa-fire article-title-weight" aria-hidden=true title=顶置></i></a></li><li class=topic-article id=understand-rest-04-network-based-software-architecture-style><i id=locator-understand-rest-04-network-based-software-architecture-style class=header-locator></i>
+<time class=topic-article-time>2017-09-24</time>
+<a class=topic-article-title href=/understand-rest/04-network-based-software-architecture-style/ target=_blank title="[理解REST] 04 基于网络应用的架构风格">[理解REST] 04 基于网络应用的架构风格</a></li><li class=topic-article id=understand-rest-03-network-based-software-architecture><i id=locator-understand-rest-03-network-based-software-architecture class=header-locator></i>
+<time class=topic-article-time>2017-09-17</time>
+<a class=topic-article-title href=/understand-rest/03-network-based-software-architecture/ target=_blank title="[理解REST] 03 基于网络应用的架构">[理解REST] 03 基于网络应用的架构</a></li><li class=topic-article id=understand-rest-02-what-is-rest-used-for><i id=locator-understand-rest-02-what-is-rest-used-for class=header-locator></i>
+<time class=topic-article-time>2017-09-15</time>
+<a class=topic-article-title href=/understand-rest/02-what-is-rest-used-for/ target=_blank title="[理解REST] 02 REST是用来干什么的？">[理解REST] 02 REST是用来干什么的？</a></li><li class=topic-article id=understand-rest-01-origin><i id=locator-understand-rest-01-origin class=header-locator></i>
+<time class=topic-article-time>2017-09-06</time>
+<a class=topic-article-title href=/understand-rest/01-origin/ target=_blank title="[理解REST] 01 REST的起源">[理解REST] 01 REST的起源</a></li><li class=topic-article id=understand-rest-00-reference><i id=locator-understand-rest-00-reference class=header-locator></i>
+<time class=topic-article-time>2017-09-01</time>
+<a class=topic-article-title href=/understand-rest/00-reference/ target=_blank title="[理解REST] 00 参考资料">[理解REST] 00 参考资料</a></li></ol></section><section class=topic><h1 class=topic-title id=programming-language><i id=locator-programming-language class=header-locator></i>
+<a href=/programming-language/ title=[程序设计语言] target=_blank><i class="fa fa-folder"></i>
+[程序设计语言]
+</a><span class=topic-articles-count>（5篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/53b3a7ec8d2563471ab6c5d9d16d33fbed21daaf target=_blank><i class="fa fa-code-fork"></i>53b3a7e</a>
+<span class=article-git-commit-subject>Rename folder blog to src</span>
+<span class=article-git-commit-time>2020-01-11 11:51</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/programming-language/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p><a href=https://book.douban.com/subject/2152385/ target=_blank rel="noopener norefferrer">《程序设计语言-实践之路 第二版》</a>(原书地址 : <a href=http://www.cs.rochester.edu/~scott/pragmatics/ target=_blank rel="noopener norefferrer">http://www.cs.rochester.edu/~scott/pragmatics/</a>)的重要章节归纳，以及笔者自己的理解。此系列标题没有此书的副标题（实践之路）是因为这些文章仅关注程序设计语言的核心概念相关的知识点，而不包涵实现方面的细节。</p></div><ol class=topic-articles reversed><li class=topic-article id=programming-language-04-data-type><i id=locator-programming-language-04-data-type class=header-locator></i>
+<time class=topic-article-time>2015-05-09</time>
+<a class=topic-article-title href=/programming-language/04-data-type/ target=_blank title="[程序设计语言] 04 [核心概念] 数据类型">[程序设计语言] 04 [核心概念] 数据类型</a></li><li class=topic-article id=programming-language-03-control-flow><i id=locator-programming-language-03-control-flow class=header-locator></i>
+<time class=topic-article-time>2014-08-27</time>
+<a class=topic-article-title href=/programming-language/03-control-flow/ target=_blank title="[程序设计语言] 03 [核心概念] 控制流">[程序设计语言] 03 [核心概念] 控制流</a></li><li class=topic-article id=programming-language-02-names-scopes-and-bindings><i id=locator-programming-language-02-names-scopes-and-bindings class=header-locator></i>
+<time class=topic-article-time>2014-08-03</time>
+<a class=topic-article-title href=/programming-language/02-names-scopes-and-bindings/ target=_blank title="[程序设计语言] 02 [核心概念] 名字、作用域和约束(Bindings)">[程序设计语言] 02 [核心概念] 名字、作用域和约束(Bindings)</a></li><li class=topic-article id=programming-language-01-foundations><i id=locator-programming-language-01-foundations class=header-locator></i>
+<time class=topic-article-time>2014-07-20</time>
+<a class=topic-article-title href=/programming-language/01-foundations/ target=_blank title="[程序设计语言] 01 基础">[程序设计语言] 01 基础</a></li><li class=topic-article id=programming-language-00-foreword><i id=locator-programming-language-00-foreword class=header-locator></i>
+<time class=topic-article-time>2014-07-13</time>
+<a class=topic-article-title href=/programming-language/00-foreword/ target=_blank title="[程序设计语言] 00 前言">[程序设计语言] 00 前言</a></li></ol></section><section class=topic><h1 class=topic-title id=computer-networking><i id=locator-computer-networking class=header-locator></i>
+<a href=/computer-networking/ title=[计算机网络] target=_blank><i class="fa fa-folder"></i>
+[计算机网络]
+</a><span class=topic-articles-count>（10篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/27871baa616d83b58ef362bce6f5e314566dfa0b target=_blank><i class="fa fa-code-fork"></i>27871ba</a>
+<span class=article-git-commit-subject>add link</span>
+<span class=article-git-commit-time>2021-04-13 17:24</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/computer-networking/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>计算机网络的核心概念和体系结构，不涉及<a href=/computer-networking-programming/ target=_blank rel="noopener norefferrer">计算机网络编程</a>的概念。</p><p>相关代码 : <a href=https://github.com/linianhui/networking target=_blank rel="noopener norefferrer">https://github.com/linianhui/networking</a></p><p>参考资料 :</p><ol><li><a href=https://book.douban.com/subject/1088054/ target=_blank rel="noopener norefferrer">《TCP/IP详解 卷1：协议》</a></li><li><a href=https://book.douban.com/subject/26960678/ target=_blank rel="noopener norefferrer">《计算机网络(第7版)》</a></li><li><a href=https://book.douban.com/subject/26176870/ target=_blank rel="noopener norefferrer">《计算机网络(第6版): 自订向下方法》</a></li><li><a href=https://www.computer-networking.info/secondedition.html target=_blank rel="noopener norefferrer">《Computer Networking : Principles,Protocols and Practice》</a></li><li><a href=https://book.douban.com/subject/26710788/ target=_blank rel="noopener norefferrer">《Wireshark网络分析的艺术》</a></li><li><a href=https://book.douban.com/subject/26268767/ target=_blank rel="noopener norefferrer">《Wireshark网络分析就这么简单》</a></li><li><a href=https://book.douban.com/subject/30387220/ target=_blank rel="noopener norefferrer">《Wireshark数据包分析实战(第3版)》</a></li><li><a href=https://hpbn.co/ target=_blank rel="noopener norefferrer">《High Performance Browser Networking》</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=computer-networking-doh><i id=locator-computer-networking-doh class=header-locator></i>
+<time class=topic-article-time>2022-01-01</time>
+<a class=topic-article-title href=/computer-networking/doh/ target=_blank title="[计算机网络] DoH(DNS over HTTPS)">[计算机网络] DoH(DNS over HTTPS)</a></li><li class=topic-article id=computer-networking-dns><i id=locator-computer-networking-dns class=header-locator></i>
+<time class=topic-article-time>2022-01-01</time>
+<a class=topic-article-title href=/computer-networking/dns/ target=_blank title="[计算机网络] DNS(Domain Name System)">[计算机网络] DNS(Domain Name System)</a></li><li class=topic-article id=computer-networking-tool><i id=locator-computer-networking-tool class=header-locator></i>
+<time class=topic-article-time>2020-02-20</time>
+<a class=topic-article-title href=/computer-networking/tool/ target=_blank title="[计算机网络] Tool">[计算机网络] Tool</a></li><li class=topic-article id=computer-networking-io-model><i id=locator-computer-networking-io-model class=header-locator></i>
+<time class=topic-article-time>2020-02-20</time>
+<a class=topic-article-title href=/computer-networking/io-model/ target=_blank title="[计算机网络] IO 模型">[计算机网络] IO 模型</a></li><li class=topic-article id=computer-networking-nat><i id=locator-computer-networking-nat class=header-locator></i>
+<time class=topic-article-time>2020-02-20</time>
+<a class=topic-article-title href=/computer-networking/nat/ target=_blank title="[计算机网络] NAT">[计算机网络] NAT</a></li><li class=topic-article id=computer-networking-tcp><i id=locator-computer-networking-tcp class=header-locator></i>
+<time class=topic-article-time>2020-02-20</time>
+<a class=topic-article-title href=/computer-networking/tcp/ target=_blank title="[计算机网络] TCP">[计算机网络] TCP</a></li><li class=topic-article id=computer-networking-03-layer-internet><i id=locator-computer-networking-03-layer-internet class=header-locator></i>
+<time class=topic-article-time>2019-09-22</time>
+<a class=topic-article-title href=/computer-networking/03-layer-internet/ target=_blank title="[计算机网络] 03 [Layer] Internet">[计算机网络] 03 [Layer] Internet</a></li><li class=topic-article id=computer-networking-02-layer-data-link><i id=locator-computer-networking-02-layer-data-link class=header-locator></i>
+<time class=topic-article-time>2019-09-22</time>
+<a class=topic-article-title href=/computer-networking/02-layer-data-link/ target=_blank title="[计算机网络] 02 [Layer] Data Link">[计算机网络] 02 [Layer] Data Link</a></li><li class=topic-article id=computer-networking-01-layer-physical><i id=locator-computer-networking-01-layer-physical class=header-locator></i>
+<time class=topic-article-time>2019-09-22</time>
+<a class=topic-article-title href=/computer-networking/01-layer-physical/ target=_blank title="[计算机网络] 01 [Layer] Physical">[计算机网络] 01 [Layer] Physical</a></li><li class=topic-article id=computer-networking-00-overview><i id=locator-computer-networking-00-overview class=header-locator></i>
+<time class=topic-article-time>2019-09-22</time>
+<a class=topic-article-title href=/computer-networking/00-overview/ target=_blank title="[计算机网络] 00 概述">[计算机网络] 00 概述</a></li></ol></section><section class=topic><h1 class=topic-title id=computer-networking-programming><i id=locator-computer-networking-programming class=header-locator></i>
+<a href=/computer-networking-programming/ title=[计算机网络编程] target=_blank><i class="fa fa-folder"></i>
+[计算机网络编程]
+</a><span class=topic-articles-count>（3篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/36ddc16be4f4d48b36261c3fd10dcb44d461e193 target=_blank><i class="fa fa-code-fork"></i>36ddc16</a>
+<span class=article-git-commit-subject>Update _index.md</span>
+<span class=article-git-commit-time>2021-04-13 23:51</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/computer-networking-programming/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p><a href=/computer-networking/ target=_blank rel="noopener norefferrer">计算机网络</a>编程相关知识。</p><p>相关代码 : <a href=https://github.com/linianhui/networking-programming target=_blank rel="noopener norefferrer">https://github.com/linianhui/networking-programming</a></p><p>参考资料：</p><ol><li><a href=https://book.douban.com/subject/4859464/ target=_blank rel="noopener norefferrer">《UNIX网络编程 卷1：套接字联网API（第3版）》</a></li><li><a href=https://book.douban.com/subject/4886882/ target=_blank rel="noopener norefferrer">《UNIX网络编程 卷2：进程间通信（第2版）》</a></li><li><a href=https://book.douban.com/subject/4124130/ target=_blank rel="noopener norefferrer">《TCP/IP Sockets编程（C语言）》</a></li><li><a href=https://book.douban.com/subject/3519369/ target=_blank rel="noopener norefferrer">《Java TCP/IP Socket编程》</a></li><li><a href=https://book.douban.com/subject/25741392/ target=_blank rel="noopener norefferrer">《TCP Sockets编程（Ruby）》</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=computer-networking-programming-runtime-architecture><i id=locator-computer-networking-programming-runtime-architecture class=header-locator></i>
+<time class=topic-article-time>2021-04-23</time>
+<a class=topic-article-title href=/computer-networking-programming/runtime-architecture/ target=_blank title="[计算机网络编程] 运行时架构">[计算机网络编程] 运行时架构</a></li><li class=topic-article id=computer-networking-programming-io-multiplexing><i id=locator-computer-networking-programming-io-multiplexing class=header-locator></i>
+<time class=topic-article-time>2021-04-13</time>
+<a class=topic-article-title href=/computer-networking-programming/io-multiplexing/ target=_blank title="[计算机网络编程] IO Multiplexing API">[计算机网络编程] IO Multiplexing API</a></li><li class=topic-article id=computer-networking-programming-socket><i id=locator-computer-networking-programming-socket class=header-locator></i>
+<time class=topic-article-time>2021-04-13</time>
+<a class=topic-article-title href=/computer-networking-programming/socket/ target=_blank title="[计算机网络编程] Socket API">[计算机网络编程] Socket API</a></li></ol></section><section class=topic><h1 class=topic-title id=authentication-and-authorization><i id=locator-authentication-and-authorization class=header-locator></i>
+<a href=/authentication-and-authorization/ title=[认证&授权] target=_blank><i class="fa fa-folder"></i>
+[认证&授权]
+</a><span class=topic-articles-count>（6篇）</span></h1><section class=article-meta><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/c4cecd14669dad2209e8dc1a6f0ae573638dd58b target=_blank><i class="fa fa-code-fork"></i>c4cecd1</a>
+<span class=article-git-commit-subject>Update _index.md</span>
+<span class=article-git-commit-time>2021-06-27 17:57</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/authentication-and-authorization/_index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><div class=topic-content><p>认证(Authentication)和授权(Authorization)相关的概念 : <code>OpenId Connect</code>, <code>OAuth2</code>, <code>JSON Web Token</code>。</p><ol><li><a href=https://openid.net/developers/certified/ target=_blank rel="noopener norefferrer">https://openid.net/developers/certified/</a></li></ol></div><ol class=topic-articles reversed><li class=topic-article id=authentication-and-authorization-06-permission-based-access-control><i id=locator-authentication-and-authorization-06-permission-based-access-control class=header-locator></i>
+<time class=topic-article-time>2018-01-13</time>
+<a class=topic-article-title href=/authentication-and-authorization/06-permission-based-access-control/ target=_blank title="[认证&授权] 06 Permission Based Access Control">[认证&授权] 06 Permission Based Access Control</a></li><li class=topic-article id=authentication-and-authorization-05-openid-connect-extension><i id=locator-authentication-and-authorization-05-openid-connect-extension class=header-locator></i>
+<time class=topic-article-time>2017-11-16</time>
+<a class=topic-article-title href=/authentication-and-authorization/05-openid-connect-extension/ target=_blank title="[认证&授权] 05 OIDC(OpenId Connect)身份认证(扩展部分)">[认证&授权] 05 OIDC(OpenId Connect)身份认证(扩展部分)</a></li><li class=topic-article id=authentication-and-authorization-04-openid-connect-core><i id=locator-authentication-and-authorization-04-openid-connect-core class=header-locator></i>
+<time class=topic-article-time>2017-05-30</time>
+<a class=topic-article-title href=/authentication-and-authorization/04-openid-connect-core/ target=_blank title="[认证&授权] 04 OIDC(OpenId Connect)身份认证(核心部分)">[认证&授权] 04 OIDC(OpenId Connect)身份认证(核心部分)<i class="fa fa-fire article-title-weight" aria-hidden=true title=顶置></i></a></li><li class=topic-article id=authentication-and-authorization-03-user-authentication-with-oauth2><i id=locator-authentication-and-authorization-03-user-authentication-with-oauth2 class=header-locator></i>
+<time class=topic-article-time>2017-04-09</time>
+<a class=topic-article-title href=/authentication-and-authorization/03-user-authentication-with-oauth2/ target=_blank title="[认证&授权] 03 使用OAuth2进行用户认证(译)">[认证&授权] 03 使用OAuth2进行用户认证(译)</a></li><li class=topic-article id=authentication-and-authorization-02-oauth2-extensions-protocol-and-json-web-token><i id=locator-authentication-and-authorization-02-oauth2-extensions-protocol-and-json-web-token class=header-locator></i>
+<time class=topic-article-time>2017-04-03</time>
+<a class=topic-article-title href=/authentication-and-authorization/02-oauth2-extensions-protocol-and-json-web-token/ target=_blank title="[认证&授权] 02 OAuth2授权(续) & JWT(JSON Web Token)">[认证&授权] 02 OAuth2授权(续) & JWT(JSON Web Token)</a></li><li class=topic-article id=authentication-and-authorization-01-oauth2-authorization><i id=locator-authentication-and-authorization-01-oauth2-authorization class=header-locator></i>
+<time class=topic-article-time>2017-01-09</time>
+<a class=topic-article-title href=/authentication-and-authorization/01-oauth2-authorization/ target=_blank title="[认证&授权] 01 OAuth2授权">[认证&授权] 01 OAuth2授权</a></li></ol></section></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>

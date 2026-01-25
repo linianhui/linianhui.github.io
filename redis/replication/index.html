@@ -1,0 +1,174 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-site-verification content="X6gTMGCy1-_vb5i3aja3ZZyzPY3raiKRJp4VIhOAX24"><meta name=msvalidate.01 content="CDE7502649B75529BD0FCFE89B056E38"><title>[Redis] replication - Timetombs</title>
+<link rel=icon type=image/svg href=/favicon.svg><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/normalize/8.0.1/normalize.min.css crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css crossorigin=anonymous referrerpolicy=no-referrer><link href='/asset/blog.css?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' rel=stylesheet type=text/css><script src=https://s4.zstatic.net/npm/currency.js@2.0.4/dist/currency.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src=https://s4.zstatic.net/ajax/libs/moment.js/2.30.1/moment.min.js crossorigin=anonymous referrerpolicy=no-referrer></script><script src='/asset/blog.js?time=2026-01-25T21%3a48%3a02Z%2b08%3a00' type=application/javascript></script><script type=text/javascript>blog.isMobile()&&document.write('<link href="/asset/blog.mobile.css?time=2026-01-25T21%3A48%3A02Z%2B08%3A00" rel="stylesheet">')</script></head><body><div id=horizontal-progress class=horizontal-progress></div><aside id=toc class=toc><section class=toc-header><a class=toc-page-title href=/redis/ target=_blank>[Redis]</a></section><section class=toc-page><a class=toc-page-title href=/redis/install/ target=_blank>[Redis] install</a></section><section class=toc-page><a class=toc-page-title href=/redis/resp/ target=_blank>[Redis] resp</a></section><section class=toc-page><a class=toc-page-title href=/redis/data-type/ target=_blank>[Redis] data type</a></section><section class=toc-page><a class=toc-page-title href=/redis/pipelining/ target=_blank>[Redis] pipelining</a></section><section class=toc-page><a class=toc-page-title href=/redis/expire/ target=_blank>[Redis] expire</a></section><section class=toc-page><a class=toc-page-title href=/redis/lua/ target=_blank>[Redis] lua script</a></section><section class=toc-page><a class=toc-page-title href=/redis/persistence/ target=_blank>[Redis] persistence</a></section><section class=toc-page><a class=toc-page-title href=/redis/benchmark/ target=_blank>[Redis] benchmark</a></section><section class=toc-page><a class=toc-page-title href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></section><section class="toc-page selected"><span class=toc-page-title>[Redis] replication</span><nav id=TableOfContents><ul><li><a href=#install>1 搭建环境</a></li><li><a href=#theory>2 运行原理</a></li><li><a href=#config>3 详细配置</a></li><li><a href=#faq>4 常见问题</a></li><li><a href=#reference>5 参考</a></li></ul></nav></section><section class=toc-page><a class=toc-page-title href=/redis/sentinel/ target=_blank>[Redis] sentinel</a></section><script type=text/javascript>blog.isPC()&&blog.toggleToc()</script></aside><main class=main><header class=header><hgroup class=header-hgroup><h1 class=header-hgroup-title><a href=/>Timetombs</a></h1><h2 class=header-hgroup-subtitle>泛义的工具是文明的基础，而确指的工具却是愚人的器物</h2></hgroup><nav class=header-nav><a class=header-nav-item href=/topic/ title=专题 target=_self><i class="fa fa-folder"></i>专题</a>
+<a class=header-nav-item href=/tag/ title=标签 target=_self><i class="fa fa-tags"></i>标签</a>
+<a class=header-nav-item href=/archive/ title=归档 target=_self><i class="fa fa-archive"></i>归档</a>
+<a class=header-nav-item href=https://linianhui.cnblogs.com title=博客园 target=_black><img src=/asset/cnblogs.favicon.svg>博客园</a>
+<a class=header-nav-item href=https://github.com/linianhui/blog title=GitHub target=_black><i class="fa fa-github"></i>GitHub</a></nav><div class=header-stats><div class=stats><span>共
+<i>66<sub>h</sub>
+</i>/
+<i>118<sub>a</sub>
+</i>篇</span><div class=stats-date>，更新于 2026-01-25T21:48:02Z+08:00 by &nbsp;
+<a class=git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a></div></div><form class=search method=GET target=_blank action=https://www.bing.com/search><input name=q class=search-input type=search placeholder=search... results=5 onkeypress="search_param.value=search_param_site.value+this.value">
+<input id=search_param_site type=hidden value="site:linianhui.github.io ">
+<input name=q id=search_param type=hidden></form></div></header><main class=content><article class=article><h1 class=article-title>[Redis] replication</h1><div class=article-copyright><span>版权声明 - </span><a href=/copyright/cc target=_blank>CC BY-NC-SA 4.0</a></div><section class=article-meta><section class=article-date>2021-03-20 09:29，约2424字，阅读约5分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a>
+<a class=article-tag href=/tag/replication target=_blank><i class="fa fa-tag"></i>replication</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/replication/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-content><p>绝大多数的情况下，redis中的数据都是读取远远多于写入。为了提供更高的读取QPS的支持，所以redis提供了<code>Replication</code><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>的支持。</p><blockquote><ol><li>单纯的Replication并不能处理redis意外宕机等导致的不可用问题。高可用需要<code>Sentinel</code><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>来提供支持。</li><li>单纯的Replication也不能提升redis的存储容量，比如master原本是提供8G的存储上限，那么搭配两个slave则依然是8G。扩容需要<code>Cluster</code><sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>来提供支持。</li></ol></blockquote><h1 id=install><i id=locator-install class=header-locator></i>
+<a href=#install class=article-h-a>1 搭建环境</a></h1><p>这里使用<code>docker-compose -f redis.yml up -d</code>启动一个主从复制的环境，一个<code>master</code>，两个<code>slave</code>。<br><div class=highlight-file id=hf-843006127501372b0e6c9da396e83057><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-843006127501372b0e6c9da396e83057","highlight-file_opened")'>redis.yml</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/replication/redis.yml title="下载 redis.yml" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/replication/redis.yml title="源码 redis.yml"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:green># https://docs.docker.com/compose/compose-file/compose-file-v3/</span>
+</span></span><span style=display:flex><span>version: <span style=color:#a31515>&#39;3&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>services:
+</span></span><span style=display:flex><span>  master.test:
+</span></span><span style=display:flex><span>    image: redis:6.2
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - volume_master:/data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  slave1.test:
+</span></span><span style=display:flex><span>    image: redis:6.2
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server --slaveof master.test 6379
+</span></span><span style=display:flex><span>    depends_on:
+</span></span><span style=display:flex><span>      - master.test
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - volume_slave1:/data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  slave2.test:
+</span></span><span style=display:flex><span>    image: redis:6.2
+</span></span><span style=display:flex><span>    restart: <span style=color:#00f>on</span>-failure
+</span></span><span style=display:flex><span>    command: redis-server --slaveof master.test 6379
+</span></span><span style=display:flex><span>    depends_on:
+</span></span><span style=display:flex><span>      - master.test
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - volume_slave2:/data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>volumes:
+</span></span><span style=display:flex><span>  volume_master:
+</span></span><span style=display:flex><span>  volume_slave1:
+</span></span><span style=display:flex><span>  volume_slave2:
+</span></span></code></pre></div></div></div></p><p>可以看出其非常简单，slave节点启动时指定<code>--slaveof master.test 6379</code>即可，其中<code>master.test</code>是master节点的地址（ip和domain name均可），<code>6379</code>是master节点的端口号。</p><div class=highlight-file id=hf-da7435ef2b572e73864d726097b549d4><div class=highlight-file-header><a class="fa fa-plus highlight-file-switch" onclick='blog.toggleClassName("hf-da7435ef2b572e73864d726097b549d4","highlight-file_opened")'>replication.6379</a><a class="fa fa-download highlight-file-download" target=_blank href=/redis/replication/replication.6379 title="下载 replication.6379" download></a>
+<a class="fa fa-github" target=_blank href=https://github.com/linianhui/blog/blob/main/src/redis/replication/replication.6379 title="源码 replication.6379"></a></div><div class=highlight-file-content><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:green># 查看启动后的redis主从复制的容器</span>
+</span></span><span style=display:flex><span>docker-compose -f redis.yml ps
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>          Name                         Command               State    Ports
+</span></span><span style=display:flex><span>-----------------------------------------------------------------------------
+</span></span><span style=display:flex><span>replication_master.test_1   docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span><span style=display:flex><span>replication_slave1.test_1   docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span><span style=display:flex><span>replication_slave2.test_1   docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 进入master节点</span>
+</span></span><span style=display:flex><span>docker exec -it replication_master.test_1 redis-cli
+</span></span><span style=display:flex><span><span style=color:green># 查看主从复制信息</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; INFO replication
+</span></span><span style=display:flex><span><span style=color:green># Replication</span>
+</span></span><span style=display:flex><span>role:master
+</span></span><span style=display:flex><span>connected_slaves:2
+</span></span><span style=display:flex><span>slave0:ip=172.19.0.4,port=6379,state=online,offset=28,lag=1
+</span></span><span style=display:flex><span>slave1:ip=172.19.0.3,port=6379,state=online,offset=28,lag=1
+</span></span><span style=display:flex><span>master_failover_state:no-failover
+</span></span><span style=display:flex><span>master_replid:42428ec1b6fc7c22438ec4c316db1a36ec6eec03
+</span></span><span style=display:flex><span>master_replid2:0000000000000000000000000000000000000000
+</span></span><span style=display:flex><span>master_repl_offset:28
+</span></span><span style=display:flex><span>second_repl_offset:-1
+</span></span><span style=display:flex><span>repl_backlog_active:1
+</span></span><span style=display:flex><span>repl_backlog_size:1048576
+</span></span><span style=display:flex><span>repl_backlog_first_byte_offset:1
+</span></span><span style=display:flex><span>repl_backlog_histlen:28
+</span></span><span style=display:flex><span><span style=color:green># 主节点执行SET</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; SET name lnh
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 从节点获取数据</span>
+</span></span><span style=display:flex><span>docker exec -it replication_slave2.test_1 redis-cli GET name
+</span></span><span style=display:flex><span><span style=color:#a31515>&#34;lnh&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 主节点再查看一下主从复制信息</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; INFO replication
+</span></span><span style=display:flex><span><span style=color:green># Replication</span>
+</span></span><span style=display:flex><span>role:master
+</span></span><span style=display:flex><span>connected_slaves:2
+</span></span><span style=display:flex><span>slave0:ip=172.19.0.4,port=6379,state=online,offset=433,lag=0
+</span></span><span style=display:flex><span>slave1:ip=172.19.0.3,port=6379,state=online,offset=433,lag=1
+</span></span><span style=display:flex><span>master_failover_state:no-failover
+</span></span><span style=display:flex><span>master_replid:42428ec1b6fc7c22438ec4c316db1a36ec6eec03
+</span></span><span style=display:flex><span>master_replid2:0000000000000000000000000000000000000000
+</span></span><span style=display:flex><span>master_repl_offset:433
+</span></span><span style=display:flex><span>second_repl_offset:-1
+</span></span><span style=display:flex><span>repl_backlog_active:1
+</span></span><span style=display:flex><span>repl_backlog_size:1048576
+</span></span><span style=display:flex><span>repl_backlog_first_byte_offset:1
+</span></span><span style=display:flex><span>repl_backlog_histlen:433
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 从节点上查看一下主从信息</span>
+</span></span><span style=display:flex><span>$ docker exec -it replication_slave2.test_1 redis-cli INFO replication
+</span></span><span style=display:flex><span><span style=color:green># Replication</span>
+</span></span><span style=display:flex><span>role:slave
+</span></span><span style=display:flex><span>master_host:master.test
+</span></span><span style=display:flex><span>master_port:6379
+</span></span><span style=display:flex><span>master_link_status:up
+</span></span><span style=display:flex><span>master_last_io_seconds_ago:7
+</span></span><span style=display:flex><span>master_sync_in_progress:0
+</span></span><span style=display:flex><span>slave_repl_offset:643
+</span></span><span style=display:flex><span>slave_priority:100
+</span></span><span style=display:flex><span>slave_read_only:1
+</span></span><span style=display:flex><span>connected_slaves:0
+</span></span><span style=display:flex><span>master_failover_state:no-failover
+</span></span><span style=display:flex><span>master_replid:42428ec1b6fc7c22438ec4c316db1a36ec6eec03
+</span></span><span style=display:flex><span>master_replid2:0000000000000000000000000000000000000000
+</span></span><span style=display:flex><span>master_repl_offset:643
+</span></span><span style=display:flex><span>second_repl_offset:-1
+</span></span><span style=display:flex><span>repl_backlog_active:1
+</span></span><span style=display:flex><span>repl_backlog_size:1048576
+</span></span><span style=display:flex><span>repl_backlog_first_byte_offset:1
+</span></span><span style=display:flex><span>repl_backlog_histlen:643</span></span></code></pre></div></div></div><h1 id=theory><i id=locator-theory class=header-locator></i>
+<a href=#theory class=article-h-a>2 运行原理</a></h1><p>Replication支持的功能特性：</p><ol><li>master可以有多个slave，slave之间也可以级链。比如master->slave1->slave2这种方式。</li><li>slave启动后自动连接master开始同步。</li><li>同步过程是异步的，不会影响master的主线程。</li><li>意外断开后会自动重连，然后再次同步。</li><li>支持全量和增量同步。无法增量同步时，则会触发全量同步流程。</li></ol><p>想要支持以上的功能特性，核心点在于master处理全量以及增量同步的实现机制。每个节点在启动时都有一个<code>master_replid</code>（一个伪随机的字符串，每次启动都会重新生成一个）和一个<code>master_repl_offset</code>（同步的数据的偏移量）信息，还有一个<code>master_replid2</code>来保存上次的<code>master_replid</code>。</p><p>当slave第一次连接到master事，会使用<code>PSYNC replicationid offset</code><sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup>命令取请求master。</p><p>当master接收的id匹配时：<strong>触发增量同步</strong>。master发送offset之后的增量部分的数据（这部分数据位于内存缓存区中，无需读disk）给slave。</p><p>当master接收到id不匹配时：<strong>触发全量同步</strong>。master开启一个后台保存线程，用来产生一个<code>RDB</code><sup id=fnref:5><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup>文件；同时开始缓冲所有从客户端接收到的新的写入命令。当后台保存完成时，master将rdb文件传输给slave，slave将之保存在磁盘上，然后加载文件到内存。再然后master会发送所有缓冲的命令发给slave。这个过程以指令流的形式完成并且和Redis协议本身的格式相同。</p><p>当slave意外重启后，slave记录的<code>master_replid</code>就会变成<code>master_replid2</code>，它自己会产生一个新的<code>master_replid</code>，这是它会用<code>master_replid2</code>和记录的offset去增量同步自身意外重启这段时间内丢失的数据。</p><blockquote><p>当master关闭rdb并且开启来自动重启时。会有这么一种情况，master没有rdb，并且意外自动重启了。那么重启后slave也会被迫清空。</p></blockquote><h1 id=config><i id=locator-config class=header-locator></i>
+<a href=#config class=article-h-a>3 详细配置</a></h1><div class=code-snippet><div class=title><a href=https://github.com/redis/redis/blob/6.2/redis.conf#L446-L710 target=_blank>https://github.com/redis/redis/blob/6.2/redis.conf#L446-L710</a></div><div class=inner-code><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:green># master的地址和端口号</span>
+</span></span><span style=display:flex><span>replicaof 192.168.2.2 6379
+</span></span><span style=display:flex><span><span style=color:green># master用户名</span>
+</span></span><span style=display:flex><span>masteruser test
+</span></span><span style=display:flex><span><span style=color:green># master密码</span>
+</span></span><span style=display:flex><span>masterauth 1234
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 配置为只读节点，2.6+后默认是只读的。</span>
+</span></span><span style=display:flex><span>replica-read-only yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:green># 当同步断开时，是否继续接收client的请求。</span>
+</span></span><span style=display:flex><span><span style=color:green># yes 依然接收请求，但是因为同步断开了，所以数据可能是陈旧的。</span>
+</span></span><span style=display:flex><span><span style=color:green># no  返回一个错误&#39;SYNC with master in progress&#39;给client。</span>
+</span></span><span style=display:flex><span>replica-serve-stale-data yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>repl-diskless-sync no
+</span></span><span style=display:flex><span>repl-diskless-sync-delay 5
+</span></span><span style=display:flex><span>repl-diskless-load disabled
+</span></span><span style=display:flex><span>repl-ping-replica-period 10
+</span></span><span style=display:flex><span>repl-timeout 60
+</span></span><span style=display:flex><span>repl-disable-tcp-nodelay no
+</span></span><span style=display:flex><span>repl-backlog-size 1mb
+</span></span><span style=display:flex><span>repl-backlog-ttl 3600
+</span></span><span style=display:flex><span>replica-priority 100
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>min-replicas-to-write 3
+</span></span><span style=display:flex><span>min-replicas-max-lag 10
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>replica-announce-ip 5.5.5.5
+</span></span><span style=display:flex><span>replica-announce-port 1234</span></span></code></pre></div></div></div><h1 id=faq><i id=locator-faq class=header-locator></i>
+<a href=#faq class=article-h-a>4 常见问题</a></h1><ol><li><mark>slave脏读</mark>：因为master和slave之间的同步是异步的，master不会确保写入操作被所有slave都正确同步后才返回，故而如果在slave还未写完成时去读取，是会读取到脏数据的。这个无法避免，毕竟还有db托底。不过也可以通过在client这一侧用<code>INFO replication</code>去检查master和slave，对比其中的offset，如果diff结果差别超过了容忍范围，则移除client端对这个slave的访问，待恢复到合适的范围内后再添加回来，不过这种办法有些繁琐。</li><li><mark>maxmemory配置不一致导致的数据丢失</mark>：比如master是4G，而slave是2G。但现在有3G数据需要同步给slave时，slave会因为内存不足而启动数据淘汰策略，从而被动丢失一部分数据。应该不设限slave的内存大小，至少大于master。</li><li><mark>全量复制的庞大开销</mark>：当master的数据量比较大时，比如10G。那么增加一个slave，就会导致master需要发送10G左右的数据到slave，会严重消耗master节点的资源，也会使网络变得拥堵。应该选择业务低峰时间时增加slave。</li><li><mark>master重启导致的数据丢失</mark>：master节点在意外重启后，如果没有rdb，则会导致清空slave的数据。不应关闭master的rdb。或者搭配sentinel提升slave为新的master。</li><li><mark>缓冲区不足导致的循环全量复制</mark>：当master进行全量复制时，在生产rdb文件期间，会把所有的写命令保存在缓冲区中，如果缓冲区很小（默认1m）。那么即使slave已经完成了rdb的装载，但是offet不在缓冲区内，就会再次触发全量复制这么一个恶性循环。应估算复制耗时和写入量大小来调大缓冲区<code>rel_backlog_size</code>大小。</li></ol><h1 id=reference><i id=locator-reference class=header-locator></i>
+<a href=#reference class=article-h-a>5 参考</a></h1><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://redis.io/topics/replication target=_blank rel="noopener norefferrer">https://redis.io/topics/replication</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://linianhui.github.io/redis/sentinel target=_blank rel="noopener norefferrer">https://linianhui.github.io/redis/sentinel</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><a href=https://linianhui.github.io/redis/cluster target=_blank rel="noopener norefferrer">https://linianhui.github.io/redis/cluster</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4><p><a href=https://redis.io/commands/psync target=_blank rel="noopener norefferrer">https://redis.io/commands/psync</a>&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:5><p><a href=https://linianhui.github.io/redis/persistence/#rdb target=_blank rel="noopener norefferrer">https://linianhui.github.io/redis/persistence/#rdb</a>&#160;<a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><section class=article-meta><section class=article-date>2021-03-20 09:29，约2424字，阅读约5分钟</section><section class=article-topics><a class=article-topic href=/redis/ title=[Redis] target=_blank><i class="fa fa-folder"></i>[Redis]</a></section><section class=article-tags><a class=article-tag href=/tag/cache target=_blank><i class="fa fa-tag"></i>cache</a>
+<a class=article-tag href=/tag/ops target=_blank><i class="fa fa-tag"></i>ops</a>
+<a class=article-tag href=/tag/redis target=_blank><i class="fa fa-tag"></i>redis</a>
+<a class=article-tag href=/tag/replication target=_blank><i class="fa fa-tag"></i>replication</a></section><section class=article-git><a class=article-git-commit href=https://github.com/linianhui/blog/commit/03e0cc08866458647d96951c1817c624518149d6 target=_blank><i class="fa fa-code-fork"></i>03e0cc0</a>
+<span class=article-git-commit-subject>fix add displayed_on_home</span>
+<span class=article-git-commit-time>2022-11-20 14:49</span>
+<a class=article-git-source href=https://github.com/linianhui/blog/blob/main/src/redis/replication/index.md target=_blank><i class="fa fa-github"></i>源码</a></section></section><section class=article-page><div class=article-page-prev><span>上一篇 : </span><a href=/redis/runtime-architecture/ target=_blank>[Redis] 运行时架构</a></div><div class=article-page-next><span>下一篇 : </span><a href=/redis/sentinel/ target=_blank>[Redis] sentinel</a></div></section></article><section id=article-comment class=article-comment><script src=https://utteranc.es/client.js repo=linianhui/blog issue-term=pathname label=blog-comment theme=github-light crossorigin=anonymous async></script></section></main><footer class=footer><section>Copyright © 2026 by <a href=https://github.com/linianhui/blog target=_blank>Timetombs</a></section><section><a class=article-git-commit href=https://github.com/linianhui/blog/commit/39b6c03faec1d2881596df2cd2436da10cdf9eef target=_blank><i class="fa fa-code-fork"></i>39b6c03</a>
+Powered by
+<a href=https://github.com/actions target=_blank>GitHub Actions</a>
+,
+<a href=https://github.com/gohugoio/hugo target=_blank>Hugo</a>
+and
+<a href=https://github.com/utterance/utterances target=_blank>utterances</a>
+Hosted on <a href=https://pages.github.com/ target=_blank>GitHub Pages</a><section></footer></main><aside class=toolbar><a class="fa fa-list" href=javascript:blog.toggleToc(); title=目录></a><a class="fa fa-comments" href=#article-comment title=评论></a><a class="fa fa-arrow-up" href=javascript:scroll(0,0); title=返回顶部></a></aside><script type=text/javascript>var _hmt=_hmt||[];blog.addOnScorllEvent()</script></body></html>
