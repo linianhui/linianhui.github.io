@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DoH on Timetombs</title><link>https://linianhui.github.io/tag/doh/</link><description>Recent content in DoH on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 02 Jan 2022 14:01:44 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/doh/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] DoH(DNS over HTTPS)</title><link>https://linianhui.github.io/computer-networking/doh/</link><pubDate>Sat, 01 Jan 2022 13:55:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/doh/</guid><description>&lt;p&gt;&lt;strong&gt;RFC8484 DNS Queries over HTTPS (DoH)&lt;/strong&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h1 id="mime"&gt;
+&lt;i id="locator-mime" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#mime" class="article-h-a"&gt;MIME&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;application/dns-message&lt;/code&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Type : &lt;code&gt;application&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;SubType : &lt;code&gt;dns-message&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;编码格式 : 二进制格式，定义在RFC1035&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="example"&gt;
+&lt;i id="locator-example" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#example" class="article-h-a"&gt;Example&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-http" data-lang="http"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:method = GET
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:scheme = https
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:authority = dnsserver.example.net
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:path = /dns-query?dns=AAABAAABAAAAAAAAA3d3dwdleGFtcGxlA2NvbQAAAQAB
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;accept = application/dns-message
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-http" data-lang="http"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:status = 200
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;content-type = application/dns-message
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;content-length = 61
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;cache-control = max-age=3709
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;00 00 81 80 00 01 00 01 00 00 00 00 03 77 77 77
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 1c 00
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;01 c0 0c 00 1c 00 01 00 00 0e 7d 00 10 20 01 0d
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;b8 ab cd 00 12 00 01 00 02 00 03 00 04
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;待补充...&lt;/p&gt;
+&lt;h1 id="reference"&gt;
+&lt;i id="locator-reference" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#reference" class="article-h-a"&gt;Reference&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;RFC8484 DNS over HTTPS (DoH) : &lt;a href="https://datatracker.ietf.org/doc/html/rfc8484"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://datatracker.ietf.org/doc/html/rfc8484&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vlmcsd on Timetombs</title><link>https://linianhui.github.io/tag/vlmcsd/</link><description>Recent content in Vlmcsd on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 10 Nov 2024 12:35:09 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/vlmcsd/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] vlmcsd</title><link>https://linianhui.github.io/tool/vlmcsd/</link><pubDate>Sun, 10 Nov 2024 12:00:08 +0800</pubDate><guid>https://linianhui.github.io/tool/vlmcsd/</guid><description>&lt;h1 id="windows"&gt;
+&lt;i id="locator-windows" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#windows" class="article-h-a"&gt;Windows&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://github.com/Wind4/vlmcsd"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://github.com/Wind4/vlmcsd&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 服务端 -s 注册为windows服务 -l 日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vlmcsd-Windows-x64.exe -s -l c:&lt;span style="color:#a31515"&gt;\_&lt;/span&gt;vlmcsd&lt;span style="color:#a31515"&gt;\s&lt;/span&gt;erver.log
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 客户端-查看支持的版本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vlmcs-Windows-x64.exe -x
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 开放端口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;netsh advfirewall firewall add rule name=vlmcsd1688 dir=in action=allow protocol=TCP localport=1688
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="docker"&gt;
+&lt;i id="locator-docker" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#docker" class="article-h-a"&gt;Docker&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker run -d -p 1688:1688 --restart=always --name vlmcsd ghcr.io/linianhui/vlmcsd:1113-2020-03-28
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="openwrt"&gt;
+&lt;i id="locator-openwrt" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#openwrt" class="article-h-a"&gt;Openwrt&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vlmcsd-mips32el-openwrt-uclibc-static
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight-file highlight-file_opened" id="hf-37377386ba5db4911872ccae8fa3ea31"&gt;
+ &lt;div class="highlight-file-header"&gt;
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-37377386ba5db4911872ccae8fa3ea31','highlight-file_opened')"&gt;vlmcsd.init&lt;/a&gt;&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/vlmcsd/vlmcsd.init" title="下载 vlmcsd.init" download&gt;&lt;/a&gt;
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/vlmcsd/vlmcsd.init" title="源码 vlmcsd.init"&gt;&lt;/a&gt;&lt;/div&gt;
+ &lt;div class="highlight-file-content"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;#!/bin/sh /etc/rc.common
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# openwrt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# /etc/init.d/vlmcsd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# chmod +x /etc/init.d/vlmcsd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# /etc/init.d/vlmcsd enable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# /etc/init.d/vlmcsd start&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# /etc/init.d/vlmcsd stop&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# /etc/init.d/vlmcsd reload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;START=98
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SERVICE_WRITE_PID=1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SERVICE_DAEMONIZE=1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;start() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; service_start /usr/bin/vlmcsd
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;stop() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; service_stop /usr/bin/vlmcsd
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;reload() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; service_reload /usr/bin/vlmcsd
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>

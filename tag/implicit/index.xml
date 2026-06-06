@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Implicit on Timetombs</title><link>https://linianhui.github.io/tag/implicit/</link><description>Recent content in Implicit on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/implicit/index.xml" rel="self" type="application/rss+xml"/><item><title>[认证&amp;授权] 01 OAuth2授权</title><link>https://linianhui.github.io/authentication-and-authorization/01-oauth2-authorization/</link><pubDate>Mon, 09 Jan 2017 09:40:00 +0800</pubDate><guid>https://linianhui.github.io/authentication-and-authorization/01-oauth2-authorization/</guid><description>&lt;h1 id="what-is-oauth2-use-for"&gt;
+&lt;i id="locator-what-is-oauth2-use-for" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#what-is-oauth2-use-for" class="article-h-a"&gt;1 OAuth2解决什么问题的？&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;举个栗子先。&lt;strong&gt;小明&lt;/strong&gt;在&lt;strong&gt;QQ空间&lt;/strong&gt;积攒了多年的照片，想挑选一些照片来打印出来。然后小明在找到一家提供在线打印并且包邮的网站(我们叫它&lt;strong&gt;PP&lt;/strong&gt;吧(Print Photo缩写 😂))。&lt;/p&gt;
+&lt;p&gt;那么现在问题来了，小明有两个方案来得到打印的服务。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在自己的QQ空间把想要打印的照片下载下来，然后提供给PP(直接发邮件给PP或者网盘共享给PP等等)。&lt;/li&gt;
+&lt;li&gt;把自己的QQ账号密码给PP，然后告诉PP我要打印哪些照片。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;针对方案(1) : 小明要去下载这些照片，然后给PP，小明累觉不爱，，，&lt;/p&gt;</description></item></channel></rss>

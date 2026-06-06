@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dism on Timetombs</title><link>https://linianhui.github.io/tag/dism/</link><description>Recent content in Dism on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Oct 2024 09:36:52 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/dism/index.xml" rel="self" type="application/rss+xml"/><item><title>[Windows] dism</title><link>https://linianhui.github.io/windows/dism/</link><pubDate>Sat, 29 Jul 2017 09:42:01 +0800</pubDate><guid>https://linianhui.github.io/windows/dism/</guid><description>&lt;h1 id="部署映像服务和管理"&gt;
+&lt;i id="locator-部署映像服务和管理" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#%e9%83%a8%e7%bd%b2%e6%98%a0%e5%83%8f%e6%9c%8d%e5%8a%a1%e5%92%8c%e7%ae%a1%e7%90%86" class="article-h-a"&gt;部署映像服务和管理&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;dism.exe&lt;/code&gt;(Deployment Image Servicing and Management)。用来生成、拆分、合并、安装，配置，更新&lt;a href="../wim"
+
+ target="_blank" rel="noopener norefferrer"&gt;WIM&lt;/a&gt;。&lt;/p&gt;
+&lt;h1 id="dismexe示例"&gt;
+&lt;i id="locator-dismexe示例" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#dismexe%e7%a4%ba%e4%be%8b" class="article-h-a"&gt;&lt;code&gt;dism.exe&lt;/code&gt;示例&lt;/a&gt;
+&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;capture-image&lt;/code&gt; : 捕获指定的文件夹中的文件到&lt;a href="../wim"
+
+ target="_blank" rel="noopener norefferrer"&gt;WIM&lt;/a&gt;文件中。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dism /capture-image /capturedir&lt;span style=""&gt;:&lt;/span&gt;i:\ /name&lt;span style=""&gt;:&lt;/span&gt;&lt;span style="color:#a31515"&gt;&amp;#34;Windows 7 Backup&amp;#34;&lt;/span&gt; /imagefile&lt;span style=""&gt;:&lt;/span&gt;e:\backup.wim
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;get-imageinfo&lt;/code&gt; : 获取&lt;a href="../wim"
+
+ target="_blank" rel="noopener norefferrer"&gt;WIM&lt;/a&gt;文件中的&lt;code&gt;image&lt;/code&gt;信息。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# *.wim *.vhd *.ffu 文件。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dism /get-imageinfo /imagefile&lt;span style=""&gt;:&lt;/span&gt;d:\source.wim 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;apply-image&lt;/code&gt; : 解压释放一个&lt;code&gt;image&lt;/code&gt;中的所有文件到指定的目录。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dism /apply-image /imagefile&lt;span style=""&gt;:&lt;/span&gt;source.wim /index&lt;span style=""&gt;:&lt;/span&gt;1 /applydir&lt;span style=""&gt;:&lt;/span&gt;d:\source-1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;export-image&lt;/code&gt; ：导出一个&lt;code&gt;image&lt;/code&gt;到另外一个文件中。&lt;/p&gt;</description></item></channel></rss>
