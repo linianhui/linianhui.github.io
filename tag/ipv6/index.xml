@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>IPv6 on Timetombs</title><link>https://linianhui.github.io/tag/ipv6/</link><description>Recent content in IPv6 on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/ipv6/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络] 03 [Layer] Internet</title><link>https://linianhui.github.io/computer-networking/03-layer-internet/</link><pubDate>Sun, 22 Sep 2019 08:13:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/03-layer-internet/</guid><description>&lt;h1 id="internet-purpose"&gt;
+&lt;i id="locator-internet-purpose" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#internet-purpose" class="article-h-a"&gt;1 网络层的用途&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;上一篇中遗留了一部分问题 : &lt;code&gt;Frame&lt;/code&gt;的丢失、乱序和重复等等，在网络层这里其实也无能为力😂😂😂。因为网络层解决的问题重点是&lt;strong&gt;分组&amp;amp;交换&lt;/strong&gt;中的&lt;strong&gt;交换&lt;/strong&gt;问题。虽然在数据链路层有交换机这样的设备负责&lt;code&gt;Frame&lt;/code&gt;的转发和交换，但是它其实并无法满足我们的需要，那么为什么呢？我们来看一下基于&lt;code&gt;Frame&lt;/code&gt;的转发交换存在哪些问题先：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Frame&lt;/code&gt;的&lt;code&gt;MAC&lt;/code&gt;不是真正含以上的地址 : 虽然&lt;code&gt;MAC&lt;/code&gt;也叫做&lt;strong&gt;物理地址&lt;/strong&gt;，不过它其实并不是真正的地址。我们通常意义上的地址是什么呢？比如你要给故宫博物院的院长写一封信，那么信封上的信息大致是这样的:
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-txt" data-lang="txt"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;邮编 : 100009 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;收件人地址 : 北京市 东城区 景山前街4号 故宫博物院
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;收件人 : 院长
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;寄件人地址 : xxx yyy zzz
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;寄件人 : abc 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;其中&lt;code&gt;北京市 东城区 景山前街4号 故宫博物院&lt;/code&gt;这部分是真正意义上的地址，这部分信息是包含层级信息的，其目的是便于快速的定位。留意下邮编&lt;code&gt;100009&lt;/code&gt;，这个其实也是地址，它也是层级的。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MAC&lt;/code&gt;是固化到硬件中的，不便于控制和管理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;基于以上两个核心的问题，二层的交换机如果想要完成我们想要的转发和交换，那么它的&lt;code&gt;MAC Address Table&lt;/code&gt;将会多么的巨大（&lt;code&gt;MAC&lt;/code&gt;地址有2&lt;sup&gt;48&lt;/sup&gt;个，因为&lt;code&gt;MAC&lt;/code&gt;没有层级，所以就无法分层处理转发和交换）。当然还有其他的原因，这里只是笔者的理解的一部分。&lt;/p&gt;</description></item></channel></rss>

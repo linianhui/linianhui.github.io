@@ -1,0 +1,1 @@
+source /lnh/_code/blog/src/linux/script/mac.sh

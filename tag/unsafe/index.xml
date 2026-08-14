@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unsafe on Timetombs</title><link>https://linianhui.github.io/tag/unsafe/</link><description>Recent content in Unsafe on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/unsafe/index.xml" rel="self" type="application/rss+xml"/><item><title>[Java] Unsafe类</title><link>https://linianhui.github.io/java/unsafe/</link><pubDate>Wed, 04 Nov 2020 19:32:01 +0800</pubDate><guid>https://linianhui.github.io/java/unsafe/</guid><description>&lt;p&gt;Unsafe类是Java提供一个底层的类型，位于&lt;code&gt;sun.misc&lt;/code&gt;包中，主要用来提供一些不安全的底层内存操作。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其内部实现在Jdk中略有差异，比如。Jdk 8&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;和Jdk 15&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;的源码。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id="get-unsafe-object"&gt;
+&lt;i id="locator-get-unsafe-object" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#get-unsafe-object" class="article-h-a"&gt;1 获取Unsafe对象&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;由于Unsafe在实现上添加了限制（只能由&lt;code&gt;BootstrapClassLoader&lt;/code&gt;加载的类型来调用，而我们的代码通常都是&lt;code&gt;AppClassLoader&lt;/code&gt;加载的），所以我们无法直接通过&lt;code&gt;Unsafe.getUnsafe()&lt;/code&gt;这个静态方法来获取。&lt;/p&gt;</description></item></channel></rss>
