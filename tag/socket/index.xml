@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Socket on Timetombs</title><link>https://linianhui.github.io/tag/socket/</link><description>Recent content in Socket on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/socket/index.xml" rel="self" type="application/rss+xml"/><item><title>[计算机网络编程] Socket API</title><link>https://linianhui.github.io/computer-networking-programming/socket/</link><pubDate>Tue, 13 Apr 2021 17:01:23 +0800</pubDate><guid>https://linianhui.github.io/computer-networking-programming/socket/</guid><description>&lt;p&gt;&lt;strong&gt;Socket&lt;/strong&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;是一套抽象的用于网络通信的API，它使得应用层可以不必关心底层繁琐的传输通信细节。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;开始之前最好具备一些&lt;strong&gt;计算机网络&lt;/strong&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;的基础，&lt;strong&gt;TCP&lt;/strong&gt;&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;以及&lt;strong&gt;网络字节序&lt;/strong&gt;&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref"&gt;4&lt;/a&gt;&lt;/sup&gt;的相关知识储备。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id="basic"&gt;
+&lt;i id="locator-basic" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#basic" class="article-h-a"&gt;1 基础简介&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;方便起见，这里假设底层是IPv4和TCP。&lt;/p&gt;
+&lt;h2 id="sockaddr_in"&gt;
+&lt;i id="locator-sockaddr_in" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#sockaddr_in" class="article-h-a"&gt;1.1 地址结构&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;既然是建立通信，那么就需要知道对方的地址。socket使用&lt;code&gt;struct sockaddr_in&lt;/code&gt;来存储连接一方的&lt;code&gt;ip&lt;/code&gt;和&lt;code&gt;port&lt;/code&gt;。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;typedef&lt;/span&gt; __uint32_t &lt;span style="color:#2b91af"&gt;in_addr_t&lt;/span&gt;; &lt;span style="color:#008000"&gt;/* base type for internet address */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;typedef&lt;/span&gt; __uint8_t &lt;span style="color:#2b91af"&gt;sa_family_t&lt;/span&gt;; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;struct&lt;/span&gt; in_addr {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#2b91af"&gt;in_addr_t&lt;/span&gt; s_addr; &lt;span style="color:#008000"&gt;/* 32 bit Internet address */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;/* IPv4专属的 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;struct&lt;/span&gt; sockaddr_in {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; __uint8_t sin_len; &lt;span style="color:#008000"&gt;/* struct length */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#2b91af"&gt;sa_family_t&lt;/span&gt; sin_family; &lt;span style="color:#008000"&gt;/* address family */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#2b91af"&gt;in_port_t&lt;/span&gt; sin_port; &lt;span style="color:#008000"&gt;/* 16bit port number */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#00f"&gt;struct&lt;/span&gt; in_addr sin_addr; &lt;span style="color:#008000"&gt;/* 32bit IPv4 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#2b91af"&gt;char&lt;/span&gt; sin_zero[8]; &lt;span style="color:#008000"&gt;/* unused */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;/* 通用的 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;struct&lt;/span&gt; sockaddr {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; __uint8_t sa_len; &lt;span style="color:#008000"&gt;/* struct length */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#2b91af"&gt;sa_family_t&lt;/span&gt; sa_family; &lt;span style="color:#008000"&gt;/* address family */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#2b91af"&gt;char&lt;/span&gt; sa_data[14]; &lt;span style="color:#008000"&gt;/* sin_port sin_addr sin_zero[8] */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="function"&gt;
+&lt;i id="locator-function" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#function" class="article-h-a"&gt;2 函数&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="socket"&gt;
+&lt;i id="locator-socket" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#socket" class="article-h-a"&gt;2.1 socket函数&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;socket&lt;/code&gt;&lt;sup id="fnref:5"&gt;&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref"&gt;5&lt;/a&gt;&lt;/sup&gt;用于创建一个用于通信的endpoint。使用方 &lt;strong&gt;client&lt;/strong&gt; 和 &lt;strong&gt;server&lt;/strong&gt;。&lt;/p&gt;</description></item></channel></rss>

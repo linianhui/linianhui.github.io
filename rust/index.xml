@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[Rust] on Timetombs</title><link>https://linianhui.github.io/rust/</link><description>Recent content in [Rust] on Timetombs</description><generator>Hugo</generator><language>en</language><atom:link href="https://linianhui.github.io/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>[Rust] Install</title><link>https://linianhui.github.io/rust/install/</link><pubDate>Sun, 05 Jan 2020 15:35:01 +0800</pubDate><guid>https://linianhui.github.io/rust/install/</guid><description>&lt;h1 id="rustup-init"&gt;
+&lt;i id="locator-rustup-init" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#rustup-init" class="article-h-a"&gt;1 rustup-init&lt;/a&gt;
+&lt;/h1&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: left"&gt;platform&lt;/th&gt;
+					&lt;th style="text-align: left"&gt;download url&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;windows-gnu&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe&lt;/a&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;windows-msvc&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe&lt;/a&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;apple-darwin&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;&lt;a href="https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init&lt;/a&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# windows only&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Env-SetRustEnvironmentVariable
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# install&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rustup-init.exe -y --verbose --default-toolchain stable --profile complete --no-modify-path
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="reference"&gt;
+&lt;i id="locator-reference" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#reference" class="article-h-a"&gt;2 Reference&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://www.rust-lang.org/tools/install"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://www.rust-lang.org/tools/install&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://forge.rust-lang.org/infra/other-installation-methods.html"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://forge.rust-lang.org/infra/other-installation-methods.html&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

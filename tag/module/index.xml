@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module on Timetombs</title><link>https://linianhui.github.io/tag/module/</link><description>Recent content in Module on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/module/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] data type</title><link>https://linianhui.github.io/redis/data-type/</link><pubDate>Fri, 19 Mar 2021 19:50:23 +0800</pubDate><guid>https://linianhui.github.io/redis/data-type/</guid><description>&lt;p&gt;redis支持丰富的数据类型&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。我们这里从两个角度来介绍：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;client使用：client可以使用到的数据类型。&lt;/li&gt;
+&lt;li&gt;server实现：server内部的具体实现。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="client"&gt;
+&lt;i id="locator-client" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#client" class="article-h-a"&gt;1 client使用&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="string"&gt;
+&lt;i id="locator-string" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#string" class="article-h-a"&gt;1.1 String&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;string是一个&lt;strong&gt;二进制安全的&lt;/strong&gt;字符串，类似于java的String，但是它是可以修改的。value最大长度不能超过&lt;strong&gt;512MB&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;redis中的key是string类型的，key的命名规则的通常采用&lt;code&gt;:&lt;/code&gt;分割的具有层级结构的形式，比如&lt;code&gt;account:1001:followers&lt;/code&gt;。&lt;/p&gt;</description></item></channel></rss>

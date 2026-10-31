@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>API on Timetombs</title><link>https://linianhui.github.io/tag/api/</link><description>Recent content in API on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 29 Dec 2024 22:26:54 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/api/index.xml" rel="self" type="application/rss+xml"/><item><title>[代码规范] HTTP APIs 设计/规范指南</title><link>https://linianhui.github.io/code-guide/http-api/</link><pubDate>Sat, 31 Mar 2018 09:02:21 +0800</pubDate><guid>https://linianhui.github.io/code-guide/http-api/</guid><description>&lt;p&gt;根据REST APIs的成熟度模型 ，此规范关注的是&lt;code&gt;Level 2&lt;/code&gt;的APIs。&lt;br /&gt;
+&lt;img src="richardson-maturity-model.png" loading="lazy" decoding="auto" alt="REST APIs 成熟度模型" title="REST APIs 成熟度模型"/&gt;&lt;/p&gt;
+&lt;h1 id="design-guide"&gt;
+&lt;i id="locator-design-guide" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#design-guide" class="article-h-a"&gt;1 设计指南&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;HTTP APIs主要由四部分组成 : &lt;a href="#http"
+
+&gt;#HTTP&lt;/a&gt;, &lt;a href="#url"
+
+&gt;#URL&lt;/a&gt;, &lt;code&gt;资源&lt;/code&gt;，&lt;code&gt;资源的表述&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;资源的表述通常都采用&lt;a href="#json"
+
+&gt;#JSON&lt;/a&gt;格式，故而下文使用&lt;a href="#json"
+
+&gt;#JSON&lt;/a&gt;代指&lt;code&gt;资源的表述&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;根据这些组成部分，按照以下&lt;strong&gt;3&lt;/strong&gt;个步骤设计APIs。&lt;/p&gt;
+&lt;h2 id="resource-based-design-api"&gt;
+&lt;i id="locator-resource-based-design-api" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#resource-based-design-api" class="article-h-a"&gt;1.1 基于&lt;code&gt;资源&lt;/code&gt;设计API&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;设计HTTP APIs的首要任务是识别出业务领域中的资源。资源是对服务端提供的服务进行分解、组合后的一个被命名的抽象概念。&lt;/p&gt;</description></item></channel></rss>

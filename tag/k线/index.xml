@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>K线 on Timetombs</title><link>https://linianhui.github.io/tag/k%E7%BA%BF/</link><description>Recent content in K线 on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sat, 23 May 2026 11:12:56 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/k%E7%BA%BF/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] 股票 VWAP-K线</title><link>https://linianhui.github.io/tool/stock-kline/</link><pubDate>Sat, 23 Aug 2025 10:24:05 +0800</pubDate><guid>https://linianhui.github.io/tool/stock-kline/</guid><description>&lt;p&gt;&lt;link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/theme-chalk/index.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /&gt;
+&lt;script src="https://s4.zstatic.net/ajax/libs/vue/2.7.16/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"&gt;&lt;/script&gt;
+&lt;script src="https://s4.zstatic.net/ajax/libs/element-ui/2.15.14/index.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"&gt;&lt;/script&gt;&lt;br /&gt;
+&lt;script src="https://s4.zstatic.net/ajax/libs/echarts/6.0.0/echarts.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"&gt;&lt;/script&gt;&lt;br /&gt;
+&lt;style&gt;
+ th {
+ text-align: right;
+ }
+
+ td {
+ text-align: right;
+ vertical-align: baseline;
+ padding: 6px 4px;
+ }
+
+ fieldset {
+ border: unset;
+ box-shadow: 0 0 2px #ccc;
+ max-width: 100%;
+ min-width: 100%;
+ margin-top: 1em;
+ box-sizing: border-box;
+ padding: 6px;
+ }
+
+ legend {
+ background-color: #FFF;
+ color: #909399;
+ }
+&lt;/style&gt;
+
+&lt;div id="app"&gt;
+ &lt;fieldset&gt;
+ &lt;legend&gt;参数&lt;/legend&gt;
+ &lt;table&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;label&gt;代码&lt;/label&gt;&lt;/td&gt;
+ &lt;td&gt;
+ &lt;el-input v-model="symbol" size="small" style="width:80px" id="stockKLineSymbol"&gt;&lt;/el-input&gt;
+ &lt;/td&gt;
+ &lt;td&gt;
+ &lt;el-radio-group v-model="symbol" size="small" style="display:inline-flex;flex-wrap:wrap;gap:8px"&gt;
+ &lt;span v-for="item in sortedSymbolHistory" :key="item.code" style="position:relative;display:inline-block"&gt;
+ &lt;el-radio-button :label="item.code"&gt;{{ item.name }} ({{ item.code }})&lt;/el-radio-button&gt;
+ &lt;i class="el-icon-close" @click.stop="removeSymbol(item.code)"
+ style="position:absolute;top:-6px;right:-6px;font-size:11px;cursor:pointer;color:#999;background:#fff;border-radius:50%;padding:1px;line-height:1"
+ title="从历史中删除"&gt;&lt;/i&gt;
+ &lt;/span&gt;
+ &lt;/el-radio-group&gt;
+ &lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;label&gt;周期&lt;/label&gt;&lt;/td&gt;
+ &lt;td&gt;
+ &lt;el-radio-group v-model="period" size="small"&gt;
+ &lt;el-radio-button label="日线"&gt;日线&lt;/el-radio-button&gt;
+ &lt;el-radio-button label="周线"&gt;周线&lt;/el-radio-button&gt;
+ &lt;el-radio-button label="月线"&gt;月线&lt;/el-radio-button&gt;
+ &lt;/el-radio-group&gt;
+ &lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;label&gt;复权&lt;/label&gt;&lt;/td&gt;
+ &lt;td&gt;
+ &lt;el-radio-group v-model="adjust" size="small"&gt;
+ &lt;el-radio-button label="前复权"&gt;前复权&lt;/el-radio-button&gt;
+ &lt;/el-radio-group&gt;
+ &lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td colspan="2"&gt;
+ &lt;el-button type="primary" @click="renderKLine" :disabled="loading" size="small"&gt;查看K线&lt;/el-button&gt;
+ &lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/table&gt;
+ &lt;/fieldset&gt;
+&lt;/div&gt;
+
+&lt;fieldset&gt;
+ &lt;legend&gt;VWAP-K线-&lt;span id="stockName"&gt;&lt;/span&gt;&lt;/legend&gt;
+ &lt;div id="klineChartDiv" style="width: 100%;height: 320px;"&gt;&lt;/div&gt;
+ &lt;div id="klineCountChartDiv" style="width: 100%;height: 160px;"&gt;&lt;/div&gt;
+ &lt;div id="klineMadiffChartDiv" style="width: 100%;height: 160px;"&gt;&lt;/div&gt;
+ &lt;div id="klineMacdChartDiv" style="width: 100%;height: 160px;"&gt;&lt;/div&gt;
+ &lt;div id="klineObvChartDiv" style="width: 100%;height: 160px;"&gt;&lt;/div&gt;
+ &lt;!-- &lt;div id="klineKdjChartDiv" style="width: 100%;height: 160px;"&gt;&lt;/div&gt; --&gt;
+&lt;/fieldset&gt;
+&lt;script src="https://linianhui.github.io/asset/tickflow.js"&gt;&lt;/script&gt;
+&lt;script src="echarts-dispatch.js"&gt;&lt;/script&gt;
+&lt;script src="kline-func.js"&gt;&lt;/script&gt;
+&lt;script src="kline-data.js"&gt;&lt;/script&gt;
+&lt;script src="kline-chart.js"&gt;&lt;/script&gt;
+&lt;script src="app.js"&gt;&lt;/script&gt;&lt;/p&gt;</description></item></channel></rss>

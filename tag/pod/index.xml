@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pod on Timetombs</title><link>https://linianhui.github.io/tag/pod/</link><description>Recent content in Pod on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/pod/index.xml" rel="self" type="application/rss+xml"/><item><title>[K8S] 核心概念 02 - Pod</title><link>https://linianhui.github.io/k8s/key-concept-pod/</link><pubDate>Tue, 31 Mar 2020 12:15:01 +0800</pubDate><guid>https://linianhui.github.io/k8s/key-concept-pod/</guid><description>&lt;p&gt;抽象层面 : &lt;code&gt;Pod = random-ip:fixed-port&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id="overview"&gt;
+&lt;i id="locator-overview" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#overview" class="article-h-a"&gt;1 概述&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;K8S中调度的最小单元。可以简单的类比:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: left"&gt;平台&lt;/th&gt;
+					&lt;th style="text-align: left"&gt;最小调度单元&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;KVM&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;VM&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;Docker&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;Container&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;K8s&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;Pod&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id="container-resources"&gt;
+&lt;i id="locator-container-resources" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#container-resources" class="article-h-a"&gt;2 容器的资源限制&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-yml" data-lang="yml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;resources: &lt;span style="color:#008000"&gt;# 资源限制&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; requests: # 请求的资源: k8s根据requests来进行pod的调度; HPA进行伸缩时也是根据requests来计算的。
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cpu: &lt;span style="color:#a31515"&gt;&amp;#39;500m&amp;#39;&lt;/span&gt; &lt;span style="color:#008000"&gt;# 单位=milli(千分之一)。50%vCPU。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; memory: &lt;span style="color:#a31515"&gt;&amp;#39;1024Mi&amp;#39;&lt;/span&gt; &lt;span style="color:#008000"&gt;# 单位=[M,Mi,G,Gi]。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; limits: # 被允许使用的资源上限: 超过时Pod被kill。
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cpu: &lt;span style="color:#a31515"&gt;&amp;#39;1&amp;#39;&lt;/span&gt; &lt;span style="color:#008000"&gt;# 1vCPU&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; memory: &lt;span style="color:#a31515"&gt;&amp;#39;2Gi&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
