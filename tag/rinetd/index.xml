@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rinetd on Timetombs</title><link>https://linianhui.github.io/tag/rinetd/</link><description>Recent content in Rinetd on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/rinetd/index.xml" rel="self" type="application/rss+xml"/><item><title>[工具] rinetd</title><link>https://linianhui.github.io/tool/rinetd/</link><pubDate>Tue, 23 Mar 2021 23:01:03 +0800</pubDate><guid>https://linianhui.github.io/tool/rinetd/</guid><description>&lt;h1 id="overview"&gt;
+&lt;i id="locator-overview" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#overview" class="article-h-a"&gt;1 概述&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;c语言开发的一个端口转发转发工具，非常小巧方便，比&lt;code&gt;iptables&lt;/code&gt;方便使用。或者像是在&lt;code&gt;macOS&lt;/code&gt;这种不支持转发到&lt;code&gt;remote ip&lt;/code&gt;的系统下。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;windows 下有内置的&lt;code&gt;netsh interface portproxy add v4tov4 listenport=80 connectaddress=192.168.2.201 connectport=80&lt;/code&gt;可以使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 查看帮助&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rinetd -h
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 前台运行(默认运行在background)，并且指定配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rinetd --foreground --conf-file rinetd.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight-file highlight-file_opened" id="hf-e49e3a4af7b2803d2d3c2186ece347ac"&gt;
+ &lt;div class="highlight-file-header"&gt;
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-e49e3a4af7b2803d2d3c2186ece347ac','highlight-file_opened')"&gt;rinetd.conf&lt;/a&gt;&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/tool/rinetd/rinetd.conf" title="下载 rinetd.conf" download&gt;&lt;/a&gt;
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/tool/rinetd/rinetd.conf" title="源码 rinetd.conf"&gt;&lt;/a&gt;&lt;/div&gt;
+ &lt;div class="highlight-file-content"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-ini" data-lang="ini"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;logfile /lnh/_cache/_rinetd/rinetd.log
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;#127.0.0.1 80 192.168.2.201 80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;127.0.0.1 2375 192.168.2.201 2375
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;127.0.0.1 3306 192.168.2.201 3306
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;127.0.0.1 6379 192.168.2.201 6379&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id="macos-install"&gt;
+&lt;i id="locator-macos-install" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#macos-install" class="article-h-a"&gt;1.1 macOS 安装&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;brew install rinetd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者源码自己编译安装。&lt;/p&gt;</description></item></channel></rss>

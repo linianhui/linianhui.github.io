@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Telnet on Timetombs</title><link>https://linianhui.github.io/tag/telnet/</link><description>Recent content in Telnet on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 20 Nov 2022 14:49:58 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/telnet/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] resp</title><link>https://linianhui.github.io/redis/resp/</link><pubDate>Fri, 19 Mar 2021 13:07:23 +0800</pubDate><guid>https://linianhui.github.io/redis/resp/</guid><description>&lt;p&gt;因为Redis是基于网络的分布式缓存服务，所以其隶属于&lt;code&gt;客户端-服务器架构风格&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。这就使得它必须通过网络进行通信，那么其客户端和服务端所采取的&lt;code&gt;应用层协议&lt;/code&gt;为&lt;code&gt;RESP(REdis Serialization Protocol)&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。底层的传输协议为&lt;code&gt;TCP&lt;/code&gt;&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;，端口号6379。&lt;/p&gt;
+&lt;h1 id="request-response-model"&gt;
+&lt;i id="locator-request-response-model" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#request-response-model" class="article-h-a"&gt;1 请求/响应模型&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Client发送各种命令给Server，Server接收命令并处理后把响应消息发回Client。有两种例外的情况：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;pipelining : Client一次性的发送多个命令。&lt;/li&gt;
+&lt;li&gt;Pub/Sub：Server会改成推送方式，即无需Client发送请求，而是Server主动推送。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="application-protocal"&gt;
+&lt;i id="locator-application-protocal" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#application-protocal" class="article-h-a"&gt;2 应用层协议&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;RESP&lt;/code&gt;&lt;sup id="fnref1:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;致力于一下三个目标：&lt;/p&gt;</description></item></channel></rss>

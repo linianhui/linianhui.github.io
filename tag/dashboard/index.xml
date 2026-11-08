@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dashboard on Timetombs</title><link>https://linianhui.github.io/tag/dashboard/</link><description>Recent content in Dashboard on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 14 Mar 2021 09:27:13 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/dashboard/index.xml" rel="self" type="application/rss+xml"/><item><title>[K8S] Install</title><link>https://linianhui.github.io/k8s/install/</link><pubDate>Thu, 13 Dec 2018 23:21:01 +0800</pubDate><guid>https://linianhui.github.io/k8s/install/</guid><description>&lt;p&gt;kubeadm是k8s的command-line工具，用来创建和维护k8s集群。&lt;/p&gt;
+&lt;h1 id="requirements"&gt;
+&lt;i id="locator-requirements" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#requirements" class="article-h-a"&gt;1. 前提要求&lt;/a&gt;
+&lt;/h1&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: left"&gt;role&lt;/th&gt;
+					&lt;th style="text-align: left"&gt;hostname&lt;/th&gt;
+					&lt;th style="text-align: left"&gt;fixed ip&lt;/th&gt;
+					&lt;th style="text-align: left"&gt;os&lt;/th&gt;
+					&lt;th style="text-align: left"&gt;cpu&lt;/th&gt;
+					&lt;th style="text-align: left"&gt;memory&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;master&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;k8s-master-1&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;192.168.2.211&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;ubuntu server 18.04.4&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;2&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;4G&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;worker&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;k8s-worker-1&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;192.168.2.212&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;ubuntu server 18.04.4&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;2&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;4G&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;worker&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;k8s-worker-2&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;192.168.2.213&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;ubuntu server 18.04.4&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;2&lt;/td&gt;
+					&lt;td style="text-align: left"&gt;4G&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="requirements-hardware"&gt;
+&lt;i id="locator-requirements-hardware" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#requirements-hardware" class="article-h-a"&gt;1.1 硬件要求&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;至少2核CPU。&lt;/li&gt;
+&lt;li&gt;至少2G的内存。&lt;/li&gt;
+&lt;li&gt;每个node都有固定的IP，并且可以直联（无NAT）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 查看CPU核心数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat /proc/cpuinfo | grep processor | wc -l
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 查看内存大小&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;free -h
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 查看ip&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ip a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="requirements-hostnam-unique"&gt;
+&lt;i id="locator-requirements-hostnam-unique" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#requirements-hostnam-unique" class="article-h-a"&gt;1.2 软件要求&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;hostname唯一，并且不包含&lt;code&gt;.&lt;/code&gt;、&lt;code&gt;_&lt;/code&gt;和大写字母。&lt;/li&gt;
+&lt;li&gt;为k8s相关的服务配置防火墙，这里图省事，直接关闭防火墙。&lt;/li&gt;
+&lt;li&gt;关闭Swap内存（k8s为了性能考虑，不允许开启Swap）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight-file highlight-file_opened" id="hf-502deb8eff5b2c67b8436f1cd49a755e"&gt;
+ &lt;div class="highlight-file-header"&gt;
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-502deb8eff5b2c67b8436f1cd49a755e','highlight-file_opened')"&gt;init-node.sh&lt;/a&gt;&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/k8s/install/init-node.sh" title="下载 init-node.sh" download&gt;&lt;/a&gt;
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/k8s/install/init-node.sh" title="源码 init-node.sh"&gt;&lt;/a&gt;&lt;/div&gt;
+ &lt;div class="highlight-file-content"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;set -x
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat &lt;span style="color:#a31515"&gt;&amp;lt;&amp;lt;-EOF &amp;gt;&amp;gt; /etc/hosts
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;192.168.2.211 api-server.k8s.test
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 禁用防火墙&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# ubuntu&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ufw disable
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# centos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;systemctl stop firewalld
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;systemctl disable firewalld
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 禁用swap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo swapoff -a
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 永久禁用swap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat /etc/fstab
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat /etc/fstab | grep -v swap &amp;gt; /etc/fstab
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat /etc/fstab
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 永久禁用SELINUX&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tee &lt;span style="color:#a31515"&gt;&amp;lt;&amp;lt;-EOF /etc/selinux/config
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;SELINUX=disabled
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 开启overlay和br_netfilter模块&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat &lt;span style="color:#a31515"&gt;&amp;lt;&amp;lt;-EOF &amp;gt; /etc/modules-load.d/k8s.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;overlay
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;br_netfilter
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;modprobe overlay
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;modprobe br_netfilter
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# 开启ipv4 forward&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat &lt;span style="color:#a31515"&gt;&amp;lt;&amp;lt;-EOF &amp;gt; /etc/sysctl.d/k8s.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;net.bridge.bridge-nf-call-iptables = 1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;net.ipv4.ip_forward = 1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sysctl --system
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id="docker"&gt;
+&lt;i id="locator-docker" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#docker" class="article-h-a"&gt;2. 安装Docker&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://linianhui.github.io/docker/install"
+
+ target="_blank" rel="noopener norefferrer"&gt;安装Docker&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

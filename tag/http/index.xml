@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HTTP on Timetombs</title><link>https://linianhui.github.io/tag/http/</link><description>Recent content in HTTP on Timetombs</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 29 Dec 2024 22:26:54 +0800</lastBuildDate><atom:link href="https://linianhui.github.io/tag/http/index.xml" rel="self" type="application/rss+xml"/><item><title>[代码规范] HTTP APIs 设计/规范指南</title><link>https://linianhui.github.io/code-guide/http-api/</link><pubDate>Sat, 31 Mar 2018 09:02:21 +0800</pubDate><guid>https://linianhui.github.io/code-guide/http-api/</guid><description>&lt;p&gt;根据REST APIs的成熟度模型 ，此规范关注的是&lt;code&gt;Level 2&lt;/code&gt;的APIs。&lt;br /&gt;
+&lt;img src="richardson-maturity-model.png" loading="lazy" decoding="auto" alt="REST APIs 成熟度模型" title="REST APIs 成熟度模型"/&gt;&lt;/p&gt;
+&lt;h1 id="design-guide"&gt;
+&lt;i id="locator-design-guide" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#design-guide" class="article-h-a"&gt;1 设计指南&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;HTTP APIs主要由四部分组成 : &lt;a href="#http"
+
+&gt;#HTTP&lt;/a&gt;, &lt;a href="#url"
+
+&gt;#URL&lt;/a&gt;, &lt;code&gt;资源&lt;/code&gt;，&lt;code&gt;资源的表述&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;资源的表述通常都采用&lt;a href="#json"
+
+&gt;#JSON&lt;/a&gt;格式，故而下文使用&lt;a href="#json"
+
+&gt;#JSON&lt;/a&gt;代指&lt;code&gt;资源的表述&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;根据这些组成部分，按照以下&lt;strong&gt;3&lt;/strong&gt;个步骤设计APIs。&lt;/p&gt;
+&lt;h2 id="resource-based-design-api"&gt;
+&lt;i id="locator-resource-based-design-api" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#resource-based-design-api" class="article-h-a"&gt;1.1 基于&lt;code&gt;资源&lt;/code&gt;设计API&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;设计HTTP APIs的首要任务是识别出业务领域中的资源。资源是对服务端提供的服务进行分解、组合后的一个被命名的抽象概念。&lt;/p&gt;</description></item><item><title>[计算机网络] DoH(DNS over HTTPS)</title><link>https://linianhui.github.io/computer-networking/doh/</link><pubDate>Sat, 01 Jan 2022 13:55:00 +0800</pubDate><guid>https://linianhui.github.io/computer-networking/doh/</guid><description>&lt;p&gt;&lt;strong&gt;RFC8484 DNS Queries over HTTPS (DoH)&lt;/strong&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h1 id="mime"&gt;
+&lt;i id="locator-mime" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#mime" class="article-h-a"&gt;MIME&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;application/dns-message&lt;/code&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Type : &lt;code&gt;application&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;SubType : &lt;code&gt;dns-message&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;编码格式 : 二进制格式，定义在RFC1035&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="example"&gt;
+&lt;i id="locator-example" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#example" class="article-h-a"&gt;Example&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-http" data-lang="http"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:method = GET
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:scheme = https
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:authority = dnsserver.example.net
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:path = /dns-query?dns=AAABAAABAAAAAAAAA3d3dwdleGFtcGxlA2NvbQAAAQAB
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;accept = application/dns-message
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-http" data-lang="http"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;:status = 200
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;content-type = application/dns-message
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;content-length = 61
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;cache-control = max-age=3709
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;00 00 81 80 00 01 00 01 00 00 00 00 03 77 77 77
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 1c 00
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;01 c0 0c 00 1c 00 01 00 00 0e 7d 00 10 20 01 0d
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;b8 ab cd 00 12 00 01 00 02 00 03 00 04
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;待补充...&lt;/p&gt;
+&lt;h1 id="reference"&gt;
+&lt;i id="locator-reference" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#reference" class="article-h-a"&gt;Reference&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;RFC8484 DNS over HTTPS (DoH) : &lt;a href="https://datatracker.ietf.org/doc/html/rfc8484"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://datatracker.ietf.org/doc/html/rfc8484&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>[理解REST] 06 REST的应用经验以及教训</title><link>https://linianhui.github.io/understand-rest/06-experience/</link><pubDate>Sat, 21 Oct 2017 15:21:00 +0800</pubDate><guid>https://linianhui.github.io/understand-rest/06-experience/</guid><description>&lt;p&gt;衔接上文&lt;a href="../05-web-and-rest/"
+
+ target="_blank" rel="noopener norefferrer"&gt;[理解REST] 05 Web的需求 &amp;amp; 推导REST&lt;/a&gt;，上文根据Web的需求推导出了REST架构风格，以及REST的详细描述和解释。自从1994年以来，REST架构风格被用于指导Web架构的设计和开发工作，最重要的两点体现在设计HTTP和URI两个互联网规范协议的过程中，以及实现这些规范的libwww-perl客户端库，Apache HTTP项目(httpd)以及其他的实现中，所得到的经验以及教训。&lt;/p&gt;</description></item></channel></rss>

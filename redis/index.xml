@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>[Redis] on Timetombs</title><link>https://linianhui.github.io/redis/</link><description>Recent content in [Redis] on Timetombs</description><generator>Hugo</generator><language>en</language><atom:link href="https://linianhui.github.io/redis/index.xml" rel="self" type="application/rss+xml"/><item><title>[Redis] sentinel</title><link>https://linianhui.github.io/redis/sentinel/</link><pubDate>Sat, 20 Mar 2021 09:30:23 +0800</pubDate><guid>https://linianhui.github.io/redis/sentinel/</guid><description>&lt;p&gt;在上一篇博客&lt;code&gt;Replication&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;中我们构建了一个简单的主从复制架构的redis服务，利用Replication我们可以让redis提供读写分离、提供读取能力、数据备份等功能，也支持slave从鼓掌中恢复。但是如果master出现了故障，那么整Replication都会处于一个不可用的状态。这显然无法满足高可用的目标。而整个目标需要借助&lt;code&gt;sentinel&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;来实现。&lt;/p&gt;
+&lt;p&gt;sentinel概述：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;监控&lt;/strong&gt;：sentinel是一个分布式系统，多个实例利用&lt;code&gt;gossip&lt;/code&gt;协议协同工作。sentinel监控master和slave实例，同时sentinel实例之间也互相监控。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;通知&lt;/strong&gt;： 当某一个实例出现问题时，sentinel可以通过API通知系统管理员。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;自动故障转移&lt;/strong&gt;：如果被监控的master出现问题，sentinel可以启动一个自动故障转移的过程，sentinel实例之间选举出来一个slave提升为master，然后配置其他slave的配置使其成为新的master的slave，并且通知client使用新的连接地址。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置提供者&lt;/strong&gt;：client不再之间连接到master或者slave，而是连接到sentinel，由sentinel提供redis的master和slave的地址。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="install"&gt;
+&lt;i id="locator-install" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#install" class="article-h-a"&gt;1 搭建环境&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;运行sentinel有两种方式：&lt;/p&gt;</description></item><item><title>[Redis] replication</title><link>https://linianhui.github.io/redis/replication/</link><pubDate>Sat, 20 Mar 2021 09:29:23 +0800</pubDate><guid>https://linianhui.github.io/redis/replication/</guid><description>&lt;p&gt;绝大多数的情况下，redis中的数据都是读取远远多于写入。为了提供更高的读取QPS的支持，所以redis提供了&lt;code&gt;Replication&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;的支持。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;单纯的Replication并不能处理redis意外宕机等导致的不可用问题。高可用需要&lt;code&gt;Sentinel&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;来提供支持。&lt;/li&gt;
+&lt;li&gt;单纯的Replication也不能提升redis的存储容量，比如master原本是提供8G的存储上限，那么搭配两个slave则依然是8G。扩容需要&lt;code&gt;Cluster&lt;/code&gt;&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;来提供支持。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h1 id="install"&gt;
+&lt;i id="locator-install" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#install" class="article-h-a"&gt;1 搭建环境&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;这里使用&lt;code&gt;docker-compose -f redis.yml up -d&lt;/code&gt;启动一个主从复制的环境，一个&lt;code&gt;master&lt;/code&gt;，两个&lt;code&gt;slave&lt;/code&gt;。&lt;br /&gt;
+&lt;div class="highlight-file " id="hf-843006127501372b0e6c9da396e83057"&gt;
+ &lt;div class="highlight-file-header"&gt;
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-843006127501372b0e6c9da396e83057','highlight-file_opened')"&gt;redis.yml&lt;/a&gt;&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/redis/replication/redis.yml" title="下载 redis.yml" download&gt;&lt;/a&gt;
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/redis/replication/redis.yml" title="源码 redis.yml"&gt;&lt;/a&gt;&lt;/div&gt;
+ &lt;div class="highlight-file-content"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-yml" data-lang="yml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# https://docs.docker.com/compose/compose-file/compose-file-v3/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;version: &lt;span style="color:#a31515"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;services:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; master.test:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image: redis:6.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; restart: &lt;span style="color:#00f"&gt;on&lt;/span&gt;-failure
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; command: redis-server
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - volume_master:/data
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; slave1.test:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image: redis:6.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; restart: &lt;span style="color:#00f"&gt;on&lt;/span&gt;-failure
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; command: redis-server --slaveof master.test 6379
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; depends_on:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - master.test
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - volume_slave1:/data
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; slave2.test:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image: redis:6.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; restart: &lt;span style="color:#00f"&gt;on&lt;/span&gt;-failure
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; command: redis-server --slaveof master.test 6379
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; depends_on:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - master.test
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - volume_slave2:/data
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volume_master:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volume_slave1:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volume_slave2:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item><item><title>[Redis] 运行时架构</title><link>https://linianhui.github.io/redis/runtime-architecture/</link><pubDate>Fri, 19 Mar 2021 20:12:24 +0800</pubDate><guid>https://linianhui.github.io/redis/runtime-architecture/</guid><description>&lt;p&gt;redis自从诞生之处就被称之为单线程的方式实现的，这里的单线程指的是&lt;code&gt;socket read&lt;/code&gt;、&lt;code&gt;解析&lt;/code&gt;、&lt;code&gt;执行&lt;/code&gt;和&lt;code&gt;socket write&lt;/code&gt;这四个阶段都是由主线程独自完成的。当然一个redis-server实例并不是只有这一个线程，比如还有执行RDB、AOF、LRU、AOFREWRITE等等后台线程，只是它们的运行不会参与到server的主线程处理client的request这个流程中。&lt;/p&gt;</description></item><item><title>[Redis] benchmark</title><link>https://linianhui.github.io/redis/benchmark/</link><pubDate>Fri, 19 Mar 2021 20:12:23 +0800</pubDate><guid>https://linianhui.github.io/redis/benchmark/</guid><description>&lt;h1 id="concept"&gt;
+&lt;i id="locator-concept" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#concept" class="article-h-a"&gt;1 基本概念&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;redis速度非常快，但是有多块呢？首先我们需要分析一下当client发起对server的调用到获得结果这段时间内都经历了那些主要的步骤，比如如下代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Jedis jedis = &lt;span style="color:#00f"&gt;new&lt;/span&gt; Jedis(&lt;span style="color:#a31515"&gt;&amp;#34;localhost&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;String result = jedis.set(&lt;span style="color:#a31515"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;, &lt;span style="color:#a31515"&gt;&amp;#34;lnh&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;详细分解一下其中经历的主要步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;client发起调用；
+&lt;ol&gt;
+&lt;li&gt;初始化网络连接（或者从client端维护的连接池中获取连接）；&lt;/li&gt;
+&lt;li&gt;把java方法调用和数据对象序列化成&lt;code&gt;RESP&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;协议格式；&lt;/li&gt;
+&lt;li&gt;写入网络I/O。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;网络传输；
+&lt;ol&gt;
+&lt;li&gt;把上一步的转换成resp协议后的数据通过网络发送给server。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;server端处理调用；
+&lt;ol&gt;
+&lt;li&gt;接收请求数据，解析resp协议格式的数据；&lt;/li&gt;
+&lt;li&gt;执行解析后的command；如果开启AOF，则也会处理AOF的事情。&lt;/li&gt;
+&lt;li&gt;把执行结果序列化为resp协议格式。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;网络传输；
+&lt;ol&gt;
+&lt;li&gt;把上一步的转换成resp协议后的数据通过网络发送给client。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;client接收响应；
+&lt;ol&gt;
+&lt;li&gt;读取网络IO数据，解析resp协议格式的数据。&lt;/li&gt;
+&lt;li&gt;反序列化为Java对象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总结来说主要是3大块：client、网络传输、server。那么从使用者的角度来看，重点需要关注的在于client端的序列化以及网络连接消耗。比如采用了不合适的数据结构，导致每次需要传输的数据量过大；以及连接池的过大或过小，或者根本没，从而增大每次建立底层TCP连接的消耗；再有就是server端的配置导致一些额外的操作（aof的appendfsync配置&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;）、或者会导致长时间阻塞操作的命令导致的server端处理能力的下降。&lt;/p&gt;</description></item><item><title>[Redis] persistence</title><link>https://linianhui.github.io/redis/persistence/</link><pubDate>Fri, 19 Mar 2021 20:11:23 +0800</pubDate><guid>https://linianhui.github.io/redis/persistence/</guid><description>&lt;p&gt;redis是基于内存存储数据的，当server意外宕机或者重启时，内存中的数据就会丢失掉。redis提供了如下几种选项来应对不同场景下的需求。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;RDB(Redis DataBase) ：按照配置的时间周期来定时保存内存中的数据快照到disk上。&lt;/li&gt;
+&lt;li&gt;AOF (Append Only File) ：通过记录server接收到的每一个write命令，在下次启动时重放这些指令，以此达到恢复数据的目的。&lt;/li&gt;
+&lt;li&gt;No persistence ：完全禁用持久化。&lt;/li&gt;
+&lt;li&gt;RDB + AOF ：同时启用RDB和AOF。这种情况下AOF优先被使用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="rdb"&gt;
+&lt;i id="locator-rdb" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#rdb" class="article-h-a"&gt;1 RDB&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;RDB&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;是一个非常紧凑的二进制格式的文件。它的工作方式是fork一个子进程，然后按照配置定时的把内存快照到disk上的一个单一的文件中。它的工作方式决定了它具备一下特点：&lt;/p&gt;</description></item><item><title>[Redis] lua script</title><link>https://linianhui.github.io/redis/lua/</link><pubDate>Fri, 19 Mar 2021 20:11:22 +0800</pubDate><guid>https://linianhui.github.io/redis/lua/</guid><description>&lt;p&gt;redis2.6+在server端内嵌了&lt;code&gt;lua&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;的支持，可以执行client发送的自定义的&lt;code&gt;lua script&lt;/code&gt;，使得一些操作逻辑可以放到server上来执行，有利于减少一些不必要的网络交互，从而提升性能。在架构风格上这隶属于&lt;code&gt;COD(Code On Demand)按需代码&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;，类似于&lt;code&gt;REST&lt;/code&gt;&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;的六大架构约束之一的&lt;code&gt;COD&lt;/code&gt;约束&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref"&gt;4&lt;/a&gt;&lt;/sup&gt;，但是不同的是，这里的COD是运行在server端的。&lt;/p&gt;
+&lt;h1 id="command"&gt;
+&lt;i id="locator-command" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#command" class="article-h-a"&gt;1 命令&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;执行lua script的主要是&lt;code&gt;EVAL&lt;/code&gt;&lt;sup id="fnref:5"&gt;&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref"&gt;5&lt;/a&gt;&lt;/sup&gt;和&lt;code&gt;EVALSHA&lt;/code&gt;&lt;sup id="fnref:6"&gt;&lt;a href="#fn:6" class="footnote-ref" role="doc-noteref"&gt;6&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;EVAL script numkeys key [key ...] arg [arg ...]&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;EVALSHA sha1 numkeys key [key ...] arg [arg ...]&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;两者的唯一不同是第一个参数的差异，EVAL的第一个参数是script本身，而EVALSHA的第一个参数则是script的sha1的值。因为redis-server会在第一次执行script时进行缓存，缓存的唯一标识是script的sha1，如果script一直没有任何变化，那么后续的所有命令，都可以用这个sha1来代替体积更大的script本身，这样可以有效的减少不必要的网络传输。&lt;/p&gt;</description></item><item><title>[Redis] expire</title><link>https://linianhui.github.io/redis/expire/</link><pubDate>Fri, 19 Mar 2021 19:52:12 +0800</pubDate><guid>https://linianhui.github.io/redis/expire/</guid><description>&lt;p&gt;因为redis通常主要用来作为一个缓存服务。缓存何时失效的问题号称是计算机科学领域两大难题之一（另一个是命名），这一篇文章就介绍下笔者对于缓存如何以及何时失效的问题理解。&lt;/p&gt;
+&lt;h1 id="delete-way"&gt;
+&lt;i id="locator-delete-way" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#delete-way" class="article-h-a"&gt;1 过期删除方式&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;redis支持通过两种方式清理过期的key&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;被动删除。&lt;/li&gt;
+&lt;li&gt;主动删除。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="passive-delete"&gt;
+&lt;i id="locator-passive-delete" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#passive-delete" class="article-h-a"&gt;1.1 被动删除&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;在client访问(任意读写操作)一个key时，如果key设置了过期时间，则在访问时删除它们。如果没有主动设置过期时间，那么key则是会一直不会过期的。&lt;/p&gt;</description></item><item><title>[Redis] pipelining</title><link>https://linianhui.github.io/redis/pipelining/</link><pubDate>Fri, 19 Mar 2021 19:51:12 +0800</pubDate><guid>https://linianhui.github.io/redis/pipelining/</guid><description>&lt;h1 id="issue"&gt;
+&lt;i id="locator-issue" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#issue" class="article-h-a"&gt;1 问题分析&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;设想一下有这样一个场景。在一个&lt;code&gt;RTT&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;为10ms的网络环境下，循环执行一个&lt;code&gt;INCR xxkey&lt;/code&gt;的操作，假定redis-server每次耗时1ms。&lt;/p&gt;
+&lt;p&gt;当cleint发出&lt;code&gt;INCR xxkey&lt;/code&gt;的命令后，要等11ms后才能收到响应。如果循环100次，则总共就需要&lt;code&gt;1100ms&lt;/code&gt;。显然redis-server执行100次仅需要&lt;code&gt;1ms*100=100ms&lt;/code&gt;，而消耗在&lt;code&gt;RTT&lt;/code&gt;&lt;sup id="fnref1:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;上所需的时间为&lt;code&gt;10ms*100=1000ms&lt;/code&gt;。网络延迟消耗了太多的时间。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;redis的基本通信模型是request/response。即client1发送一个request1，然后等待server处理完后的response1。在这个期间，server也是处于阻塞状态的，也就是说这时你又来另外一个client2的request2，那么这个request2也需要等待server1处理完response1后才能继续处理。&lt;/p&gt;</description></item><item><title>[Redis] data type</title><link>https://linianhui.github.io/redis/data-type/</link><pubDate>Fri, 19 Mar 2021 19:50:23 +0800</pubDate><guid>https://linianhui.github.io/redis/data-type/</guid><description>&lt;p&gt;redis支持丰富的数据类型&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。我们这里从两个角度来介绍：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;client使用：client可以使用到的数据类型。&lt;/li&gt;
+&lt;li&gt;server实现：server内部的具体实现。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="client"&gt;
+&lt;i id="locator-client" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#client" class="article-h-a"&gt;1 client使用&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="string"&gt;
+&lt;i id="locator-string" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#string" class="article-h-a"&gt;1.1 String&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;string是一个&lt;strong&gt;二进制安全的&lt;/strong&gt;字符串，类似于java的String，但是它是可以修改的。value最大长度不能超过&lt;strong&gt;512MB&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;redis中的key是string类型的，key的命名规则的通常采用&lt;code&gt;:&lt;/code&gt;分割的具有层级结构的形式，比如&lt;code&gt;account:1001:followers&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>[Redis] resp</title><link>https://linianhui.github.io/redis/resp/</link><pubDate>Fri, 19 Mar 2021 13:07:23 +0800</pubDate><guid>https://linianhui.github.io/redis/resp/</guid><description>&lt;p&gt;因为Redis是基于网络的分布式缓存服务，所以其隶属于&lt;code&gt;客户端-服务器架构风格&lt;/code&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。这就使得它必须通过网络进行通信，那么其客户端和服务端所采取的&lt;code&gt;应用层协议&lt;/code&gt;为&lt;code&gt;RESP(REdis Serialization Protocol)&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。底层的传输协议为&lt;code&gt;TCP&lt;/code&gt;&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;，端口号6379。&lt;/p&gt;
+&lt;h1 id="request-response-model"&gt;
+&lt;i id="locator-request-response-model" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#request-response-model" class="article-h-a"&gt;1 请求/响应模型&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Client发送各种命令给Server，Server接收命令并处理后把响应消息发回Client。有两种例外的情况：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;pipelining : Client一次性的发送多个命令。&lt;/li&gt;
+&lt;li&gt;Pub/Sub：Server会改成推送方式，即无需Client发送请求，而是Server主动推送。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="application-protocal"&gt;
+&lt;i id="locator-application-protocal" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#application-protocal" class="article-h-a"&gt;2 应用层协议&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;RESP&lt;/code&gt;&lt;sup id="fnref1:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;致力于一下三个目标：&lt;/p&gt;</description></item><item><title>[Redis] install</title><link>https://linianhui.github.io/redis/install/</link><pubDate>Fri, 19 Mar 2021 03:24:23 +0800</pubDate><guid>https://linianhui.github.io/redis/install/</guid><description>&lt;h1 id="source"&gt;
+&lt;i id="locator-source" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#source" class="article-h-a"&gt;1 源码安装&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;适用于Linux和macOS&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="https://download.redis.io/releases/redis-6.2.1.tar.gz"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://download.redis.io/releases/redis-6.2.1.tar.gz&lt;/a&gt;。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;wget https://download.redis.io/releases/redis-6.2.1.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tar xzf redis-6.2.1.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cd redis-6.2.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编译完成后的二进制文件(&lt;code&gt;redis-server&lt;/code&gt;,&lt;code&gt;redis-cli&lt;/code&gt;等等)位于&lt;code&gt;src&lt;/code&gt;目录中。&lt;/p&gt;
+&lt;h1 id="docker"&gt;
+&lt;i id="locator-docker" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#docker" class="article-h-a"&gt;2 docker安装&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://hub.docker.com/_/redis"
+
+ target="_blank" rel="noopener norefferrer"&gt;https://hub.docker.com/_/redis&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker run --name redis -d redis:6.2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight-file highlight-file_opened" id="hf-32fd287cfe1e0c45ffc41a0bebc4104d"&gt;
+ &lt;div class="highlight-file-header"&gt;
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-32fd287cfe1e0c45ffc41a0bebc4104d','highlight-file_opened')"&gt;Dockerfile&lt;/a&gt;&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/redis/install/Dockerfile" title="下载 Dockerfile" download&gt;&lt;/a&gt;
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/redis/install/Dockerfile" title="源码 Dockerfile"&gt;&lt;/a&gt;&lt;/div&gt;
+ &lt;div class="highlight-file-content"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-Dockerfile" data-lang="Dockerfile"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# https://hub.docker.com/_/redis/&lt;/span&gt;&lt;span style=""&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# https://github.com/docker-library/redis/blob/master/6.2/Dockerfile&lt;/span&gt;&lt;span style=""&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;FROM&lt;/span&gt; &lt;span style="color:#a31515"&gt;redis:6.2&lt;/span&gt;&lt;span style=""&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style=""&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#00f"&gt;EXPOSE&lt;/span&gt; &lt;span style="color:#a31515"&gt;6379&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id="run"&gt;
+&lt;i id="locator-run" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#run" class="article-h-a"&gt;3 本地运行&lt;/a&gt;
+&lt;/h1&gt;
+&lt;div class="highlight-file highlight-file_opened" id="hf-9ab373a6a2363d0c402d40e4d5c9c6bf"&gt;
+ &lt;div class="highlight-file-header"&gt;
+ &lt;a class="fa fa-plus highlight-file-switch" onclick="blog.toggleClassName('hf-9ab373a6a2363d0c402d40e4d5c9c6bf','highlight-file_opened')"&gt;redis.conf&lt;/a&gt;&lt;a class="fa fa-download highlight-file-download" target="_blank" href="https://linianhui.github.io/redis/install/redis.conf" title="下载 redis.conf" download&gt;&lt;/a&gt;
+ &lt;a class="fa fa-github" target="_blank" href="https://github.com/linianhui/blog/blob/main/src/redis/install/redis.conf" title="源码 redis.conf"&gt;&lt;/a&gt;&lt;/div&gt;
+ &lt;div class="highlight-file-content"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-ini" data-lang="ini"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bind 127.0.0.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;port 6379
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# RDB&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;save 300 10
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;stop-writes-on-bgsave-error yes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dir /lnh/_data/_redis/
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dbfilename dump.rdb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rdbcompression yes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rdbchecksum no
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rdb-del-sync-files no
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#008000"&gt;# AOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;appendonly yes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;appendfsync everysec
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;appendfilename appendonly.aof
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;auto-aof-rewrite-min-size 64mb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;auto-aof-rewrite-percentage 100
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;no-appendfsync-on-rewrite yes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;aof-load-truncated yes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;aof-use-rdb-preamble yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id="run-server"&gt;
+&lt;i id="locator-run-server" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#run-server" class="article-h-a"&gt;3.1 运行服务端&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ redis-server
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;5177:C 19 Mar 2021 04:08:38.090 &lt;span style="color:#008000"&gt;# oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;5177:C 19 Mar 2021 04:08:38.090 &lt;span style="color:#008000"&gt;# Redis version=6.2.1, bits=64, commit=00000000, modified=0, pid=5177, just started&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;5177:C 19 Mar 2021 04:08:38.090 &lt;span style="color:#008000"&gt;# Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;5177:M 19 Mar 2021 04:08:38.091 * monotonic clock: POSIX clock_gettime
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; _._ 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; _.-&lt;span style="color:#a31515"&gt;``&lt;/span&gt;__ &lt;span style="color:#a31515"&gt;&amp;#39;&amp;#39;&lt;/span&gt;-._ 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; _.-&lt;span style="color:#a31515"&gt;``&lt;/span&gt; &lt;span style="color:#a31515"&gt;`&lt;/span&gt;. &lt;span style="color:#a31515"&gt;`&lt;/span&gt;_. &lt;span style="color:#a31515"&gt;&amp;#39;&amp;#39;&lt;/span&gt;-._ Redis 6.2.1 (00000000/0) 64 bit
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; .-&lt;span style="color:#a31515"&gt;``&lt;/span&gt; .-&lt;span style="color:#a31515"&gt;```&lt;/span&gt;. &lt;span style="color:#a31515"&gt;```&lt;/span&gt;&lt;span style="color:#a31515"&gt;\/&lt;/span&gt; _.,_ &lt;span style="color:#a31515"&gt;&amp;#39;&amp;#39;&lt;/span&gt;-._ 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ( &lt;span style="color:#a31515"&gt;&amp;#39; , .-` | `, ) Running in standalone mode
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt; |`-._`-...-` __...-.``-._|&amp;#39;&lt;/span&gt;&lt;span style="color:#a31515"&gt;`&lt;/span&gt; _.-&lt;span style="color:#a31515"&gt;&amp;#39;| Port: 6379
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt; | `-._ `._ / _.-&amp;#39;&lt;/span&gt; | PID: 5177
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._ &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._ &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-./ _.-&lt;span style="color:#a31515"&gt;&amp;#39; _.-&amp;#39;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; |&lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._&lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._ &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-.__.-&lt;span style="color:#a31515"&gt;&amp;#39; _.-&amp;#39;&lt;/span&gt;_.-&lt;span style="color:#a31515"&gt;&amp;#39;| 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt; | `-._`-._ _.-&amp;#39;&lt;/span&gt;_.-&lt;span style="color:#a31515"&gt;&amp;#39; | http://redis.io 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt; `-._ `-._`-.__.-&amp;#39;&lt;/span&gt;_.-&lt;span style="color:#a31515"&gt;&amp;#39; _.-&amp;#39;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; |&lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._&lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._ &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-.__.-&lt;span style="color:#a31515"&gt;&amp;#39; _.-&amp;#39;&lt;/span&gt;_.-&lt;span style="color:#a31515"&gt;&amp;#39;| 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt; | `-._`-._ _.-&amp;#39;&lt;/span&gt;_.-&lt;span style="color:#a31515"&gt;&amp;#39; | 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt; `-._ `-._`-.__.-&amp;#39;&lt;/span&gt;_.-&lt;span style="color:#a31515"&gt;&amp;#39; _.-&amp;#39;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._ &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-.__.-&lt;span style="color:#a31515"&gt;&amp;#39; _.-&amp;#39;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a31515"&gt;`&lt;/span&gt;-._ _.-&lt;span style="color:#a31515"&gt;&amp;#39; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a31515"&gt; `-.__.-&amp;#39;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;5177:M 19 Mar 2021 04:08:38.095 &lt;span style="color:#008000"&gt;# Server initialized&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;5177:M 19 Mar 2021 04:08:38.096 * Ready to accept connections
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="run-client"&gt;
+&lt;i id="locator-run-client" class="header-locator"&gt;&lt;/i&gt;
+&lt;a href="#run-client" class="article-h-a"&gt;3.2 运行客户端&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;使用&lt;code&gt;redis-cli&lt;/code&gt;简单测试一下设置和获取一个名为&lt;code&gt;test&lt;/code&gt;的string类型的缓存。&lt;/p&gt;</description></item></channel></rss>
